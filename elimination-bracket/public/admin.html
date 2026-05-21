@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bracket Admin — Summer Classic</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: system-ui, sans-serif; background: #1a1a2e; color: #e0e0e0; min-height: 100vh; padding: 24px; }
+  h1 { font-size: 22px; margin-bottom: 24px; color: #F28F16; }
+  h2 { font-size: 16px; margin-bottom: 14px; color: #aaa; text-transform: uppercase; letter-spacing: 1px; }
+  .section { background: #16213e; border: 1px solid #2a2a4a; border-radius: 8px; padding: 20px; margin-bottom: 20px; }
+  label { display: block; margin-bottom: 6px; font-size: 13px; color: #aaa; }
+  input[type=text], input[type=number] { background: #0f3460; border: 1px solid #2a4a7a; border-radius: 6px; color: #fff; padding: 10px 14px; font-size: 14px; width: 100%; }
+  input[type=number] { width: 80px; }
+  button { cursor: pointer; border: none; border-radius: 6px; font-size: 14px; font-weight: 600; padding: 10px 20px; transition: opacity 0.15s; }
+  button:hover { opacity: 0.85; }
+  button:disabled { opacity: 0.35; cursor: default; }
+  .btn-primary { background: #F28F16; color: #000; }
+  .btn-danger { background: #c0392b; color: #fff; }
+  .btn-secondary { background: #2a4a7a; color: #fff; }
+  .btn-sm { padding: 6px 12px; font-size: 12px; }
+  .btn-elim { background: #8B0000; color: #fff; }
+  .btn-win { background: #1a6b1a; color: #fff; }
+  .row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+  .mode-radios { display: flex; gap: 16px; margin-bottom: 16px; }
+  .mode-radios label { display: flex; align-items: center; gap: 8px; font-size: 15px; color: #e0e0e0; cursor: pointer; margin: 0; }
+  .mode-radios input { width: auto; accent-color: #F28F16; transform: scale(1.3); }
+  #playerList { list-style: none; margin: 12px 0; }
+  #playerList li { display: flex; align-items: center; gap: 10px; padding: 8px 10px; background: #0f3460; border-radius: 6px; margin-bottom: 6px; cursor: grab; user-select: none; }
+  #playerList li.drag-over { outline: 2px dashed #F28F16; }
+  #playerList li.dragging { opacity: 0.4; }
+  .drag-handle { color: #555; font-size: 16px; cursor: grab; }
+  .player-name { flex: 1; font-size: 14px; }
+  .seed-badge { background: #196A73; color: #fff; border-radius: 4px; padding: 2px 7px; font-size: 11px; font-weight: 700; }
+  .add-player-row { display: flex; gap: 8px; margin-top: 10px; }
+  .add-player-row input { flex: 1; }
+  #laneCountRow { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+  .action-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px; }
+
+  /* Scoring section */
+  .heat-card { background: #0f3460; border: 1px solid #2a4a7a; border-radius: 8px; margin-bottom: 12px; overflow: hidden; }
+  .heat-header { background: #196A73; padding: 6px 12px; font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; }
+  .heat-player { display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+  .heat-player:last-child { border-bottom: none; }
+  .heat-player.eliminated .pname { text-decoration: line-through; color: #555; }
+  .heat-player.bye-player .pname { color: #196A73; font-style: italic; }
+  .matchup-card { background: #0f3460; border: 1px solid #2a4a7a; border-radius: 8px; margin-bottom: 12px; overflow: hidden; }
+  .matchup-card.is-final { border-color: #F28F16; }
+  .matchup-header { background: #1a3060; padding: 6px 12px; font-size: 11px; color: #aaa; letter-spacing: 1px; }
+  .matchup-player { display: flex; align-items: center; gap: 10px; padding: 10px 14px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+  .matchup-player:last-child { border-bottom: none; }
+  .matchup-player.winner .pname { color: #F28F16; font-weight: 700; }
+  .matchup-player.loser .pname { text-decoration: line-through; color: #555; }
+  .score-input { width: 60px; background: #0d1b40; border: 1px solid #2a4a7a; border-radius: 4px; color: #fff; padding: 5px 8px; font-size: 14px; }
+  .rounds-nav { display: flex; gap: 8px; margin-bottom: 14px; flex-wrap: wrap; }
+  .round-btn { background: #0f3460; border: 1px solid #2a4a7a; color: #aaa; border-radius: 6px; padding: 6px 14px; font-size: 13px; cursor: pointer; }
+  .round-btn.active { background: #196A73; color: #fff; border-color: #196A73; }
+  .champion-banner { background: linear-gradient(135deg, #0d3650, #196A73); border: 2px solid #F28F16; border-radius: 8px; padding: 16px; text-align: center; margin-bottom: 16px; }
+  .champion-banner .champ-name { font-size: 22px; font-weight: 700; color: #F28F16; }
+  .status-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; margin-right: 4px; }
+  #undoBtn { background: #444; color: #fff; }
+  .pname { flex: 1; }
+  .bye-label { font-size: 11px; color: #196A73; background: rgba(25,106,115,0.2); border-radius: 4px; padding: 2px 8px; }
+</style>
+</head>
+<body>
+<h1>Summer Classic — Bracket Admin</h1>
+
+<div class="section" id="setupSection">
+  <h2>Setup</h2>
+
+  <div class="mode-radios">
+    <label><input type="radio" name="mode" value="murderball"> Murderball (Day 4)</label>
+    <label><input type="radio" name="mode" value="derby"> Home Run Derby (Day 6)</label>
+  </div>
+
+  <div id="laneCountRow">
+    <label style="margin:0;white-space:nowrap">Lane Count:</label>
+    <input type="number" id="laneCount" min="2" max="4" value="4" style="width:70px">
+  </div>
+
+  <h2>Players <span id="playerCount" style="color:#555;font-size:12px"></span></h2>
+  <ul id="playerList"></ul>
+  <div class="add-player-row">
+    <input type="text" id="newPlayerName" placeholder="Player name" maxlength="40">
+    <button class="btn-secondary" onclick="addPlayer()">Add</button>
+  </div>
+
+  <div class="action-row" style="margin-top:16px">
+    <button class="btn-primary" onclick="generateBracket()">Generate Bracket</button>
+    <button class="btn-danger btn-sm" onclick="resetBracket()" id="resetBtn">Reset Bracket</button>
+  </div>
+</div>
+
+<div class="section" id="scoringSection" style="display:none">
+  <h2>Scoring</h2>
+  <div id="championDisplay"></div>
+  <div id="roundsNav" class="rounds-nav"></div>
+  <div id="scoringContent"></div>
+  <div class="action-row" style="margin-top:14px">
+    <button class="btn-primary" id="advanceRoundBtn" style="display:none" onclick="advanceRound()">Advance Round</button>
+    <button class="btn-primary" id="declareChampBtn" style="display:none" onclick="declareChampion()">Declare Champion</button>
+    <button id="undoBtn" class="btn-sm" onclick="undoAction()">Undo Last Action</button>
+  </div>
+</div>
+
+<script>
+let state = null;
+let viewRound = 0;
+
+async function api(method, path, body) {
+  const res = await fetch(path, {
+    method,
+    headers: body ? { 'Content-Type': 'application/json' } : {},
+    body: body ? JSON.stringify(body) : undefined
+  });
+  return res.json();
+}
+
+async function loadState() {
+  state = await api('GET', '/api/bracket');
+  render();
+}
+
+function render() {
+  // Mode radios
+  document.querySelectorAll('input[name=mode]').forEach(r => {
+    r.checked = r.value === state.mode;
+  });
+  document.getElementById('laneCountRow').style.display = state.mode === 'murderball' ? 'flex' : 'none';
+  document.getElementById('laneCount').value = state.settings.laneCount || 4;
+
+  renderPlayerList();
+
+  const hasBracket = state.generated && state.rounds.length > 0;
+  document.getElementById('scoringSection').style.display = hasBracket ? 'block' : 'none';
+  document.getElementById('resetBtn').style.display = state.generated ? 'inline-block' : 'none';
+
+  if (hasBracket) {
+    if (viewRound >= state.rounds.length) viewRound = state.rounds.length - 1;
+    renderChampion();
+    renderRoundsNav();
+    if (state.mode === 'murderball') renderMurderballScoring();
+    else renderDerbyScoring();
+    renderAdvanceButtons();
+  }
+}
+
+function renderPlayerList() {
+  const list = document.getElementById('playerList');
+  list.innerHTML = '';
+  document.getElementById('playerCount').textContent = `(${state.players.length})`;
+  state.players.forEach((p, i) => {
+    const li = document.createElement('li');
+    li.dataset.index = i;
+    li.draggable = true;
+    li.innerHTML = `
+      <span class="drag-handle">⠿</span>
+      <span class="seed-badge">${i + 1}</span>
+      <span class="player-name">${escHtml(p)}</span>
+      <button class="btn-danger btn-sm" onclick="removePlayer(${i})">✕</button>
+    `;
+    setupDrag(li);
+    list.appendChild(li);
+  });
+}
+
+function setupDrag(el) {
+  el.addEventListener('dragstart', e => {
+    e.dataTransfer.setData('text/plain', el.dataset.index);
+    el.classList.add('dragging');
+  });
+  el.addEventListener('dragend', () => el.classList.remove('dragging'));
+  el.addEventListener('dragover', e => { e.preventDefault(); el.classList.add('drag-over'); });
+  el.addEventListener('dragleave', () => el.classList.remove('drag-over'));
+  el.addEventListener('drop', async e => {
+    e.preventDefault();
+    el.classList.remove('drag-over');
+    const from = parseInt(e.dataTransfer.getData('text/plain'));
+    const to = parseInt(el.dataset.index);
+    if (from === to) return;
+    const players = [...state.players];
+    const [moved] = players.splice(from, 1);
+    players.splice(to, 0, moved);
+    state = await api('PUT', '/api/bracket/settings', { players });
+    render();
+  });
+}
+
+async function addPlayer() {
+  const input = document.getElementById('newPlayerName');
+  const name = input.value.trim();
+  if (!name || state.players.length >= 16) return;
+  input.value = '';
+  state = await api('PUT', '/api/bracket/settings', { players: [...state.players, name] });
+  render();
+}
+
+document.getElementById('newPlayerName').addEventListener('keydown', e => {
+  if (e.key === 'Enter') addPlayer();
+});
+
+async function removePlayer(i) {
+  const players = [...state.players];
+  players.splice(i, 1);
+  state = await api('PUT', '/api/bracket/settings', { players });
+  render();
+}
+
+document.querySelectorAll('input[name=mode]').forEach(r => {
+  r.addEventListener('change', async () => {
+    if (state.generated && !confirm('Switching mode will reset the bracket. Continue?')) {
+      render(); return;
+    }
+    state = await api('PUT', '/api/bracket/settings', { mode: r.value });
+    viewRound = 0;
+    render();
+  });
+});
+
+document.getElementById('laneCount').addEventListener('change', async e => {
+  state = await api('PUT', '/api/bracket/settings', { laneCount: parseInt(e.target.value) });
+  render();
+});
+
+async function generateBracket() {
+  if (state.players.length < 2) { alert('Add at least 2 players.'); return; }
+  if (state.generated && !confirm('Regenerate bracket? Current progress will be lost.')) return;
+  state = await api('POST', '/api/bracket/generate');
+  viewRound = 0;
+  render();
+}
+
+async function resetBracket() {
+  if (!confirm('Reset bracket? Player roster will be kept.')) return;
+  state = await api('POST', '/api/bracket/reset');
+  viewRound = 0;
+  render();
+}
+
+function renderChampion() {
+  const el = document.getElementById('championDisplay');
+  if (state.champion) {
+    el.innerHTML = `<div class="champion-banner"><div style="font-size:11px;letter-spacing:2px;color:#F28F16;margin-bottom:6px">CHAMPION</div><div class="champ-name">${escHtml(state.champion)}</div></div>`;
+  } else {
+    el.innerHTML = '';
+  }
+}
+
+function renderRoundsNav() {
+  const nav = document.getElementById('roundsNav');
+  nav.innerHTML = '';
+  state.rounds.forEach((r, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'round-btn' + (i === viewRound ? ' active' : '');
+    btn.textContent = state.mode === 'murderball' ? `Round ${i + 1}` : roundLabel(i, state.rounds.length);
+    btn.onclick = () => { viewRound = i; render(); };
+    nav.appendChild(btn);
+  });
+}
+
+function roundLabel(i, total) {
+  if (i === total - 1) return 'Final';
+  if (i === total - 2) return 'Semis';
+  if (i === total - 3) return 'Quarters';
+  return `Round ${i + 1}`;
+}
+
+function renderMurderballScoring() {
+  const round = state.rounds[viewRound];
+  let html = '';
+  round.heats.forEach((heat, hi) => {
+    html += `<div class="heat-card">`;
+    html += `<div class="heat-header">${heat.bye ? 'BYE' : `HEAT ${hi + 1}`}</div>`;
+    heat.players.forEach(p => {
+      const isElim = heat.eliminated === p;
+      const cls = heat.bye ? 'bye-player' : (isElim ? 'eliminated' : '');
+      html += `<div class="heat-player ${cls}">
+        <span class="pname">${escHtml(p)}</span>
+        ${heat.bye ? '<span class="bye-label">AUTO-ADVANCE</span>' : `
+        <button class="btn-sm ${isElim ? 'btn-secondary' : 'btn-elim'}"
+          onclick="eliminate(${viewRound},${hi},'${escAttr(p)}')"
+          ${viewRound !== state.currentRound ? 'disabled' : ''}>
+          ${isElim ? 'Undo Elim' : 'Eliminate'}
+        </button>`}
+      </div>`;
+    });
+    html += `</div>`;
+  });
+  document.getElementById('scoringContent').innerHTML = html;
+}
+
+function renderDerbyScoring() {
+  const round = state.rounds[viewRound];
+  let html = '';
+  round.matchups.forEach((m, mi) => {
+    const isFin = round.isFinal;
+    html += `<div class="matchup-card${isFin ? ' is-final' : ''}">
+      <div class="matchup-header">${isFin ? 'FINAL — 7 THROWS' : `MATCHUP ${mi + 1}`}${m.bye ? ' · BYE' : ''}</div>`;
+
+    [['player1', 'player2'], ['player2', 'player1']].forEach(([key, other]) => {
+      const pl = m[key];
+      if (!pl.name && !m.bye) { html += `<div class="matchup-player"><span class="pname" style="color:#555">TBD</span></div>`; return; }
+      const cls = m.winner === pl.name ? 'winner' : (m.winner && m.winner !== pl.name ? 'loser' : '');
+      const scoreVal = pl.score != null ? pl.score : '';
+      const canAct = viewRound === state.currentRound && !m.winner && !m.bye && pl.name;
+      html += `<div class="matchup-player ${cls}">
+        ${pl.seed ? `<span class="seed-badge">${pl.seed}</span>` : ''}
+        <span class="pname">${pl.name ? escHtml(pl.name) : '<em style="color:#555">BYE</em>'}</span>
+        ${m.winner ? `<span style="font-size:13px;color:${m.winner===pl.name?'#F28F16':'#555'}">${scoreVal}</span>` : `
+        <input class="score-input" type="number" min="0" max="7" placeholder="—"
+          value="${scoreVal}"
+          onchange="updateScore(${viewRound},${mi},'${key}',this.value)"
+          ${!canAct ? 'disabled' : ''}>
+        <button class="btn-sm btn-win" onclick="setWinner(${viewRound},${mi},'${escAttr(pl.name)}')" ${!canAct ? 'disabled' : ''}>
+          Set Winner
+        </button>`}
+      </div>`;
+    });
+    html += `</div>`;
+  });
+  document.getElementById('scoringContent').innerHTML = html;
+}
+
+function renderAdvanceButtons() {
+  const advBtn = document.getElementById('advanceRoundBtn');
+  const champBtn = document.getElementById('declareChampBtn');
+  advBtn.style.display = 'none';
+  champBtn.style.display = 'none';
+
+  if (!state.generated) return;
+  const curRound = state.rounds[state.currentRound];
+  if (!curRound) return;
+
+  if (state.mode === 'murderball') {
+    const allDone = curRound.heats.every(h => h.bye || h.eliminated !== null);
+    const survivors = curRound.heats.flatMap(h =>
+      h.bye ? h.players : h.players.filter(p => p !== h.eliminated)
+    );
+    if (allDone && survivors.length === 1 && !state.champion) {
+      champBtn.style.display = 'inline-block';
+    } else if (allDone && survivors.length > 1 && !curRound.complete) {
+      advBtn.style.display = 'inline-block';
+    }
+  } else {
+    const allDone = curRound.matchups.every(m => m.winner);
+    const isFinal = curRound.isFinal;
+    if (allDone && isFinal && !state.champion) {
+      champBtn.style.display = 'inline-block';
+    }
+  }
+}
+
+async function eliminate(roundIndex, heatIndex, playerName) {
+  state = await api('PUT', '/api/bracket/eliminate', { roundIndex, heatIndex, playerName });
+  viewRound = state.currentRound;
+  render();
+}
+
+const pendingScores = {};
+
+function updateScore(roundIndex, matchupIndex, playerKey, value) {
+  const k = `${roundIndex}-${matchupIndex}`;
+  if (!pendingScores[k]) pendingScores[k] = {};
+  pendingScores[k][playerKey] = parseInt(value);
+}
+
+async function setWinner(roundIndex, matchupIndex, winner) {
+  const k = `${roundIndex}-${matchupIndex}`;
+  const scores = pendingScores[k] || {};
+  const m = state.rounds[roundIndex].matchups[matchupIndex];
+  // Also read score inputs from DOM directly
+  const cards = document.querySelectorAll('.matchup-card');
+  const body = {
+    roundIndex,
+    matchupIndex,
+    winner,
+    player1Score: scores.player1 != null ? scores.player1 : (m.player1.score),
+    player2Score: scores.player2 != null ? scores.player2 : (m.player2.score)
+  };
+  state = await api('PUT', '/api/bracket/score', body);
+  delete pendingScores[k];
+  render();
+}
+
+async function advanceRound() {
+  // Advance is triggered server-side by eliminate; clicking here is just a UI nudge
+  // For murderball, all eliminations already triggered advance — just reload
+  await loadState();
+}
+
+async function declareChampion() {
+  let name;
+  if (state.mode === 'murderball') {
+    const curRound = state.rounds[state.currentRound];
+    const survivors = curRound.heats.flatMap(h =>
+      h.bye ? h.players : h.players.filter(p => p !== h.eliminated)
+    );
+    name = survivors[0];
+  } else {
+    const lastRound = state.rounds[state.rounds.length - 1];
+    name = lastRound.matchups[0]?.winner;
+  }
+  if (!name) { alert('No winner determined yet.'); return; }
+  state = await api('PUT', '/api/bracket/champion', { name });
+  render();
+}
+
+async function undoAction() {
+  state = await api('POST', '/api/bracket/undo');
+  viewRound = state.currentRound;
+  render();
+}
+
+function escHtml(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+function escAttr(s) {
+  return String(s).replace(/'/g,"\\'");
+}
+
+loadState();
+</script>
+</body>
+</html>

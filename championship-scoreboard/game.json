@@ -1,0 +1,43 @@
+{
+  "status": "setup",
+  "visitor": {
+    "name": "",
+    "innings": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ]
+  },
+  "home": {
+    "name": "",
+    "innings": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ]
+  },
+  "currentInning": 1,
+  "currentHalf": "top",
+  "pitcher": "",
+  "batter": "",
+  "bases": {
+    "first": false,
+    "second": false,
+    "third": false
+  },
+  "outs": 0,
+  "balls": 0,
+  "inningsPlayed": 0
+}
