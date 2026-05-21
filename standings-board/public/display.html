@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Summer Classic — Standings</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #114566;
+      --dark-navy: #0d3650;
+      --teal: #196A73;
+      --orange: #F28F16;
+      --red-orange: #F25C05;
+      --divider: rgba(25, 106, 115, 0.25);
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      background: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .board {
+      aspect-ratio: 16 / 9;
+      width: 100vw;
+      max-width: calc(100vh * 16 / 9);
+      background: var(--navy);
+      display: flex;
+      flex-direction: column;
+      font-family: 'Oswald', sans-serif;
+      overflow: hidden;
+    }
+
+    /* HEADER */
+    .board-header {
+      background: var(--dark-navy);
+      border-bottom: 3px solid var(--orange);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 2.2% 3.5%;
+      flex-shrink: 0;
+    }
+
+    .header-left {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3em;
+    }
+
+    .venue-name {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 600;
+      font-size: clamp(12px, 1.4vw, 22px);
+      color: var(--teal);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .league-title {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      font-size: clamp(28px, 4.2vw, 72px);
+      color: var(--orange);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      line-height: 1;
+    }
+
+    .standings-sub {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 500;
+      font-size: clamp(11px, 1.2vw, 20px);
+      color: rgba(255, 255, 255, 0.55);
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .day-badge {
+      background: var(--teal);
+      border-radius: 6px;
+      padding: 0.6em 1.2em;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.1em;
+      min-width: 7vw;
+    }
+
+    .day-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 600;
+      font-size: clamp(10px, 1vw, 17px);
+      color: rgba(255, 255, 255, 0.8);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    .day-number {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      font-size: clamp(32px, 5vw, 82px);
+      color: #fff;
+      line-height: 1;
+    }
+
+    /* COLUMN HEADERS */
+    .col-headers {
+      background: var(--dark-navy);
+      display: grid;
+      grid-template-columns: 6% 1fr 18% 18%;
+      padding: 0.8% 3.5%;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .col-headers span {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 600;
+      font-size: clamp(10px, 1.1vw, 18px);
+      color: var(--teal);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .col-headers .col-points,
+    .col-headers .col-wl {
+      text-align: center;
+    }
+
+    /* TEAMS */
+    .teams-container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .team-row {
+      display: grid;
+      grid-template-columns: 6% 1fr 18% 18%;
+      padding: 0 3.5%;
+      align-items: center;
+      border-bottom: 1px solid var(--divider);
+      flex: 1;
+    }
+
+    .team-row.leader {
+      border-left: 3px solid var(--orange);
+      background: rgba(242, 143, 22, 0.06);
+    }
+
+    .team-seed {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 600;
+      font-size: clamp(14px, 1.7vw, 28px);
+    }
+
+    .team-row.leader .team-seed { color: rgba(255, 255, 255, 0.7); }
+    .team-row:not(.leader) .team-seed { color: rgba(255, 255, 255, 0.35); }
+
+    .team-name {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 600;
+      font-size: clamp(14px, 1.7vw, 28px);
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .team-row.leader .team-name { color: var(--orange); }
+    .team-row:not(.leader) .team-name { color: #fff; }
+
+    .team-wl {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 500;
+      font-size: clamp(13px, 1.5vw, 25px);
+      color: rgba(255, 255, 255, 0.75);
+      text-align: center;
+    }
+
+    .team-points {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      font-size: clamp(16px, 2vw, 33px);
+      text-align: center;
+    }
+
+    .team-row.leader .team-points { color: var(--orange); }
+    .team-row:not(.leader) .team-points { color: var(--red-orange); }
+
+    /* FOOTER */
+    .board-footer {
+      background: var(--dark-navy);
+      border-top: 1px solid var(--divider);
+      padding: 0.9% 3.5%;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .tagline {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 400;
+      font-style: italic;
+      font-size: clamp(11px, 1.1vw, 18px);
+      color: rgba(255, 255, 255, 0.3);
+      letter-spacing: 0.04em;
+    }
+  </style>
+</head>
+<body>
+  <div class="board">
+    <header class="board-header">
+      <div class="header-left">
+        <span class="venue-name">Lumber Jill's</span>
+        <span class="league-title">The Summer Classic</span>
+        <span class="standings-sub">Season Standings</span>
+      </div>
+      <div class="day-badge">
+        <span class="day-label">After</span>
+        <span class="day-number" id="day-number">1</span>
+      </div>
+    </header>
+
+    <div class="col-headers">
+      <span>#</span>
+      <span>Team</span>
+      <span class="col-wl">W-L</span>
+      <span class="col-points">Points</span>
+    </div>
+
+    <div class="teams-container" id="teams-container"></div>
+
+    <footer class="board-footer">
+      <span class="tagline">Have fun. Build community. Give back.</span>
+    </footer>
+  </div>
+
+  <script>
+    async function refresh() {
+      try {
+        const data = await fetch('/api/standings').then(r => r.json());
+        document.getElementById('day-number').textContent = data.day;
+
+        const container = document.getElementById('teams-container');
+        container.innerHTML = '';
+
+        data.teams.forEach(team => {
+          const row = document.createElement('div');
+          row.className = 'team-row' + (team.seed === 1 ? ' leader' : '');
+          row.innerHTML = `
+            <span class="team-seed">${team.seed}</span>
+            <span class="team-name">${escHtml(team.name)}</span>
+            <span class="team-wl">${team.w}-${team.l}</span>
+            <span class="team-points">${team.points}</span>
+          `;
+          container.appendChild(row);
+        });
+      } catch (e) {
+        console.error('Refresh failed:', e);
+      }
+    }
+
+    function escHtml(s) {
+      return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    }
+
+    refresh();
+    setInterval(refresh, 10000);
+  </script>
+</body>
+</html>
