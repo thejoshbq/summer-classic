@@ -76,11 +76,14 @@ function advanceMurderballRound() {
 // ── Derby generation ───────────────────────────────────────────────────
 
 function seedSlots(size) {
-  let slots = [1, 2];
-  while (slots.length < size) {
-    slots = slots.flatMap(s => [s, size + 1 - s]);
-  }
-  return slots;
+  if (size === 2) return [1, 2];
+  const prev = seedSlots(size / 2);
+  const result = new Array(size);
+  prev.forEach((seed, i) => {
+    result[i * 2] = seed;
+    result[i * 2 + 1] = size + 1 - seed;
+  });
+  return result;
 }
 
 function generateDerby(players) {
@@ -139,13 +142,6 @@ function propagateDerbyWinners(rounds, fromRound) {
       const isP1 = i % 2 === 0;
       if (isP1) next[slot].player1.name = m.winner;
       else next[slot].player2.name = m.winner;
-      // Check if next matchup is now also a bye
-      if (next[slot].player1.name && next[slot].player2.name === null ||
-          next[slot].player2.name && next[slot].player1.name === null) {
-        next[slot].winner = next[slot].player1.name || next[slot].player2.name;
-        next[slot].bye = true;
-        propagateDerbyWinners(rounds, fromRound + 1);
-      }
     }
   }
 }
