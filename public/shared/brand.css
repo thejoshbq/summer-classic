@@ -1,0 +1,19 @@
+/* Summer Classic design system — single source of truth (see CLAUDE.md). */
+
+:root {
+  --navy: #114566;
+  --dark-navy: #0d3650;
+  --teal: #196A73;
+  --orange: #F28F16;
+  --red-orange: #F25C05;
+  --red: #BF0606;
+  --divider: rgba(25, 106, 115, 0.25);
+  --divider-faint: rgba(25, 106, 115, 0.15);
+  --white-muted: rgba(255, 255, 255, 0.5);
+  --white-faint: rgba(255, 255, 255, 0.25);
+  --white-trace: rgba(255, 255, 255, 0.2);
+}
+
+@font-face { font-display: swap; }
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }

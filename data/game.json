@@ -1,0 +1,41 @@
+{
+  "status": "setup",
+  "visitorTeamId": null,
+  "homeTeamId": null,
+  "visitorInnings": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+  ],
+  "homeInnings": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+  ],
+  "currentInning": 1,
+  "currentHalf": "top",
+  "pitcherPlayerId": null,
+  "batterPlayerId": null,
+  "pitcherFallback": "",
+  "batterFallback": "",
+  "bases": {
+    "first": false,
+    "second": false,
+    "third": false
+  },
+  "outs": 0,
+  "balls": 0,
+  "inningsPlayed": 0
+}

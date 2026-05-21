@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bracket — Summer Classic</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/shared/brand.css">
+<link rel="stylesheet" href="/shared/shell.css">
+<style>
+  .bracket-area {
+    flex: 1;
+    display: flex;
+    align-items: stretch;
+    padding: 1.6% 2.4%;
+    gap: 0;
+    overflow: auto;
+    min-height: 0;
+    position: relative;
+  }
+
+  .round-col {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    flex: 1 1 0;
+    min-width: 11vw;
+    align-items: center;
+    position: relative;
+    padding: 1.2% 0 0;
+  }
+
+  .round-label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(10px, 0.9vw, 13px);
+    color: var(--teal);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    text-align: center;
+  }
+
+  .matchup-wrapper, .heat-wrapper {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .card-block {
+    background: var(--dark-navy);
+    border: 1px solid var(--divider);
+    border-radius: 6px;
+    overflow: hidden;
+    width: min(11vw, 170px);
+  }
+  .card-block.is-final { border: 2px solid var(--orange); }
+
+  .card-header {
+    background: rgba(25,106,115,0.25);
+    color: var(--teal);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(8px, 0.75vw, 11px);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 0.35em 0.7em;
+    text-align: center;
+  }
+  .is-final .card-header { background: rgba(242,143,22,0.18); color: var(--orange); }
+
+  .row {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--divider-faint);
+    padding: 0.4em 0.6em;
+    gap: 0.5em;
+    min-height: 1.9em;
+  }
+  .row:last-child { border-bottom: none; }
+
+  .seed {
+    font-family: 'Oswald', sans-serif;
+    font-size: clamp(9px, 0.7vw, 11px);
+    color: var(--teal);
+    min-width: 1.4em;
+    text-align: center;
+  }
+
+  .pname {
+    flex: 1;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 500;
+    font-size: clamp(11px, 0.95vw, 14px);
+    text-transform: uppercase;
+    color: #fff;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .pname.winner { color: var(--orange); font-weight: 700; }
+  .pname.loser { color: var(--white-faint); text-decoration: line-through; }
+  .pname.bye { color: var(--teal); font-style: italic; }
+  .pname.tbd { color: rgba(255,255,255,0.2); }
+
+  .score {
+    font-family: 'Oswald', sans-serif;
+    font-size: clamp(11px, 0.95vw, 14px);
+    font-weight: 600;
+    color: rgba(255,255,255,0.5);
+    min-width: 1.2em;
+    text-align: right;
+  }
+  .score.winner { color: var(--orange); }
+
+  .champion-card {
+    background: var(--dark-navy);
+    border: 2px solid var(--orange);
+    border-radius: 6px;
+    overflow: hidden;
+    width: min(11vw, 170px);
+    align-self: center;
+  }
+  .champion-card .clabel {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(9px, 0.8vw, 12px);
+    color: var(--orange);
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    padding: 0.4em 0.6em;
+    text-align: center;
+    border-bottom: 1px solid rgba(242,143,22,0.3);
+  }
+  .champion-card .cname {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: clamp(14px, 1.2vw, 18px);
+    color: var(--orange);
+    text-align: center;
+    padding: 0.7em 0.4em;
+    text-transform: uppercase;
+    min-height: 2.5em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .legend { display: flex; gap: 1em; align-items: center; }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.4em;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(9px, 0.85vw, 12px);
+    color: rgba(255,255,255,0.45);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .dot { width: 0.6em; height: 0.6em; border-radius: 50%; }
+  .dot-orange { background: var(--orange); }
+  .dot-muted { background: var(--white-faint); }
+  .dot-teal { background: var(--teal); }
+</style>
+</head>
+<body>
+<div class="board">
+  <header class="board-header">
+    <div class="header-left">
+      <span class="venue-name">Lumber Jill's</span>
+      <span class="board-title" id="mode-title">Bracket</span>
+      <span class="board-subtitle" id="mode-subtitle">&nbsp;</span>
+    </div>
+    <div class="day-badge">
+      <span class="day-label">Day</span>
+      <span class="day-number" id="day-num">—</span>
+    </div>
+  </header>
+
+  <div class="board-body bracket-area" id="bracket-area"></div>
+
+  <footer class="board-footer" style="justify-content:space-between">
+    <div class="legend" id="legend"></div>
+    <span class="tagline">Have fun. Build community. Give back.</span>
+  </footer>
+</div>
+
+<script src="/shared/poll.js"></script>
+<script>
+let playerNameMap = {};
+
+function nameOf(id) { return id ? (playerNameMap[id] || '???') : ''; }
+
+function renderDerby(b) {
+  const rounds = b.rounds;
+  const totalRounds = rounds.length;
+
+  function rname(i) {
+    if (i === totalRounds - 1) return 'Final';
+    if (i === totalRounds - 2) return 'Semifinals';
+    if (i === totalRounds - 3) return 'Quarters';
+    return `Round ${i + 1}`;
+  }
+
+  let html = '';
+  rounds.forEach((round, ri) => {
+    html += `<div class="round-col">
+      <div class="round-label">${rname(ri)}</div>`;
+    round.matchups.forEach(m => {
+      const p1 = m.player1, p2 = m.player2;
+      const winId = m.winnerPlayerId;
+
+      function row(p) {
+        const name = p.playerId ? nameOf(p.playerId) : null;
+        let cls = '';
+        if (!name) cls = m.bye ? 'bye' : 'tbd';
+        else if (winId === p.playerId) cls = 'winner';
+        else if (winId) cls = 'loser';
+
+        const scoreCls = winId === p.playerId ? 'score winner' : 'score';
+        const scoreVal = p.score != null ? p.score : '';
+        return `
+          <div class="row">
+            <span class="seed">${p.seed || ''}</span>
+            <span class="pname ${cls}">${name ? esc(name) : (m.bye ? 'BYE' : 'TBD')}</span>
+            <span class="${scoreCls}">${scoreVal}</span>
+          </div>`;
+      }
+
+      html += `
+        <div class="matchup-wrapper">
+          <div class="card-block ${round.isFinal ? 'is-final' : ''}">
+            <div class="card-header">${round.isFinal ? 'Final · 7 throws' : 'Best Throw'}</div>
+            ${row(p1)}${row(p2)}
+          </div>
+        </div>`;
+    });
+    html += `</div>`;
+  });
+
+  html += `<div class="round-col" style="min-width:11vw">
+    <div class="round-label">Champion</div>
+    <div class="champion-card">
+      <div class="clabel">Derby Champion</div>
+      <div class="cname">${b.championPlayerId ? esc(nameOf(b.championPlayerId)) : '&nbsp;'}</div>
+    </div>
+  </div>`;
+
+  return html;
+}
+
+function renderMurderball(b) {
+  const rounds = b.rounds;
+  let html = '';
+  rounds.forEach((round, ri) => {
+    html += `<div class="round-col">
+      <div class="round-label">Round ${ri + 1}</div>`;
+    round.heats.forEach((h, hi) => {
+      html += `<div class="heat-wrapper">
+        <div class="card-block">
+          <div class="card-header">${h.bye ? 'Bye' : `Heat ${hi + 1}`}</div>`;
+      h.playerIds.forEach(pid => {
+        let cls = '';
+        if (h.bye) cls = 'bye';
+        else if (h.eliminatedPlayerId === pid) cls = 'loser';
+        else if (h.eliminatedPlayerId !== null || round.complete) cls = 'winner';
+        html += `
+          <div class="row">
+            <span class="pname ${cls}">${esc(nameOf(pid))}</span>
+          </div>`;
+      });
+      html += `</div></div>`;
+    });
+    html += `</div>`;
+  });
+
+  html += `<div class="round-col" style="min-width:11vw">
+    <div class="round-label">Champion</div>
+    <div class="champion-card">
+      <div class="clabel">Champion</div>
+      <div class="cname">${b.championPlayerId ? esc(nameOf(b.championPlayerId)) : '&nbsp;'}</div>
+    </div>
+  </div>`;
+
+  return html;
+}
+
+function legendFor(mode) {
+  const items = [
+    `<div class="legend-item"><div class="dot dot-orange"></div>Advanced</div>`,
+    `<div class="legend-item"><div class="dot dot-muted"></div>Eliminated</div>`,
+  ];
+  if (mode === 'murderball') items.push(`<div class="legend-item"><div class="dot dot-teal"></div>Bye</div>`);
+  return items.join('');
+}
+
+async function refresh() {
+  try {
+    const [bRes, pRes] = await Promise.all([
+      fetch('/api/bracket', { cache: 'no-store' }).then(r => r.json()),
+      fetch('/api/players', { cache: 'no-store' }).then(r => r.json())
+    ]);
+    playerNameMap = Object.fromEntries(pRes.map(p => [p.id, p.name]));
+
+    const titleEl = document.getElementById('mode-title');
+    const subEl = document.getElementById('mode-subtitle');
+    const dayEl = document.getElementById('day-num');
+    const area = document.getElementById('bracket-area');
+    const legend = document.getElementById('legend');
+
+    if (bRes.mode === 'derby') {
+      titleEl.textContent = 'Home Run Derby';
+      subEl.textContent = 'Day 6 — Killshot Bracket';
+      dayEl.textContent = '6';
+    } else {
+      titleEl.textContent = 'Murderball';
+      subEl.textContent = 'Day 4 — Heat Elimination';
+      dayEl.textContent = '4';
+    }
+    legend.innerHTML = legendFor(bRes.mode);
+
+    if (!bRes.generated || !bRes.rounds.length) {
+      area.innerHTML = '<div class="empty-state">Waiting for bracket…</div>';
+      return;
+    }
+
+    area.innerHTML = bRes.mode === 'derby' ? renderDerby(bRes) : renderMurderball(bRes);
+  } catch (e) {
+    console.error(e);
+  }
+}
+
+refresh();
+setInterval(refresh, 5000);
+</script>
+</body>
+</html>

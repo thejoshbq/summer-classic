@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Summer Classic — Standings</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/shared/brand.css">
+<link rel="stylesheet" href="/shared/shell.css">
+<style>
+  .col-headers, .team-row {
+    display: grid;
+    grid-template-columns: 6% 1fr 18% 18%;
+    padding: 0 3.5%;
+    align-items: center;
+  }
+  .col-headers {
+    background: var(--dark-navy);
+    padding: 0.7% 3.5%;
+    flex-shrink: 0;
+  }
+  .col-headers span {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: clamp(10px, 1.1vw, 16px);
+    color: var(--teal);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+  .col-headers .col-points, .col-headers .col-wl { text-align: center; }
+
+  .team-row {
+    border-bottom: 1px solid var(--divider);
+    flex: 1;
+  }
+  .team-row.leader {
+    border-left: 3px solid var(--orange);
+    background: rgba(242, 143, 22, 0.06);
+  }
+
+  .team-seed {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    font-size: clamp(14px, 1.7vw, 26px);
+  }
+  .team-row.leader .team-seed { color: rgba(255,255,255,0.7); }
+  .team-row:not(.leader) .team-seed { color: rgba(255,255,255,0.35); }
+
+  .team-name {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    font-size: clamp(14px, 1.7vw, 26px);
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+  .team-row.leader .team-name { color: var(--orange); }
+  .team-row:not(.leader) .team-name { color: #fff; }
+
+  .team-wl {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 500;
+    font-size: clamp(13px, 1.5vw, 23px);
+    color: rgba(255,255,255,0.75);
+    text-align: center;
+  }
+
+  .team-points {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: clamp(16px, 2vw, 30px);
+    text-align: center;
+  }
+  .team-row.leader .team-points { color: var(--orange); }
+  .team-row:not(.leader) .team-points { color: var(--red-orange); }
+</style>
+</head>
+<body>
+<div class="board">
+  <header class="board-header">
+    <div class="header-left">
+      <span class="venue-name">Lumber Jill's</span>
+      <span class="board-title">The Summer Classic</span>
+      <span class="board-subtitle">Season Standings</span>
+    </div>
+    <div class="day-badge">
+      <span class="day-label">After Day</span>
+      <span class="day-number" id="day-number">1</span>
+    </div>
+  </header>
+
+  <div class="col-headers">
+    <span>#</span>
+    <span>Team</span>
+    <span class="col-wl">W–L</span>
+    <span class="col-points">Points</span>
+  </div>
+
+  <div class="board-body" id="teams-container"></div>
+
+  <footer class="board-footer">
+    <span class="tagline">Have fun. Build community. Give back.</span>
+  </footer>
+</div>
+
+<script src="/shared/poll.js"></script>
+<script>
+function render(data) {
+  document.getElementById('day-number').textContent = data.day;
+  const c = document.getElementById('teams-container');
+  if (!data.teams.length) {
+    c.innerHTML = '<div class="empty-state">Awaiting teams</div>';
+    return;
+  }
+  c.innerHTML = data.teams.map(t => `
+    <div class="team-row${t.seed === 1 ? ' leader' : ''}">
+      <span class="team-seed">${t.seed}</span>
+      <span class="team-name">${esc(t.name)}</span>
+      <span class="team-wl">${t.w}–${t.l}</span>
+      <span class="team-points">${t.points}</span>
+    </div>
+  `).join('');
+}
+
+pollEvery(5000, '/api/standings', render);
+</script>
+</body>
+</html>

@@ -8,9 +8,9 @@ This repository contains the digital display and management applications for **T
 
 ```
 /
-├── standings/          # Season standings board (app 1)
-├── brackets/           # Murderball + Home Run Derby brackets (app 2)
-├── scoreboard/         # Championship Game live scoreboard (app 3)
+├── standings-board/         # Season standings board (app 1)
+├── elimination-bracket/     # Murderball + Home Run Derby brackets (app 2)
+├── championship-scoreboard/ # Championship Game live scoreboard (app 3)
 └── CLAUDE.md
 ```
 
@@ -60,7 +60,7 @@ All display UIs share this design system exactly. Do not deviate.
 
 ---
 
-## App 1 — Standings Board (`/standings`)
+## App 1 — Standings Board (`/standings-board`)
 
 Displays season standings updated after each league night (Days 2–6).
 
@@ -86,7 +86,7 @@ Displays season standings updated after each league night (Days 2–6).
 
 ---
 
-## App 2 — Bracket Display (`/brackets`)
+## App 2 — Bracket Display (`/elimination-bracket`)
 
 Handles two elimination formats across Days 4 and 6. Mode is selectable from the admin panel.
 
@@ -121,7 +121,7 @@ Display: classic left-to-right tournament tree. Seed + name + score per row. Win
 
 ---
 
-## App 3 — Championship Scoreboard (`/scoreboard`)
+## App 3 — Championship Scoreboard (`/championship-scoreboard`)
 
 Live scoreboard for the Day 6 Championship Game only. Two states.
 

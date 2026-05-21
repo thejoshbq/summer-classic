@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Summer Classic — Admin</title>
+<link rel="stylesheet" href="/admin/admin.css">
+</head>
+<body>
+<div class="admin-shell">
+  <div class="admin-header">
+    <h1>Summer Classic — Admin</h1>
+    <span class="subtitle">Operator portal</span>
+  </div>
+
+  <nav class="tab-bar" id="tab-bar">
+    <button class="tab-btn active" data-tab="roster">Roster</button>
+    <button class="tab-btn" data-tab="teams">Teams</button>
+    <button class="tab-btn" data-tab="standings">Standings</button>
+    <button class="tab-btn" data-tab="bracket">Bracket</button>
+    <button class="tab-btn" data-tab="scoreboard">Scoreboard</button>
+    <button class="tab-btn" data-tab="tv">TV Mode</button>
+  </nav>
+
+  <section class="tab-panel active" id="tab-roster"></section>
+  <section class="tab-panel" id="tab-teams"></section>
+  <section class="tab-panel" id="tab-standings"></section>
+  <section class="tab-panel" id="tab-bracket"></section>
+  <section class="tab-panel" id="tab-scoreboard"></section>
+  <section class="tab-panel" id="tab-tv"></section>
+</div>
+
+<script src="/shared/poll.js"></script>
+<script src="/admin/data.js"></script>
+<script src="/admin/roster.js"></script>
+<script src="/admin/teams.js"></script>
+<script src="/admin/standings.js"></script>
+<script src="/admin/bracket.js"></script>
+<script src="/admin/scoreboard.js"></script>
+<script src="/admin/tv.js"></script>
+<script src="/admin/main.js"></script>
+</body>
+</html>

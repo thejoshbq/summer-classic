@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Summer Classic — Championship Game</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/shared/brand.css">
+<link rel="stylesheet" href="/shared/shell.css">
+<style>
+  .badge-inning {
+    background: var(--teal);
+    border-radius: 8px;
+    padding: 0.5em 1em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 5.5vw;
+  }
+  .badge-inning .label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(10px, 1vw, 14px);
+    color: rgba(255,255,255,0.7);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+  .badge-inning .half {
+    font-family: 'Oswald', sans-serif;
+    font-size: clamp(12px, 1.2vw, 18px);
+    color: rgba(255,255,255,0.85);
+    font-weight: 500;
+  }
+  .badge-inning .num {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: clamp(28px, 3.5vw, 50px);
+    color: #fff;
+    line-height: 1;
+  }
+  .badge-final {
+    background: var(--red);
+    border-radius: 8px;
+    padding: 0.7em 1.4em;
+  }
+  .badge-final .text {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: clamp(22px, 3vw, 42px);
+    color: #fff;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  .linescore-wrap { padding: 1.6% 2.6% 0; }
+  table.linescore {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+  }
+  table.linescore thead tr { border-bottom: 1px solid rgba(25,106,115,0.4); }
+  table.linescore thead th {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(11px, 1.1vw, 16px);
+    font-weight: 500;
+    color: var(--teal);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 0.4em 0.4em 0.6em;
+    text-align: center;
+  }
+  table.linescore thead th.col-name { text-align: left; }
+  table.linescore thead th.col-total { color: var(--orange); }
+
+  table.linescore tbody tr { border-bottom: 1px solid var(--divider-faint); }
+  table.linescore tbody tr:last-child { border-bottom: none; }
+  table.linescore tbody td { padding: 0.8em 0.4em; text-align: center; }
+  table.linescore tbody td.col-name {
+    text-align: left;
+    font-family: 'Oswald', sans-serif;
+    font-size: clamp(16px, 2vw, 28px);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: #fff;
+    width: 14%;
+  }
+  table.linescore tbody td.col-name.winner { color: var(--orange); }
+
+  .cell-score {
+    font-family: 'Oswald', sans-serif;
+    font-size: clamp(14px, 1.7vw, 24px);
+    font-weight: 500;
+    color: rgba(255,255,255,0.7);
+  }
+  .cell-score.active { color: var(--red-orange); font-weight: 700; }
+  .cell-score.empty { color: rgba(255,255,255,0.2); }
+  .cell-total {
+    font-family: 'Oswald', sans-serif;
+    font-size: clamp(20px, 2.4vw, 34px);
+    font-weight: 700;
+    color: rgba(255,255,255,0.55);
+  }
+  .cell-total.winner { color: var(--orange); }
+
+  .lower-panel {
+    padding: 1.4% 2.6%;
+    display: flex;
+    gap: 1.5%;
+    align-items: stretch;
+  }
+
+  .atbat-block, .winner-block, .final-score-block {
+    background: var(--dark-navy);
+    border-radius: 8px;
+    padding: 1em 1.4em;
+  }
+
+  .atbat-block { flex: 1.5; display: flex; flex-direction: column; gap: 0.4em; }
+  .atbat-row {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    padding: 0.4em 0;
+  }
+  .atbat-row + .atbat-row { border-top: 1px solid var(--divider-faint); }
+  .atbat-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(10px, 0.95vw, 14px);
+    color: var(--teal);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    min-width: 4.5em;
+  }
+  .atbat-name {
+    font-family: 'Oswald', sans-serif;
+    font-size: clamp(15px, 1.6vw, 22px);
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #fff;
+    letter-spacing: 0.02em;
+  }
+
+  .diamond-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 0.5em;
+  }
+  .diamond-field {
+    position: relative;
+    width: clamp(54px, 5vw, 80px);
+    aspect-ratio: 1 / 1;
+  }
+  .base {
+    position: absolute;
+    width: 28%;
+    aspect-ratio: 1;
+    border: 2px solid rgba(255,255,255,0.2);
+    border-radius: 2px;
+    transform: rotate(45deg);
+    background: transparent;
+  }
+  .base.occupied { background: var(--orange); border-color: var(--orange); }
+  .base-2nd { top: 3%; left: 35%; }
+  .base-1st { top: 36%; right: 3%; }
+  .base-3rd { top: 36%; left: 3%; }
+  .base-home {
+    position: absolute;
+    width: 22%;
+    aspect-ratio: 1;
+    border: 2px solid rgba(255,255,255,0.15);
+    border-radius: 2px;
+    transform: rotate(45deg);
+    background: rgba(255,255,255,0.05);
+    bottom: 3%;
+    left: 38%;
+  }
+
+  .counts-panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.6em;
+    padding: 0 0.5em;
+  }
+  .count-row { display: flex; align-items: center; gap: 0.5em; }
+  .count-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(9px, 0.85vw, 12px);
+    color: var(--teal);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    min-width: 3em;
+    text-align: right;
+  }
+  .dots { display: flex; gap: 0.4em; }
+  .dot {
+    width: clamp(10px, 0.85vw, 14px);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    border: 1.5px solid rgba(255,255,255,0.2);
+  }
+  .dot.out-active { background: var(--red-orange); border-color: var(--red-orange); }
+  .dot.ball-active { background: var(--teal); border-color: var(--teal); }
+
+  .v-divider { width: 1px; background: rgba(25,106,115,0.3); }
+
+  .winner-block {
+    flex: 1;
+    border-left: 3px solid var(--orange);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.3em;
+  }
+  .winner-block .champ-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(11px, 1vw, 14px);
+    color: var(--teal);
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+  }
+  .winner-block .team-name {
+    font-family: 'Oswald', sans-serif;
+    font-size: clamp(24px, 3vw, 42px);
+    font-weight: 700;
+    color: var(--orange);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .winner-block .subline {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(11px, 1vw, 14px);
+    color: rgba(255,255,255,0.3);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  .final-score-block {
+    display: flex;
+    align-items: center;
+    gap: 0.8em;
+  }
+  .final-score-team {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.1em;
+  }
+  .final-score-abbr {
+    font-family: 'Oswald', sans-serif;
+    font-size: clamp(10px, 1vw, 14px);
+    color: rgba(255,255,255,0.4);
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+  }
+  .final-score-runs {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: clamp(34px, 4.5vw, 60px);
+    line-height: 1;
+  }
+  .final-score-runs.winner-runs { color: var(--orange); }
+  .final-score-runs.loser-runs { color: var(--white-faint); }
+  .final-score-sep {
+    font-family: 'Oswald', sans-serif;
+    font-size: clamp(22px, 2.5vw, 32px);
+    color: rgba(255,255,255,0.2);
+  }
+
+  .footer-innings {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-style: italic;
+    font-size: clamp(11px, 1vw, 14px);
+    color: var(--teal);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-right: auto;
+  }
+</style>
+</head>
+<body>
+<div class="board" id="board"></div>
+
+<script src="/shared/poll.js"></script>
+<script>
+function abbr(name) {
+  if (!name) return '???';
+  const words = name.trim().split(/\s+/);
+  if (words.length === 1) return name.slice(0, 3).toUpperCase();
+  return words.map(w => w[0]).join('').toUpperCase().slice(0, 4);
+}
+
+function header(g) {
+  let badge = '';
+  if (g.status === 'live') {
+    badge = `
+      <div class="badge-inning">
+        <span class="label">Inning</span>
+        <span class="half">${g.currentHalf === 'top' ? 'Top' : 'Bottom'}</span>
+        <span class="num">${g.currentInning}</span>
+      </div>`;
+  } else if (g.status === 'final') {
+    badge = `<div class="badge-final"><span class="text">Final</span></div>`;
+  } else {
+    badge = `
+      <div class="day-badge">
+        <span class="day-label">Day</span>
+        <span class="day-number">6</span>
+      </div>`;
+  }
+  return `
+    <header class="board-header">
+      <div class="header-left">
+        <span class="venue-name">Lumber Jill's</span>
+        <span class="board-title">The World Series</span>
+        <span class="board-subtitle">Day 6 — Championship Game</span>
+      </div>
+      ${badge}
+    </header>`;
+}
+
+function lineScore(g) {
+  const cols = Math.max(9, g.currentInning);
+  let headCells = '<th class="col-name"></th>';
+  for (let i = 1; i <= cols; i++) headCells += `<th>${i}</th>`;
+  headCells += '<th class="col-total">R</th>';
+
+  function row(team) {
+    const innings = team === 'visitor' ? g.visitorInnings : g.homeInnings;
+    const total = team === 'visitor' ? g.visitorTotal : g.homeTotal;
+    const isWinner = g.status === 'final' && g.winner === team;
+    const isLoser = g.status === 'final' && g.winner && g.winner !== team;
+    const name = team === 'visitor' ? g.visitorName : g.homeName;
+
+    let cells = `<td class="col-name${isWinner ? ' winner' : ''}">${esc(name) || '—'}</td>`;
+    for (let col = 0; col < cols; col++) {
+      const isActive = g.status === 'live' && (
+        (team === 'visitor' && g.currentHalf === 'top' && col === g.currentInning - 1) ||
+        (team === 'home' && g.currentHalf === 'bottom' && col === g.currentInning - 1)
+      );
+      let cls = 'cell-score', val = '';
+      if (isActive) { cls += ' active'; val = '●'; }
+      else if (innings[col] == null) { cls += ' empty'; val = '—'; }
+      else val = innings[col];
+      cells += `<td><span class="${cls}">${val}</span></td>`;
+    }
+    let totalCls = 'cell-total';
+    if (isWinner) totalCls += ' winner';
+    cells += `<td><span class="${totalCls}">${total}</span></td>`;
+    return `<tr>${cells}</tr>`;
+  }
+
+  return `
+    <div class="linescore-wrap">
+      <table class="linescore">
+        <thead><tr>${headCells}</tr></thead>
+        <tbody>${row('visitor')}${row('home')}</tbody>
+      </table>
+    </div>`;
+}
+
+function liveLower(g) {
+  const outs = [0,1,2].map(i => `<span class="dot${i < g.outs ? ' out-active' : ''}"></span>`).join('');
+  const balls = [0,1,2,3].map(i => `<span class="dot${i < g.balls ? ' ball-active' : ''}"></span>`).join('');
+  const b = g.bases;
+  return `
+    <div class="lower-panel">
+      <div class="atbat-block">
+        <div class="atbat-row">
+          <span class="atbat-label">Pitching</span>
+          <span class="atbat-name">${esc(g.pitcherName) || '—'}</span>
+        </div>
+        <div class="atbat-row">
+          <span class="atbat-label">Batting</span>
+          <span class="atbat-name">${esc(g.batterName) || '—'}</span>
+        </div>
+      </div>
+      <div class="v-divider"></div>
+      <div class="diamond-wrap">
+        <div class="diamond-field">
+          <div class="base base-2nd${b.second ? ' occupied' : ''}"></div>
+          <div class="base base-1st${b.first ? ' occupied' : ''}"></div>
+          <div class="base base-3rd${b.third ? ' occupied' : ''}"></div>
+          <div class="base-home"></div>
+        </div>
+      </div>
+      <div class="v-divider"></div>
+      <div class="counts-panel">
+        <div class="count-row"><span class="count-label">Outs</span><div class="dots">${outs}</div></div>
+        <div class="count-row"><span class="count-label">Balls</span><div class="dots">${balls}</div></div>
+      </div>
+    </div>`;
+}
+
+function finalLower(g) {
+  const winnerName = g.winner ? (g.winner === 'visitor' ? g.visitorName : g.homeName) : '';
+  const vClass = g.winner === 'visitor' ? 'winner-runs' : 'loser-runs';
+  const hClass = g.winner === 'home' ? 'winner-runs' : 'loser-runs';
+  return `
+    <div class="lower-panel">
+      <div class="winner-block">
+        <span class="champ-label">Summer Classic Champions</span>
+        <span class="team-name">${esc(winnerName) || '—'}</span>
+        <span class="subline">The Summer Classic — Lumber Jill's</span>
+      </div>
+      <div class="v-divider"></div>
+      <div class="final-score-block">
+        <div class="final-score-team">
+          <span class="final-score-abbr">${abbr(g.visitorName)}</span>
+          <span class="final-score-runs ${vClass}">${g.visitorTotal}</span>
+        </div>
+        <span class="final-score-sep">–</span>
+        <div class="final-score-team">
+          <span class="final-score-abbr">${abbr(g.homeName)}</span>
+          <span class="final-score-runs ${hClass}">${g.homeTotal}</span>
+        </div>
+      </div>
+    </div>`;
+}
+
+function footer(g) {
+  const tagline = '<span class="tagline">Have fun. Build community. Give back.</span>';
+  if (g.status === 'final') {
+    return `<footer class="board-footer" style="justify-content:space-between">
+      <span class="footer-innings">${g.inningsPlayed} innings played</span>${tagline}
+    </footer>`;
+  }
+  return `<footer class="board-footer">${tagline}</footer>`;
+}
+
+function render(g) {
+  const board = document.getElementById('board');
+  if (g.status === 'setup') {
+    board.innerHTML = `
+      ${header(g)}
+      <div class="board-body"><div class="empty-state">Awaiting game start</div></div>
+      ${footer(g)}`;
+    return;
+  }
+  board.innerHTML =
+    header(g) +
+    `<div class="board-body">` +
+    lineScore(g) +
+    (g.status === 'live' ? liveLower(g) : finalLower(g)) +
+    `</div>` +
+    footer(g);
+}
+
+pollEvery(5000, '/api/game', render);
+</script>
+</body>
+</html>

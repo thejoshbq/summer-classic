@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Summer Classic — Flex TV</title>
+<style>
+  html, body { width: 100%; height: 100%; margin: 0; padding: 0; background: #000; overflow: hidden; }
+  iframe { width: 100%; height: 100%; border: 0; display: block; background: #000; }
+</style>
+</head>
+<body>
+<iframe id="frame" allow="autoplay"></iframe>
+<script>
+const MODES = {
+  standings: '/standings/display',
+  bracket: '/bracket/display',
+  scoreboard: '/scoreboard/display'
+};
+
+let currentMode = null;
+const frame = document.getElementById('frame');
+
+async function check() {
+  try {
+    const res = await fetch('/api/display-mode', { cache: 'no-store' });
+    const { mode } = await res.json();
+    if (mode !== currentMode && MODES[mode]) {
+      currentMode = mode;
+      frame.src = MODES[mode];
+    }
+  } catch (e) {
+    console.error('display-mode fetch failed', e);
+  }
+}
+
+check();
+setInterval(check, 5000);
+</script>
+</body>
+</html>
