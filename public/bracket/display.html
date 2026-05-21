@@ -260,14 +260,16 @@ function renderMurderball(b) {
     html += `<div class="round-col">
       <div class="round-label">Round ${ri + 1}</div>`;
     round.heats.forEach((h, hi) => {
+      const elim = h.eliminatedPlayerIds || (h.eliminatedPlayerId ? [h.eliminatedPlayerId] : []);
+      const anyOut = elim.length > 0;
       html += `<div class="heat-wrapper">
         <div class="card-block">
           <div class="card-header">${h.bye ? 'Bye' : `Heat ${hi + 1}`}</div>`;
       h.playerIds.forEach(pid => {
         let cls = '';
         if (h.bye) cls = 'bye';
-        else if (h.eliminatedPlayerId === pid) cls = 'loser';
-        else if (h.eliminatedPlayerId !== null || round.complete) cls = 'winner';
+        else if (elim.includes(pid)) cls = 'loser';
+        else if (anyOut || round.complete) cls = 'winner';
         html += `
           <div class="row">
             <span class="pname ${cls}">${esc(nameOf(pid))}</span>

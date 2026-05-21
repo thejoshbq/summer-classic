@@ -291,6 +291,17 @@ button.sm { padding: 4px 10px; font-size: 12px; }
   text-transform: uppercase;
 }
 
+.heat-summary {
+  background: #fff;
+  border-top: 1px solid #e8e8ec;
+  color: #666;
+  font-size: 11px;
+  letter-spacing: 0.6px;
+  padding: 4px 10px;
+  text-align: right;
+  text-transform: uppercase;
+}
+
 .matchup-block {
   background: #f7f7fa;
   border: 1px solid #e8e8ec;
@@ -423,3 +434,112 @@ button.sm { padding: 4px 10px; font-size: 12px; }
 }
 
 .base-btn.occupied { background: #F28F16; color: #1a1a1a; }
+
+/* At-Bat live controls */
+.atbat-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+.atbat-col {
+  background: #f7f7fa;
+  border: 1px solid #e8e8ec;
+  border-radius: 6px;
+  padding: 14px 16px;
+}
+.atbat-label {
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #196A73;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.atbat-name {
+  font-size: 26px;
+  font-weight: 700;
+  color: #114566;
+  line-height: 1.1;
+  margin-bottom: 6px;
+}
+.atbat-ondeck {
+  font-size: 12px;
+  color: #888;
+  margin-bottom: 12px;
+}
+.primary-action.big {
+  width: 100%;
+  padding: 12px 14px;
+  font-size: 15px;
+  margin-bottom: 8px;
+}
+.atbat-override {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+}
+.atbat-override label {
+  margin: 0;
+  font-size: 11px;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.atbat-override select { flex: 1; }
+
+/* Lineups */
+.lineups-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+.lineup-block {
+  background: #f7f7fa;
+  border: 1px solid #e8e8ec;
+  border-radius: 6px;
+  padding: 12px 14px;
+}
+.lineup-block h3 {
+  font-size: 14px;
+  font-weight: 700;
+  color: #114566;
+  margin: 0 0 10px;
+  letter-spacing: 0.5px;
+}
+.lineup-section { margin-bottom: 14px; }
+.lineup-section:last-child { margin-bottom: 0; }
+.lineup-section-title {
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #888;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.lineup-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.lineup-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #fff;
+  border: 1px solid #e8e8ec;
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-size: 13px;
+}
+.lineup-row.current {
+  border-color: #F28F16;
+  background: #fff7eb;
+}
+.lineup-num {
+  display: inline-block;
+  min-width: 22px;
+  font-weight: 700;
+  color: #196A73;
+  font-size: 12px;
+}

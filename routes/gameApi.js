@@ -3,8 +3,60 @@ const { game, teams, players } = require('../lib/stores');
 
 const router = express.Router();
 
+function emptyLineup() {
+  return { battingOrder: [], pitchingRotation: [], battingIndex: 0, pitchingIndex: 0 };
+}
+
+function normalizeLineup(l) {
+  if (!l || typeof l !== 'object') return emptyLineup();
+  return {
+    battingOrder: Array.isArray(l.battingOrder) ? l.battingOrder.filter(x => typeof x === 'string') : [],
+    pitchingRotation: Array.isArray(l.pitchingRotation) ? l.pitchingRotation.filter(x => typeof x === 'string') : [],
+    battingIndex: Number.isFinite(l.battingIndex) ? Math.max(0, Math.floor(l.battingIndex)) : 0,
+    pitchingIndex: Number.isFinite(l.pitchingIndex) ? Math.max(0, Math.floor(l.pitchingIndex)) : 0
+  };
+}
+
+function ensureLineups(g) {
+  g.visitorLineup = normalizeLineup(g.visitorLineup);
+  g.homeLineup = normalizeLineup(g.homeLineup);
+}
+
+function battingSide(g) { return g.currentHalf === 'top' ? 'visitor' : 'home'; }
+function pitchingSide(g) { return g.currentHalf === 'top' ? 'home' : 'visitor'; }
+function lineupOf(g, side) { return side === 'visitor' ? g.visitorLineup : g.homeLineup; }
+function teamIdOf(g, side) { return side === 'visitor' ? g.visitorTeamId : g.homeTeamId; }
+
+function nameOf(playerId) {
+  const p = players.get().find(x => x.id === playerId);
+  return p?.name || '';
+}
+
+function onDeck(lineup, count = 2) {
+  const order = lineup.battingOrder;
+  if (!order.length) return [];
+  const out = [];
+  for (let i = 1; i <= count; i++) {
+    const idx = (lineup.battingIndex + i) % order.length;
+    out.push({ playerId: order[idx], name: nameOf(order[idx]) });
+  }
+  return out;
+}
+
+function onDeckPitchers(lineup, count = 2) {
+  const order = lineup.pitchingRotation;
+  if (!order.length) return [];
+  const out = [];
+  for (let i = 1; i <= count; i++) {
+    const idx = (lineup.pitchingIndex + i) % order.length;
+    out.push({ playerId: order[idx], name: nameOf(order[idx]) });
+  }
+  return out;
+}
+
 function compose() {
   const g = game.get();
+  ensureLineups(g);
   const visitorTeam = teams.get().find(t => t.id === g.visitorTeamId);
   const homeTeam = teams.get().find(t => t.id === g.homeTeamId);
   const pitcher = players.get().find(p => p.id === g.pitcherPlayerId);
@@ -16,6 +68,8 @@ function compose() {
     if (visitorTotal > homeTotal) winner = 'visitor';
     else if (homeTotal > visitorTotal) winner = 'home';
   }
+  const bSide = battingSide(g);
+  const pSide = pitchingSide(g);
   return {
     ...g,
     visitorName: visitorTeam?.name || '',
@@ -24,7 +78,13 @@ function compose() {
     batterName: batter?.name || g.batterFallback || '',
     visitorTotal,
     homeTotal,
-    winner
+    winner,
+    battingSide: bSide,
+    pitchingSide: pSide,
+    battingTeamId: teamIdOf(g, bSide),
+    pitchingTeamId: teamIdOf(g, pSide),
+    onDeckBatters: onDeck(lineupOf(g, bSide)),
+    onDeckPitchers: onDeckPitchers(lineupOf(g, pSide))
   };
 }
 
@@ -58,7 +118,9 @@ router.post('/setup', async (req, res) => {
     bases: { first: false, second: false, third: false },
     outs: 0,
     balls: 0,
-    inningsPlayed: 0
+    inningsPlayed: 0,
+    visitorLineup: emptyLineup(),
+    homeLineup: emptyLineup()
   }));
   res.json(compose());
 });
@@ -93,8 +155,24 @@ router.put('/score', async (req, res) => {
 router.put('/atbat', async (req, res) => {
   const { pitcherPlayerId, batterPlayerId, pitcherFallback, batterFallback, bases, outs, balls } = req.body || {};
   await game.update(g => {
-    if (pitcherPlayerId !== undefined) g.pitcherPlayerId = pitcherPlayerId || null;
-    if (batterPlayerId !== undefined) g.batterPlayerId = batterPlayerId || null;
+    ensureLineups(g);
+    if (pitcherPlayerId !== undefined) {
+      g.pitcherPlayerId = pitcherPlayerId || null;
+      // Jump the pitching cursor so subsequent "Next" continues from this player.
+      if (pitcherPlayerId) {
+        const lineup = lineupOf(g, pitchingSide(g));
+        const idx = lineup.pitchingRotation.indexOf(pitcherPlayerId);
+        if (idx >= 0) lineup.pitchingIndex = idx;
+      }
+    }
+    if (batterPlayerId !== undefined) {
+      g.batterPlayerId = batterPlayerId || null;
+      if (batterPlayerId) {
+        const lineup = lineupOf(g, battingSide(g));
+        const idx = lineup.battingOrder.indexOf(batterPlayerId);
+        if (idx >= 0) lineup.battingIndex = idx;
+      }
+    }
     if (pitcherFallback !== undefined) g.pitcherFallback = String(pitcherFallback || '');
     if (batterFallback !== undefined) g.batterFallback = String(batterFallback || '');
     if (bases !== undefined) g.bases = {
@@ -104,6 +182,62 @@ router.put('/atbat', async (req, res) => {
     if (balls !== undefined) g.balls = Math.max(0, Math.min(3, Math.floor(Number(balls))));
     return g;
   });
+  res.json(compose());
+});
+
+router.put('/lineup', async (req, res) => {
+  const { side, battingOrder, pitchingRotation } = req.body || {};
+  if (side !== 'visitor' && side !== 'home') {
+    return res.status(400).json({ error: 'side must be visitor|home' });
+  }
+  const teamId = side === 'visitor' ? game.get().visitorTeamId : game.get().homeTeamId;
+  const team = teams.get().find(t => t.id === teamId);
+  const allowed = new Set(team ? (team.playerIds || []) : players.get().map(p => p.id));
+  const cleanBatting = Array.isArray(battingOrder) ? battingOrder.filter(id => allowed.has(id)) : null;
+  const cleanPitching = Array.isArray(pitchingRotation) ? pitchingRotation.filter(id => allowed.has(id)) : null;
+
+  await game.update(g => {
+    ensureLineups(g);
+    const lineup = lineupOf(g, side);
+    if (cleanBatting) {
+      lineup.battingOrder = cleanBatting;
+      lineup.battingIndex = 0;
+    }
+    if (cleanPitching) {
+      lineup.pitchingRotation = cleanPitching;
+      lineup.pitchingIndex = 0;
+    }
+    return g;
+  });
+  res.json(compose());
+});
+
+router.post('/next-batter', async (req, res) => {
+  let err = null;
+  await game.update(g => {
+    ensureLineups(g);
+    const lineup = lineupOf(g, battingSide(g));
+    if (!lineup.battingOrder.length) { err = 'Set a batting order for the batting team first.'; return g; }
+    // Advance, then read — the index always points at the *current* batter.
+    lineup.battingIndex = (lineup.battingIndex + 1) % lineup.battingOrder.length;
+    g.batterPlayerId = lineup.battingOrder[lineup.battingIndex];
+    return g;
+  });
+  if (err) return res.status(400).json({ error: err });
+  res.json(compose());
+});
+
+router.post('/next-pitcher', async (req, res) => {
+  let err = null;
+  await game.update(g => {
+    ensureLineups(g);
+    const lineup = lineupOf(g, pitchingSide(g));
+    if (!lineup.pitchingRotation.length) { err = 'Set a pitching rotation for the pitching team first.'; return g; }
+    lineup.pitchingIndex = (lineup.pitchingIndex + 1) % lineup.pitchingRotation.length;
+    g.pitcherPlayerId = lineup.pitchingRotation[lineup.pitchingIndex];
+    return g;
+  });
+  if (err) return res.status(400).json({ error: err });
   res.json(compose());
 });
 
@@ -132,7 +266,9 @@ router.post('/reset', async (req, res) => {
     bases: { first: false, second: false, third: false },
     outs: 0,
     balls: 0,
-    inningsPlayed: 0
+    inningsPlayed: 0,
+    visitorLineup: emptyLineup(),
+    homeLineup: emptyLineup()
   });
   res.json(compose());
 });

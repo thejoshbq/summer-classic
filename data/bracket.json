@@ -17,9 +17,1206 @@
     "1f3315dd-ddd2-474d-9618-392fc3929e1d",
     "e8b2152b-7dd4-4b2c-8f03-66794f9b0cda"
   ],
-  "generated": false,
-  "currentRound": 0,
-  "rounds": [],
-  "championPlayerId": null,
-  "history": []
+  "generated": true,
+  "currentRound": 2,
+  "rounds": [
+    {
+      "heats": [
+        {
+          "playerIds": [
+            "f166c06a-47fb-47a4-b937-944d2173a7c7",
+            "7eb933c0-e255-4a37-a996-ba6206308715",
+            "cf3b629b-a31b-493c-93ab-21121f06d9f0"
+          ],
+          "eliminatedPlayerIds": [
+            "f166c06a-47fb-47a4-b937-944d2173a7c7",
+            "7eb933c0-e255-4a37-a996-ba6206308715"
+          ],
+          "bye": false
+        },
+        {
+          "playerIds": [
+            "2ace2ddb-4c14-4c09-956f-890ff6cc9e6b",
+            "a3214156-556f-4eac-8061-f6d72465a3e9",
+            "d18de6a4-5669-4625-8768-0ac54a141e0c"
+          ],
+          "eliminatedPlayerIds": [
+            "2ace2ddb-4c14-4c09-956f-890ff6cc9e6b",
+            "d18de6a4-5669-4625-8768-0ac54a141e0c"
+          ],
+          "bye": false
+        },
+        {
+          "playerIds": [
+            "f0f3523b-99b9-41ae-accf-214c26f2f1bc",
+            "740947a6-bbea-4ec7-9db7-e9a18211cd17",
+            "558a4251-1bee-49f7-a00a-f016cca86302"
+          ],
+          "eliminatedPlayerIds": [
+            "740947a6-bbea-4ec7-9db7-e9a18211cd17",
+            "558a4251-1bee-49f7-a00a-f016cca86302"
+          ],
+          "bye": false
+        },
+        {
+          "playerIds": [
+            "5130dc36-1db3-4244-9931-18656a433521",
+            "1f3315dd-ddd2-474d-9618-392fc3929e1d",
+            "e8b2152b-7dd4-4b2c-8f03-66794f9b0cda"
+          ],
+          "eliminatedPlayerIds": [
+            "1f3315dd-ddd2-474d-9618-392fc3929e1d",
+            "5130dc36-1db3-4244-9931-18656a433521"
+          ],
+          "bye": false
+        }
+      ],
+      "complete": true
+    },
+    {
+      "heats": [
+        {
+          "playerIds": [
+            "cf3b629b-a31b-493c-93ab-21121f06d9f0",
+            "a3214156-556f-4eac-8061-f6d72465a3e9",
+            "f0f3523b-99b9-41ae-accf-214c26f2f1bc"
+          ],
+          "eliminatedPlayerIds": [
+            "a3214156-556f-4eac-8061-f6d72465a3e9"
+          ],
+          "bye": false
+        },
+        {
+          "playerIds": [
+            "e8b2152b-7dd4-4b2c-8f03-66794f9b0cda"
+          ],
+          "eliminatedPlayerIds": [],
+          "bye": true
+        }
+      ],
+      "complete": true
+    },
+    {
+      "heats": [
+        {
+          "playerIds": [
+            "cf3b629b-a31b-493c-93ab-21121f06d9f0",
+            "f0f3523b-99b9-41ae-accf-214c26f2f1bc",
+            "e8b2152b-7dd4-4b2c-8f03-66794f9b0cda"
+          ],
+          "eliminatedPlayerIds": [
+            "cf3b629b-a31b-493c-93ab-21121f06d9f0",
+            "f0f3523b-99b9-41ae-accf-214c26f2f1bc"
+          ],
+          "bye": false
+        }
+      ],
+      "complete": false
+    }
+  ],
+  "championPlayerId": "e8b2152b-7dd4-4b2c-8f03-66794f9b0cda",
+  "history": [
+    {
+      "snapshot": {
+        "mode": "murderball",
+        "settings": {
+          "laneCount": 3
+        },
+        "entrantPlayerIds": [
+          "f166c06a-47fb-47a4-b937-944d2173a7c7",
+          "7eb933c0-e255-4a37-a996-ba6206308715",
+          "cf3b629b-a31b-493c-93ab-21121f06d9f0",
+          "2ace2ddb-4c14-4c09-956f-890ff6cc9e6b",
+          "a3214156-556f-4eac-8061-f6d72465a3e9",
+          "d18de6a4-5669-4625-8768-0ac54a141e0c",
+          "f0f3523b-99b9-41ae-accf-214c26f2f1bc",
+          "740947a6-bbea-4ec7-9db7-e9a18211cd17",
+          "558a4251-1bee-49f7-a00a-f016cca86302",
+          "5130dc36-1db3-4244-9931-18656a433521",
+          "1f3315dd-ddd2-474d-9618-392fc3929e1d",
+          "e8b2152b-7dd4-4b2c-8f03-66794f9b0cda"
+        ],
+        "generated": true,
+        "currentRound": 2,
+        "rounds": [
+          {
+            "heats": [
+              {
+                "playerIds": [
+                  "f166c06a-47fb-47a4-b937-944d2173a7c7",
+                  "7eb933c0-e255-4a37-a996-ba6206308715",
+                  "cf3b629b-a31b-493c-93ab-21121f06d9f0"
+                ],
+                "eliminatedPlayerIds": [
+                  "f166c06a-47fb-47a4-b937-944d2173a7c7",
+                  "7eb933c0-e255-4a37-a996-ba6206308715"
+                ],
+                "bye": false
+              },
+              {
+                "playerIds": [
+                  "2ace2ddb-4c14-4c09-956f-890ff6cc9e6b",
+                  "a3214156-556f-4eac-8061-f6d72465a3e9",
+                  "d18de6a4-5669-4625-8768-0ac54a141e0c"
+                ],
+                "eliminatedPlayerIds": [
+                  "2ace2ddb-4c14-4c09-956f-890ff6cc9e6b",
+                  "d18de6a4-5669-4625-8768-0ac54a141e0c"
+                ],
+                "bye": false
+              },
+              {
+                "playerIds": [
+                  "f0f3523b-99b9-41ae-accf-214c26f2f1bc",
+                  "740947a6-bbea-4ec7-9db7-e9a18211cd17",
+                  "558a4251-1bee-49f7-a00a-f016cca86302"
+                ],
+                "eliminatedPlayerIds": [
+                  "740947a6-bbea-4ec7-9db7-e9a18211cd17",
+                  "558a4251-1bee-49f7-a00a-f016cca86302"
+                ],
+                "bye": false
+              },
+              {
+                "playerIds": [
+                  "5130dc36-1db3-4244-9931-18656a433521",
+                  "1f3315dd-ddd2-474d-9618-392fc3929e1d",
+                  "e8b2152b-7dd4-4b2c-8f03-66794f9b0cda"
+                ],
+                "eliminatedPlayerIds": [
+                  "1f3315dd-ddd2-474d-9618-392fc3929e1d",
+                  "5130dc36-1db3-4244-9931-18656a433521"
+                ],
+                "bye": false
+              }
+            ],
+            "complete": true
+          },
+          {
+            "heats": [
+              {
+                "playerIds": [
+                  "cf3b629b-a31b-493c-93ab-21121f06d9f0",
+                  "a3214156-556f-4eac-8061-f6d72465a3e9",
+                  "f0f3523b-99b9-41ae-accf-214c26f2f1bc"
+                ],
+                "eliminatedPlayerIds": [
+                  "a3214156-556f-4eac-8061-f6d72465a3e9"
+                ],
+                "bye": false
+              },
+              {
+                "playerIds": [
+                  "e8b2152b-7dd4-4b2c-8f03-66794f9b0cda"
+                ],
+                "eliminatedPlayerIds": [],
+                "bye": true
+              }
+            ],
+            "complete": true
+          },
+          {
+            "heats": [
+              {
+                "playerIds": [
+                  "cf3b629b-a31b-493c-93ab-21121f06d9f0",
+                  "f0f3523b-99b9-41ae-accf-214c26f2f1bc",
+                  "e8b2152b-7dd4-4b2c-8f03-66794f9b0cda"
+                ],
+                "eliminatedPlayerIds": [
+                  "cf3b629b-a31b-493c-93ab-21121f06d9f0",
+                  "f0f3523b-99b9-41ae-accf-214c26f2f1bc"
+                ],
+                "bye": false
+              }
+            ],
+            "complete": false
+          }
+        ],
+        "championPlayerId": null,
+        "history": []
+      }
+    },
+    {
+      "snapshot": {
+        "mode": "murderball",
+        "settings": {
+          "laneCount": 3
+        },
+        "entrantPlayerIds": [
+          "f166c06a-47fb-47a4-b937-944d2173a7c7",
+          "7eb933c0-e255-4a37-a996-ba6206308715",
+          "cf3b629b-a31b-493c-93ab-21121f06d9f0",
+          "2ace2ddb-4c14-4c09-956f-890ff6cc9e6b",
+          "a3214156-556f-4eac-8061-f6d72465a3e9",
+          "d18de6a4-5669-4625-8768-0ac54a141e0c",
+          "f0f3523b-99b9-41ae-accf-214c26f2f1bc",
+          "740947a6-bbea-4ec7-9db7-e9a18211cd17",
+          "558a4251-1bee-49f7-a00a-f016cca86302",
+          "5130dc36-1db3-4244-9931-18656a433521",
+          "1f3315dd-ddd2-474d-9618-392fc3929e1d",
+          "e8b2152b-7dd4-4b2c-8f03-66794f9b0cda"
+        ],
+        "generated": true,
+        "currentRound": 2,
+        "rounds": [
+          {
+            "heats": [
+              {
+                "playerIds": [
+                  "f166c06a-47fb-47a4-b937-944d2173a7c7",
+                  "7eb933c0-e255-4a37-a996-ba6206308715",
+                  "cf3b629b-a31b-493c-93ab-21121f06d9f0"
+                ],
+                "eliminatedPlayerIds": [
+                  "f166c06a-47fb-47a4-b937-944d2173a7c7",
+                  "7eb933c0-e255-4a37-a996-ba6206308715"
+                ],
+                "bye": false
+              },
+              {
+                "playerIds": [
+                  "2ace2ddb-4c14-4c09-956f-890ff6cc9e6b",
+                  "a3214156-556f-4eac-8061-f6d72465a3e9",
+                  "d18de6a4-5669-4625-8768-0ac54a141e0c"
+                ],
+                "eliminatedPlayerIds": [
+                  "2ace2ddb-4c14-4c09-956f-890ff6cc9e6b",
+                  "d18de6a4-5669-4625-8768-0ac54a141e0c"
+                ],
+                "bye": false
+              },
+              {
+                "playerIds": [
+                  "f0f3523b-99b9-41ae-accf-214c26f2f1bc",
+                  "740947a6-bbea-4ec7-9db7-e9a18211cd17",
+                  "558a4251-1bee-49f7-a00a-f016cca86302"
+                ],
+                "eliminatedPlayerIds": [
+                  "740947a6-bbea-4ec7-9db7-e9a18211cd17",
+                  "558a4251-1bee-49f7-a00a-f016cca86302"
+                ],
+                "bye": false
+              },
+              {
+                "playerIds": [
+                  "5130dc36-1db3-4244-9931-18656a433521",
+                  "1f3315dd-ddd2-474d-9618-392fc3929e1d",
+                  "e8b2152b-7dd4-4b2c-8f03-66794f9b0cda"
+                ],
+                "eliminatedPlayerIds": [
+                  "1f3315dd-ddd2-474d-9618-392fc3929e1d",
+                  "5130dc36-1db3-4244-9931-18656a433521"
+                ],
+                "bye": false
+              }
+            ],
+            "complete": true
+          },
+          {
+            "heats": [
+              {
+                "playerIds": [
+                  "cf3b629b-a31b-493c-93ab-21121f06d9f0",
+                  "a3214156-556f-4eac-8061-f6d72465a3e9",
+                  "f0f3523b-99b9-41ae-accf-214c26f2f1bc"
+                ],
+                "eliminatedPlayerIds": [
+                  "a3214156-556f-4eac-8061-f6d72465a3e9"
+                ],
+                "bye": false
+              },
+              {
+                "playerIds": [
+                  "e8b2152b-7dd4-4b2c-8f03-66794f9b0cda"
+                ],
+                "eliminatedPlayerIds": [],
+                "bye": true
+              }
+            ],
+            "complete": true
+          },
+          {
+            "heats": [
+              {
+                "playerIds": [
+                  "cf3b629b-a31b-493c-93ab-21121f06d9f0",
+                  "f0f3523b-99b9-41ae-accf-214c26f2f1bc",
+                  "e8b2152b-7dd4-4b2c-8f03-66794f9b0cda"
+                ],
+                "eliminatedPlayerIds": [
+                  "cf3b629b-a31b-493c-93ab-21121f06d9f0"
+                ],
+                "bye": false
+              }
+            ],
+            "complete": false
+          }
+        ],
+        "championPlayerId": null,
+        "history": []
+      }
+    },
+    {
+      "snapshot": {
+        "mode": "murderball",
+        "settings": {
+          "laneCount": 3
+        },
+        "entrantPlayerIds": [
+          "f166c06a-47fb-47a4-b937-944d2173a7c7",
+          "7eb933c0-e255-4a37-a996-ba6206308715",
+          "cf3b629b-a31b-493c-93ab-21121f06d9f0",
+          "2ace2ddb-4c14-4c09-956f-890ff6cc9e6b",
+          "a3214156-556f-4eac-8061-f6d72465a3e9",
+          "d18de6a4-5669-4625-8768-0ac54a141e0c",
+          "f0f3523b-99b9-41ae-accf-214c26f2f1bc",
+          "740947a6-bbea-4ec7-9db7-e9a18211cd17",
+          "558a4251-1bee-49f7-a00a-f016cca86302",
+          "5130dc36-1db3-4244-9931-18656a433521",
+          "1f3315dd-ddd2-474d-9618-392fc3929e1d",
+          "e8b2152b-7dd4-4b2c-8f03-66794f9b0cda"
+        ],
+        "generated": true,
+        "currentRound": 2,
+        "rounds": [
+          {
+            "heats": [
+              {
+                "playerIds": [
+                  "f166c06a-47fb-47a4-b937-944d2173a7c7",
+                  "7eb933c0-e255-4a37-a996-ba6206308715",
+                  "cf3b629b-a31b-493c-93ab-21121f06d9f0"
+                ],
+                "eliminatedPlayerIds": [
+                  "f166c06a-47fb-47a4-b937-944d2173a7c7",
+                  "7eb933c0-e255-4a37-a996-ba6206308715"
+                ],
+                "bye": false
+              },
+              {
+                "playerIds": [
+                  "2ace2ddb-4c14-4c09-956f-890ff6cc9e6b",
+                  "a3214156-556f-4eac-8061-f6d72465a3e9",
+                  "d18de6a4-5669-4625-8768-0ac54a141e0c"
+                ],
+                "eliminatedPlayerIds": [
+                  "2ace2ddb-4c14-4c09-956f-890ff6cc9e6b",
+                  "d18de6a4-5669-4625-8768-0ac54a141e0c"
+                ],
+                "bye": false
+              },
+              {
+                "playerIds": [
+                  "f0f3523b-99b9-41ae-accf-214c26f2f1bc",
+                  "740947a6-bbea-4ec7-9db7-e9a18211cd17",
+                  "558a4251-1bee-49f7-a00a-f016cca86302"
+                ],
+                "eliminatedPlayerIds": [
+                  "740947a6-bbea-4ec7-9db7-e9a18211cd17",
+                  "558a4251-1bee-49f7-a00a-f016cca86302"
+                ],
+                "bye": false
+              },
+              {
+                "playerIds": [
+                  "5130dc36-1db3-4244-9931-18656a433521",
+                  "1f3315dd-ddd2-474d-9618-392fc3929e1d",
+                  "e8b2152b-7dd4-4b2c-8f03-66794f9b0cda"
+                ],
+                "eliminatedPlayerIds": [
+                  "1f3315dd-ddd2-474d-9618-392fc3929e1d",
+                  "5130dc36-1db3-4244-9931-18656a433521"
+                ],
+                "bye": false
+              }
+            ],
+            "complete": true
+          },
+          {
+            "heats": [
+              {
+                "playerIds": [
+                  "cf3b629b-a31b-493c-93ab-21121f06d9f0",
+                  "a3214156-556f-4eac-8061-f6d72465a3e9",
+                  "f0f3523b-99b9-41ae-accf-214c26f2f1bc"
+                ],
+                "eliminatedPlayerIds": [
+                  "a3214156-556f-4eac-8061-f6d72465a3e9"
+                ],
+                "bye": false
+              },
+              {
+                "playerIds": [
+                  "e8b2152b-7dd4-4b2c-8f03-66794f9b0cda"
+                ],
+                "eliminatedPlayerIds": [],
+                "bye": true
+              }
+            ],
+            "complete": true
+          },
+          {
+            "heats": [
+              {
+                "playerIds": [
+                  "cf3b629b-a31b-493c-93ab-21121f06d9f0",
+                  "f0f3523b-99b9-41ae-accf-214c26f2f1bc",
+                  "e8b2152b-7dd4-4b2c-8f03-66794f9b0cda"
+                ],
+                "eliminatedPlayerIds": [],
+                "bye": false
+              }
+            ],
+            "complete": false
+          }
+        ],
+        "championPlayerId": null,
+        "history": []
+      }
+    },
+    {
+      "snapshot": {
+        "mode": "murderball",
+        "settings": {
+          "laneCount": 3
+        },
+        "entrantPlayerIds": [
+          "f166c06a-47fb-47a4-b937-944d2173a7c7",
+          "7eb933c0-e255-4a37-a996-ba6206308715",
+          "cf3b629b-a31b-493c-93ab-21121f06d9f0",
+          "2ace2ddb-4c14-4c09-956f-890ff6cc9e6b",
+          "a3214156-556f-4eac-8061-f6d72465a3e9",
+          "d18de6a4-5669-4625-8768-0ac54a141e0c",
+          "f0f3523b-99b9-41ae-accf-214c26f2f1bc",
+          "740947a6-bbea-4ec7-9db7-e9a18211cd17",
+          "558a4251-1bee-49f7-a00a-f016cca86302",
+          "5130dc36-1db3-4244-9931-18656a433521",
+          "1f3315dd-ddd2-474d-9618-392fc3929e1d",
+          "e8b2152b-7dd4-4b2c-8f03-66794f9b0cda"
+        ],
+        "generated": true,
+        "currentRound": 1,
+        "rounds": [
+          {
+            "heats": [
+              {
+                "playerIds": [
+                  "f166c06a-47fb-47a4-b937-944d2173a7c7",
+                  "7eb933c0-e255-4a37-a996-ba6206308715",
+                  "cf3b629b-a31b-493c-93ab-21121f06d9f0"
+                ],
+                "eliminatedPlayerIds": [
+                  "f166c06a-47fb-47a4-b937-944d2173a7c7",
+                  "7eb933c0-e255-4a37-a996-ba6206308715"
+                ],
+                "bye": false
+              },
+              {
+                "playerIds": [
+                  "2ace2ddb-4c14-4c09-956f-890ff6cc9e6b",
+                  "a3214156-556f-4eac-8061-f6d72465a3e9",
+                  "d18de6a4-5669-4625-8768-0ac54a141e0c"
+                ],
+                "eliminatedPlayerIds": [
+                  "2ace2ddb-4c14-4c09-956f-890ff6cc9e6b",
+                  "d18de6a4-5669-4625-8768-0ac54a141e0c"
+                ],
+                "bye": false
+              },
+              {
+                "playerIds": [
+                  "f0f3523b-99b9-41ae-accf-214c26f2f1bc",
+                  "740947a6-bbea-4ec7-9db7-e9a18211cd17",
+                  "558a4251-1bee-49f7-a00a-f016cca86302"
+                ],
+                "eliminatedPlayerIds": [
+                  "740947a6-bbea-4ec7-9db7-e9a18211cd17",
+                  "558a4251-1bee-49f7-a00a-f016cca86302"
+                ],
+                "bye": false
+              },
+              {
+                "playerIds": [
+                  "5130dc36-1db3-4244-9931-18656a433521",
+                  "1f3315dd-ddd2-474d-9618-392fc3929e1d",
+                  "e8b2152b-7dd4-4b2c-8f03-66794f9b0cda"
+                ],
+                "eliminatedPlayerIds": [
+                  "1f3315dd-ddd2-474d-9618-392fc3929e1d",
+                  "5130dc36-1db3-4244-9931-18656a433521"
+                ],
+                "bye": false
+              }
+            ],
+            "complete": true
+          },
+          {
+            "heats": [
+              {
+                "playerIds": [
+                  "cf3b629b-a31b-493c-93ab-21121f06d9f0",
+                  "a3214156-556f-4eac-8061-f6d72465a3e9",
+                  "f0f3523b-99b9-41ae-accf-214c26f2f1bc"
+                ],
+                "eliminatedPlayerIds": [
+                  "a3214156-556f-4eac-8061-f6d72465a3e9"
+                ],
+                "bye": false
+              },
+              {
+                "playerIds": [
+                  "e8b2152b-7dd4-4b2c-8f03-66794f9b0cda"
+                ],
+                "eliminatedPlayerIds": [],
+                "bye": true
+              }
+            ],
+            "complete": false
+          }
+        ],
+        "championPlayerId": null,
+        "history": []
+      }
+    },
+    {
+      "snapshot": {
+        "mode": "murderball",
+        "settings": {
+          "laneCount": 3
+        },
+        "entrantPlayerIds": [
+          "f166c06a-47fb-47a4-b937-944d2173a7c7",
+          "7eb933c0-e255-4a37-a996-ba6206308715",
+          "cf3b629b-a31b-493c-93ab-21121f06d9f0",
+          "2ace2ddb-4c14-4c09-956f-890ff6cc9e6b",
+          "a3214156-556f-4eac-8061-f6d72465a3e9",
+          "d18de6a4-5669-4625-8768-0ac54a141e0c",
+          "f0f3523b-99b9-41ae-accf-214c26f2f1bc",
+          "740947a6-bbea-4ec7-9db7-e9a18211cd17",
+          "558a4251-1bee-49f7-a00a-f016cca86302",
+          "5130dc36-1db3-4244-9931-18656a433521",
+          "1f3315dd-ddd2-474d-9618-392fc3929e1d",
+          "e8b2152b-7dd4-4b2c-8f03-66794f9b0cda"
+        ],
+        "generated": true,
+        "currentRound": 1,
+        "rounds": [
+          {
+            "heats": [
+              {
+                "playerIds": [
+                  "f166c06a-47fb-47a4-b937-944d2173a7c7",
+                  "7eb933c0-e255-4a37-a996-ba6206308715",
+                  "cf3b629b-a31b-493c-93ab-21121f06d9f0"
+                ],
+                "eliminatedPlayerIds": [
+                  "f166c06a-47fb-47a4-b937-944d2173a7c7",
+                  "7eb933c0-e255-4a37-a996-ba6206308715"
+                ],
+                "bye": false
+              },
+              {
+                "playerIds": [
+                  "2ace2ddb-4c14-4c09-956f-890ff6cc9e6b",
+                  "a3214156-556f-4eac-8061-f6d72465a3e9",
+                  "d18de6a4-5669-4625-8768-0ac54a141e0c"
+                ],
+                "eliminatedPlayerIds": [
+                  "2ace2ddb-4c14-4c09-956f-890ff6cc9e6b",
+                  "d18de6a4-5669-4625-8768-0ac54a141e0c"
+                ],
+                "bye": false
+              },
+              {
+                "playerIds": [
+                  "f0f3523b-99b9-41ae-accf-214c26f2f1bc",
+                  "740947a6-bbea-4ec7-9db7-e9a18211cd17",
+                  "558a4251-1bee-49f7-a00a-f016cca86302"
+                ],
+                "eliminatedPlayerIds": [
+                  "740947a6-bbea-4ec7-9db7-e9a18211cd17",
+                  "558a4251-1bee-49f7-a00a-f016cca86302"
+                ],
+                "bye": false
+              },
+              {
+                "playerIds": [
+                  "5130dc36-1db3-4244-9931-18656a433521",
+                  "1f3315dd-ddd2-474d-9618-392fc3929e1d",
+                  "e8b2152b-7dd4-4b2c-8f03-66794f9b0cda"
+                ],
+                "eliminatedPlayerIds": [
+                  "1f3315dd-ddd2-474d-9618-392fc3929e1d",
+                  "5130dc36-1db3-4244-9931-18656a433521"
+                ],
+                "bye": false
+              }
+            ],
+            "complete": true
+          },
+          {
+            "heats": [
+              {
+                "playerIds": [
+                  "cf3b629b-a31b-493c-93ab-21121f06d9f0",
+                  "a3214156-556f-4eac-8061-f6d72465a3e9",
+                  "f0f3523b-99b9-41ae-accf-214c26f2f1bc"
+                ],
+                "eliminatedPlayerIds": [],
+                "bye": false
+              },
+              {
+                "playerIds": [
+                  "e8b2152b-7dd4-4b2c-8f03-66794f9b0cda"
+                ],
+                "eliminatedPlayerIds": [],
+                "bye": true
+              }
+            ],
+            "complete": false
+          }
+        ],
+        "championPlayerId": null,
+        "history": []
+      }
+    },
+    {
+      "snapshot": {
+        "mode": "murderball",
+        "settings": {
+          "laneCount": 3
+        },
+        "entrantPlayerIds": [
+          "f166c06a-47fb-47a4-b937-944d2173a7c7",
+          "7eb933c0-e255-4a37-a996-ba6206308715",
+          "cf3b629b-a31b-493c-93ab-21121f06d9f0",
+          "2ace2ddb-4c14-4c09-956f-890ff6cc9e6b",
+          "a3214156-556f-4eac-8061-f6d72465a3e9",
+          "d18de6a4-5669-4625-8768-0ac54a141e0c",
+          "f0f3523b-99b9-41ae-accf-214c26f2f1bc",
+          "740947a6-bbea-4ec7-9db7-e9a18211cd17",
+          "558a4251-1bee-49f7-a00a-f016cca86302",
+          "5130dc36-1db3-4244-9931-18656a433521",
+          "1f3315dd-ddd2-474d-9618-392fc3929e1d",
+          "e8b2152b-7dd4-4b2c-8f03-66794f9b0cda"
+        ],
+        "generated": true,
+        "currentRound": 0,
+        "rounds": [
+          {
+            "heats": [
+              {
+                "playerIds": [
+                  "f166c06a-47fb-47a4-b937-944d2173a7c7",
+                  "7eb933c0-e255-4a37-a996-ba6206308715",
+                  "cf3b629b-a31b-493c-93ab-21121f06d9f0"
+                ],
+                "eliminatedPlayerIds": [
+                  "f166c06a-47fb-47a4-b937-944d2173a7c7",
+                  "7eb933c0-e255-4a37-a996-ba6206308715"
+                ],
+                "bye": false
+              },
+              {
+                "playerIds": [
+                  "2ace2ddb-4c14-4c09-956f-890ff6cc9e6b",
+                  "a3214156-556f-4eac-8061-f6d72465a3e9",
+                  "d18de6a4-5669-4625-8768-0ac54a141e0c"
+                ],
+                "eliminatedPlayerIds": [
+                  "2ace2ddb-4c14-4c09-956f-890ff6cc9e6b",
+                  "d18de6a4-5669-4625-8768-0ac54a141e0c"
+                ],
+                "bye": false
+              },
+              {
+                "playerIds": [
+                  "f0f3523b-99b9-41ae-accf-214c26f2f1bc",
+                  "740947a6-bbea-4ec7-9db7-e9a18211cd17",
+                  "558a4251-1bee-49f7-a00a-f016cca86302"
+                ],
+                "eliminatedPlayerIds": [
+                  "740947a6-bbea-4ec7-9db7-e9a18211cd17",
+                  "558a4251-1bee-49f7-a00a-f016cca86302"
+                ],
+                "bye": false
+              },
+              {
+                "playerIds": [
+                  "5130dc36-1db3-4244-9931-18656a433521",
+                  "1f3315dd-ddd2-474d-9618-392fc3929e1d",
+                  "e8b2152b-7dd4-4b2c-8f03-66794f9b0cda"
+                ],
+                "eliminatedPlayerIds": [
+                  "1f3315dd-ddd2-474d-9618-392fc3929e1d",
+                  "5130dc36-1db3-4244-9931-18656a433521"
+                ],
+                "bye": false
+              }
+            ],
+            "complete": false
+          }
+        ],
+        "championPlayerId": null,
+        "history": []
+      }
+    },
+    {
+      "snapshot": {
+        "mode": "murderball",
+        "settings": {
+          "laneCount": 3
+        },
+        "entrantPlayerIds": [
+          "f166c06a-47fb-47a4-b937-944d2173a7c7",
+          "7eb933c0-e255-4a37-a996-ba6206308715",
+          "cf3b629b-a31b-493c-93ab-21121f06d9f0",
+          "2ace2ddb-4c14-4c09-956f-890ff6cc9e6b",
+          "a3214156-556f-4eac-8061-f6d72465a3e9",
+          "d18de6a4-5669-4625-8768-0ac54a141e0c",
+          "f0f3523b-99b9-41ae-accf-214c26f2f1bc",
+          "740947a6-bbea-4ec7-9db7-e9a18211cd17",
+          "558a4251-1bee-49f7-a00a-f016cca86302",
+          "5130dc36-1db3-4244-9931-18656a433521",
+          "1f3315dd-ddd2-474d-9618-392fc3929e1d",
+          "e8b2152b-7dd4-4b2c-8f03-66794f9b0cda"
+        ],
+        "generated": true,
+        "currentRound": 0,
+        "rounds": [
+          {
+            "heats": [
+              {
+                "playerIds": [
+                  "f166c06a-47fb-47a4-b937-944d2173a7c7",
+                  "7eb933c0-e255-4a37-a996-ba6206308715",
+                  "cf3b629b-a31b-493c-93ab-21121f06d9f0"
+                ],
+                "eliminatedPlayerIds": [
+                  "f166c06a-47fb-47a4-b937-944d2173a7c7",
+                  "7eb933c0-e255-4a37-a996-ba6206308715"
+                ],
+                "bye": false
+              },
+              {
+                "playerIds": [
+                  "2ace2ddb-4c14-4c09-956f-890ff6cc9e6b",
+                  "a3214156-556f-4eac-8061-f6d72465a3e9",
+                  "d18de6a4-5669-4625-8768-0ac54a141e0c"
+                ],
+                "eliminatedPlayerIds": [
+                  "2ace2ddb-4c14-4c09-956f-890ff6cc9e6b",
+                  "d18de6a4-5669-4625-8768-0ac54a141e0c"
+                ],
+                "bye": false
+              },
+              {
+                "playerIds": [
+                  "f0f3523b-99b9-41ae-accf-214c26f2f1bc",
+                  "740947a6-bbea-4ec7-9db7-e9a18211cd17",
+                  "558a4251-1bee-49f7-a00a-f016cca86302"
+                ],
+                "eliminatedPlayerIds": [
+                  "740947a6-bbea-4ec7-9db7-e9a18211cd17",
+                  "558a4251-1bee-49f7-a00a-f016cca86302"
+                ],
+                "bye": false
+              },
+              {
+                "playerIds": [
+                  "5130dc36-1db3-4244-9931-18656a433521",
+                  "1f3315dd-ddd2-474d-9618-392fc3929e1d",
+                  "e8b2152b-7dd4-4b2c-8f03-66794f9b0cda"
+                ],
+                "eliminatedPlayerIds": [
+                  "1f3315dd-ddd2-474d-9618-392fc3929e1d"
+                ],
+                "bye": false
+              }
+            ],
+            "complete": false
+          }
+        ],
+        "championPlayerId": null,
+        "history": []
+      }
+    },
+    {
+      "snapshot": {
+        "mode": "murderball",
+        "settings": {
+          "laneCount": 3
+        },
+        "entrantPlayerIds": [
+          "f166c06a-47fb-47a4-b937-944d2173a7c7",
+          "7eb933c0-e255-4a37-a996-ba6206308715",
+          "cf3b629b-a31b-493c-93ab-21121f06d9f0",
+          "2ace2ddb-4c14-4c09-956f-890ff6cc9e6b",
+          "a3214156-556f-4eac-8061-f6d72465a3e9",
+          "d18de6a4-5669-4625-8768-0ac54a141e0c",
+          "f0f3523b-99b9-41ae-accf-214c26f2f1bc",
+          "740947a6-bbea-4ec7-9db7-e9a18211cd17",
+          "558a4251-1bee-49f7-a00a-f016cca86302",
+          "5130dc36-1db3-4244-9931-18656a433521",
+          "1f3315dd-ddd2-474d-9618-392fc3929e1d",
+          "e8b2152b-7dd4-4b2c-8f03-66794f9b0cda"
+        ],
+        "generated": true,
+        "currentRound": 0,
+        "rounds": [
+          {
+            "heats": [
+              {
+                "playerIds": [
+                  "f166c06a-47fb-47a4-b937-944d2173a7c7",
+                  "7eb933c0-e255-4a37-a996-ba6206308715",
+                  "cf3b629b-a31b-493c-93ab-21121f06d9f0"
+                ],
+                "eliminatedPlayerIds": [
+                  "f166c06a-47fb-47a4-b937-944d2173a7c7",
+                  "7eb933c0-e255-4a37-a996-ba6206308715"
+                ],
+                "bye": false
+              },
+              {
+                "playerIds": [
+                  "2ace2ddb-4c14-4c09-956f-890ff6cc9e6b",
+                  "a3214156-556f-4eac-8061-f6d72465a3e9",
+                  "d18de6a4-5669-4625-8768-0ac54a141e0c"
+                ],
+                "eliminatedPlayerIds": [
+                  "2ace2ddb-4c14-4c09-956f-890ff6cc9e6b",
+                  "d18de6a4-5669-4625-8768-0ac54a141e0c"
+                ],
+                "bye": false
+              },
+              {
+                "playerIds": [
+                  "f0f3523b-99b9-41ae-accf-214c26f2f1bc",
+                  "740947a6-bbea-4ec7-9db7-e9a18211cd17",
+                  "558a4251-1bee-49f7-a00a-f016cca86302"
+                ],
+                "eliminatedPlayerIds": [
+                  "740947a6-bbea-4ec7-9db7-e9a18211cd17",
+                  "558a4251-1bee-49f7-a00a-f016cca86302"
+                ],
+                "bye": false
+              },
+              {
+                "playerIds": [
+                  "5130dc36-1db3-4244-9931-18656a433521",
+                  "1f3315dd-ddd2-474d-9618-392fc3929e1d",
+                  "e8b2152b-7dd4-4b2c-8f03-66794f9b0cda"
+                ],
+                "eliminatedPlayerIds": [],
+                "bye": false
+              }
+            ],
+            "complete": false
+          }
+        ],
+        "championPlayerId": null,
+        "history": []
+      }
+    },
+    {
+      "snapshot": {
+        "mode": "murderball",
+        "settings": {
+          "laneCount": 3
+        },
+        "entrantPlayerIds": [
+          "f166c06a-47fb-47a4-b937-944d2173a7c7",
+          "7eb933c0-e255-4a37-a996-ba6206308715",
+          "cf3b629b-a31b-493c-93ab-21121f06d9f0",
+          "2ace2ddb-4c14-4c09-956f-890ff6cc9e6b",
+          "a3214156-556f-4eac-8061-f6d72465a3e9",
+          "d18de6a4-5669-4625-8768-0ac54a141e0c",
+          "f0f3523b-99b9-41ae-accf-214c26f2f1bc",
+          "740947a6-bbea-4ec7-9db7-e9a18211cd17",
+          "558a4251-1bee-49f7-a00a-f016cca86302",
+          "5130dc36-1db3-4244-9931-18656a433521",
+          "1f3315dd-ddd2-474d-9618-392fc3929e1d",
+          "e8b2152b-7dd4-4b2c-8f03-66794f9b0cda"
+        ],
+        "generated": true,
+        "currentRound": 0,
+        "rounds": [
+          {
+            "heats": [
+              {
+                "playerIds": [
+                  "f166c06a-47fb-47a4-b937-944d2173a7c7",
+                  "7eb933c0-e255-4a37-a996-ba6206308715",
+                  "cf3b629b-a31b-493c-93ab-21121f06d9f0"
+                ],
+                "eliminatedPlayerIds": [
+                  "f166c06a-47fb-47a4-b937-944d2173a7c7",
+                  "7eb933c0-e255-4a37-a996-ba6206308715"
+                ],
+                "bye": false
+              },
+              {
+                "playerIds": [
+                  "2ace2ddb-4c14-4c09-956f-890ff6cc9e6b",
+                  "a3214156-556f-4eac-8061-f6d72465a3e9",
+                  "d18de6a4-5669-4625-8768-0ac54a141e0c"
+                ],
+                "eliminatedPlayerIds": [
+                  "2ace2ddb-4c14-4c09-956f-890ff6cc9e6b",
+                  "d18de6a4-5669-4625-8768-0ac54a141e0c"
+                ],
+                "bye": false
+              },
+              {
+                "playerIds": [
+                  "f0f3523b-99b9-41ae-accf-214c26f2f1bc",
+                  "740947a6-bbea-4ec7-9db7-e9a18211cd17",
+                  "558a4251-1bee-49f7-a00a-f016cca86302"
+                ],
+                "eliminatedPlayerIds": [
+                  "740947a6-bbea-4ec7-9db7-e9a18211cd17"
+                ],
+                "bye": false
+              },
+              {
+                "playerIds": [
+                  "5130dc36-1db3-4244-9931-18656a433521",
+                  "1f3315dd-ddd2-474d-9618-392fc3929e1d",
+                  "e8b2152b-7dd4-4b2c-8f03-66794f9b0cda"
+                ],
+                "eliminatedPlayerIds": [],
+                "bye": false
+              }
+            ],
+            "complete": false
+          }
+        ],
+        "championPlayerId": null,
+        "history": []
+      }
+    },
+    {
+      "snapshot": {
+        "mode": "murderball",
+        "settings": {
+          "laneCount": 3
+        },
+        "entrantPlayerIds": [
+          "f166c06a-47fb-47a4-b937-944d2173a7c7",
+          "7eb933c0-e255-4a37-a996-ba6206308715",
+          "cf3b629b-a31b-493c-93ab-21121f06d9f0",
+          "2ace2ddb-4c14-4c09-956f-890ff6cc9e6b",
+          "a3214156-556f-4eac-8061-f6d72465a3e9",
+          "d18de6a4-5669-4625-8768-0ac54a141e0c",
+          "f0f3523b-99b9-41ae-accf-214c26f2f1bc",
+          "740947a6-bbea-4ec7-9db7-e9a18211cd17",
+          "558a4251-1bee-49f7-a00a-f016cca86302",
+          "5130dc36-1db3-4244-9931-18656a433521",
+          "1f3315dd-ddd2-474d-9618-392fc3929e1d",
+          "e8b2152b-7dd4-4b2c-8f03-66794f9b0cda"
+        ],
+        "generated": true,
+        "currentRound": 0,
+        "rounds": [
+          {
+            "heats": [
+              {
+                "playerIds": [
+                  "f166c06a-47fb-47a4-b937-944d2173a7c7",
+                  "7eb933c0-e255-4a37-a996-ba6206308715",
+                  "cf3b629b-a31b-493c-93ab-21121f06d9f0"
+                ],
+                "eliminatedPlayerIds": [
+                  "f166c06a-47fb-47a4-b937-944d2173a7c7",
+                  "7eb933c0-e255-4a37-a996-ba6206308715"
+                ],
+                "bye": false
+              },
+              {
+                "playerIds": [
+                  "2ace2ddb-4c14-4c09-956f-890ff6cc9e6b",
+                  "a3214156-556f-4eac-8061-f6d72465a3e9",
+                  "d18de6a4-5669-4625-8768-0ac54a141e0c"
+                ],
+                "eliminatedPlayerIds": [
+                  "2ace2ddb-4c14-4c09-956f-890ff6cc9e6b",
+                  "d18de6a4-5669-4625-8768-0ac54a141e0c"
+                ],
+                "bye": false
+              },
+              {
+                "playerIds": [
+                  "f0f3523b-99b9-41ae-accf-214c26f2f1bc",
+                  "740947a6-bbea-4ec7-9db7-e9a18211cd17",
+                  "558a4251-1bee-49f7-a00a-f016cca86302"
+                ],
+                "eliminatedPlayerIds": [],
+                "bye": false
+              },
+              {
+                "playerIds": [
+                  "5130dc36-1db3-4244-9931-18656a433521",
+                  "1f3315dd-ddd2-474d-9618-392fc3929e1d",
+                  "e8b2152b-7dd4-4b2c-8f03-66794f9b0cda"
+                ],
+                "eliminatedPlayerIds": [],
+                "bye": false
+              }
+            ],
+            "complete": false
+          }
+        ],
+        "championPlayerId": null,
+        "history": []
+      }
+    },
+    {
+      "snapshot": {
+        "mode": "murderball",
+        "settings": {
+          "laneCount": 3
+        },
+        "entrantPlayerIds": [
+          "f166c06a-47fb-47a4-b937-944d2173a7c7",
+          "7eb933c0-e255-4a37-a996-ba6206308715",
+          "cf3b629b-a31b-493c-93ab-21121f06d9f0",
+          "2ace2ddb-4c14-4c09-956f-890ff6cc9e6b",
+          "a3214156-556f-4eac-8061-f6d72465a3e9",
+          "d18de6a4-5669-4625-8768-0ac54a141e0c",
+          "f0f3523b-99b9-41ae-accf-214c26f2f1bc",
+          "740947a6-bbea-4ec7-9db7-e9a18211cd17",
+          "558a4251-1bee-49f7-a00a-f016cca86302",
+          "5130dc36-1db3-4244-9931-18656a433521",
+          "1f3315dd-ddd2-474d-9618-392fc3929e1d",
+          "e8b2152b-7dd4-4b2c-8f03-66794f9b0cda"
+        ],
+        "generated": true,
+        "currentRound": 0,
+        "rounds": [
+          {
+            "heats": [
+              {
+                "playerIds": [
+                  "f166c06a-47fb-47a4-b937-944d2173a7c7",
+                  "7eb933c0-e255-4a37-a996-ba6206308715",
+                  "cf3b629b-a31b-493c-93ab-21121f06d9f0"
+                ],
+                "eliminatedPlayerIds": [
+                  "f166c06a-47fb-47a4-b937-944d2173a7c7",
+                  "7eb933c0-e255-4a37-a996-ba6206308715"
+                ],
+                "bye": false
+              },
+              {
+                "playerIds": [
+                  "2ace2ddb-4c14-4c09-956f-890ff6cc9e6b",
+                  "a3214156-556f-4eac-8061-f6d72465a3e9",
+                  "d18de6a4-5669-4625-8768-0ac54a141e0c"
+                ],
+                "eliminatedPlayerIds": [
+                  "2ace2ddb-4c14-4c09-956f-890ff6cc9e6b"
+                ],
+                "bye": false
+              },
+              {
+                "playerIds": [
+                  "f0f3523b-99b9-41ae-accf-214c26f2f1bc",
+                  "740947a6-bbea-4ec7-9db7-e9a18211cd17",
+                  "558a4251-1bee-49f7-a00a-f016cca86302"
+                ],
+                "eliminatedPlayerIds": [],
+                "bye": false
+              },
+              {
+                "playerIds": [
+                  "5130dc36-1db3-4244-9931-18656a433521",
+                  "1f3315dd-ddd2-474d-9618-392fc3929e1d",
+                  "e8b2152b-7dd4-4b2c-8f03-66794f9b0cda"
+                ],
+                "eliminatedPlayerIds": [],
+                "bye": false
+              }
+            ],
+            "complete": false
+          }
+        ],
+        "championPlayerId": null,
+        "history": []
+      }
+    },
+    {
+      "snapshot": {
+        "mode": "murderball",
+        "settings": {
+          "laneCount": 3
+        },
+        "entrantPlayerIds": [
+          "f166c06a-47fb-47a4-b937-944d2173a7c7",
+          "7eb933c0-e255-4a37-a996-ba6206308715",
+          "cf3b629b-a31b-493c-93ab-21121f06d9f0",
+          "2ace2ddb-4c14-4c09-956f-890ff6cc9e6b",
+          "a3214156-556f-4eac-8061-f6d72465a3e9",
+          "d18de6a4-5669-4625-8768-0ac54a141e0c",
+          "f0f3523b-99b9-41ae-accf-214c26f2f1bc",
+          "740947a6-bbea-4ec7-9db7-e9a18211cd17",
+          "558a4251-1bee-49f7-a00a-f016cca86302",
+          "5130dc36-1db3-4244-9931-18656a433521",
+          "1f3315dd-ddd2-474d-9618-392fc3929e1d",
+          "e8b2152b-7dd4-4b2c-8f03-66794f9b0cda"
+        ],
+        "generated": true,
+        "currentRound": 0,
+        "rounds": [
+          {
+            "heats": [
+              {
+                "playerIds": [
+                  "f166c06a-47fb-47a4-b937-944d2173a7c7",
+                  "7eb933c0-e255-4a37-a996-ba6206308715",
+                  "cf3b629b-a31b-493c-93ab-21121f06d9f0"
+                ],
+                "eliminatedPlayerIds": [
+                  "f166c06a-47fb-47a4-b937-944d2173a7c7",
+                  "7eb933c0-e255-4a37-a996-ba6206308715"
+                ],
+                "bye": false
+              },
+              {
+                "playerIds": [
+                  "2ace2ddb-4c14-4c09-956f-890ff6cc9e6b",
+                  "a3214156-556f-4eac-8061-f6d72465a3e9",
+                  "d18de6a4-5669-4625-8768-0ac54a141e0c"
+                ],
+                "eliminatedPlayerIds": [],
+                "bye": false
+              },
+              {
+                "playerIds": [
+                  "f0f3523b-99b9-41ae-accf-214c26f2f1bc",
+                  "740947a6-bbea-4ec7-9db7-e9a18211cd17",
+                  "558a4251-1bee-49f7-a00a-f016cca86302"
+                ],
+                "eliminatedPlayerIds": [],
+                "bye": false
+              },
+              {
+                "playerIds": [
+                  "5130dc36-1db3-4244-9931-18656a433521",
+                  "1f3315dd-ddd2-474d-9618-392fc3929e1d",
+                  "e8b2152b-7dd4-4b2c-8f03-66794f9b0cda"
+                ],
+                "eliminatedPlayerIds": [],
+                "bye": false
+              }
+            ],
+            "complete": false
+          }
+        ],
+        "championPlayerId": null,
+        "history": []
+      }
+    }
+  ]
 }

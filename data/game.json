@@ -1,7 +1,7 @@
 {
-  "status": "setup",
-  "visitorTeamId": null,
-  "homeTeamId": null,
+  "status": "live",
+  "visitorTeamId": "8b5c5eb9-a002-4f84-9621-9d6a7fac24c7",
+  "homeTeamId": "ae74c942-10d3-4282-9064-d8b39aa5bcbd",
   "visitorInnings": [
     null,
     null,
@@ -26,8 +26,8 @@
   ],
   "currentInning": 1,
   "currentHalf": "top",
-  "pitcherPlayerId": null,
-  "batterPlayerId": null,
+  "pitcherPlayerId": "1f3315dd-ddd2-474d-9618-392fc3929e1d",
+  "batterPlayerId": "f0f3523b-99b9-41ae-accf-214c26f2f1bc",
   "pitcherFallback": "",
   "batterFallback": "",
   "bases": {
@@ -37,5 +37,43 @@
   },
   "outs": 0,
   "balls": 0,
-  "inningsPlayed": 0
+  "inningsPlayed": 0,
+  "visitorLineup": {
+    "battingOrder": [
+      "7eb933c0-e255-4a37-a996-ba6206308715",
+      "f0f3523b-99b9-41ae-accf-214c26f2f1bc",
+      "558a4251-1bee-49f7-a00a-f016cca86302",
+      "5130dc36-1db3-4244-9931-18656a433521",
+      "cf3b629b-a31b-493c-93ab-21121f06d9f0",
+      "740947a6-bbea-4ec7-9db7-e9a18211cd17"
+    ],
+    "pitchingRotation": [
+      "5130dc36-1db3-4244-9931-18656a433521",
+      "740947a6-bbea-4ec7-9db7-e9a18211cd17",
+      "cf3b629b-a31b-493c-93ab-21121f06d9f0",
+      "7eb933c0-e255-4a37-a996-ba6206308715",
+      "558a4251-1bee-49f7-a00a-f016cca86302",
+      "f0f3523b-99b9-41ae-accf-214c26f2f1bc"
+    ],
+    "battingIndex": 1,
+    "pitchingIndex": 0
+  },
+  "homeLineup": {
+    "battingOrder": [
+      "a3214156-556f-4eac-8061-f6d72465a3e9",
+      "e8b2152b-7dd4-4b2c-8f03-66794f9b0cda",
+      "2ace2ddb-4c14-4c09-956f-890ff6cc9e6b",
+      "d18de6a4-5669-4625-8768-0ac54a141e0c",
+      "1f3315dd-ddd2-474d-9618-392fc3929e1d"
+    ],
+    "pitchingRotation": [
+      "2ace2ddb-4c14-4c09-956f-890ff6cc9e6b",
+      "a3214156-556f-4eac-8061-f6d72465a3e9",
+      "1f3315dd-ddd2-474d-9618-392fc3929e1d",
+      "e8b2152b-7dd4-4b2c-8f03-66794f9b0cda",
+      "d18de6a4-5669-4625-8768-0ac54a141e0c"
+    ],
+    "battingIndex": 0,
+    "pitchingIndex": 2
+  }
 }

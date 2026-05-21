@@ -92,7 +92,7 @@ Handles two elimination formats across Days 4 and 6. Mode is selectable from the
 
 ### Mode 1 — Murderball (Day 4)
 
-Parallel heat elimination. Heat size = lane count (configurable, 2–4). All heats run simultaneously per round. Lowest scorer per heat eliminated. Multiple eliminations per round. Bracket consolidates until one champion remains.
+Parallel heat elimination. Heat size = lane count (configurable, 2–4). All heats run simultaneously per round. One or more lowest scorers per heat eliminated — operator's call based on heat size and round (each heat must keep at least one survivor). Multiple eliminations per round. Bracket consolidates until one champion remains.
 
 Display: horizontal grid. Rounds as columns. Heats as stacked cards within each column. Players listed within each heat.
 
@@ -145,7 +145,7 @@ Footer: "X innings played" on the left (covers extra innings).
 
 Winner determined automatically by total run comparison server-side on "Declare final."
 
-**Admin controls:** set team names · increment/decrement runs per inning per team · advance inning / set half · set pitcher and batter names · toggle base occupancy · set outs · set ball count · "Clear bases + reset count" (end-of-half shortcut) · declare final · reset game.
+**Admin controls:** set team names · increment/decrement runs per inning per team · advance inning / set half · manage batting order + pitching rotation per team · ▶ Next Batter / ▶ Next Pitcher click-through that walks the lineup · manual override dropdowns for pitcher/batter · toggle base occupancy · set outs · set ball count · "Clear bases + reset count" (end-of-half shortcut) · declare final · reset game.
 
 **Data model (`game.json`):**
 ```json

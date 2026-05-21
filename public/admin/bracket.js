@@ -152,6 +152,8 @@ function roundLabel(mode, i, total) {
 function renderMurderballAdmin(b, round) {
   if (!round) return '';
   return round.heats.map((h, hi) => {
+    const elimIds = h.eliminatedPlayerIds || [];
+    const survivorCount = h.playerIds.filter(p => !elimIds.includes(p)).length;
     const playerRows = h.playerIds.map(pid => {
       const name = Admin.playerName(pid);
       if (h.bye) {
@@ -161,21 +163,30 @@ function renderMurderballAdmin(b, round) {
             <span class="chip" style="background:#196A73">BYE — auto-advance</span>
           </div>`;
       }
-      const isElim = h.eliminatedPlayerId === pid;
+      const isElim = elimIds.includes(pid);
       const cls = isElim ? 'loser-name' : '';
       const canAct = bracketViewRound === b.currentRound;
+      // Disable the eliminate button on the last survivor (can't drop everyone).
+      const wouldEmpty = !isElim && survivorCount <= 1;
       return `
         <div class="heat-row">
           <span class="${cls}" style="flex:1">${esc(name)}</span>
-          <button class="sm ${isElim ? 'subtle' : 'danger'}" data-elim="${hi}:${pid}" ${canAct ? '' : 'disabled'}>
-            ${isElim ? 'Undo' : 'Eliminate'}
+          <button class="sm ${isElim ? 'subtle' : 'danger'}"
+                  data-elim="${hi}:${pid}"
+                  ${canAct && !wouldEmpty ? '' : 'disabled'}
+                  title="${wouldEmpty ? 'At least one survivor must remain' : ''}">
+            ${isElim ? 'Restore' : 'Eliminate'}
           </button>
         </div>`;
     }).join('');
+    const summary = h.bye
+      ? ''
+      : `<div class="heat-summary">${elimIds.length} out · ${survivorCount} advancing</div>`;
     return `
       <div class="heat-block">
         <div class="heat-block-header">${h.bye ? 'BYE' : `HEAT ${hi + 1}`}</div>
         ${playerRows}
+        ${summary}
       </div>
     `;
   }).join('');
@@ -226,14 +237,22 @@ function renderDerbyAdmin(b, round) {
 function renderBracketActions(b) {
   const cur = b.rounds[b.currentRound];
   if (!cur) return '';
+  const isCurrent = bracketViewRound === b.currentRound;
 
   if (b.mode === 'murderball') {
-    const allDone = cur.heats.every(h => h.bye || h.eliminatedPlayerId !== null);
-    const survivors = cur.heats.flatMap(h =>
-      h.bye ? h.playerIds : h.playerIds.filter(p => p !== h.eliminatedPlayerId)
+    const survivors = cur.heats.flatMap(h => {
+      const elim = h.eliminatedPlayerIds || [];
+      return h.bye ? h.playerIds : h.playerIds.filter(p => !elim.includes(p));
+    });
+    const allHeatsHaveCut = cur.heats.every(h =>
+      h.bye || (h.eliminatedPlayerIds && h.eliminatedPlayerIds.length > 0)
     );
-    if (allDone && survivors.length === 1 && !b.championPlayerId) {
+
+    if (survivors.length === 1 && !b.championPlayerId) {
       return '<div class="shrink"><button class="primary-action" id="champ-btn">Declare Champion</button></div>';
+    }
+    if (isCurrent && allHeatsHaveCut && survivors.length > 1 && !b.championPlayerId) {
+      return `<div class="shrink"><button class="primary-action" id="advance-btn">Advance to Round ${b.currentRound + 2} →</button></div>`;
     }
     return '';
   } else {
@@ -272,6 +291,7 @@ function attachScoringHandlers(b) {
     };
   });
   document.getElementById('champ-btn')?.addEventListener('click', doDeclareChampion);
+  document.getElementById('advance-btn')?.addEventListener('click', doAdvanceRound);
 }
 
 async function setMode(mode) {
@@ -338,11 +358,20 @@ async function doUndo() {
 }
 
 async function doEliminate(heatIndex, playerId) {
-  Admin.state.bracket = await Admin.api('PUT', '/api/bracket/eliminate', {
-    roundIndex: bracketViewRound, heatIndex, playerId
-  });
-  bracketViewRound = Admin.state.bracket.currentRound;
-  renderBracket();
+  try {
+    Admin.state.bracket = await Admin.api('PUT', '/api/bracket/eliminate', {
+      roundIndex: bracketViewRound, heatIndex, playerId
+    });
+    renderBracket();
+  } catch (e) { alert(e.message); }
+}
+
+async function doAdvanceRound() {
+  try {
+    Admin.state.bracket = await Admin.api('POST', '/api/bracket/advance-round');
+    bracketViewRound = Admin.state.bracket.currentRound;
+    renderBracket();
+  } catch (e) { alert(e.message); }
 }
 
 async function doSetWinner(matchupIndex, winnerPlayerId) {
@@ -366,9 +395,10 @@ async function doDeclareChampion() {
   let winnerId = null;
   if (b.mode === 'murderball') {
     const round = b.rounds[b.currentRound];
-    const survivors = round.heats.flatMap(h =>
-      h.bye ? h.playerIds : h.playerIds.filter(p => p !== h.eliminatedPlayerId)
-    );
+    const survivors = round.heats.flatMap(h => {
+      const elim = h.eliminatedPlayerIds || [];
+      return h.bye ? h.playerIds : h.playerIds.filter(p => !elim.includes(p));
+    });
     winnerId = survivors[0];
   } else {
     winnerId = b.rounds[b.rounds.length - 1].matchups[0]?.winnerPlayerId;

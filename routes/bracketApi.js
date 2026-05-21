@@ -10,27 +10,52 @@ function snapshot(b) {
   b.history = [{ snapshot: copy }, ...(b.history || [])].slice(0, 12);
 }
 
+// Back-compat: older heats stored a single eliminatedPlayerId. Normalize
+// every read/write so the rest of this file only deals with the array form.
+function normalizeHeats(b) {
+  if (b?.mode !== 'murderball' || !Array.isArray(b.rounds)) return;
+  for (const round of b.rounds) {
+    if (!Array.isArray(round.heats)) continue;
+    for (const heat of round.heats) {
+      if (!Array.isArray(heat.eliminatedPlayerIds)) {
+        const legacy = heat.eliminatedPlayerId;
+        heat.eliminatedPlayerIds = legacy ? [legacy] : [];
+      }
+      if ('eliminatedPlayerId' in heat) delete heat.eliminatedPlayerId;
+    }
+  }
+}
+
 function buildMurderballRound(entrantIds, laneCount) {
   const heats = [];
   const fullHeats = Math.floor(entrantIds.length / laneCount);
   for (let i = 0; i < fullHeats; i++) {
     heats.push({
       playerIds: entrantIds.slice(i * laneCount, i * laneCount + laneCount),
-      eliminatedPlayerId: null,
+      eliminatedPlayerIds: [],
       bye: false
     });
   }
   const remainder = entrantIds.slice(fullHeats * laneCount);
   for (const pid of remainder) {
-    heats.push({ playerIds: [pid], eliminatedPlayerId: null, bye: true });
+    heats.push({ playerIds: [pid], eliminatedPlayerIds: [], bye: true });
   }
   return { heats, complete: false };
 }
 
 function murderballSurvivors(round) {
   return round.heats.flatMap(h =>
-    h.bye ? h.playerIds : h.playerIds.filter(p => p !== h.eliminatedPlayerId)
+    h.bye ? h.playerIds : h.playerIds.filter(p => !h.eliminatedPlayerIds.includes(p))
   );
+}
+
+function heatHasElimination(h) {
+  return h.bye || (h.eliminatedPlayerIds && h.eliminatedPlayerIds.length > 0);
+}
+
+function heatHasSurvivor(h) {
+  if (h.bye) return true;
+  return h.playerIds.some(p => !h.eliminatedPlayerIds.includes(p));
 }
 
 function orderMurderballEntrants(entrantIds) {
@@ -113,7 +138,11 @@ function propagateDerbyWinners(rounds, fromRound) {
 
 // ── Routes ─────────────────────────────────────────────────────────────
 
-router.get('/', (req, res) => res.json(bracket.get()));
+router.get('/', (req, res) => {
+  const b = bracket.get();
+  normalizeHeats(b);
+  res.json(b);
+});
 
 router.put('/settings', async (req, res) => {
   const { mode, laneCount, entrantPlayerIds } = req.body || {};
@@ -179,21 +208,46 @@ router.put('/eliminate', async (req, res) => {
   const { roundIndex, heatIndex, playerId } = req.body || {};
   let err = null;
   await bracket.update(b => {
+    normalizeHeats(b);
     const heat = b.rounds[roundIndex]?.heats?.[heatIndex];
     if (!heat) { err = 'Heat not found'; return b; }
-    snapshot(b);
-    heat.eliminatedPlayerId = heat.eliminatedPlayerId === playerId ? null : playerId;
+    if (heat.bye) { err = "Can't eliminate a bye"; return b; }
+    if (!heat.playerIds.includes(playerId)) { err = 'Player not in heat'; return b; }
 
-    const round = b.rounds[roundIndex];
-    const allDone = round.heats.every(h => h.bye || h.eliminatedPlayerId !== null);
-    if (allDone && roundIndex === b.currentRound) {
-      const survivors = murderballSurvivors(round);
-      if (survivors.length > 1) {
-        round.complete = true;
-        b.rounds.push(buildMurderballRound(survivors, b.settings.laneCount));
-        b.currentRound++;
+    snapshot(b);
+    const already = heat.eliminatedPlayerIds.includes(playerId);
+    if (already) {
+      heat.eliminatedPlayerIds = heat.eliminatedPlayerIds.filter(p => p !== playerId);
+    } else {
+      // Refuse to eliminate the last surviving player in a heat.
+      const remaining = heat.playerIds.filter(p => !heat.eliminatedPlayerIds.includes(p) && p !== playerId);
+      if (remaining.length === 0) {
+        err = "Heat must keep at least one survivor.";
+        return b;
       }
+      heat.eliminatedPlayerIds = [...heat.eliminatedPlayerIds, playerId];
     }
+    return b;
+  });
+  if (err) return res.status(400).json({ error: err });
+  res.json(bracket.get());
+});
+
+router.post('/advance-round', async (req, res) => {
+  let err = null;
+  await bracket.update(b => {
+    normalizeHeats(b);
+    if (b.mode !== 'murderball') { err = 'Murderball only'; return b; }
+    const round = b.rounds[b.currentRound];
+    if (!round) { err = 'No active round'; return b; }
+    if (!round.heats.every(heatHasElimination)) { err = 'Each heat needs at least one elimination first.'; return b; }
+    if (!round.heats.every(heatHasSurvivor)) { err = 'Each heat needs at least one survivor.'; return b; }
+    const survivors = murderballSurvivors(round);
+    if (survivors.length < 2) { err = 'Not enough survivors to advance.'; return b; }
+    snapshot(b);
+    round.complete = true;
+    b.rounds.push(buildMurderballRound(survivors, b.settings.laneCount));
+    b.currentRound++;
     return b;
   });
   if (err) return res.status(400).json({ error: err });
