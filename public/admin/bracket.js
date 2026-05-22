@@ -24,13 +24,11 @@ function renderBracket() {
           </div>
         </div>
         ${b.mode === 'murderball' ? `
-          <div style="flex:0 0 150px">
+          <div style="flex:0 0 160px">
             <label>Lane count</label>
-            <div class="choice-grid">
-              ${[2,3,4].map(n => `
-                <button class="choice-btn ${b.settings.laneCount === n ? 'active' : ''}" data-lane="${n}">${n}</button>
-              `).join('')}
-            </div>
+            <input type="number" min="2" step="1" value="${b.settings.laneCount}"
+              style="width:80px;padding:6px 8px;background:#0d3650;border:1px solid rgba(25,106,115,0.4);border-radius:6px;color:#fff;font-size:15px;font-family:Oswald,sans-serif"
+              onchange="setLane(Math.max(2,parseInt(this.value)||2))">
           </div>
         ` : ''}
         <div style="flex:1;text-align:right">
@@ -52,7 +50,6 @@ function renderBracket() {
   `;
 
   root.querySelectorAll('[data-mode]').forEach(el => el.onclick = () => setBracketMode(el.dataset.mode));
-  root.querySelectorAll('[data-lane]').forEach(el => el.onclick = () => setLane(parseInt(el.dataset.lane)));
   root.querySelectorAll('[data-toggle]').forEach(el => el.onclick = () => toggleEntrant(el.dataset.toggle));
   root.querySelectorAll('[data-move-up]').forEach(el => el.onclick = () => moveEntrant(el.dataset.moveUp, -1));
   root.querySelectorAll('[data-move-down]').forEach(el => el.onclick = () => moveEntrant(el.dataset.moveDown, +1));
@@ -248,16 +245,16 @@ function renderBracketActions(b) {
       h.bye || (h.eliminatedPlayerIds && h.eliminatedPlayerIds.length > 0)
     );
 
-    if (survivors.length === 1 && !b.championPlayerId) {
+    if (survivors.length === 1) {
       return '<div class="shrink"><button class="primary-action" id="champ-btn">Declare Champion</button></div>';
     }
-    if (isCurrent && allHeatsHaveCut && survivors.length > 1 && !b.championPlayerId) {
+    if (isCurrent && allHeatsHaveCut && survivors.length > 1) {
       return `<div class="shrink"><button class="primary-action" id="advance-btn">Advance to Round ${b.currentRound + 2} →</button></div>`;
     }
     return '';
   } else {
     const allDone = cur.matchups.every(m => m.winnerPlayerId);
-    if (allDone && cur.isFinal && !b.championPlayerId) {
+    if (allDone && cur.isFinal) {
       return '<div class="shrink"><button class="primary-action" id="champ-btn">Declare Derby Champion</button></div>';
     }
     return '';

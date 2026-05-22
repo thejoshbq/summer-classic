@@ -26,8 +26,8 @@
   ],
   "currentInning": 1,
   "currentHalf": "top",
-  "pitcherPlayerId": "c18b9f12-83bb-48bc-b214-0c662830aaa9",
-  "batterPlayerId": "73e781e3-69e9-461e-bd9a-de40fe64a2a0",
+  "pitcherPlayerId": "dc32d91a-bc87-4cff-afd7-468571674c90",
+  "batterPlayerId": "be4e8e16-a645-4139-8410-588c3828b4d2",
   "pitcherFallback": "",
   "batterFallback": "",
   "bases": {
@@ -51,7 +51,7 @@
       "be4e8e16-a645-4139-8410-588c3828b4d2",
       "73e781e3-69e9-461e-bd9a-de40fe64a2a0"
     ],
-    "battingIndex": 3,
+    "battingIndex": 2,
     "pitchingIndex": 0
   },
   "homeLineup": {
@@ -70,6 +70,6 @@
       "794d66e7-cd72-4e11-9e66-518cd00cf4fb"
     ],
     "battingIndex": 0,
-    "pitchingIndex": 3
+    "pitchingIndex": 1
   }
 }

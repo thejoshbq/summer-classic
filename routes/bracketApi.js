@@ -29,6 +29,14 @@ function normalizeHeats(b) {
 function buildMurderballRound(entrantIds, laneCount) {
   const heats = [];
   const fullHeats = Math.floor(entrantIds.length / laneCount);
+  // When survivors don't fill one full heat, put them all in one real heat
+  // rather than issuing individual BYEs to every player.
+  if (fullHeats === 0 && entrantIds.length > 0) {
+    return {
+      heats: [{ playerIds: [...entrantIds], eliminatedPlayerIds: [], bye: false }],
+      complete: false
+    };
+  }
   for (let i = 0; i < fullHeats; i++) {
     heats.push({
       playerIds: entrantIds.slice(i * laneCount, i * laneCount + laneCount),
@@ -150,7 +158,7 @@ router.put('/settings', async (req, res) => {
     const modeChanged = mode && mode !== b.mode;
     if (mode === 'murderball' || mode === 'derby') b.mode = mode;
     if (laneCount != null) {
-      const n = Math.min(4, Math.max(2, Math.floor(Number(laneCount))));
+      const n = Math.max(2, Math.floor(Number(laneCount)));
       b.settings.laneCount = n;
     }
     if (Array.isArray(entrantPlayerIds)) {
@@ -284,6 +292,9 @@ router.put('/champion', async (req, res) => {
   await bracket.update(b => {
     snapshot(b);
     b.championPlayerId = id;
+    if (id && b.mode === 'murderball' && b.rounds[b.currentRound]) {
+      b.rounds[b.currentRound].complete = true;
+    }
     return b;
   });
   res.json(bracket.get());

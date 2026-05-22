@@ -11,46 +11,46 @@
 <link rel="stylesheet" href="/shared/shell.css">
 <style>
   .bracket-area {
+    flex-direction: row;
+    padding: 0;
+    gap: 0;
+    overflow: hidden;
+  }
+
+  /* MAIN PANEL */
+  .bracket-main {
     flex: 1;
     display: flex;
-    align-items: stretch;
-    padding: 1.6% 2.4%;
-    gap: 0;
-    overflow: auto;
-    min-height: 0;
-    position: relative;
-  }
-
-  .round-col {
-    display: flex;
     flex-direction: column;
-    justify-content: space-around;
-    flex: 1 1 0;
-    min-width: 11vw;
     align-items: center;
-    position: relative;
-    padding: 1.2% 0 0;
+    justify-content: center;
+    padding: 2% 2.4%;
+    gap: 1.8%;
+    min-width: 0;
   }
 
-  .round-label {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: clamp(10px, 0.9vw, 13px);
-    color: var(--teal);
-    letter-spacing: 0.18em;
+  .round-title {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: clamp(16px, 2vw, 30px);
+    color: rgba(255,255,255,0.65);
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     text-align: center;
   }
+  .round-of {
+    font-size: 0.55em;
+    color: var(--teal);
+    letter-spacing: 0.18em;
+  }
 
-  .matchup-wrapper, .heat-wrapper {
+  .heat-row {
     display: flex;
-    align-items: center;
-    flex: 1;
-    width: 100%;
+    gap: 1.4%;
+    align-items: flex-start;
     justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
   }
 
   .card-block {
@@ -58,9 +58,12 @@
     border: 1px solid var(--divider);
     border-radius: 6px;
     overflow: hidden;
-    width: min(11vw, 170px);
+    flex: 1 1 0;
+    max-width: min(18vw, 240px);
+    min-width: 110px;
   }
   .card-block.is-final { border: 2px solid var(--orange); }
+  .card-block.is-bye { opacity: 0.5; }
 
   .card-header {
     background: rgba(25,106,115,0.25);
@@ -118,36 +121,80 @@
   }
   .score.winner { color: var(--orange); }
 
-  .champion-card {
-    background: var(--dark-navy);
-    border: 2px solid var(--orange);
-    border-radius: 6px;
-    overflow: hidden;
-    width: min(11vw, 170px);
-    align-self: center;
+
+  /* SIDEBAR */
+  .bracket-sidebar {
+    width: 22%;
+    flex-shrink: 0;
+    border-left: 1px solid var(--divider);
+    padding: 2% 1.8%;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
   }
-  .champion-card .clabel {
+  .elim-title {
     font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: clamp(11px, 1.1vw, 16px);
+    color: var(--teal);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 0.6em;
+  }
+  .elim-section {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
     font-size: clamp(9px, 0.8vw, 12px);
+    color: rgba(255,255,255,0.3);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    border-top: 1px solid var(--divider-faint);
+    padding-top: 0.5em;
+    margin-top: 0.5em;
+  }
+  .elim-section:first-of-type { border-top: none; padding-top: 0; margin-top: 0; }
+  .elim-name {
+    font-family: 'Oswald', sans-serif;
+    font-size: clamp(10px, 0.9vw, 13px);
+    color: var(--white-faint);
+    text-decoration: line-through;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 0.12em 0;
+  }
+  .elim-empty {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(10px, 0.9vw, 13px);
+    color: var(--white-trace);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-style: italic;
+  }
+
+  /* CHAMPION STATE */
+  .champion-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4em;
+  }
+  .champ-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: clamp(12px, 1.3vw, 20px);
     color: var(--orange);
     letter-spacing: 0.22em;
     text-transform: uppercase;
-    padding: 0.4em 0.6em;
-    text-align: center;
-    border-bottom: 1px solid rgba(242,143,22,0.3);
   }
-  .champion-card .cname {
+  .champ-name {
     font-family: 'Oswald', sans-serif;
     font-weight: 700;
-    font-size: clamp(14px, 1.2vw, 18px);
+    font-size: clamp(28px, 5vw, 80px);
     color: var(--orange);
-    text-align: center;
-    padding: 0.7em 0.4em;
     text-transform: uppercase;
-    min-height: 2.5em;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    letter-spacing: 0.04em;
   }
 
   .legend { display: flex; gap: 1em; align-items: center; }
@@ -170,10 +217,13 @@
 <body>
 <div class="board">
   <header class="board-header">
-    <div class="header-left">
-      <span class="venue-name">Lumber Jill's</span>
-      <span class="board-title" id="mode-title">Bracket</span>
-      <span class="board-subtitle" id="mode-subtitle">&nbsp;</span>
+    <div class="header-brand">
+      <img src="/shared/logo.png" class="header-logo" alt="Lumber Jill's">
+      <div class="header-left">
+        <span class="venue-name">Lumber Jill's</span>
+        <span class="board-title" id="mode-title">Bracket</span>
+        <span class="board-subtitle" id="mode-subtitle">&nbsp;</span>
+      </div>
     </div>
     <div class="day-badge">
       <span class="day-label">Day</span>
@@ -189,11 +239,71 @@
   </footer>
 </div>
 
-<script src="/shared/poll.js"></script>
 <script>
 let playerNameMap = {};
 
 function nameOf(id) { return id ? (playerNameMap[id] || '???') : ''; }
+function esc(s) { const d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
+
+function elimSidebar(sections) {
+  const hasAny = sections.some(s => s.names.length > 0);
+  let html = `<div class="bracket-sidebar"><div class="elim-title">Eliminated</div>`;
+  if (!hasAny) {
+    html += `<div class="elim-empty">None yet</div>`;
+  } else {
+    sections.forEach(s => {
+      if (!s.names.length) return;
+      html += `<div class="elim-section">${s.label}</div>`;
+      s.names.forEach(n => { html += `<div class="elim-name">${esc(n)}</div>`; });
+    });
+  }
+  return html + `</div>`;
+}
+
+function championMain(label, name) {
+  return `<div class="bracket-main"><div class="champion-state">
+    <div class="champ-label">${label}</div>
+    <div class="champ-name">${name || '—'}</div>
+  </div></div>`;
+}
+
+function renderMurderball(b) {
+  const rounds = b.rounds;
+  const activeIdx = rounds.findIndex(r => !r.complete);
+  const done = activeIdx === -1;
+
+  const completedRounds = done ? rounds : rounds.slice(0, activeIdx);
+  const sections = completedRounds.map((round, ri) => {
+    const names = round.heats.flatMap(h => {
+      const ids = h.eliminatedPlayerIds || (h.eliminatedPlayerId ? [h.eliminatedPlayerId] : []);
+      return ids.map(id => nameOf(id));
+    });
+    return { label: `After Round ${ri + 1}`, names };
+  });
+
+  if (done) {
+    return championMain('Champion', b.championPlayerId ? esc(nameOf(b.championPlayerId)) : '') + elimSidebar(sections);
+  }
+
+  const round = rounds[activeIdx];
+  let main = `<div class="bracket-main">
+    <div class="round-title">Round ${activeIdx + 1} <span class="round-of">of ${rounds.length}</span></div>
+    <div class="heat-row">`;
+
+  round.heats.forEach((h, hi) => {
+    const elim = h.eliminatedPlayerIds || (h.eliminatedPlayerId ? [h.eliminatedPlayerId] : []);
+    const anyOut = elim.length > 0;
+    main += `<div class="card-block${h.bye ? ' is-bye' : ''}">
+      <div class="card-header">${h.bye ? 'Bye' : `Heat ${hi + 1}`}</div>`;
+    h.playerIds.forEach(pid => {
+      let cls = h.bye ? 'bye' : elim.includes(pid) ? 'loser' : (anyOut || round.complete) ? 'winner' : '';
+      main += `<div class="row"><span class="pname ${cls}">${esc(nameOf(pid))}</span></div>`;
+    });
+    main += `</div>`;
+  });
+
+  return main + `</div></div>` + elimSidebar(sections);
+}
 
 function renderDerby(b) {
   const rounds = b.rounds;
@@ -206,89 +316,50 @@ function renderDerby(b) {
     return `Round ${i + 1}`;
   }
 
-  let html = '';
-  rounds.forEach((round, ri) => {
-    html += `<div class="round-col">
-      <div class="round-label">${rname(ri)}</div>`;
-    round.matchups.forEach(m => {
-      const p1 = m.player1, p2 = m.player2;
-      const winId = m.winnerPlayerId;
+  const activeIdx = rounds.findIndex(r => r.matchups.some(m => !m.winnerPlayerId && !m.bye));
+  const done = activeIdx === -1;
 
-      function row(p) {
-        const name = p.playerId ? nameOf(p.playerId) : null;
-        let cls = '';
-        if (!name) cls = m.bye ? 'bye' : 'tbd';
-        else if (winId === p.playerId) cls = 'winner';
-        else if (winId) cls = 'loser';
-
-        const scoreCls = winId === p.playerId ? 'score winner' : 'score';
-        const scoreVal = p.score != null ? p.score : '';
-        return `
-          <div class="row">
-            <span class="seed">${p.seed || ''}</span>
-            <span class="pname ${cls}">${name ? esc(name) : (m.bye ? 'BYE' : 'TBD')}</span>
-            <span class="${scoreCls}">${scoreVal}</span>
-          </div>`;
-      }
-
-      html += `
-        <div class="matchup-wrapper">
-          <div class="card-block ${round.isFinal ? 'is-final' : ''}">
-            <div class="card-header">${round.isFinal ? 'Final · 7 throws' : 'Best Throw'}</div>
-            ${row(p1)}${row(p2)}
-          </div>
-        </div>`;
+  const completedRounds = done ? rounds : rounds.slice(0, activeIdx);
+  const sections = completedRounds.map((round, ri) => {
+    const names = round.matchups.flatMap(m => {
+      if (!m.winnerPlayerId) return [];
+      const loser = [m.player1, m.player2].find(p => p.playerId && p.playerId !== m.winnerPlayerId);
+      return loser ? [nameOf(loser.playerId)] : [];
     });
-    html += `</div>`;
+    return { label: `After ${rname(ri)}`, names };
   });
 
-  html += `<div class="round-col" style="min-width:11vw">
-    <div class="round-label">Champion</div>
-    <div class="champion-card">
-      <div class="clabel">Derby Champion</div>
-      <div class="cname">${b.championPlayerId ? esc(nameOf(b.championPlayerId)) : '&nbsp;'}</div>
-    </div>
-  </div>`;
+  if (done) {
+    return championMain('Derby Champion', b.championPlayerId ? esc(nameOf(b.championPlayerId)) : '') + elimSidebar(sections);
+  }
 
-  return html;
-}
+  const round = rounds[activeIdx];
+  let main = `<div class="bracket-main">
+    <div class="round-title">${rname(activeIdx)}</div>
+    <div class="heat-row">`;
 
-function renderMurderball(b) {
-  const rounds = b.rounds;
-  let html = '';
-  rounds.forEach((round, ri) => {
-    html += `<div class="round-col">
-      <div class="round-label">Round ${ri + 1}</div>`;
-    round.heats.forEach((h, hi) => {
-      const elim = h.eliminatedPlayerIds || (h.eliminatedPlayerId ? [h.eliminatedPlayerId] : []);
-      const anyOut = elim.length > 0;
-      html += `<div class="heat-wrapper">
-        <div class="card-block">
-          <div class="card-header">${h.bye ? 'Bye' : `Heat ${hi + 1}`}</div>`;
-      h.playerIds.forEach(pid => {
-        let cls = '';
-        if (h.bye) cls = 'bye';
-        else if (elim.includes(pid)) cls = 'loser';
-        else if (anyOut || round.complete) cls = 'winner';
-        html += `
-          <div class="row">
-            <span class="pname ${cls}">${esc(nameOf(pid))}</span>
-          </div>`;
-      });
-      html += `</div></div>`;
-    });
-    html += `</div>`;
+  round.matchups.forEach(m => {
+    const p1 = m.player1, p2 = m.player2;
+    const winId = m.winnerPlayerId;
+
+    function row(p) {
+      const name = p.playerId ? nameOf(p.playerId) : null;
+      let cls = !name ? (m.bye ? 'bye' : 'tbd') : winId === p.playerId ? 'winner' : winId ? 'loser' : '';
+      const scoreCls = winId === p.playerId ? 'score winner' : 'score';
+      return `<div class="row">
+        <span class="seed">${p.seed || ''}</span>
+        <span class="pname ${cls}">${name ? esc(name) : (m.bye ? 'BYE' : 'TBD')}</span>
+        <span class="${scoreCls}">${p.score != null ? p.score : ''}</span>
+      </div>`;
+    }
+
+    main += `<div class="card-block ${round.isFinal ? 'is-final' : ''}">
+      <div class="card-header">${round.isFinal ? 'Final · 7 throws' : 'Best Throw'}</div>
+      ${row(p1)}${row(p2)}
+    </div>`;
   });
 
-  html += `<div class="round-col" style="min-width:11vw">
-    <div class="round-label">Champion</div>
-    <div class="champion-card">
-      <div class="clabel">Champion</div>
-      <div class="cname">${b.championPlayerId ? esc(nameOf(b.championPlayerId)) : '&nbsp;'}</div>
-    </div>
-  </div>`;
-
-  return html;
+  return main + `</div></div>` + elimSidebar(sections);
 }
 
 function legendFor(mode) {

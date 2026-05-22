@@ -39,6 +39,20 @@ html, body {
   gap: 0.2em;
 }
 
+.header-brand {
+  display: flex;
+  align-items: center;
+  gap: clamp(10px, 1.5vw, 18px);
+}
+
+.header-logo {
+  height: clamp(52px, 5vw, 88px);
+  width: clamp(52px, 5vw, 88px);
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
 .venue-name {
   font-family: 'Barlow Condensed', sans-serif;
   font-weight: 600;
