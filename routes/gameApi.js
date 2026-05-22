@@ -207,34 +207,45 @@ router.put('/lineup', async (req, res) => {
       lineup.pitchingRotation = cleanPitching;
       lineup.pitchingIndex = 0;
     }
+    // Keep the displayed batter/pitcher in sync with the active side's
+    // current lineup pointer so the first player shows up immediately.
+    const bLineup = lineupOf(g, battingSide(g));
+    const pLineup = lineupOf(g, pitchingSide(g));
+    if (bLineup.battingOrder.length) {
+      if (bLineup.battingIndex >= bLineup.battingOrder.length) bLineup.battingIndex = 0;
+      g.batterPlayerId = bLineup.battingOrder[bLineup.battingIndex];
+    } else {
+      g.batterPlayerId = null;
+    }
+    if (pLineup.pitchingRotation.length) {
+      if (pLineup.pitchingIndex >= pLineup.pitchingRotation.length) pLineup.pitchingIndex = 0;
+      g.pitcherPlayerId = pLineup.pitchingRotation[pLineup.pitchingIndex];
+    } else {
+      g.pitcherPlayerId = null;
+    }
     return g;
   });
   res.json(compose());
 });
 
-router.post('/next-batter', async (req, res) => {
+router.post('/next-atbat', async (req, res) => {
   let err = null;
   await game.update(g => {
     ensureLineups(g);
-    const lineup = lineupOf(g, battingSide(g));
-    if (!lineup.battingOrder.length) { err = 'Set a batting order for the batting team first.'; return g; }
-    // Advance, then read — the index always points at the *current* batter.
-    lineup.battingIndex = (lineup.battingIndex + 1) % lineup.battingOrder.length;
-    g.batterPlayerId = lineup.battingOrder[lineup.battingIndex];
-    return g;
-  });
-  if (err) return res.status(400).json({ error: err });
-  res.json(compose());
-});
-
-router.post('/next-pitcher', async (req, res) => {
-  let err = null;
-  await game.update(g => {
-    ensureLineups(g);
-    const lineup = lineupOf(g, pitchingSide(g));
-    if (!lineup.pitchingRotation.length) { err = 'Set a pitching rotation for the pitching team first.'; return g; }
-    lineup.pitchingIndex = (lineup.pitchingIndex + 1) % lineup.pitchingRotation.length;
-    g.pitcherPlayerId = lineup.pitchingRotation[lineup.pitchingIndex];
+    const bLineup = lineupOf(g, battingSide(g));
+    const pLineup = lineupOf(g, pitchingSide(g));
+    if (!bLineup.battingOrder.length && !pLineup.pitchingRotation.length) {
+      err = 'Set a batting order and pitching rotation first.';
+      return g;
+    }
+    if (bLineup.battingOrder.length) {
+      bLineup.battingIndex = (bLineup.battingIndex + 1) % bLineup.battingOrder.length;
+      g.batterPlayerId = bLineup.battingOrder[bLineup.battingIndex];
+    }
+    if (pLineup.pitchingRotation.length) {
+      pLineup.pitchingIndex = (pLineup.pitchingIndex + 1) % pLineup.pitchingRotation.length;
+      g.pitcherPlayerId = pLineup.pitchingRotation[pLineup.pitchingIndex];
+    }
     return g;
   });
   if (err) return res.status(400).json({ error: err });

@@ -192,6 +192,7 @@ function renderAtBatCard(g) {
 
   const noPitchers = !pitcherLineup || pitcherLineup.pitchingRotation.length === 0;
   const noBatters  = !batterLineup  || batterLineup.battingOrder.length === 0;
+  const noLineup   = noPitchers || noBatters;
 
   return `
     <div class="card">
@@ -201,9 +202,6 @@ function renderAtBatCard(g) {
           <div class="atbat-label">${esc(pitcherTeamName || 'Visitor')} pitching</div>
           <div class="atbat-name">${esc(pitcherName)}</div>
           <div class="atbat-ondeck">Next up: ${esc(onDeckP)}</div>
-          <button class="primary-action big" id="next-pitcher-btn" ${noPitchers ? 'disabled' : ''}>
-            ${noPitchers ? 'Set rotation below ↓' : '▶ Next Pitcher'}
-          </button>
           <div class="atbat-override">
             <label>Override</label>
             <select id="pitcher-sel">${rosterOptionsFor(g.pitchingTeamId, g.pitcherPlayerId, { allowAll: false })}</select>
@@ -213,15 +211,15 @@ function renderAtBatCard(g) {
           <div class="atbat-label">${esc(batterTeamName || 'Home')} batting</div>
           <div class="atbat-name">${esc(batterName)}</div>
           <div class="atbat-ondeck">Next up: ${esc(onDeckB)}</div>
-          <button class="primary-action big" id="next-batter-btn" ${noBatters ? 'disabled' : ''}>
-            ${noBatters ? 'Set batting order below ↓' : '▶ Next Batter'}
-          </button>
           <div class="atbat-override">
             <label>Override</label>
             <select id="batter-sel">${rosterOptionsFor(g.battingTeamId, g.batterPlayerId, { allowAll: false })}</select>
           </div>
         </div>
       </div>
+      <button class="primary-action big" id="next-atbat-btn" ${noLineup ? 'disabled' : ''}>
+        ${noLineup ? 'Set lineups below ↓' : '▶ Next At-Bat'}
+      </button>
     </div>
   `;
 }
@@ -333,8 +331,7 @@ function attachScoreboardHandlers(g) {
   });
   document.getElementById('pitcher-sel')?.addEventListener('change', e => setAtBat({ pitcherPlayerId: e.target.value }));
   document.getElementById('batter-sel')?.addEventListener('change', e => setAtBat({ batterPlayerId: e.target.value }));
-  document.getElementById('next-pitcher-btn')?.addEventListener('click', nextPitcher);
-  document.getElementById('next-batter-btn')?.addEventListener('click', nextBatter);
+  document.getElementById('next-atbat-btn')?.addEventListener('click', nextAtBat);
 
   root.querySelectorAll('[data-base]').forEach(el => {
     el.onclick = () => {
@@ -424,16 +421,9 @@ async function setAtBat(body) {
   renderScoreboard();
 }
 
-async function nextBatter() {
+async function nextAtBat() {
   try {
-    Admin.state.game = await Admin.api('POST', '/api/game/next-batter');
-    renderScoreboard();
-  } catch (e) { alert(e.message); }
-}
-
-async function nextPitcher() {
-  try {
-    Admin.state.game = await Admin.api('POST', '/api/game/next-pitcher');
+    Admin.state.game = await Admin.api('POST', '/api/game/next-atbat');
     renderScoreboard();
   } catch (e) { alert(e.message); }
 }

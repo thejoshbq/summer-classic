@@ -51,7 +51,7 @@ function renderBracket() {
     ${b.generated && b.rounds.length ? renderScoringCard(b) : ''}
   `;
 
-  root.querySelectorAll('[data-mode]').forEach(el => el.onclick = () => setMode(el.dataset.mode));
+  root.querySelectorAll('[data-mode]').forEach(el => el.onclick = () => setBracketMode(el.dataset.mode));
   root.querySelectorAll('[data-lane]').forEach(el => el.onclick = () => setLane(parseInt(el.dataset.lane)));
   root.querySelectorAll('[data-toggle]').forEach(el => el.onclick = () => toggleEntrant(el.dataset.toggle));
   root.querySelectorAll('[data-move-up]').forEach(el => el.onclick = () => moveEntrant(el.dataset.moveUp, -1));
@@ -294,7 +294,7 @@ function attachScoringHandlers(b) {
   document.getElementById('advance-btn')?.addEventListener('click', doAdvanceRound);
 }
 
-async function setMode(mode) {
+async function setBracketMode(mode) {
   const b = Admin.state.bracket;
   if (mode === b.mode) return;
   if (b.generated && !confirm('Switching mode will reset the current bracket. Continue?')) return;

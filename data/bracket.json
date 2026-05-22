@@ -1,236 +1,512 @@
 {
-  "mode": "murderball",
+  "mode": "derby",
   "settings": {
-    "laneCount": 3
+    "laneCount": 2
   },
   "entrantPlayerIds": [
-    "f166c06a-47fb-47a4-b937-944d2173a7c7",
-    "7eb933c0-e255-4a37-a996-ba6206308715",
-    "cf3b629b-a31b-493c-93ab-21121f06d9f0",
-    "2ace2ddb-4c14-4c09-956f-890ff6cc9e6b",
-    "a3214156-556f-4eac-8061-f6d72465a3e9",
-    "d18de6a4-5669-4625-8768-0ac54a141e0c",
-    "f0f3523b-99b9-41ae-accf-214c26f2f1bc",
-    "740947a6-bbea-4ec7-9db7-e9a18211cd17",
-    "558a4251-1bee-49f7-a00a-f016cca86302",
-    "5130dc36-1db3-4244-9931-18656a433521",
-    "1f3315dd-ddd2-474d-9618-392fc3929e1d",
-    "e8b2152b-7dd4-4b2c-8f03-66794f9b0cda"
+    "2fc8d31d-1bdc-4baa-9e33-4cfa0c41a516",
+    "519a95ef-1dfe-48ae-9280-cd1a76a58bcf",
+    "1179f412-72f4-4b77-a4e9-6e9ce0f2757f",
+    "be4e8e16-a645-4139-8410-588c3828b4d2",
+    "a346bd45-0fe7-4195-83bd-dbfea9e74ec3",
+    "dc32d91a-bc87-4cff-afd7-468571674c90",
+    "0e544317-08c6-4a70-bdf9-aa05665769f4",
+    "794d66e7-cd72-4e11-9e66-518cd00cf4fb",
+    "d41e76bd-0743-428c-a606-663eebf468b5",
+    "75ea30e0-4f56-4329-9f9c-e3f79820d116",
+    "73e781e3-69e9-461e-bd9a-de40fe64a2a0",
+    "60a6eb52-9d1f-48ba-a0dd-07538c79c221",
+    "c18b9f12-83bb-48bc-b214-0c662830aaa9"
   ],
   "generated": true,
-  "currentRound": 2,
+  "currentRound": 3,
   "rounds": [
     {
-      "heats": [
+      "matchups": [
         {
-          "playerIds": [
-            "f166c06a-47fb-47a4-b937-944d2173a7c7",
-            "7eb933c0-e255-4a37-a996-ba6206308715",
-            "cf3b629b-a31b-493c-93ab-21121f06d9f0"
-          ],
-          "eliminatedPlayerIds": [
-            "f166c06a-47fb-47a4-b937-944d2173a7c7",
-            "7eb933c0-e255-4a37-a996-ba6206308715"
-          ],
-          "bye": false
-        },
-        {
-          "playerIds": [
-            "2ace2ddb-4c14-4c09-956f-890ff6cc9e6b",
-            "a3214156-556f-4eac-8061-f6d72465a3e9",
-            "d18de6a4-5669-4625-8768-0ac54a141e0c"
-          ],
-          "eliminatedPlayerIds": [
-            "2ace2ddb-4c14-4c09-956f-890ff6cc9e6b",
-            "d18de6a4-5669-4625-8768-0ac54a141e0c"
-          ],
-          "bye": false
-        },
-        {
-          "playerIds": [
-            "f0f3523b-99b9-41ae-accf-214c26f2f1bc",
-            "740947a6-bbea-4ec7-9db7-e9a18211cd17",
-            "558a4251-1bee-49f7-a00a-f016cca86302"
-          ],
-          "eliminatedPlayerIds": [
-            "740947a6-bbea-4ec7-9db7-e9a18211cd17",
-            "558a4251-1bee-49f7-a00a-f016cca86302"
-          ],
-          "bye": false
-        },
-        {
-          "playerIds": [
-            "5130dc36-1db3-4244-9931-18656a433521",
-            "1f3315dd-ddd2-474d-9618-392fc3929e1d",
-            "e8b2152b-7dd4-4b2c-8f03-66794f9b0cda"
-          ],
-          "eliminatedPlayerIds": [
-            "1f3315dd-ddd2-474d-9618-392fc3929e1d",
-            "5130dc36-1db3-4244-9931-18656a433521"
-          ],
-          "bye": false
-        }
-      ],
-      "complete": true
-    },
-    {
-      "heats": [
-        {
-          "playerIds": [
-            "cf3b629b-a31b-493c-93ab-21121f06d9f0",
-            "a3214156-556f-4eac-8061-f6d72465a3e9",
-            "f0f3523b-99b9-41ae-accf-214c26f2f1bc"
-          ],
-          "eliminatedPlayerIds": [
-            "a3214156-556f-4eac-8061-f6d72465a3e9"
-          ],
-          "bye": false
-        },
-        {
-          "playerIds": [
-            "e8b2152b-7dd4-4b2c-8f03-66794f9b0cda"
-          ],
-          "eliminatedPlayerIds": [],
+          "player1": {
+            "playerId": "2fc8d31d-1bdc-4baa-9e33-4cfa0c41a516",
+            "seed": 1,
+            "score": null
+          },
+          "player2": {
+            "playerId": null,
+            "seed": 16,
+            "score": null
+          },
+          "winnerPlayerId": "2fc8d31d-1bdc-4baa-9e33-4cfa0c41a516",
           "bye": true
-        }
-      ],
-      "complete": true
-    },
-    {
-      "heats": [
+        },
         {
-          "playerIds": [
-            "cf3b629b-a31b-493c-93ab-21121f06d9f0",
-            "f0f3523b-99b9-41ae-accf-214c26f2f1bc",
-            "e8b2152b-7dd4-4b2c-8f03-66794f9b0cda"
-          ],
-          "eliminatedPlayerIds": [
-            "cf3b629b-a31b-493c-93ab-21121f06d9f0",
-            "f0f3523b-99b9-41ae-accf-214c26f2f1bc"
-          ],
+          "player1": {
+            "playerId": "794d66e7-cd72-4e11-9e66-518cd00cf4fb",
+            "seed": 8,
+            "score": null
+          },
+          "player2": {
+            "playerId": "d41e76bd-0743-428c-a606-663eebf468b5",
+            "seed": 9,
+            "score": null
+          },
+          "winnerPlayerId": "794d66e7-cd72-4e11-9e66-518cd00cf4fb",
+          "bye": false
+        },
+        {
+          "player1": {
+            "playerId": "be4e8e16-a645-4139-8410-588c3828b4d2",
+            "seed": 4,
+            "score": null
+          },
+          "player2": {
+            "playerId": "c18b9f12-83bb-48bc-b214-0c662830aaa9",
+            "seed": 13,
+            "score": null
+          },
+          "winnerPlayerId": "be4e8e16-a645-4139-8410-588c3828b4d2",
+          "bye": false
+        },
+        {
+          "player1": {
+            "playerId": "a346bd45-0fe7-4195-83bd-dbfea9e74ec3",
+            "seed": 5,
+            "score": null
+          },
+          "player2": {
+            "playerId": "60a6eb52-9d1f-48ba-a0dd-07538c79c221",
+            "seed": 12,
+            "score": null
+          },
+          "winnerPlayerId": "60a6eb52-9d1f-48ba-a0dd-07538c79c221",
+          "bye": false
+        },
+        {
+          "player1": {
+            "playerId": "519a95ef-1dfe-48ae-9280-cd1a76a58bcf",
+            "seed": 2,
+            "score": null
+          },
+          "player2": {
+            "playerId": null,
+            "seed": 15,
+            "score": null
+          },
+          "winnerPlayerId": "519a95ef-1dfe-48ae-9280-cd1a76a58bcf",
+          "bye": true
+        },
+        {
+          "player1": {
+            "playerId": "0e544317-08c6-4a70-bdf9-aa05665769f4",
+            "seed": 7,
+            "score": null
+          },
+          "player2": {
+            "playerId": "75ea30e0-4f56-4329-9f9c-e3f79820d116",
+            "seed": 10,
+            "score": null
+          },
+          "winnerPlayerId": "75ea30e0-4f56-4329-9f9c-e3f79820d116",
+          "bye": false
+        },
+        {
+          "player1": {
+            "playerId": "1179f412-72f4-4b77-a4e9-6e9ce0f2757f",
+            "seed": 3,
+            "score": null
+          },
+          "player2": {
+            "playerId": null,
+            "seed": 14,
+            "score": null
+          },
+          "winnerPlayerId": "1179f412-72f4-4b77-a4e9-6e9ce0f2757f",
+          "bye": true
+        },
+        {
+          "player1": {
+            "playerId": "dc32d91a-bc87-4cff-afd7-468571674c90",
+            "seed": 6,
+            "score": null
+          },
+          "player2": {
+            "playerId": "73e781e3-69e9-461e-bd9a-de40fe64a2a0",
+            "seed": 11,
+            "score": null
+          },
+          "winnerPlayerId": "dc32d91a-bc87-4cff-afd7-468571674c90",
           "bye": false
         }
       ],
-      "complete": false
+      "isFinal": false
+    },
+    {
+      "matchups": [
+        {
+          "player1": {
+            "playerId": "2fc8d31d-1bdc-4baa-9e33-4cfa0c41a516",
+            "seed": null,
+            "score": null
+          },
+          "player2": {
+            "playerId": "794d66e7-cd72-4e11-9e66-518cd00cf4fb",
+            "seed": null,
+            "score": null
+          },
+          "winnerPlayerId": "2fc8d31d-1bdc-4baa-9e33-4cfa0c41a516",
+          "bye": false
+        },
+        {
+          "player1": {
+            "playerId": "be4e8e16-a645-4139-8410-588c3828b4d2",
+            "seed": null,
+            "score": null
+          },
+          "player2": {
+            "playerId": "60a6eb52-9d1f-48ba-a0dd-07538c79c221",
+            "seed": null,
+            "score": null
+          },
+          "winnerPlayerId": "be4e8e16-a645-4139-8410-588c3828b4d2",
+          "bye": false
+        },
+        {
+          "player1": {
+            "playerId": "519a95ef-1dfe-48ae-9280-cd1a76a58bcf",
+            "seed": null,
+            "score": null
+          },
+          "player2": {
+            "playerId": "75ea30e0-4f56-4329-9f9c-e3f79820d116",
+            "seed": null,
+            "score": null
+          },
+          "winnerPlayerId": "519a95ef-1dfe-48ae-9280-cd1a76a58bcf",
+          "bye": false
+        },
+        {
+          "player1": {
+            "playerId": "1179f412-72f4-4b77-a4e9-6e9ce0f2757f",
+            "seed": null,
+            "score": null
+          },
+          "player2": {
+            "playerId": "dc32d91a-bc87-4cff-afd7-468571674c90",
+            "seed": null,
+            "score": null
+          },
+          "winnerPlayerId": "1179f412-72f4-4b77-a4e9-6e9ce0f2757f",
+          "bye": false
+        }
+      ],
+      "isFinal": false
+    },
+    {
+      "matchups": [
+        {
+          "player1": {
+            "playerId": "2fc8d31d-1bdc-4baa-9e33-4cfa0c41a516",
+            "seed": null,
+            "score": null
+          },
+          "player2": {
+            "playerId": "be4e8e16-a645-4139-8410-588c3828b4d2",
+            "seed": null,
+            "score": null
+          },
+          "winnerPlayerId": "2fc8d31d-1bdc-4baa-9e33-4cfa0c41a516",
+          "bye": false
+        },
+        {
+          "player1": {
+            "playerId": "519a95ef-1dfe-48ae-9280-cd1a76a58bcf",
+            "seed": null,
+            "score": null
+          },
+          "player2": {
+            "playerId": "1179f412-72f4-4b77-a4e9-6e9ce0f2757f",
+            "seed": null,
+            "score": null
+          },
+          "winnerPlayerId": "519a95ef-1dfe-48ae-9280-cd1a76a58bcf",
+          "bye": false
+        }
+      ],
+      "isFinal": false
+    },
+    {
+      "matchups": [
+        {
+          "player1": {
+            "playerId": "2fc8d31d-1bdc-4baa-9e33-4cfa0c41a516",
+            "seed": null,
+            "score": null
+          },
+          "player2": {
+            "playerId": "519a95ef-1dfe-48ae-9280-cd1a76a58bcf",
+            "seed": null,
+            "score": null
+          },
+          "winnerPlayerId": "2fc8d31d-1bdc-4baa-9e33-4cfa0c41a516",
+          "bye": false
+        }
+      ],
+      "isFinal": true
     }
   ],
-  "championPlayerId": "e8b2152b-7dd4-4b2c-8f03-66794f9b0cda",
+  "championPlayerId": "2fc8d31d-1bdc-4baa-9e33-4cfa0c41a516",
   "history": [
     {
       "snapshot": {
-        "mode": "murderball",
+        "mode": "derby",
         "settings": {
-          "laneCount": 3
+          "laneCount": 2
         },
         "entrantPlayerIds": [
-          "f166c06a-47fb-47a4-b937-944d2173a7c7",
-          "7eb933c0-e255-4a37-a996-ba6206308715",
-          "cf3b629b-a31b-493c-93ab-21121f06d9f0",
-          "2ace2ddb-4c14-4c09-956f-890ff6cc9e6b",
-          "a3214156-556f-4eac-8061-f6d72465a3e9",
-          "d18de6a4-5669-4625-8768-0ac54a141e0c",
-          "f0f3523b-99b9-41ae-accf-214c26f2f1bc",
-          "740947a6-bbea-4ec7-9db7-e9a18211cd17",
-          "558a4251-1bee-49f7-a00a-f016cca86302",
-          "5130dc36-1db3-4244-9931-18656a433521",
-          "1f3315dd-ddd2-474d-9618-392fc3929e1d",
-          "e8b2152b-7dd4-4b2c-8f03-66794f9b0cda"
+          "2fc8d31d-1bdc-4baa-9e33-4cfa0c41a516",
+          "519a95ef-1dfe-48ae-9280-cd1a76a58bcf",
+          "1179f412-72f4-4b77-a4e9-6e9ce0f2757f",
+          "be4e8e16-a645-4139-8410-588c3828b4d2",
+          "a346bd45-0fe7-4195-83bd-dbfea9e74ec3",
+          "dc32d91a-bc87-4cff-afd7-468571674c90",
+          "0e544317-08c6-4a70-bdf9-aa05665769f4",
+          "794d66e7-cd72-4e11-9e66-518cd00cf4fb",
+          "d41e76bd-0743-428c-a606-663eebf468b5",
+          "75ea30e0-4f56-4329-9f9c-e3f79820d116",
+          "73e781e3-69e9-461e-bd9a-de40fe64a2a0",
+          "60a6eb52-9d1f-48ba-a0dd-07538c79c221",
+          "c18b9f12-83bb-48bc-b214-0c662830aaa9"
         ],
         "generated": true,
-        "currentRound": 2,
+        "currentRound": 3,
         "rounds": [
           {
-            "heats": [
+            "matchups": [
               {
-                "playerIds": [
-                  "f166c06a-47fb-47a4-b937-944d2173a7c7",
-                  "7eb933c0-e255-4a37-a996-ba6206308715",
-                  "cf3b629b-a31b-493c-93ab-21121f06d9f0"
-                ],
-                "eliminatedPlayerIds": [
-                  "f166c06a-47fb-47a4-b937-944d2173a7c7",
-                  "7eb933c0-e255-4a37-a996-ba6206308715"
-                ],
-                "bye": false
-              },
-              {
-                "playerIds": [
-                  "2ace2ddb-4c14-4c09-956f-890ff6cc9e6b",
-                  "a3214156-556f-4eac-8061-f6d72465a3e9",
-                  "d18de6a4-5669-4625-8768-0ac54a141e0c"
-                ],
-                "eliminatedPlayerIds": [
-                  "2ace2ddb-4c14-4c09-956f-890ff6cc9e6b",
-                  "d18de6a4-5669-4625-8768-0ac54a141e0c"
-                ],
-                "bye": false
-              },
-              {
-                "playerIds": [
-                  "f0f3523b-99b9-41ae-accf-214c26f2f1bc",
-                  "740947a6-bbea-4ec7-9db7-e9a18211cd17",
-                  "558a4251-1bee-49f7-a00a-f016cca86302"
-                ],
-                "eliminatedPlayerIds": [
-                  "740947a6-bbea-4ec7-9db7-e9a18211cd17",
-                  "558a4251-1bee-49f7-a00a-f016cca86302"
-                ],
-                "bye": false
-              },
-              {
-                "playerIds": [
-                  "5130dc36-1db3-4244-9931-18656a433521",
-                  "1f3315dd-ddd2-474d-9618-392fc3929e1d",
-                  "e8b2152b-7dd4-4b2c-8f03-66794f9b0cda"
-                ],
-                "eliminatedPlayerIds": [
-                  "1f3315dd-ddd2-474d-9618-392fc3929e1d",
-                  "5130dc36-1db3-4244-9931-18656a433521"
-                ],
-                "bye": false
-              }
-            ],
-            "complete": true
-          },
-          {
-            "heats": [
-              {
-                "playerIds": [
-                  "cf3b629b-a31b-493c-93ab-21121f06d9f0",
-                  "a3214156-556f-4eac-8061-f6d72465a3e9",
-                  "f0f3523b-99b9-41ae-accf-214c26f2f1bc"
-                ],
-                "eliminatedPlayerIds": [
-                  "a3214156-556f-4eac-8061-f6d72465a3e9"
-                ],
-                "bye": false
-              },
-              {
-                "playerIds": [
-                  "e8b2152b-7dd4-4b2c-8f03-66794f9b0cda"
-                ],
-                "eliminatedPlayerIds": [],
+                "player1": {
+                  "playerId": "2fc8d31d-1bdc-4baa-9e33-4cfa0c41a516",
+                  "seed": 1,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": null,
+                  "seed": 16,
+                  "score": null
+                },
+                "winnerPlayerId": "2fc8d31d-1bdc-4baa-9e33-4cfa0c41a516",
                 "bye": true
-              }
-            ],
-            "complete": true
-          },
-          {
-            "heats": [
+              },
               {
-                "playerIds": [
-                  "cf3b629b-a31b-493c-93ab-21121f06d9f0",
-                  "f0f3523b-99b9-41ae-accf-214c26f2f1bc",
-                  "e8b2152b-7dd4-4b2c-8f03-66794f9b0cda"
-                ],
-                "eliminatedPlayerIds": [
-                  "cf3b629b-a31b-493c-93ab-21121f06d9f0",
-                  "f0f3523b-99b9-41ae-accf-214c26f2f1bc"
-                ],
+                "player1": {
+                  "playerId": "794d66e7-cd72-4e11-9e66-518cd00cf4fb",
+                  "seed": 8,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": "d41e76bd-0743-428c-a606-663eebf468b5",
+                  "seed": 9,
+                  "score": null
+                },
+                "winnerPlayerId": "794d66e7-cd72-4e11-9e66-518cd00cf4fb",
+                "bye": false
+              },
+              {
+                "player1": {
+                  "playerId": "be4e8e16-a645-4139-8410-588c3828b4d2",
+                  "seed": 4,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": "c18b9f12-83bb-48bc-b214-0c662830aaa9",
+                  "seed": 13,
+                  "score": null
+                },
+                "winnerPlayerId": "be4e8e16-a645-4139-8410-588c3828b4d2",
+                "bye": false
+              },
+              {
+                "player1": {
+                  "playerId": "a346bd45-0fe7-4195-83bd-dbfea9e74ec3",
+                  "seed": 5,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": "60a6eb52-9d1f-48ba-a0dd-07538c79c221",
+                  "seed": 12,
+                  "score": null
+                },
+                "winnerPlayerId": "60a6eb52-9d1f-48ba-a0dd-07538c79c221",
+                "bye": false
+              },
+              {
+                "player1": {
+                  "playerId": "519a95ef-1dfe-48ae-9280-cd1a76a58bcf",
+                  "seed": 2,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": null,
+                  "seed": 15,
+                  "score": null
+                },
+                "winnerPlayerId": "519a95ef-1dfe-48ae-9280-cd1a76a58bcf",
+                "bye": true
+              },
+              {
+                "player1": {
+                  "playerId": "0e544317-08c6-4a70-bdf9-aa05665769f4",
+                  "seed": 7,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": "75ea30e0-4f56-4329-9f9c-e3f79820d116",
+                  "seed": 10,
+                  "score": null
+                },
+                "winnerPlayerId": "75ea30e0-4f56-4329-9f9c-e3f79820d116",
+                "bye": false
+              },
+              {
+                "player1": {
+                  "playerId": "1179f412-72f4-4b77-a4e9-6e9ce0f2757f",
+                  "seed": 3,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": null,
+                  "seed": 14,
+                  "score": null
+                },
+                "winnerPlayerId": "1179f412-72f4-4b77-a4e9-6e9ce0f2757f",
+                "bye": true
+              },
+              {
+                "player1": {
+                  "playerId": "dc32d91a-bc87-4cff-afd7-468571674c90",
+                  "seed": 6,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": "73e781e3-69e9-461e-bd9a-de40fe64a2a0",
+                  "seed": 11,
+                  "score": null
+                },
+                "winnerPlayerId": "dc32d91a-bc87-4cff-afd7-468571674c90",
                 "bye": false
               }
             ],
-            "complete": false
+            "isFinal": false
+          },
+          {
+            "matchups": [
+              {
+                "player1": {
+                  "playerId": "2fc8d31d-1bdc-4baa-9e33-4cfa0c41a516",
+                  "seed": null,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": "794d66e7-cd72-4e11-9e66-518cd00cf4fb",
+                  "seed": null,
+                  "score": null
+                },
+                "winnerPlayerId": "2fc8d31d-1bdc-4baa-9e33-4cfa0c41a516",
+                "bye": false
+              },
+              {
+                "player1": {
+                  "playerId": "be4e8e16-a645-4139-8410-588c3828b4d2",
+                  "seed": null,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": "60a6eb52-9d1f-48ba-a0dd-07538c79c221",
+                  "seed": null,
+                  "score": null
+                },
+                "winnerPlayerId": "be4e8e16-a645-4139-8410-588c3828b4d2",
+                "bye": false
+              },
+              {
+                "player1": {
+                  "playerId": "519a95ef-1dfe-48ae-9280-cd1a76a58bcf",
+                  "seed": null,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": "75ea30e0-4f56-4329-9f9c-e3f79820d116",
+                  "seed": null,
+                  "score": null
+                },
+                "winnerPlayerId": "519a95ef-1dfe-48ae-9280-cd1a76a58bcf",
+                "bye": false
+              },
+              {
+                "player1": {
+                  "playerId": "1179f412-72f4-4b77-a4e9-6e9ce0f2757f",
+                  "seed": null,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": "dc32d91a-bc87-4cff-afd7-468571674c90",
+                  "seed": null,
+                  "score": null
+                },
+                "winnerPlayerId": "1179f412-72f4-4b77-a4e9-6e9ce0f2757f",
+                "bye": false
+              }
+            ],
+            "isFinal": false
+          },
+          {
+            "matchups": [
+              {
+                "player1": {
+                  "playerId": "2fc8d31d-1bdc-4baa-9e33-4cfa0c41a516",
+                  "seed": null,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": "be4e8e16-a645-4139-8410-588c3828b4d2",
+                  "seed": null,
+                  "score": null
+                },
+                "winnerPlayerId": "2fc8d31d-1bdc-4baa-9e33-4cfa0c41a516",
+                "bye": false
+              },
+              {
+                "player1": {
+                  "playerId": "519a95ef-1dfe-48ae-9280-cd1a76a58bcf",
+                  "seed": null,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": "1179f412-72f4-4b77-a4e9-6e9ce0f2757f",
+                  "seed": null,
+                  "score": null
+                },
+                "winnerPlayerId": "519a95ef-1dfe-48ae-9280-cd1a76a58bcf",
+                "bye": false
+              }
+            ],
+            "isFinal": false
+          },
+          {
+            "matchups": [
+              {
+                "player1": {
+                  "playerId": "2fc8d31d-1bdc-4baa-9e33-4cfa0c41a516",
+                  "seed": null,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": "519a95ef-1dfe-48ae-9280-cd1a76a58bcf",
+                  "seed": null,
+                  "score": null
+                },
+                "winnerPlayerId": "2fc8d31d-1bdc-4baa-9e33-4cfa0c41a516",
+                "bye": false
+              }
+            ],
+            "isFinal": true
           }
         ],
         "championPlayerId": null,
@@ -239,118 +515,257 @@
     },
     {
       "snapshot": {
-        "mode": "murderball",
+        "mode": "derby",
         "settings": {
-          "laneCount": 3
+          "laneCount": 2
         },
         "entrantPlayerIds": [
-          "f166c06a-47fb-47a4-b937-944d2173a7c7",
-          "7eb933c0-e255-4a37-a996-ba6206308715",
-          "cf3b629b-a31b-493c-93ab-21121f06d9f0",
-          "2ace2ddb-4c14-4c09-956f-890ff6cc9e6b",
-          "a3214156-556f-4eac-8061-f6d72465a3e9",
-          "d18de6a4-5669-4625-8768-0ac54a141e0c",
-          "f0f3523b-99b9-41ae-accf-214c26f2f1bc",
-          "740947a6-bbea-4ec7-9db7-e9a18211cd17",
-          "558a4251-1bee-49f7-a00a-f016cca86302",
-          "5130dc36-1db3-4244-9931-18656a433521",
-          "1f3315dd-ddd2-474d-9618-392fc3929e1d",
-          "e8b2152b-7dd4-4b2c-8f03-66794f9b0cda"
+          "2fc8d31d-1bdc-4baa-9e33-4cfa0c41a516",
+          "519a95ef-1dfe-48ae-9280-cd1a76a58bcf",
+          "1179f412-72f4-4b77-a4e9-6e9ce0f2757f",
+          "be4e8e16-a645-4139-8410-588c3828b4d2",
+          "a346bd45-0fe7-4195-83bd-dbfea9e74ec3",
+          "dc32d91a-bc87-4cff-afd7-468571674c90",
+          "0e544317-08c6-4a70-bdf9-aa05665769f4",
+          "794d66e7-cd72-4e11-9e66-518cd00cf4fb",
+          "d41e76bd-0743-428c-a606-663eebf468b5",
+          "75ea30e0-4f56-4329-9f9c-e3f79820d116",
+          "73e781e3-69e9-461e-bd9a-de40fe64a2a0",
+          "60a6eb52-9d1f-48ba-a0dd-07538c79c221",
+          "c18b9f12-83bb-48bc-b214-0c662830aaa9"
         ],
         "generated": true,
-        "currentRound": 2,
+        "currentRound": 3,
         "rounds": [
           {
-            "heats": [
+            "matchups": [
               {
-                "playerIds": [
-                  "f166c06a-47fb-47a4-b937-944d2173a7c7",
-                  "7eb933c0-e255-4a37-a996-ba6206308715",
-                  "cf3b629b-a31b-493c-93ab-21121f06d9f0"
-                ],
-                "eliminatedPlayerIds": [
-                  "f166c06a-47fb-47a4-b937-944d2173a7c7",
-                  "7eb933c0-e255-4a37-a996-ba6206308715"
-                ],
-                "bye": false
-              },
-              {
-                "playerIds": [
-                  "2ace2ddb-4c14-4c09-956f-890ff6cc9e6b",
-                  "a3214156-556f-4eac-8061-f6d72465a3e9",
-                  "d18de6a4-5669-4625-8768-0ac54a141e0c"
-                ],
-                "eliminatedPlayerIds": [
-                  "2ace2ddb-4c14-4c09-956f-890ff6cc9e6b",
-                  "d18de6a4-5669-4625-8768-0ac54a141e0c"
-                ],
-                "bye": false
-              },
-              {
-                "playerIds": [
-                  "f0f3523b-99b9-41ae-accf-214c26f2f1bc",
-                  "740947a6-bbea-4ec7-9db7-e9a18211cd17",
-                  "558a4251-1bee-49f7-a00a-f016cca86302"
-                ],
-                "eliminatedPlayerIds": [
-                  "740947a6-bbea-4ec7-9db7-e9a18211cd17",
-                  "558a4251-1bee-49f7-a00a-f016cca86302"
-                ],
-                "bye": false
-              },
-              {
-                "playerIds": [
-                  "5130dc36-1db3-4244-9931-18656a433521",
-                  "1f3315dd-ddd2-474d-9618-392fc3929e1d",
-                  "e8b2152b-7dd4-4b2c-8f03-66794f9b0cda"
-                ],
-                "eliminatedPlayerIds": [
-                  "1f3315dd-ddd2-474d-9618-392fc3929e1d",
-                  "5130dc36-1db3-4244-9931-18656a433521"
-                ],
-                "bye": false
-              }
-            ],
-            "complete": true
-          },
-          {
-            "heats": [
-              {
-                "playerIds": [
-                  "cf3b629b-a31b-493c-93ab-21121f06d9f0",
-                  "a3214156-556f-4eac-8061-f6d72465a3e9",
-                  "f0f3523b-99b9-41ae-accf-214c26f2f1bc"
-                ],
-                "eliminatedPlayerIds": [
-                  "a3214156-556f-4eac-8061-f6d72465a3e9"
-                ],
-                "bye": false
-              },
-              {
-                "playerIds": [
-                  "e8b2152b-7dd4-4b2c-8f03-66794f9b0cda"
-                ],
-                "eliminatedPlayerIds": [],
+                "player1": {
+                  "playerId": "2fc8d31d-1bdc-4baa-9e33-4cfa0c41a516",
+                  "seed": 1,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": null,
+                  "seed": 16,
+                  "score": null
+                },
+                "winnerPlayerId": "2fc8d31d-1bdc-4baa-9e33-4cfa0c41a516",
                 "bye": true
-              }
-            ],
-            "complete": true
-          },
-          {
-            "heats": [
+              },
               {
-                "playerIds": [
-                  "cf3b629b-a31b-493c-93ab-21121f06d9f0",
-                  "f0f3523b-99b9-41ae-accf-214c26f2f1bc",
-                  "e8b2152b-7dd4-4b2c-8f03-66794f9b0cda"
-                ],
-                "eliminatedPlayerIds": [
-                  "cf3b629b-a31b-493c-93ab-21121f06d9f0"
-                ],
+                "player1": {
+                  "playerId": "794d66e7-cd72-4e11-9e66-518cd00cf4fb",
+                  "seed": 8,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": "d41e76bd-0743-428c-a606-663eebf468b5",
+                  "seed": 9,
+                  "score": null
+                },
+                "winnerPlayerId": "794d66e7-cd72-4e11-9e66-518cd00cf4fb",
+                "bye": false
+              },
+              {
+                "player1": {
+                  "playerId": "be4e8e16-a645-4139-8410-588c3828b4d2",
+                  "seed": 4,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": "c18b9f12-83bb-48bc-b214-0c662830aaa9",
+                  "seed": 13,
+                  "score": null
+                },
+                "winnerPlayerId": "be4e8e16-a645-4139-8410-588c3828b4d2",
+                "bye": false
+              },
+              {
+                "player1": {
+                  "playerId": "a346bd45-0fe7-4195-83bd-dbfea9e74ec3",
+                  "seed": 5,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": "60a6eb52-9d1f-48ba-a0dd-07538c79c221",
+                  "seed": 12,
+                  "score": null
+                },
+                "winnerPlayerId": "60a6eb52-9d1f-48ba-a0dd-07538c79c221",
+                "bye": false
+              },
+              {
+                "player1": {
+                  "playerId": "519a95ef-1dfe-48ae-9280-cd1a76a58bcf",
+                  "seed": 2,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": null,
+                  "seed": 15,
+                  "score": null
+                },
+                "winnerPlayerId": "519a95ef-1dfe-48ae-9280-cd1a76a58bcf",
+                "bye": true
+              },
+              {
+                "player1": {
+                  "playerId": "0e544317-08c6-4a70-bdf9-aa05665769f4",
+                  "seed": 7,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": "75ea30e0-4f56-4329-9f9c-e3f79820d116",
+                  "seed": 10,
+                  "score": null
+                },
+                "winnerPlayerId": "75ea30e0-4f56-4329-9f9c-e3f79820d116",
+                "bye": false
+              },
+              {
+                "player1": {
+                  "playerId": "1179f412-72f4-4b77-a4e9-6e9ce0f2757f",
+                  "seed": 3,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": null,
+                  "seed": 14,
+                  "score": null
+                },
+                "winnerPlayerId": "1179f412-72f4-4b77-a4e9-6e9ce0f2757f",
+                "bye": true
+              },
+              {
+                "player1": {
+                  "playerId": "dc32d91a-bc87-4cff-afd7-468571674c90",
+                  "seed": 6,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": "73e781e3-69e9-461e-bd9a-de40fe64a2a0",
+                  "seed": 11,
+                  "score": null
+                },
+                "winnerPlayerId": "dc32d91a-bc87-4cff-afd7-468571674c90",
                 "bye": false
               }
             ],
-            "complete": false
+            "isFinal": false
+          },
+          {
+            "matchups": [
+              {
+                "player1": {
+                  "playerId": "2fc8d31d-1bdc-4baa-9e33-4cfa0c41a516",
+                  "seed": null,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": "794d66e7-cd72-4e11-9e66-518cd00cf4fb",
+                  "seed": null,
+                  "score": null
+                },
+                "winnerPlayerId": "2fc8d31d-1bdc-4baa-9e33-4cfa0c41a516",
+                "bye": false
+              },
+              {
+                "player1": {
+                  "playerId": "be4e8e16-a645-4139-8410-588c3828b4d2",
+                  "seed": null,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": "60a6eb52-9d1f-48ba-a0dd-07538c79c221",
+                  "seed": null,
+                  "score": null
+                },
+                "winnerPlayerId": "be4e8e16-a645-4139-8410-588c3828b4d2",
+                "bye": false
+              },
+              {
+                "player1": {
+                  "playerId": "519a95ef-1dfe-48ae-9280-cd1a76a58bcf",
+                  "seed": null,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": "75ea30e0-4f56-4329-9f9c-e3f79820d116",
+                  "seed": null,
+                  "score": null
+                },
+                "winnerPlayerId": "519a95ef-1dfe-48ae-9280-cd1a76a58bcf",
+                "bye": false
+              },
+              {
+                "player1": {
+                  "playerId": "1179f412-72f4-4b77-a4e9-6e9ce0f2757f",
+                  "seed": null,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": "dc32d91a-bc87-4cff-afd7-468571674c90",
+                  "seed": null,
+                  "score": null
+                },
+                "winnerPlayerId": "1179f412-72f4-4b77-a4e9-6e9ce0f2757f",
+                "bye": false
+              }
+            ],
+            "isFinal": false
+          },
+          {
+            "matchups": [
+              {
+                "player1": {
+                  "playerId": "2fc8d31d-1bdc-4baa-9e33-4cfa0c41a516",
+                  "seed": null,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": "be4e8e16-a645-4139-8410-588c3828b4d2",
+                  "seed": null,
+                  "score": null
+                },
+                "winnerPlayerId": "2fc8d31d-1bdc-4baa-9e33-4cfa0c41a516",
+                "bye": false
+              },
+              {
+                "player1": {
+                  "playerId": "519a95ef-1dfe-48ae-9280-cd1a76a58bcf",
+                  "seed": null,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": "1179f412-72f4-4b77-a4e9-6e9ce0f2757f",
+                  "seed": null,
+                  "score": null
+                },
+                "winnerPlayerId": "519a95ef-1dfe-48ae-9280-cd1a76a58bcf",
+                "bye": false
+              }
+            ],
+            "isFinal": false
+          },
+          {
+            "matchups": [
+              {
+                "player1": {
+                  "playerId": "2fc8d31d-1bdc-4baa-9e33-4cfa0c41a516",
+                  "seed": null,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": "519a95ef-1dfe-48ae-9280-cd1a76a58bcf",
+                  "seed": null,
+                  "score": null
+                },
+                "winnerPlayerId": null,
+                "bye": false
+              }
+            ],
+            "isFinal": true
           }
         ],
         "championPlayerId": null,
@@ -359,116 +774,257 @@
     },
     {
       "snapshot": {
-        "mode": "murderball",
+        "mode": "derby",
         "settings": {
-          "laneCount": 3
+          "laneCount": 2
         },
         "entrantPlayerIds": [
-          "f166c06a-47fb-47a4-b937-944d2173a7c7",
-          "7eb933c0-e255-4a37-a996-ba6206308715",
-          "cf3b629b-a31b-493c-93ab-21121f06d9f0",
-          "2ace2ddb-4c14-4c09-956f-890ff6cc9e6b",
-          "a3214156-556f-4eac-8061-f6d72465a3e9",
-          "d18de6a4-5669-4625-8768-0ac54a141e0c",
-          "f0f3523b-99b9-41ae-accf-214c26f2f1bc",
-          "740947a6-bbea-4ec7-9db7-e9a18211cd17",
-          "558a4251-1bee-49f7-a00a-f016cca86302",
-          "5130dc36-1db3-4244-9931-18656a433521",
-          "1f3315dd-ddd2-474d-9618-392fc3929e1d",
-          "e8b2152b-7dd4-4b2c-8f03-66794f9b0cda"
+          "2fc8d31d-1bdc-4baa-9e33-4cfa0c41a516",
+          "519a95ef-1dfe-48ae-9280-cd1a76a58bcf",
+          "1179f412-72f4-4b77-a4e9-6e9ce0f2757f",
+          "be4e8e16-a645-4139-8410-588c3828b4d2",
+          "a346bd45-0fe7-4195-83bd-dbfea9e74ec3",
+          "dc32d91a-bc87-4cff-afd7-468571674c90",
+          "0e544317-08c6-4a70-bdf9-aa05665769f4",
+          "794d66e7-cd72-4e11-9e66-518cd00cf4fb",
+          "d41e76bd-0743-428c-a606-663eebf468b5",
+          "75ea30e0-4f56-4329-9f9c-e3f79820d116",
+          "73e781e3-69e9-461e-bd9a-de40fe64a2a0",
+          "60a6eb52-9d1f-48ba-a0dd-07538c79c221",
+          "c18b9f12-83bb-48bc-b214-0c662830aaa9"
         ],
         "generated": true,
         "currentRound": 2,
         "rounds": [
           {
-            "heats": [
+            "matchups": [
               {
-                "playerIds": [
-                  "f166c06a-47fb-47a4-b937-944d2173a7c7",
-                  "7eb933c0-e255-4a37-a996-ba6206308715",
-                  "cf3b629b-a31b-493c-93ab-21121f06d9f0"
-                ],
-                "eliminatedPlayerIds": [
-                  "f166c06a-47fb-47a4-b937-944d2173a7c7",
-                  "7eb933c0-e255-4a37-a996-ba6206308715"
-                ],
-                "bye": false
-              },
-              {
-                "playerIds": [
-                  "2ace2ddb-4c14-4c09-956f-890ff6cc9e6b",
-                  "a3214156-556f-4eac-8061-f6d72465a3e9",
-                  "d18de6a4-5669-4625-8768-0ac54a141e0c"
-                ],
-                "eliminatedPlayerIds": [
-                  "2ace2ddb-4c14-4c09-956f-890ff6cc9e6b",
-                  "d18de6a4-5669-4625-8768-0ac54a141e0c"
-                ],
-                "bye": false
-              },
-              {
-                "playerIds": [
-                  "f0f3523b-99b9-41ae-accf-214c26f2f1bc",
-                  "740947a6-bbea-4ec7-9db7-e9a18211cd17",
-                  "558a4251-1bee-49f7-a00a-f016cca86302"
-                ],
-                "eliminatedPlayerIds": [
-                  "740947a6-bbea-4ec7-9db7-e9a18211cd17",
-                  "558a4251-1bee-49f7-a00a-f016cca86302"
-                ],
-                "bye": false
-              },
-              {
-                "playerIds": [
-                  "5130dc36-1db3-4244-9931-18656a433521",
-                  "1f3315dd-ddd2-474d-9618-392fc3929e1d",
-                  "e8b2152b-7dd4-4b2c-8f03-66794f9b0cda"
-                ],
-                "eliminatedPlayerIds": [
-                  "1f3315dd-ddd2-474d-9618-392fc3929e1d",
-                  "5130dc36-1db3-4244-9931-18656a433521"
-                ],
-                "bye": false
-              }
-            ],
-            "complete": true
-          },
-          {
-            "heats": [
-              {
-                "playerIds": [
-                  "cf3b629b-a31b-493c-93ab-21121f06d9f0",
-                  "a3214156-556f-4eac-8061-f6d72465a3e9",
-                  "f0f3523b-99b9-41ae-accf-214c26f2f1bc"
-                ],
-                "eliminatedPlayerIds": [
-                  "a3214156-556f-4eac-8061-f6d72465a3e9"
-                ],
-                "bye": false
-              },
-              {
-                "playerIds": [
-                  "e8b2152b-7dd4-4b2c-8f03-66794f9b0cda"
-                ],
-                "eliminatedPlayerIds": [],
+                "player1": {
+                  "playerId": "2fc8d31d-1bdc-4baa-9e33-4cfa0c41a516",
+                  "seed": 1,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": null,
+                  "seed": 16,
+                  "score": null
+                },
+                "winnerPlayerId": "2fc8d31d-1bdc-4baa-9e33-4cfa0c41a516",
                 "bye": true
-              }
-            ],
-            "complete": true
-          },
-          {
-            "heats": [
+              },
               {
-                "playerIds": [
-                  "cf3b629b-a31b-493c-93ab-21121f06d9f0",
-                  "f0f3523b-99b9-41ae-accf-214c26f2f1bc",
-                  "e8b2152b-7dd4-4b2c-8f03-66794f9b0cda"
-                ],
-                "eliminatedPlayerIds": [],
+                "player1": {
+                  "playerId": "794d66e7-cd72-4e11-9e66-518cd00cf4fb",
+                  "seed": 8,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": "d41e76bd-0743-428c-a606-663eebf468b5",
+                  "seed": 9,
+                  "score": null
+                },
+                "winnerPlayerId": "794d66e7-cd72-4e11-9e66-518cd00cf4fb",
+                "bye": false
+              },
+              {
+                "player1": {
+                  "playerId": "be4e8e16-a645-4139-8410-588c3828b4d2",
+                  "seed": 4,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": "c18b9f12-83bb-48bc-b214-0c662830aaa9",
+                  "seed": 13,
+                  "score": null
+                },
+                "winnerPlayerId": "be4e8e16-a645-4139-8410-588c3828b4d2",
+                "bye": false
+              },
+              {
+                "player1": {
+                  "playerId": "a346bd45-0fe7-4195-83bd-dbfea9e74ec3",
+                  "seed": 5,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": "60a6eb52-9d1f-48ba-a0dd-07538c79c221",
+                  "seed": 12,
+                  "score": null
+                },
+                "winnerPlayerId": "60a6eb52-9d1f-48ba-a0dd-07538c79c221",
+                "bye": false
+              },
+              {
+                "player1": {
+                  "playerId": "519a95ef-1dfe-48ae-9280-cd1a76a58bcf",
+                  "seed": 2,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": null,
+                  "seed": 15,
+                  "score": null
+                },
+                "winnerPlayerId": "519a95ef-1dfe-48ae-9280-cd1a76a58bcf",
+                "bye": true
+              },
+              {
+                "player1": {
+                  "playerId": "0e544317-08c6-4a70-bdf9-aa05665769f4",
+                  "seed": 7,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": "75ea30e0-4f56-4329-9f9c-e3f79820d116",
+                  "seed": 10,
+                  "score": null
+                },
+                "winnerPlayerId": "75ea30e0-4f56-4329-9f9c-e3f79820d116",
+                "bye": false
+              },
+              {
+                "player1": {
+                  "playerId": "1179f412-72f4-4b77-a4e9-6e9ce0f2757f",
+                  "seed": 3,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": null,
+                  "seed": 14,
+                  "score": null
+                },
+                "winnerPlayerId": "1179f412-72f4-4b77-a4e9-6e9ce0f2757f",
+                "bye": true
+              },
+              {
+                "player1": {
+                  "playerId": "dc32d91a-bc87-4cff-afd7-468571674c90",
+                  "seed": 6,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": "73e781e3-69e9-461e-bd9a-de40fe64a2a0",
+                  "seed": 11,
+                  "score": null
+                },
+                "winnerPlayerId": "dc32d91a-bc87-4cff-afd7-468571674c90",
                 "bye": false
               }
             ],
-            "complete": false
+            "isFinal": false
+          },
+          {
+            "matchups": [
+              {
+                "player1": {
+                  "playerId": "2fc8d31d-1bdc-4baa-9e33-4cfa0c41a516",
+                  "seed": null,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": "794d66e7-cd72-4e11-9e66-518cd00cf4fb",
+                  "seed": null,
+                  "score": null
+                },
+                "winnerPlayerId": "2fc8d31d-1bdc-4baa-9e33-4cfa0c41a516",
+                "bye": false
+              },
+              {
+                "player1": {
+                  "playerId": "be4e8e16-a645-4139-8410-588c3828b4d2",
+                  "seed": null,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": "60a6eb52-9d1f-48ba-a0dd-07538c79c221",
+                  "seed": null,
+                  "score": null
+                },
+                "winnerPlayerId": "be4e8e16-a645-4139-8410-588c3828b4d2",
+                "bye": false
+              },
+              {
+                "player1": {
+                  "playerId": "519a95ef-1dfe-48ae-9280-cd1a76a58bcf",
+                  "seed": null,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": "75ea30e0-4f56-4329-9f9c-e3f79820d116",
+                  "seed": null,
+                  "score": null
+                },
+                "winnerPlayerId": "519a95ef-1dfe-48ae-9280-cd1a76a58bcf",
+                "bye": false
+              },
+              {
+                "player1": {
+                  "playerId": "1179f412-72f4-4b77-a4e9-6e9ce0f2757f",
+                  "seed": null,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": "dc32d91a-bc87-4cff-afd7-468571674c90",
+                  "seed": null,
+                  "score": null
+                },
+                "winnerPlayerId": "1179f412-72f4-4b77-a4e9-6e9ce0f2757f",
+                "bye": false
+              }
+            ],
+            "isFinal": false
+          },
+          {
+            "matchups": [
+              {
+                "player1": {
+                  "playerId": "2fc8d31d-1bdc-4baa-9e33-4cfa0c41a516",
+                  "seed": null,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": "be4e8e16-a645-4139-8410-588c3828b4d2",
+                  "seed": null,
+                  "score": null
+                },
+                "winnerPlayerId": "2fc8d31d-1bdc-4baa-9e33-4cfa0c41a516",
+                "bye": false
+              },
+              {
+                "player1": {
+                  "playerId": "519a95ef-1dfe-48ae-9280-cd1a76a58bcf",
+                  "seed": null,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": "1179f412-72f4-4b77-a4e9-6e9ce0f2757f",
+                  "seed": null,
+                  "score": null
+                },
+                "winnerPlayerId": null,
+                "bye": false
+              }
+            ],
+            "isFinal": false
+          },
+          {
+            "matchups": [
+              {
+                "player1": {
+                  "playerId": "2fc8d31d-1bdc-4baa-9e33-4cfa0c41a516",
+                  "seed": null,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": null,
+                  "seed": null,
+                  "score": null
+                },
+                "winnerPlayerId": null,
+                "bye": false
+              }
+            ],
+            "isFinal": true
           }
         ],
         "championPlayerId": null,
@@ -477,102 +1033,516 @@
     },
     {
       "snapshot": {
-        "mode": "murderball",
+        "mode": "derby",
         "settings": {
-          "laneCount": 3
+          "laneCount": 2
         },
         "entrantPlayerIds": [
-          "f166c06a-47fb-47a4-b937-944d2173a7c7",
-          "7eb933c0-e255-4a37-a996-ba6206308715",
-          "cf3b629b-a31b-493c-93ab-21121f06d9f0",
-          "2ace2ddb-4c14-4c09-956f-890ff6cc9e6b",
-          "a3214156-556f-4eac-8061-f6d72465a3e9",
-          "d18de6a4-5669-4625-8768-0ac54a141e0c",
-          "f0f3523b-99b9-41ae-accf-214c26f2f1bc",
-          "740947a6-bbea-4ec7-9db7-e9a18211cd17",
-          "558a4251-1bee-49f7-a00a-f016cca86302",
-          "5130dc36-1db3-4244-9931-18656a433521",
-          "1f3315dd-ddd2-474d-9618-392fc3929e1d",
-          "e8b2152b-7dd4-4b2c-8f03-66794f9b0cda"
+          "2fc8d31d-1bdc-4baa-9e33-4cfa0c41a516",
+          "519a95ef-1dfe-48ae-9280-cd1a76a58bcf",
+          "1179f412-72f4-4b77-a4e9-6e9ce0f2757f",
+          "be4e8e16-a645-4139-8410-588c3828b4d2",
+          "a346bd45-0fe7-4195-83bd-dbfea9e74ec3",
+          "dc32d91a-bc87-4cff-afd7-468571674c90",
+          "0e544317-08c6-4a70-bdf9-aa05665769f4",
+          "794d66e7-cd72-4e11-9e66-518cd00cf4fb",
+          "d41e76bd-0743-428c-a606-663eebf468b5",
+          "75ea30e0-4f56-4329-9f9c-e3f79820d116",
+          "73e781e3-69e9-461e-bd9a-de40fe64a2a0",
+          "60a6eb52-9d1f-48ba-a0dd-07538c79c221",
+          "c18b9f12-83bb-48bc-b214-0c662830aaa9"
+        ],
+        "generated": true,
+        "currentRound": 2,
+        "rounds": [
+          {
+            "matchups": [
+              {
+                "player1": {
+                  "playerId": "2fc8d31d-1bdc-4baa-9e33-4cfa0c41a516",
+                  "seed": 1,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": null,
+                  "seed": 16,
+                  "score": null
+                },
+                "winnerPlayerId": "2fc8d31d-1bdc-4baa-9e33-4cfa0c41a516",
+                "bye": true
+              },
+              {
+                "player1": {
+                  "playerId": "794d66e7-cd72-4e11-9e66-518cd00cf4fb",
+                  "seed": 8,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": "d41e76bd-0743-428c-a606-663eebf468b5",
+                  "seed": 9,
+                  "score": null
+                },
+                "winnerPlayerId": "794d66e7-cd72-4e11-9e66-518cd00cf4fb",
+                "bye": false
+              },
+              {
+                "player1": {
+                  "playerId": "be4e8e16-a645-4139-8410-588c3828b4d2",
+                  "seed": 4,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": "c18b9f12-83bb-48bc-b214-0c662830aaa9",
+                  "seed": 13,
+                  "score": null
+                },
+                "winnerPlayerId": "be4e8e16-a645-4139-8410-588c3828b4d2",
+                "bye": false
+              },
+              {
+                "player1": {
+                  "playerId": "a346bd45-0fe7-4195-83bd-dbfea9e74ec3",
+                  "seed": 5,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": "60a6eb52-9d1f-48ba-a0dd-07538c79c221",
+                  "seed": 12,
+                  "score": null
+                },
+                "winnerPlayerId": "60a6eb52-9d1f-48ba-a0dd-07538c79c221",
+                "bye": false
+              },
+              {
+                "player1": {
+                  "playerId": "519a95ef-1dfe-48ae-9280-cd1a76a58bcf",
+                  "seed": 2,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": null,
+                  "seed": 15,
+                  "score": null
+                },
+                "winnerPlayerId": "519a95ef-1dfe-48ae-9280-cd1a76a58bcf",
+                "bye": true
+              },
+              {
+                "player1": {
+                  "playerId": "0e544317-08c6-4a70-bdf9-aa05665769f4",
+                  "seed": 7,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": "75ea30e0-4f56-4329-9f9c-e3f79820d116",
+                  "seed": 10,
+                  "score": null
+                },
+                "winnerPlayerId": "75ea30e0-4f56-4329-9f9c-e3f79820d116",
+                "bye": false
+              },
+              {
+                "player1": {
+                  "playerId": "1179f412-72f4-4b77-a4e9-6e9ce0f2757f",
+                  "seed": 3,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": null,
+                  "seed": 14,
+                  "score": null
+                },
+                "winnerPlayerId": "1179f412-72f4-4b77-a4e9-6e9ce0f2757f",
+                "bye": true
+              },
+              {
+                "player1": {
+                  "playerId": "dc32d91a-bc87-4cff-afd7-468571674c90",
+                  "seed": 6,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": "73e781e3-69e9-461e-bd9a-de40fe64a2a0",
+                  "seed": 11,
+                  "score": null
+                },
+                "winnerPlayerId": "dc32d91a-bc87-4cff-afd7-468571674c90",
+                "bye": false
+              }
+            ],
+            "isFinal": false
+          },
+          {
+            "matchups": [
+              {
+                "player1": {
+                  "playerId": "2fc8d31d-1bdc-4baa-9e33-4cfa0c41a516",
+                  "seed": null,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": "794d66e7-cd72-4e11-9e66-518cd00cf4fb",
+                  "seed": null,
+                  "score": null
+                },
+                "winnerPlayerId": "2fc8d31d-1bdc-4baa-9e33-4cfa0c41a516",
+                "bye": false
+              },
+              {
+                "player1": {
+                  "playerId": "be4e8e16-a645-4139-8410-588c3828b4d2",
+                  "seed": null,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": "60a6eb52-9d1f-48ba-a0dd-07538c79c221",
+                  "seed": null,
+                  "score": null
+                },
+                "winnerPlayerId": "be4e8e16-a645-4139-8410-588c3828b4d2",
+                "bye": false
+              },
+              {
+                "player1": {
+                  "playerId": "519a95ef-1dfe-48ae-9280-cd1a76a58bcf",
+                  "seed": null,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": "75ea30e0-4f56-4329-9f9c-e3f79820d116",
+                  "seed": null,
+                  "score": null
+                },
+                "winnerPlayerId": "519a95ef-1dfe-48ae-9280-cd1a76a58bcf",
+                "bye": false
+              },
+              {
+                "player1": {
+                  "playerId": "1179f412-72f4-4b77-a4e9-6e9ce0f2757f",
+                  "seed": null,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": "dc32d91a-bc87-4cff-afd7-468571674c90",
+                  "seed": null,
+                  "score": null
+                },
+                "winnerPlayerId": "1179f412-72f4-4b77-a4e9-6e9ce0f2757f",
+                "bye": false
+              }
+            ],
+            "isFinal": false
+          },
+          {
+            "matchups": [
+              {
+                "player1": {
+                  "playerId": "2fc8d31d-1bdc-4baa-9e33-4cfa0c41a516",
+                  "seed": null,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": "be4e8e16-a645-4139-8410-588c3828b4d2",
+                  "seed": null,
+                  "score": null
+                },
+                "winnerPlayerId": null,
+                "bye": false
+              },
+              {
+                "player1": {
+                  "playerId": "519a95ef-1dfe-48ae-9280-cd1a76a58bcf",
+                  "seed": null,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": "1179f412-72f4-4b77-a4e9-6e9ce0f2757f",
+                  "seed": null,
+                  "score": null
+                },
+                "winnerPlayerId": null,
+                "bye": false
+              }
+            ],
+            "isFinal": false
+          },
+          {
+            "matchups": [
+              {
+                "player1": {
+                  "playerId": null,
+                  "seed": null,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": null,
+                  "seed": null,
+                  "score": null
+                },
+                "winnerPlayerId": null,
+                "bye": false
+              }
+            ],
+            "isFinal": true
+          }
+        ],
+        "championPlayerId": null,
+        "history": []
+      }
+    },
+    {
+      "snapshot": {
+        "mode": "derby",
+        "settings": {
+          "laneCount": 2
+        },
+        "entrantPlayerIds": [
+          "2fc8d31d-1bdc-4baa-9e33-4cfa0c41a516",
+          "519a95ef-1dfe-48ae-9280-cd1a76a58bcf",
+          "1179f412-72f4-4b77-a4e9-6e9ce0f2757f",
+          "be4e8e16-a645-4139-8410-588c3828b4d2",
+          "a346bd45-0fe7-4195-83bd-dbfea9e74ec3",
+          "dc32d91a-bc87-4cff-afd7-468571674c90",
+          "0e544317-08c6-4a70-bdf9-aa05665769f4",
+          "794d66e7-cd72-4e11-9e66-518cd00cf4fb",
+          "d41e76bd-0743-428c-a606-663eebf468b5",
+          "75ea30e0-4f56-4329-9f9c-e3f79820d116",
+          "73e781e3-69e9-461e-bd9a-de40fe64a2a0",
+          "60a6eb52-9d1f-48ba-a0dd-07538c79c221",
+          "c18b9f12-83bb-48bc-b214-0c662830aaa9"
         ],
         "generated": true,
         "currentRound": 1,
         "rounds": [
           {
-            "heats": [
+            "matchups": [
               {
-                "playerIds": [
-                  "f166c06a-47fb-47a4-b937-944d2173a7c7",
-                  "7eb933c0-e255-4a37-a996-ba6206308715",
-                  "cf3b629b-a31b-493c-93ab-21121f06d9f0"
-                ],
-                "eliminatedPlayerIds": [
-                  "f166c06a-47fb-47a4-b937-944d2173a7c7",
-                  "7eb933c0-e255-4a37-a996-ba6206308715"
-                ],
+                "player1": {
+                  "playerId": "2fc8d31d-1bdc-4baa-9e33-4cfa0c41a516",
+                  "seed": 1,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": null,
+                  "seed": 16,
+                  "score": null
+                },
+                "winnerPlayerId": "2fc8d31d-1bdc-4baa-9e33-4cfa0c41a516",
+                "bye": true
+              },
+              {
+                "player1": {
+                  "playerId": "794d66e7-cd72-4e11-9e66-518cd00cf4fb",
+                  "seed": 8,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": "d41e76bd-0743-428c-a606-663eebf468b5",
+                  "seed": 9,
+                  "score": null
+                },
+                "winnerPlayerId": "794d66e7-cd72-4e11-9e66-518cd00cf4fb",
                 "bye": false
               },
               {
-                "playerIds": [
-                  "2ace2ddb-4c14-4c09-956f-890ff6cc9e6b",
-                  "a3214156-556f-4eac-8061-f6d72465a3e9",
-                  "d18de6a4-5669-4625-8768-0ac54a141e0c"
-                ],
-                "eliminatedPlayerIds": [
-                  "2ace2ddb-4c14-4c09-956f-890ff6cc9e6b",
-                  "d18de6a4-5669-4625-8768-0ac54a141e0c"
-                ],
+                "player1": {
+                  "playerId": "be4e8e16-a645-4139-8410-588c3828b4d2",
+                  "seed": 4,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": "c18b9f12-83bb-48bc-b214-0c662830aaa9",
+                  "seed": 13,
+                  "score": null
+                },
+                "winnerPlayerId": "be4e8e16-a645-4139-8410-588c3828b4d2",
                 "bye": false
               },
               {
-                "playerIds": [
-                  "f0f3523b-99b9-41ae-accf-214c26f2f1bc",
-                  "740947a6-bbea-4ec7-9db7-e9a18211cd17",
-                  "558a4251-1bee-49f7-a00a-f016cca86302"
-                ],
-                "eliminatedPlayerIds": [
-                  "740947a6-bbea-4ec7-9db7-e9a18211cd17",
-                  "558a4251-1bee-49f7-a00a-f016cca86302"
-                ],
+                "player1": {
+                  "playerId": "a346bd45-0fe7-4195-83bd-dbfea9e74ec3",
+                  "seed": 5,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": "60a6eb52-9d1f-48ba-a0dd-07538c79c221",
+                  "seed": 12,
+                  "score": null
+                },
+                "winnerPlayerId": "60a6eb52-9d1f-48ba-a0dd-07538c79c221",
                 "bye": false
               },
               {
-                "playerIds": [
-                  "5130dc36-1db3-4244-9931-18656a433521",
-                  "1f3315dd-ddd2-474d-9618-392fc3929e1d",
-                  "e8b2152b-7dd4-4b2c-8f03-66794f9b0cda"
-                ],
-                "eliminatedPlayerIds": [
-                  "1f3315dd-ddd2-474d-9618-392fc3929e1d",
-                  "5130dc36-1db3-4244-9931-18656a433521"
-                ],
+                "player1": {
+                  "playerId": "519a95ef-1dfe-48ae-9280-cd1a76a58bcf",
+                  "seed": 2,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": null,
+                  "seed": 15,
+                  "score": null
+                },
+                "winnerPlayerId": "519a95ef-1dfe-48ae-9280-cd1a76a58bcf",
+                "bye": true
+              },
+              {
+                "player1": {
+                  "playerId": "0e544317-08c6-4a70-bdf9-aa05665769f4",
+                  "seed": 7,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": "75ea30e0-4f56-4329-9f9c-e3f79820d116",
+                  "seed": 10,
+                  "score": null
+                },
+                "winnerPlayerId": "75ea30e0-4f56-4329-9f9c-e3f79820d116",
+                "bye": false
+              },
+              {
+                "player1": {
+                  "playerId": "1179f412-72f4-4b77-a4e9-6e9ce0f2757f",
+                  "seed": 3,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": null,
+                  "seed": 14,
+                  "score": null
+                },
+                "winnerPlayerId": "1179f412-72f4-4b77-a4e9-6e9ce0f2757f",
+                "bye": true
+              },
+              {
+                "player1": {
+                  "playerId": "dc32d91a-bc87-4cff-afd7-468571674c90",
+                  "seed": 6,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": "73e781e3-69e9-461e-bd9a-de40fe64a2a0",
+                  "seed": 11,
+                  "score": null
+                },
+                "winnerPlayerId": "dc32d91a-bc87-4cff-afd7-468571674c90",
                 "bye": false
               }
             ],
-            "complete": true
+            "isFinal": false
           },
           {
-            "heats": [
+            "matchups": [
               {
-                "playerIds": [
-                  "cf3b629b-a31b-493c-93ab-21121f06d9f0",
-                  "a3214156-556f-4eac-8061-f6d72465a3e9",
-                  "f0f3523b-99b9-41ae-accf-214c26f2f1bc"
-                ],
-                "eliminatedPlayerIds": [
-                  "a3214156-556f-4eac-8061-f6d72465a3e9"
-                ],
+                "player1": {
+                  "playerId": "2fc8d31d-1bdc-4baa-9e33-4cfa0c41a516",
+                  "seed": null,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": "794d66e7-cd72-4e11-9e66-518cd00cf4fb",
+                  "seed": null,
+                  "score": null
+                },
+                "winnerPlayerId": "2fc8d31d-1bdc-4baa-9e33-4cfa0c41a516",
                 "bye": false
               },
               {
-                "playerIds": [
-                  "e8b2152b-7dd4-4b2c-8f03-66794f9b0cda"
-                ],
-                "eliminatedPlayerIds": [],
-                "bye": true
+                "player1": {
+                  "playerId": "be4e8e16-a645-4139-8410-588c3828b4d2",
+                  "seed": null,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": "60a6eb52-9d1f-48ba-a0dd-07538c79c221",
+                  "seed": null,
+                  "score": null
+                },
+                "winnerPlayerId": "be4e8e16-a645-4139-8410-588c3828b4d2",
+                "bye": false
+              },
+              {
+                "player1": {
+                  "playerId": "519a95ef-1dfe-48ae-9280-cd1a76a58bcf",
+                  "seed": null,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": "75ea30e0-4f56-4329-9f9c-e3f79820d116",
+                  "seed": null,
+                  "score": null
+                },
+                "winnerPlayerId": "519a95ef-1dfe-48ae-9280-cd1a76a58bcf",
+                "bye": false
+              },
+              {
+                "player1": {
+                  "playerId": "1179f412-72f4-4b77-a4e9-6e9ce0f2757f",
+                  "seed": null,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": "dc32d91a-bc87-4cff-afd7-468571674c90",
+                  "seed": null,
+                  "score": null
+                },
+                "winnerPlayerId": null,
+                "bye": false
               }
             ],
-            "complete": false
+            "isFinal": false
+          },
+          {
+            "matchups": [
+              {
+                "player1": {
+                  "playerId": "2fc8d31d-1bdc-4baa-9e33-4cfa0c41a516",
+                  "seed": null,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": "be4e8e16-a645-4139-8410-588c3828b4d2",
+                  "seed": null,
+                  "score": null
+                },
+                "winnerPlayerId": null,
+                "bye": false
+              },
+              {
+                "player1": {
+                  "playerId": "519a95ef-1dfe-48ae-9280-cd1a76a58bcf",
+                  "seed": null,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": null,
+                  "seed": null,
+                  "score": null
+                },
+                "winnerPlayerId": null,
+                "bye": false
+              }
+            ],
+            "isFinal": false
+          },
+          {
+            "matchups": [
+              {
+                "player1": {
+                  "playerId": null,
+                  "seed": null,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": null,
+                  "seed": null,
+                  "score": null
+                },
+                "winnerPlayerId": null,
+                "bye": false
+              }
+            ],
+            "isFinal": true
           }
         ],
         "championPlayerId": null,
@@ -581,100 +1551,516 @@
     },
     {
       "snapshot": {
-        "mode": "murderball",
+        "mode": "derby",
         "settings": {
-          "laneCount": 3
+          "laneCount": 2
         },
         "entrantPlayerIds": [
-          "f166c06a-47fb-47a4-b937-944d2173a7c7",
-          "7eb933c0-e255-4a37-a996-ba6206308715",
-          "cf3b629b-a31b-493c-93ab-21121f06d9f0",
-          "2ace2ddb-4c14-4c09-956f-890ff6cc9e6b",
-          "a3214156-556f-4eac-8061-f6d72465a3e9",
-          "d18de6a4-5669-4625-8768-0ac54a141e0c",
-          "f0f3523b-99b9-41ae-accf-214c26f2f1bc",
-          "740947a6-bbea-4ec7-9db7-e9a18211cd17",
-          "558a4251-1bee-49f7-a00a-f016cca86302",
-          "5130dc36-1db3-4244-9931-18656a433521",
-          "1f3315dd-ddd2-474d-9618-392fc3929e1d",
-          "e8b2152b-7dd4-4b2c-8f03-66794f9b0cda"
+          "2fc8d31d-1bdc-4baa-9e33-4cfa0c41a516",
+          "519a95ef-1dfe-48ae-9280-cd1a76a58bcf",
+          "1179f412-72f4-4b77-a4e9-6e9ce0f2757f",
+          "be4e8e16-a645-4139-8410-588c3828b4d2",
+          "a346bd45-0fe7-4195-83bd-dbfea9e74ec3",
+          "dc32d91a-bc87-4cff-afd7-468571674c90",
+          "0e544317-08c6-4a70-bdf9-aa05665769f4",
+          "794d66e7-cd72-4e11-9e66-518cd00cf4fb",
+          "d41e76bd-0743-428c-a606-663eebf468b5",
+          "75ea30e0-4f56-4329-9f9c-e3f79820d116",
+          "73e781e3-69e9-461e-bd9a-de40fe64a2a0",
+          "60a6eb52-9d1f-48ba-a0dd-07538c79c221",
+          "c18b9f12-83bb-48bc-b214-0c662830aaa9"
         ],
         "generated": true,
         "currentRound": 1,
         "rounds": [
           {
-            "heats": [
+            "matchups": [
               {
-                "playerIds": [
-                  "f166c06a-47fb-47a4-b937-944d2173a7c7",
-                  "7eb933c0-e255-4a37-a996-ba6206308715",
-                  "cf3b629b-a31b-493c-93ab-21121f06d9f0"
-                ],
-                "eliminatedPlayerIds": [
-                  "f166c06a-47fb-47a4-b937-944d2173a7c7",
-                  "7eb933c0-e255-4a37-a996-ba6206308715"
-                ],
+                "player1": {
+                  "playerId": "2fc8d31d-1bdc-4baa-9e33-4cfa0c41a516",
+                  "seed": 1,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": null,
+                  "seed": 16,
+                  "score": null
+                },
+                "winnerPlayerId": "2fc8d31d-1bdc-4baa-9e33-4cfa0c41a516",
+                "bye": true
+              },
+              {
+                "player1": {
+                  "playerId": "794d66e7-cd72-4e11-9e66-518cd00cf4fb",
+                  "seed": 8,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": "d41e76bd-0743-428c-a606-663eebf468b5",
+                  "seed": 9,
+                  "score": null
+                },
+                "winnerPlayerId": "794d66e7-cd72-4e11-9e66-518cd00cf4fb",
                 "bye": false
               },
               {
-                "playerIds": [
-                  "2ace2ddb-4c14-4c09-956f-890ff6cc9e6b",
-                  "a3214156-556f-4eac-8061-f6d72465a3e9",
-                  "d18de6a4-5669-4625-8768-0ac54a141e0c"
-                ],
-                "eliminatedPlayerIds": [
-                  "2ace2ddb-4c14-4c09-956f-890ff6cc9e6b",
-                  "d18de6a4-5669-4625-8768-0ac54a141e0c"
-                ],
+                "player1": {
+                  "playerId": "be4e8e16-a645-4139-8410-588c3828b4d2",
+                  "seed": 4,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": "c18b9f12-83bb-48bc-b214-0c662830aaa9",
+                  "seed": 13,
+                  "score": null
+                },
+                "winnerPlayerId": "be4e8e16-a645-4139-8410-588c3828b4d2",
                 "bye": false
               },
               {
-                "playerIds": [
-                  "f0f3523b-99b9-41ae-accf-214c26f2f1bc",
-                  "740947a6-bbea-4ec7-9db7-e9a18211cd17",
-                  "558a4251-1bee-49f7-a00a-f016cca86302"
-                ],
-                "eliminatedPlayerIds": [
-                  "740947a6-bbea-4ec7-9db7-e9a18211cd17",
-                  "558a4251-1bee-49f7-a00a-f016cca86302"
-                ],
+                "player1": {
+                  "playerId": "a346bd45-0fe7-4195-83bd-dbfea9e74ec3",
+                  "seed": 5,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": "60a6eb52-9d1f-48ba-a0dd-07538c79c221",
+                  "seed": 12,
+                  "score": null
+                },
+                "winnerPlayerId": "60a6eb52-9d1f-48ba-a0dd-07538c79c221",
                 "bye": false
               },
               {
-                "playerIds": [
-                  "5130dc36-1db3-4244-9931-18656a433521",
-                  "1f3315dd-ddd2-474d-9618-392fc3929e1d",
-                  "e8b2152b-7dd4-4b2c-8f03-66794f9b0cda"
-                ],
-                "eliminatedPlayerIds": [
-                  "1f3315dd-ddd2-474d-9618-392fc3929e1d",
-                  "5130dc36-1db3-4244-9931-18656a433521"
-                ],
+                "player1": {
+                  "playerId": "519a95ef-1dfe-48ae-9280-cd1a76a58bcf",
+                  "seed": 2,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": null,
+                  "seed": 15,
+                  "score": null
+                },
+                "winnerPlayerId": "519a95ef-1dfe-48ae-9280-cd1a76a58bcf",
+                "bye": true
+              },
+              {
+                "player1": {
+                  "playerId": "0e544317-08c6-4a70-bdf9-aa05665769f4",
+                  "seed": 7,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": "75ea30e0-4f56-4329-9f9c-e3f79820d116",
+                  "seed": 10,
+                  "score": null
+                },
+                "winnerPlayerId": "75ea30e0-4f56-4329-9f9c-e3f79820d116",
+                "bye": false
+              },
+              {
+                "player1": {
+                  "playerId": "1179f412-72f4-4b77-a4e9-6e9ce0f2757f",
+                  "seed": 3,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": null,
+                  "seed": 14,
+                  "score": null
+                },
+                "winnerPlayerId": "1179f412-72f4-4b77-a4e9-6e9ce0f2757f",
+                "bye": true
+              },
+              {
+                "player1": {
+                  "playerId": "dc32d91a-bc87-4cff-afd7-468571674c90",
+                  "seed": 6,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": "73e781e3-69e9-461e-bd9a-de40fe64a2a0",
+                  "seed": 11,
+                  "score": null
+                },
+                "winnerPlayerId": "dc32d91a-bc87-4cff-afd7-468571674c90",
                 "bye": false
               }
             ],
-            "complete": true
+            "isFinal": false
           },
           {
-            "heats": [
+            "matchups": [
               {
-                "playerIds": [
-                  "cf3b629b-a31b-493c-93ab-21121f06d9f0",
-                  "a3214156-556f-4eac-8061-f6d72465a3e9",
-                  "f0f3523b-99b9-41ae-accf-214c26f2f1bc"
-                ],
-                "eliminatedPlayerIds": [],
+                "player1": {
+                  "playerId": "2fc8d31d-1bdc-4baa-9e33-4cfa0c41a516",
+                  "seed": null,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": "794d66e7-cd72-4e11-9e66-518cd00cf4fb",
+                  "seed": null,
+                  "score": null
+                },
+                "winnerPlayerId": "2fc8d31d-1bdc-4baa-9e33-4cfa0c41a516",
                 "bye": false
               },
               {
-                "playerIds": [
-                  "e8b2152b-7dd4-4b2c-8f03-66794f9b0cda"
-                ],
-                "eliminatedPlayerIds": [],
+                "player1": {
+                  "playerId": "be4e8e16-a645-4139-8410-588c3828b4d2",
+                  "seed": null,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": "60a6eb52-9d1f-48ba-a0dd-07538c79c221",
+                  "seed": null,
+                  "score": null
+                },
+                "winnerPlayerId": "be4e8e16-a645-4139-8410-588c3828b4d2",
+                "bye": false
+              },
+              {
+                "player1": {
+                  "playerId": "519a95ef-1dfe-48ae-9280-cd1a76a58bcf",
+                  "seed": null,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": "75ea30e0-4f56-4329-9f9c-e3f79820d116",
+                  "seed": null,
+                  "score": null
+                },
+                "winnerPlayerId": null,
+                "bye": false
+              },
+              {
+                "player1": {
+                  "playerId": "1179f412-72f4-4b77-a4e9-6e9ce0f2757f",
+                  "seed": null,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": "dc32d91a-bc87-4cff-afd7-468571674c90",
+                  "seed": null,
+                  "score": null
+                },
+                "winnerPlayerId": null,
+                "bye": false
+              }
+            ],
+            "isFinal": false
+          },
+          {
+            "matchups": [
+              {
+                "player1": {
+                  "playerId": "2fc8d31d-1bdc-4baa-9e33-4cfa0c41a516",
+                  "seed": null,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": "be4e8e16-a645-4139-8410-588c3828b4d2",
+                  "seed": null,
+                  "score": null
+                },
+                "winnerPlayerId": null,
+                "bye": false
+              },
+              {
+                "player1": {
+                  "playerId": null,
+                  "seed": null,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": null,
+                  "seed": null,
+                  "score": null
+                },
+                "winnerPlayerId": null,
+                "bye": false
+              }
+            ],
+            "isFinal": false
+          },
+          {
+            "matchups": [
+              {
+                "player1": {
+                  "playerId": null,
+                  "seed": null,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": null,
+                  "seed": null,
+                  "score": null
+                },
+                "winnerPlayerId": null,
+                "bye": false
+              }
+            ],
+            "isFinal": true
+          }
+        ],
+        "championPlayerId": null,
+        "history": []
+      }
+    },
+    {
+      "snapshot": {
+        "mode": "derby",
+        "settings": {
+          "laneCount": 2
+        },
+        "entrantPlayerIds": [
+          "2fc8d31d-1bdc-4baa-9e33-4cfa0c41a516",
+          "519a95ef-1dfe-48ae-9280-cd1a76a58bcf",
+          "1179f412-72f4-4b77-a4e9-6e9ce0f2757f",
+          "be4e8e16-a645-4139-8410-588c3828b4d2",
+          "a346bd45-0fe7-4195-83bd-dbfea9e74ec3",
+          "dc32d91a-bc87-4cff-afd7-468571674c90",
+          "0e544317-08c6-4a70-bdf9-aa05665769f4",
+          "794d66e7-cd72-4e11-9e66-518cd00cf4fb",
+          "d41e76bd-0743-428c-a606-663eebf468b5",
+          "75ea30e0-4f56-4329-9f9c-e3f79820d116",
+          "73e781e3-69e9-461e-bd9a-de40fe64a2a0",
+          "60a6eb52-9d1f-48ba-a0dd-07538c79c221",
+          "c18b9f12-83bb-48bc-b214-0c662830aaa9"
+        ],
+        "generated": true,
+        "currentRound": 1,
+        "rounds": [
+          {
+            "matchups": [
+              {
+                "player1": {
+                  "playerId": "2fc8d31d-1bdc-4baa-9e33-4cfa0c41a516",
+                  "seed": 1,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": null,
+                  "seed": 16,
+                  "score": null
+                },
+                "winnerPlayerId": "2fc8d31d-1bdc-4baa-9e33-4cfa0c41a516",
                 "bye": true
+              },
+              {
+                "player1": {
+                  "playerId": "794d66e7-cd72-4e11-9e66-518cd00cf4fb",
+                  "seed": 8,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": "d41e76bd-0743-428c-a606-663eebf468b5",
+                  "seed": 9,
+                  "score": null
+                },
+                "winnerPlayerId": "794d66e7-cd72-4e11-9e66-518cd00cf4fb",
+                "bye": false
+              },
+              {
+                "player1": {
+                  "playerId": "be4e8e16-a645-4139-8410-588c3828b4d2",
+                  "seed": 4,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": "c18b9f12-83bb-48bc-b214-0c662830aaa9",
+                  "seed": 13,
+                  "score": null
+                },
+                "winnerPlayerId": "be4e8e16-a645-4139-8410-588c3828b4d2",
+                "bye": false
+              },
+              {
+                "player1": {
+                  "playerId": "a346bd45-0fe7-4195-83bd-dbfea9e74ec3",
+                  "seed": 5,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": "60a6eb52-9d1f-48ba-a0dd-07538c79c221",
+                  "seed": 12,
+                  "score": null
+                },
+                "winnerPlayerId": "60a6eb52-9d1f-48ba-a0dd-07538c79c221",
+                "bye": false
+              },
+              {
+                "player1": {
+                  "playerId": "519a95ef-1dfe-48ae-9280-cd1a76a58bcf",
+                  "seed": 2,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": null,
+                  "seed": 15,
+                  "score": null
+                },
+                "winnerPlayerId": "519a95ef-1dfe-48ae-9280-cd1a76a58bcf",
+                "bye": true
+              },
+              {
+                "player1": {
+                  "playerId": "0e544317-08c6-4a70-bdf9-aa05665769f4",
+                  "seed": 7,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": "75ea30e0-4f56-4329-9f9c-e3f79820d116",
+                  "seed": 10,
+                  "score": null
+                },
+                "winnerPlayerId": "75ea30e0-4f56-4329-9f9c-e3f79820d116",
+                "bye": false
+              },
+              {
+                "player1": {
+                  "playerId": "1179f412-72f4-4b77-a4e9-6e9ce0f2757f",
+                  "seed": 3,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": null,
+                  "seed": 14,
+                  "score": null
+                },
+                "winnerPlayerId": "1179f412-72f4-4b77-a4e9-6e9ce0f2757f",
+                "bye": true
+              },
+              {
+                "player1": {
+                  "playerId": "dc32d91a-bc87-4cff-afd7-468571674c90",
+                  "seed": 6,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": "73e781e3-69e9-461e-bd9a-de40fe64a2a0",
+                  "seed": 11,
+                  "score": null
+                },
+                "winnerPlayerId": "dc32d91a-bc87-4cff-afd7-468571674c90",
+                "bye": false
               }
             ],
-            "complete": false
+            "isFinal": false
+          },
+          {
+            "matchups": [
+              {
+                "player1": {
+                  "playerId": "2fc8d31d-1bdc-4baa-9e33-4cfa0c41a516",
+                  "seed": null,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": "794d66e7-cd72-4e11-9e66-518cd00cf4fb",
+                  "seed": null,
+                  "score": null
+                },
+                "winnerPlayerId": "2fc8d31d-1bdc-4baa-9e33-4cfa0c41a516",
+                "bye": false
+              },
+              {
+                "player1": {
+                  "playerId": "be4e8e16-a645-4139-8410-588c3828b4d2",
+                  "seed": null,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": "60a6eb52-9d1f-48ba-a0dd-07538c79c221",
+                  "seed": null,
+                  "score": null
+                },
+                "winnerPlayerId": null,
+                "bye": false
+              },
+              {
+                "player1": {
+                  "playerId": "519a95ef-1dfe-48ae-9280-cd1a76a58bcf",
+                  "seed": null,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": "75ea30e0-4f56-4329-9f9c-e3f79820d116",
+                  "seed": null,
+                  "score": null
+                },
+                "winnerPlayerId": null,
+                "bye": false
+              },
+              {
+                "player1": {
+                  "playerId": "1179f412-72f4-4b77-a4e9-6e9ce0f2757f",
+                  "seed": null,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": "dc32d91a-bc87-4cff-afd7-468571674c90",
+                  "seed": null,
+                  "score": null
+                },
+                "winnerPlayerId": null,
+                "bye": false
+              }
+            ],
+            "isFinal": false
+          },
+          {
+            "matchups": [
+              {
+                "player1": {
+                  "playerId": "2fc8d31d-1bdc-4baa-9e33-4cfa0c41a516",
+                  "seed": null,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": null,
+                  "seed": null,
+                  "score": null
+                },
+                "winnerPlayerId": null,
+                "bye": false
+              },
+              {
+                "player1": {
+                  "playerId": null,
+                  "seed": null,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": null,
+                  "seed": null,
+                  "score": null
+                },
+                "winnerPlayerId": null,
+                "bye": false
+              }
+            ],
+            "isFinal": false
+          },
+          {
+            "matchups": [
+              {
+                "player1": {
+                  "playerId": null,
+                  "seed": null,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": null,
+                  "seed": null,
+                  "score": null
+                },
+                "winnerPlayerId": null,
+                "bye": false
+              }
+            ],
+            "isFinal": true
           }
         ],
         "championPlayerId": null,
@@ -683,79 +2069,257 @@
     },
     {
       "snapshot": {
-        "mode": "murderball",
+        "mode": "derby",
         "settings": {
-          "laneCount": 3
+          "laneCount": 2
         },
         "entrantPlayerIds": [
-          "f166c06a-47fb-47a4-b937-944d2173a7c7",
-          "7eb933c0-e255-4a37-a996-ba6206308715",
-          "cf3b629b-a31b-493c-93ab-21121f06d9f0",
-          "2ace2ddb-4c14-4c09-956f-890ff6cc9e6b",
-          "a3214156-556f-4eac-8061-f6d72465a3e9",
-          "d18de6a4-5669-4625-8768-0ac54a141e0c",
-          "f0f3523b-99b9-41ae-accf-214c26f2f1bc",
-          "740947a6-bbea-4ec7-9db7-e9a18211cd17",
-          "558a4251-1bee-49f7-a00a-f016cca86302",
-          "5130dc36-1db3-4244-9931-18656a433521",
-          "1f3315dd-ddd2-474d-9618-392fc3929e1d",
-          "e8b2152b-7dd4-4b2c-8f03-66794f9b0cda"
+          "2fc8d31d-1bdc-4baa-9e33-4cfa0c41a516",
+          "519a95ef-1dfe-48ae-9280-cd1a76a58bcf",
+          "1179f412-72f4-4b77-a4e9-6e9ce0f2757f",
+          "be4e8e16-a645-4139-8410-588c3828b4d2",
+          "a346bd45-0fe7-4195-83bd-dbfea9e74ec3",
+          "dc32d91a-bc87-4cff-afd7-468571674c90",
+          "0e544317-08c6-4a70-bdf9-aa05665769f4",
+          "794d66e7-cd72-4e11-9e66-518cd00cf4fb",
+          "d41e76bd-0743-428c-a606-663eebf468b5",
+          "75ea30e0-4f56-4329-9f9c-e3f79820d116",
+          "73e781e3-69e9-461e-bd9a-de40fe64a2a0",
+          "60a6eb52-9d1f-48ba-a0dd-07538c79c221",
+          "c18b9f12-83bb-48bc-b214-0c662830aaa9"
         ],
         "generated": true,
-        "currentRound": 0,
+        "currentRound": 1,
         "rounds": [
           {
-            "heats": [
+            "matchups": [
               {
-                "playerIds": [
-                  "f166c06a-47fb-47a4-b937-944d2173a7c7",
-                  "7eb933c0-e255-4a37-a996-ba6206308715",
-                  "cf3b629b-a31b-493c-93ab-21121f06d9f0"
-                ],
-                "eliminatedPlayerIds": [
-                  "f166c06a-47fb-47a4-b937-944d2173a7c7",
-                  "7eb933c0-e255-4a37-a996-ba6206308715"
-                ],
+                "player1": {
+                  "playerId": "2fc8d31d-1bdc-4baa-9e33-4cfa0c41a516",
+                  "seed": 1,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": null,
+                  "seed": 16,
+                  "score": null
+                },
+                "winnerPlayerId": "2fc8d31d-1bdc-4baa-9e33-4cfa0c41a516",
+                "bye": true
+              },
+              {
+                "player1": {
+                  "playerId": "794d66e7-cd72-4e11-9e66-518cd00cf4fb",
+                  "seed": 8,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": "d41e76bd-0743-428c-a606-663eebf468b5",
+                  "seed": 9,
+                  "score": null
+                },
+                "winnerPlayerId": "794d66e7-cd72-4e11-9e66-518cd00cf4fb",
                 "bye": false
               },
               {
-                "playerIds": [
-                  "2ace2ddb-4c14-4c09-956f-890ff6cc9e6b",
-                  "a3214156-556f-4eac-8061-f6d72465a3e9",
-                  "d18de6a4-5669-4625-8768-0ac54a141e0c"
-                ],
-                "eliminatedPlayerIds": [
-                  "2ace2ddb-4c14-4c09-956f-890ff6cc9e6b",
-                  "d18de6a4-5669-4625-8768-0ac54a141e0c"
-                ],
+                "player1": {
+                  "playerId": "be4e8e16-a645-4139-8410-588c3828b4d2",
+                  "seed": 4,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": "c18b9f12-83bb-48bc-b214-0c662830aaa9",
+                  "seed": 13,
+                  "score": null
+                },
+                "winnerPlayerId": "be4e8e16-a645-4139-8410-588c3828b4d2",
                 "bye": false
               },
               {
-                "playerIds": [
-                  "f0f3523b-99b9-41ae-accf-214c26f2f1bc",
-                  "740947a6-bbea-4ec7-9db7-e9a18211cd17",
-                  "558a4251-1bee-49f7-a00a-f016cca86302"
-                ],
-                "eliminatedPlayerIds": [
-                  "740947a6-bbea-4ec7-9db7-e9a18211cd17",
-                  "558a4251-1bee-49f7-a00a-f016cca86302"
-                ],
+                "player1": {
+                  "playerId": "a346bd45-0fe7-4195-83bd-dbfea9e74ec3",
+                  "seed": 5,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": "60a6eb52-9d1f-48ba-a0dd-07538c79c221",
+                  "seed": 12,
+                  "score": null
+                },
+                "winnerPlayerId": "60a6eb52-9d1f-48ba-a0dd-07538c79c221",
                 "bye": false
               },
               {
-                "playerIds": [
-                  "5130dc36-1db3-4244-9931-18656a433521",
-                  "1f3315dd-ddd2-474d-9618-392fc3929e1d",
-                  "e8b2152b-7dd4-4b2c-8f03-66794f9b0cda"
-                ],
-                "eliminatedPlayerIds": [
-                  "1f3315dd-ddd2-474d-9618-392fc3929e1d",
-                  "5130dc36-1db3-4244-9931-18656a433521"
-                ],
+                "player1": {
+                  "playerId": "519a95ef-1dfe-48ae-9280-cd1a76a58bcf",
+                  "seed": 2,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": null,
+                  "seed": 15,
+                  "score": null
+                },
+                "winnerPlayerId": "519a95ef-1dfe-48ae-9280-cd1a76a58bcf",
+                "bye": true
+              },
+              {
+                "player1": {
+                  "playerId": "0e544317-08c6-4a70-bdf9-aa05665769f4",
+                  "seed": 7,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": "75ea30e0-4f56-4329-9f9c-e3f79820d116",
+                  "seed": 10,
+                  "score": null
+                },
+                "winnerPlayerId": "75ea30e0-4f56-4329-9f9c-e3f79820d116",
+                "bye": false
+              },
+              {
+                "player1": {
+                  "playerId": "1179f412-72f4-4b77-a4e9-6e9ce0f2757f",
+                  "seed": 3,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": null,
+                  "seed": 14,
+                  "score": null
+                },
+                "winnerPlayerId": "1179f412-72f4-4b77-a4e9-6e9ce0f2757f",
+                "bye": true
+              },
+              {
+                "player1": {
+                  "playerId": "dc32d91a-bc87-4cff-afd7-468571674c90",
+                  "seed": 6,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": "73e781e3-69e9-461e-bd9a-de40fe64a2a0",
+                  "seed": 11,
+                  "score": null
+                },
+                "winnerPlayerId": "dc32d91a-bc87-4cff-afd7-468571674c90",
                 "bye": false
               }
             ],
-            "complete": false
+            "isFinal": false
+          },
+          {
+            "matchups": [
+              {
+                "player1": {
+                  "playerId": "2fc8d31d-1bdc-4baa-9e33-4cfa0c41a516",
+                  "seed": null,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": "794d66e7-cd72-4e11-9e66-518cd00cf4fb",
+                  "seed": null,
+                  "score": null
+                },
+                "winnerPlayerId": null,
+                "bye": false
+              },
+              {
+                "player1": {
+                  "playerId": "be4e8e16-a645-4139-8410-588c3828b4d2",
+                  "seed": null,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": "60a6eb52-9d1f-48ba-a0dd-07538c79c221",
+                  "seed": null,
+                  "score": null
+                },
+                "winnerPlayerId": null,
+                "bye": false
+              },
+              {
+                "player1": {
+                  "playerId": "519a95ef-1dfe-48ae-9280-cd1a76a58bcf",
+                  "seed": null,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": "75ea30e0-4f56-4329-9f9c-e3f79820d116",
+                  "seed": null,
+                  "score": null
+                },
+                "winnerPlayerId": null,
+                "bye": false
+              },
+              {
+                "player1": {
+                  "playerId": "1179f412-72f4-4b77-a4e9-6e9ce0f2757f",
+                  "seed": null,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": "dc32d91a-bc87-4cff-afd7-468571674c90",
+                  "seed": null,
+                  "score": null
+                },
+                "winnerPlayerId": null,
+                "bye": false
+              }
+            ],
+            "isFinal": false
+          },
+          {
+            "matchups": [
+              {
+                "player1": {
+                  "playerId": null,
+                  "seed": null,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": null,
+                  "seed": null,
+                  "score": null
+                },
+                "winnerPlayerId": null,
+                "bye": false
+              },
+              {
+                "player1": {
+                  "playerId": null,
+                  "seed": null,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": null,
+                  "seed": null,
+                  "score": null
+                },
+                "winnerPlayerId": null,
+                "bye": false
+              }
+            ],
+            "isFinal": false
+          },
+          {
+            "matchups": [
+              {
+                "player1": {
+                  "playerId": null,
+                  "seed": null,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": null,
+                  "seed": null,
+                  "score": null
+                },
+                "winnerPlayerId": null,
+                "bye": false
+              }
+            ],
+            "isFinal": true
           }
         ],
         "championPlayerId": null,
@@ -764,78 +2328,257 @@
     },
     {
       "snapshot": {
-        "mode": "murderball",
+        "mode": "derby",
         "settings": {
-          "laneCount": 3
+          "laneCount": 2
         },
         "entrantPlayerIds": [
-          "f166c06a-47fb-47a4-b937-944d2173a7c7",
-          "7eb933c0-e255-4a37-a996-ba6206308715",
-          "cf3b629b-a31b-493c-93ab-21121f06d9f0",
-          "2ace2ddb-4c14-4c09-956f-890ff6cc9e6b",
-          "a3214156-556f-4eac-8061-f6d72465a3e9",
-          "d18de6a4-5669-4625-8768-0ac54a141e0c",
-          "f0f3523b-99b9-41ae-accf-214c26f2f1bc",
-          "740947a6-bbea-4ec7-9db7-e9a18211cd17",
-          "558a4251-1bee-49f7-a00a-f016cca86302",
-          "5130dc36-1db3-4244-9931-18656a433521",
-          "1f3315dd-ddd2-474d-9618-392fc3929e1d",
-          "e8b2152b-7dd4-4b2c-8f03-66794f9b0cda"
+          "2fc8d31d-1bdc-4baa-9e33-4cfa0c41a516",
+          "519a95ef-1dfe-48ae-9280-cd1a76a58bcf",
+          "1179f412-72f4-4b77-a4e9-6e9ce0f2757f",
+          "be4e8e16-a645-4139-8410-588c3828b4d2",
+          "a346bd45-0fe7-4195-83bd-dbfea9e74ec3",
+          "dc32d91a-bc87-4cff-afd7-468571674c90",
+          "0e544317-08c6-4a70-bdf9-aa05665769f4",
+          "794d66e7-cd72-4e11-9e66-518cd00cf4fb",
+          "d41e76bd-0743-428c-a606-663eebf468b5",
+          "75ea30e0-4f56-4329-9f9c-e3f79820d116",
+          "73e781e3-69e9-461e-bd9a-de40fe64a2a0",
+          "60a6eb52-9d1f-48ba-a0dd-07538c79c221",
+          "c18b9f12-83bb-48bc-b214-0c662830aaa9"
         ],
         "generated": true,
         "currentRound": 0,
         "rounds": [
           {
-            "heats": [
+            "matchups": [
               {
-                "playerIds": [
-                  "f166c06a-47fb-47a4-b937-944d2173a7c7",
-                  "7eb933c0-e255-4a37-a996-ba6206308715",
-                  "cf3b629b-a31b-493c-93ab-21121f06d9f0"
-                ],
-                "eliminatedPlayerIds": [
-                  "f166c06a-47fb-47a4-b937-944d2173a7c7",
-                  "7eb933c0-e255-4a37-a996-ba6206308715"
-                ],
+                "player1": {
+                  "playerId": "2fc8d31d-1bdc-4baa-9e33-4cfa0c41a516",
+                  "seed": 1,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": null,
+                  "seed": 16,
+                  "score": null
+                },
+                "winnerPlayerId": "2fc8d31d-1bdc-4baa-9e33-4cfa0c41a516",
+                "bye": true
+              },
+              {
+                "player1": {
+                  "playerId": "794d66e7-cd72-4e11-9e66-518cd00cf4fb",
+                  "seed": 8,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": "d41e76bd-0743-428c-a606-663eebf468b5",
+                  "seed": 9,
+                  "score": null
+                },
+                "winnerPlayerId": "794d66e7-cd72-4e11-9e66-518cd00cf4fb",
                 "bye": false
               },
               {
-                "playerIds": [
-                  "2ace2ddb-4c14-4c09-956f-890ff6cc9e6b",
-                  "a3214156-556f-4eac-8061-f6d72465a3e9",
-                  "d18de6a4-5669-4625-8768-0ac54a141e0c"
-                ],
-                "eliminatedPlayerIds": [
-                  "2ace2ddb-4c14-4c09-956f-890ff6cc9e6b",
-                  "d18de6a4-5669-4625-8768-0ac54a141e0c"
-                ],
+                "player1": {
+                  "playerId": "be4e8e16-a645-4139-8410-588c3828b4d2",
+                  "seed": 4,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": "c18b9f12-83bb-48bc-b214-0c662830aaa9",
+                  "seed": 13,
+                  "score": null
+                },
+                "winnerPlayerId": "be4e8e16-a645-4139-8410-588c3828b4d2",
                 "bye": false
               },
               {
-                "playerIds": [
-                  "f0f3523b-99b9-41ae-accf-214c26f2f1bc",
-                  "740947a6-bbea-4ec7-9db7-e9a18211cd17",
-                  "558a4251-1bee-49f7-a00a-f016cca86302"
-                ],
-                "eliminatedPlayerIds": [
-                  "740947a6-bbea-4ec7-9db7-e9a18211cd17",
-                  "558a4251-1bee-49f7-a00a-f016cca86302"
-                ],
+                "player1": {
+                  "playerId": "a346bd45-0fe7-4195-83bd-dbfea9e74ec3",
+                  "seed": 5,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": "60a6eb52-9d1f-48ba-a0dd-07538c79c221",
+                  "seed": 12,
+                  "score": null
+                },
+                "winnerPlayerId": "60a6eb52-9d1f-48ba-a0dd-07538c79c221",
                 "bye": false
               },
               {
-                "playerIds": [
-                  "5130dc36-1db3-4244-9931-18656a433521",
-                  "1f3315dd-ddd2-474d-9618-392fc3929e1d",
-                  "e8b2152b-7dd4-4b2c-8f03-66794f9b0cda"
-                ],
-                "eliminatedPlayerIds": [
-                  "1f3315dd-ddd2-474d-9618-392fc3929e1d"
-                ],
+                "player1": {
+                  "playerId": "519a95ef-1dfe-48ae-9280-cd1a76a58bcf",
+                  "seed": 2,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": null,
+                  "seed": 15,
+                  "score": null
+                },
+                "winnerPlayerId": "519a95ef-1dfe-48ae-9280-cd1a76a58bcf",
+                "bye": true
+              },
+              {
+                "player1": {
+                  "playerId": "0e544317-08c6-4a70-bdf9-aa05665769f4",
+                  "seed": 7,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": "75ea30e0-4f56-4329-9f9c-e3f79820d116",
+                  "seed": 10,
+                  "score": null
+                },
+                "winnerPlayerId": "75ea30e0-4f56-4329-9f9c-e3f79820d116",
+                "bye": false
+              },
+              {
+                "player1": {
+                  "playerId": "1179f412-72f4-4b77-a4e9-6e9ce0f2757f",
+                  "seed": 3,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": null,
+                  "seed": 14,
+                  "score": null
+                },
+                "winnerPlayerId": "1179f412-72f4-4b77-a4e9-6e9ce0f2757f",
+                "bye": true
+              },
+              {
+                "player1": {
+                  "playerId": "dc32d91a-bc87-4cff-afd7-468571674c90",
+                  "seed": 6,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": "73e781e3-69e9-461e-bd9a-de40fe64a2a0",
+                  "seed": 11,
+                  "score": null
+                },
+                "winnerPlayerId": null,
                 "bye": false
               }
             ],
-            "complete": false
+            "isFinal": false
+          },
+          {
+            "matchups": [
+              {
+                "player1": {
+                  "playerId": "2fc8d31d-1bdc-4baa-9e33-4cfa0c41a516",
+                  "seed": null,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": "794d66e7-cd72-4e11-9e66-518cd00cf4fb",
+                  "seed": null,
+                  "score": null
+                },
+                "winnerPlayerId": null,
+                "bye": false
+              },
+              {
+                "player1": {
+                  "playerId": "be4e8e16-a645-4139-8410-588c3828b4d2",
+                  "seed": null,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": "60a6eb52-9d1f-48ba-a0dd-07538c79c221",
+                  "seed": null,
+                  "score": null
+                },
+                "winnerPlayerId": null,
+                "bye": false
+              },
+              {
+                "player1": {
+                  "playerId": "519a95ef-1dfe-48ae-9280-cd1a76a58bcf",
+                  "seed": null,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": "75ea30e0-4f56-4329-9f9c-e3f79820d116",
+                  "seed": null,
+                  "score": null
+                },
+                "winnerPlayerId": null,
+                "bye": false
+              },
+              {
+                "player1": {
+                  "playerId": "1179f412-72f4-4b77-a4e9-6e9ce0f2757f",
+                  "seed": null,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": null,
+                  "seed": null,
+                  "score": null
+                },
+                "winnerPlayerId": null,
+                "bye": false
+              }
+            ],
+            "isFinal": false
+          },
+          {
+            "matchups": [
+              {
+                "player1": {
+                  "playerId": null,
+                  "seed": null,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": null,
+                  "seed": null,
+                  "score": null
+                },
+                "winnerPlayerId": null,
+                "bye": false
+              },
+              {
+                "player1": {
+                  "playerId": null,
+                  "seed": null,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": null,
+                  "seed": null,
+                  "score": null
+                },
+                "winnerPlayerId": null,
+                "bye": false
+              }
+            ],
+            "isFinal": false
+          },
+          {
+            "matchups": [
+              {
+                "player1": {
+                  "playerId": null,
+                  "seed": null,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": null,
+                  "seed": null,
+                  "score": null
+                },
+                "winnerPlayerId": null,
+                "bye": false
+              }
+            ],
+            "isFinal": true
           }
         ],
         "championPlayerId": null,
@@ -844,76 +2587,257 @@
     },
     {
       "snapshot": {
-        "mode": "murderball",
+        "mode": "derby",
         "settings": {
-          "laneCount": 3
+          "laneCount": 2
         },
         "entrantPlayerIds": [
-          "f166c06a-47fb-47a4-b937-944d2173a7c7",
-          "7eb933c0-e255-4a37-a996-ba6206308715",
-          "cf3b629b-a31b-493c-93ab-21121f06d9f0",
-          "2ace2ddb-4c14-4c09-956f-890ff6cc9e6b",
-          "a3214156-556f-4eac-8061-f6d72465a3e9",
-          "d18de6a4-5669-4625-8768-0ac54a141e0c",
-          "f0f3523b-99b9-41ae-accf-214c26f2f1bc",
-          "740947a6-bbea-4ec7-9db7-e9a18211cd17",
-          "558a4251-1bee-49f7-a00a-f016cca86302",
-          "5130dc36-1db3-4244-9931-18656a433521",
-          "1f3315dd-ddd2-474d-9618-392fc3929e1d",
-          "e8b2152b-7dd4-4b2c-8f03-66794f9b0cda"
+          "2fc8d31d-1bdc-4baa-9e33-4cfa0c41a516",
+          "519a95ef-1dfe-48ae-9280-cd1a76a58bcf",
+          "1179f412-72f4-4b77-a4e9-6e9ce0f2757f",
+          "be4e8e16-a645-4139-8410-588c3828b4d2",
+          "a346bd45-0fe7-4195-83bd-dbfea9e74ec3",
+          "dc32d91a-bc87-4cff-afd7-468571674c90",
+          "0e544317-08c6-4a70-bdf9-aa05665769f4",
+          "794d66e7-cd72-4e11-9e66-518cd00cf4fb",
+          "d41e76bd-0743-428c-a606-663eebf468b5",
+          "75ea30e0-4f56-4329-9f9c-e3f79820d116",
+          "73e781e3-69e9-461e-bd9a-de40fe64a2a0",
+          "60a6eb52-9d1f-48ba-a0dd-07538c79c221",
+          "c18b9f12-83bb-48bc-b214-0c662830aaa9"
         ],
         "generated": true,
         "currentRound": 0,
         "rounds": [
           {
-            "heats": [
+            "matchups": [
               {
-                "playerIds": [
-                  "f166c06a-47fb-47a4-b937-944d2173a7c7",
-                  "7eb933c0-e255-4a37-a996-ba6206308715",
-                  "cf3b629b-a31b-493c-93ab-21121f06d9f0"
-                ],
-                "eliminatedPlayerIds": [
-                  "f166c06a-47fb-47a4-b937-944d2173a7c7",
-                  "7eb933c0-e255-4a37-a996-ba6206308715"
-                ],
+                "player1": {
+                  "playerId": "2fc8d31d-1bdc-4baa-9e33-4cfa0c41a516",
+                  "seed": 1,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": null,
+                  "seed": 16,
+                  "score": null
+                },
+                "winnerPlayerId": "2fc8d31d-1bdc-4baa-9e33-4cfa0c41a516",
+                "bye": true
+              },
+              {
+                "player1": {
+                  "playerId": "794d66e7-cd72-4e11-9e66-518cd00cf4fb",
+                  "seed": 8,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": "d41e76bd-0743-428c-a606-663eebf468b5",
+                  "seed": 9,
+                  "score": null
+                },
+                "winnerPlayerId": "794d66e7-cd72-4e11-9e66-518cd00cf4fb",
                 "bye": false
               },
               {
-                "playerIds": [
-                  "2ace2ddb-4c14-4c09-956f-890ff6cc9e6b",
-                  "a3214156-556f-4eac-8061-f6d72465a3e9",
-                  "d18de6a4-5669-4625-8768-0ac54a141e0c"
-                ],
-                "eliminatedPlayerIds": [
-                  "2ace2ddb-4c14-4c09-956f-890ff6cc9e6b",
-                  "d18de6a4-5669-4625-8768-0ac54a141e0c"
-                ],
+                "player1": {
+                  "playerId": "be4e8e16-a645-4139-8410-588c3828b4d2",
+                  "seed": 4,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": "c18b9f12-83bb-48bc-b214-0c662830aaa9",
+                  "seed": 13,
+                  "score": null
+                },
+                "winnerPlayerId": "be4e8e16-a645-4139-8410-588c3828b4d2",
                 "bye": false
               },
               {
-                "playerIds": [
-                  "f0f3523b-99b9-41ae-accf-214c26f2f1bc",
-                  "740947a6-bbea-4ec7-9db7-e9a18211cd17",
-                  "558a4251-1bee-49f7-a00a-f016cca86302"
-                ],
-                "eliminatedPlayerIds": [
-                  "740947a6-bbea-4ec7-9db7-e9a18211cd17",
-                  "558a4251-1bee-49f7-a00a-f016cca86302"
-                ],
+                "player1": {
+                  "playerId": "a346bd45-0fe7-4195-83bd-dbfea9e74ec3",
+                  "seed": 5,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": "60a6eb52-9d1f-48ba-a0dd-07538c79c221",
+                  "seed": 12,
+                  "score": null
+                },
+                "winnerPlayerId": "60a6eb52-9d1f-48ba-a0dd-07538c79c221",
                 "bye": false
               },
               {
-                "playerIds": [
-                  "5130dc36-1db3-4244-9931-18656a433521",
-                  "1f3315dd-ddd2-474d-9618-392fc3929e1d",
-                  "e8b2152b-7dd4-4b2c-8f03-66794f9b0cda"
-                ],
-                "eliminatedPlayerIds": [],
+                "player1": {
+                  "playerId": "519a95ef-1dfe-48ae-9280-cd1a76a58bcf",
+                  "seed": 2,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": null,
+                  "seed": 15,
+                  "score": null
+                },
+                "winnerPlayerId": "519a95ef-1dfe-48ae-9280-cd1a76a58bcf",
+                "bye": true
+              },
+              {
+                "player1": {
+                  "playerId": "0e544317-08c6-4a70-bdf9-aa05665769f4",
+                  "seed": 7,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": "75ea30e0-4f56-4329-9f9c-e3f79820d116",
+                  "seed": 10,
+                  "score": null
+                },
+                "winnerPlayerId": null,
+                "bye": false
+              },
+              {
+                "player1": {
+                  "playerId": "1179f412-72f4-4b77-a4e9-6e9ce0f2757f",
+                  "seed": 3,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": null,
+                  "seed": 14,
+                  "score": null
+                },
+                "winnerPlayerId": "1179f412-72f4-4b77-a4e9-6e9ce0f2757f",
+                "bye": true
+              },
+              {
+                "player1": {
+                  "playerId": "dc32d91a-bc87-4cff-afd7-468571674c90",
+                  "seed": 6,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": "73e781e3-69e9-461e-bd9a-de40fe64a2a0",
+                  "seed": 11,
+                  "score": null
+                },
+                "winnerPlayerId": null,
                 "bye": false
               }
             ],
-            "complete": false
+            "isFinal": false
+          },
+          {
+            "matchups": [
+              {
+                "player1": {
+                  "playerId": "2fc8d31d-1bdc-4baa-9e33-4cfa0c41a516",
+                  "seed": null,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": "794d66e7-cd72-4e11-9e66-518cd00cf4fb",
+                  "seed": null,
+                  "score": null
+                },
+                "winnerPlayerId": null,
+                "bye": false
+              },
+              {
+                "player1": {
+                  "playerId": "be4e8e16-a645-4139-8410-588c3828b4d2",
+                  "seed": null,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": "60a6eb52-9d1f-48ba-a0dd-07538c79c221",
+                  "seed": null,
+                  "score": null
+                },
+                "winnerPlayerId": null,
+                "bye": false
+              },
+              {
+                "player1": {
+                  "playerId": "519a95ef-1dfe-48ae-9280-cd1a76a58bcf",
+                  "seed": null,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": null,
+                  "seed": null,
+                  "score": null
+                },
+                "winnerPlayerId": null,
+                "bye": false
+              },
+              {
+                "player1": {
+                  "playerId": "1179f412-72f4-4b77-a4e9-6e9ce0f2757f",
+                  "seed": null,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": null,
+                  "seed": null,
+                  "score": null
+                },
+                "winnerPlayerId": null,
+                "bye": false
+              }
+            ],
+            "isFinal": false
+          },
+          {
+            "matchups": [
+              {
+                "player1": {
+                  "playerId": null,
+                  "seed": null,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": null,
+                  "seed": null,
+                  "score": null
+                },
+                "winnerPlayerId": null,
+                "bye": false
+              },
+              {
+                "player1": {
+                  "playerId": null,
+                  "seed": null,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": null,
+                  "seed": null,
+                  "score": null
+                },
+                "winnerPlayerId": null,
+                "bye": false
+              }
+            ],
+            "isFinal": false
+          },
+          {
+            "matchups": [
+              {
+                "player1": {
+                  "playerId": null,
+                  "seed": null,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": null,
+                  "seed": null,
+                  "score": null
+                },
+                "winnerPlayerId": null,
+                "bye": false
+              }
+            ],
+            "isFinal": true
           }
         ],
         "championPlayerId": null,
@@ -922,75 +2846,257 @@
     },
     {
       "snapshot": {
-        "mode": "murderball",
+        "mode": "derby",
         "settings": {
-          "laneCount": 3
+          "laneCount": 2
         },
         "entrantPlayerIds": [
-          "f166c06a-47fb-47a4-b937-944d2173a7c7",
-          "7eb933c0-e255-4a37-a996-ba6206308715",
-          "cf3b629b-a31b-493c-93ab-21121f06d9f0",
-          "2ace2ddb-4c14-4c09-956f-890ff6cc9e6b",
-          "a3214156-556f-4eac-8061-f6d72465a3e9",
-          "d18de6a4-5669-4625-8768-0ac54a141e0c",
-          "f0f3523b-99b9-41ae-accf-214c26f2f1bc",
-          "740947a6-bbea-4ec7-9db7-e9a18211cd17",
-          "558a4251-1bee-49f7-a00a-f016cca86302",
-          "5130dc36-1db3-4244-9931-18656a433521",
-          "1f3315dd-ddd2-474d-9618-392fc3929e1d",
-          "e8b2152b-7dd4-4b2c-8f03-66794f9b0cda"
+          "2fc8d31d-1bdc-4baa-9e33-4cfa0c41a516",
+          "519a95ef-1dfe-48ae-9280-cd1a76a58bcf",
+          "1179f412-72f4-4b77-a4e9-6e9ce0f2757f",
+          "be4e8e16-a645-4139-8410-588c3828b4d2",
+          "a346bd45-0fe7-4195-83bd-dbfea9e74ec3",
+          "dc32d91a-bc87-4cff-afd7-468571674c90",
+          "0e544317-08c6-4a70-bdf9-aa05665769f4",
+          "794d66e7-cd72-4e11-9e66-518cd00cf4fb",
+          "d41e76bd-0743-428c-a606-663eebf468b5",
+          "75ea30e0-4f56-4329-9f9c-e3f79820d116",
+          "73e781e3-69e9-461e-bd9a-de40fe64a2a0",
+          "60a6eb52-9d1f-48ba-a0dd-07538c79c221",
+          "c18b9f12-83bb-48bc-b214-0c662830aaa9"
         ],
         "generated": true,
         "currentRound": 0,
         "rounds": [
           {
-            "heats": [
+            "matchups": [
               {
-                "playerIds": [
-                  "f166c06a-47fb-47a4-b937-944d2173a7c7",
-                  "7eb933c0-e255-4a37-a996-ba6206308715",
-                  "cf3b629b-a31b-493c-93ab-21121f06d9f0"
-                ],
-                "eliminatedPlayerIds": [
-                  "f166c06a-47fb-47a4-b937-944d2173a7c7",
-                  "7eb933c0-e255-4a37-a996-ba6206308715"
-                ],
+                "player1": {
+                  "playerId": "2fc8d31d-1bdc-4baa-9e33-4cfa0c41a516",
+                  "seed": 1,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": null,
+                  "seed": 16,
+                  "score": null
+                },
+                "winnerPlayerId": "2fc8d31d-1bdc-4baa-9e33-4cfa0c41a516",
+                "bye": true
+              },
+              {
+                "player1": {
+                  "playerId": "794d66e7-cd72-4e11-9e66-518cd00cf4fb",
+                  "seed": 8,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": "d41e76bd-0743-428c-a606-663eebf468b5",
+                  "seed": 9,
+                  "score": null
+                },
+                "winnerPlayerId": null,
                 "bye": false
               },
               {
-                "playerIds": [
-                  "2ace2ddb-4c14-4c09-956f-890ff6cc9e6b",
-                  "a3214156-556f-4eac-8061-f6d72465a3e9",
-                  "d18de6a4-5669-4625-8768-0ac54a141e0c"
-                ],
-                "eliminatedPlayerIds": [
-                  "2ace2ddb-4c14-4c09-956f-890ff6cc9e6b",
-                  "d18de6a4-5669-4625-8768-0ac54a141e0c"
-                ],
+                "player1": {
+                  "playerId": "be4e8e16-a645-4139-8410-588c3828b4d2",
+                  "seed": 4,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": "c18b9f12-83bb-48bc-b214-0c662830aaa9",
+                  "seed": 13,
+                  "score": null
+                },
+                "winnerPlayerId": "be4e8e16-a645-4139-8410-588c3828b4d2",
                 "bye": false
               },
               {
-                "playerIds": [
-                  "f0f3523b-99b9-41ae-accf-214c26f2f1bc",
-                  "740947a6-bbea-4ec7-9db7-e9a18211cd17",
-                  "558a4251-1bee-49f7-a00a-f016cca86302"
-                ],
-                "eliminatedPlayerIds": [
-                  "740947a6-bbea-4ec7-9db7-e9a18211cd17"
-                ],
+                "player1": {
+                  "playerId": "a346bd45-0fe7-4195-83bd-dbfea9e74ec3",
+                  "seed": 5,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": "60a6eb52-9d1f-48ba-a0dd-07538c79c221",
+                  "seed": 12,
+                  "score": null
+                },
+                "winnerPlayerId": "60a6eb52-9d1f-48ba-a0dd-07538c79c221",
                 "bye": false
               },
               {
-                "playerIds": [
-                  "5130dc36-1db3-4244-9931-18656a433521",
-                  "1f3315dd-ddd2-474d-9618-392fc3929e1d",
-                  "e8b2152b-7dd4-4b2c-8f03-66794f9b0cda"
-                ],
-                "eliminatedPlayerIds": [],
+                "player1": {
+                  "playerId": "519a95ef-1dfe-48ae-9280-cd1a76a58bcf",
+                  "seed": 2,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": null,
+                  "seed": 15,
+                  "score": null
+                },
+                "winnerPlayerId": "519a95ef-1dfe-48ae-9280-cd1a76a58bcf",
+                "bye": true
+              },
+              {
+                "player1": {
+                  "playerId": "0e544317-08c6-4a70-bdf9-aa05665769f4",
+                  "seed": 7,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": "75ea30e0-4f56-4329-9f9c-e3f79820d116",
+                  "seed": 10,
+                  "score": null
+                },
+                "winnerPlayerId": null,
+                "bye": false
+              },
+              {
+                "player1": {
+                  "playerId": "1179f412-72f4-4b77-a4e9-6e9ce0f2757f",
+                  "seed": 3,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": null,
+                  "seed": 14,
+                  "score": null
+                },
+                "winnerPlayerId": "1179f412-72f4-4b77-a4e9-6e9ce0f2757f",
+                "bye": true
+              },
+              {
+                "player1": {
+                  "playerId": "dc32d91a-bc87-4cff-afd7-468571674c90",
+                  "seed": 6,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": "73e781e3-69e9-461e-bd9a-de40fe64a2a0",
+                  "seed": 11,
+                  "score": null
+                },
+                "winnerPlayerId": null,
                 "bye": false
               }
             ],
-            "complete": false
+            "isFinal": false
+          },
+          {
+            "matchups": [
+              {
+                "player1": {
+                  "playerId": "2fc8d31d-1bdc-4baa-9e33-4cfa0c41a516",
+                  "seed": null,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": null,
+                  "seed": null,
+                  "score": null
+                },
+                "winnerPlayerId": null,
+                "bye": false
+              },
+              {
+                "player1": {
+                  "playerId": "be4e8e16-a645-4139-8410-588c3828b4d2",
+                  "seed": null,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": "60a6eb52-9d1f-48ba-a0dd-07538c79c221",
+                  "seed": null,
+                  "score": null
+                },
+                "winnerPlayerId": null,
+                "bye": false
+              },
+              {
+                "player1": {
+                  "playerId": "519a95ef-1dfe-48ae-9280-cd1a76a58bcf",
+                  "seed": null,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": null,
+                  "seed": null,
+                  "score": null
+                },
+                "winnerPlayerId": null,
+                "bye": false
+              },
+              {
+                "player1": {
+                  "playerId": "1179f412-72f4-4b77-a4e9-6e9ce0f2757f",
+                  "seed": null,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": null,
+                  "seed": null,
+                  "score": null
+                },
+                "winnerPlayerId": null,
+                "bye": false
+              }
+            ],
+            "isFinal": false
+          },
+          {
+            "matchups": [
+              {
+                "player1": {
+                  "playerId": null,
+                  "seed": null,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": null,
+                  "seed": null,
+                  "score": null
+                },
+                "winnerPlayerId": null,
+                "bye": false
+              },
+              {
+                "player1": {
+                  "playerId": null,
+                  "seed": null,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": null,
+                  "seed": null,
+                  "score": null
+                },
+                "winnerPlayerId": null,
+                "bye": false
+              }
+            ],
+            "isFinal": false
+          },
+          {
+            "matchups": [
+              {
+                "player1": {
+                  "playerId": null,
+                  "seed": null,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": null,
+                  "seed": null,
+                  "score": null
+                },
+                "winnerPlayerId": null,
+                "bye": false
+              }
+            ],
+            "isFinal": true
           }
         ],
         "championPlayerId": null,
@@ -999,219 +3105,257 @@
     },
     {
       "snapshot": {
-        "mode": "murderball",
+        "mode": "derby",
         "settings": {
-          "laneCount": 3
+          "laneCount": 2
         },
         "entrantPlayerIds": [
-          "f166c06a-47fb-47a4-b937-944d2173a7c7",
-          "7eb933c0-e255-4a37-a996-ba6206308715",
-          "cf3b629b-a31b-493c-93ab-21121f06d9f0",
-          "2ace2ddb-4c14-4c09-956f-890ff6cc9e6b",
-          "a3214156-556f-4eac-8061-f6d72465a3e9",
-          "d18de6a4-5669-4625-8768-0ac54a141e0c",
-          "f0f3523b-99b9-41ae-accf-214c26f2f1bc",
-          "740947a6-bbea-4ec7-9db7-e9a18211cd17",
-          "558a4251-1bee-49f7-a00a-f016cca86302",
-          "5130dc36-1db3-4244-9931-18656a433521",
-          "1f3315dd-ddd2-474d-9618-392fc3929e1d",
-          "e8b2152b-7dd4-4b2c-8f03-66794f9b0cda"
+          "2fc8d31d-1bdc-4baa-9e33-4cfa0c41a516",
+          "519a95ef-1dfe-48ae-9280-cd1a76a58bcf",
+          "1179f412-72f4-4b77-a4e9-6e9ce0f2757f",
+          "be4e8e16-a645-4139-8410-588c3828b4d2",
+          "a346bd45-0fe7-4195-83bd-dbfea9e74ec3",
+          "dc32d91a-bc87-4cff-afd7-468571674c90",
+          "0e544317-08c6-4a70-bdf9-aa05665769f4",
+          "794d66e7-cd72-4e11-9e66-518cd00cf4fb",
+          "d41e76bd-0743-428c-a606-663eebf468b5",
+          "75ea30e0-4f56-4329-9f9c-e3f79820d116",
+          "73e781e3-69e9-461e-bd9a-de40fe64a2a0",
+          "60a6eb52-9d1f-48ba-a0dd-07538c79c221",
+          "c18b9f12-83bb-48bc-b214-0c662830aaa9"
         ],
         "generated": true,
         "currentRound": 0,
         "rounds": [
           {
-            "heats": [
+            "matchups": [
               {
-                "playerIds": [
-                  "f166c06a-47fb-47a4-b937-944d2173a7c7",
-                  "7eb933c0-e255-4a37-a996-ba6206308715",
-                  "cf3b629b-a31b-493c-93ab-21121f06d9f0"
-                ],
-                "eliminatedPlayerIds": [
-                  "f166c06a-47fb-47a4-b937-944d2173a7c7",
-                  "7eb933c0-e255-4a37-a996-ba6206308715"
-                ],
+                "player1": {
+                  "playerId": "2fc8d31d-1bdc-4baa-9e33-4cfa0c41a516",
+                  "seed": 1,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": null,
+                  "seed": 16,
+                  "score": null
+                },
+                "winnerPlayerId": "2fc8d31d-1bdc-4baa-9e33-4cfa0c41a516",
+                "bye": true
+              },
+              {
+                "player1": {
+                  "playerId": "794d66e7-cd72-4e11-9e66-518cd00cf4fb",
+                  "seed": 8,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": "d41e76bd-0743-428c-a606-663eebf468b5",
+                  "seed": 9,
+                  "score": null
+                },
+                "winnerPlayerId": null,
                 "bye": false
               },
               {
-                "playerIds": [
-                  "2ace2ddb-4c14-4c09-956f-890ff6cc9e6b",
-                  "a3214156-556f-4eac-8061-f6d72465a3e9",
-                  "d18de6a4-5669-4625-8768-0ac54a141e0c"
-                ],
-                "eliminatedPlayerIds": [
-                  "2ace2ddb-4c14-4c09-956f-890ff6cc9e6b",
-                  "d18de6a4-5669-4625-8768-0ac54a141e0c"
-                ],
+                "player1": {
+                  "playerId": "be4e8e16-a645-4139-8410-588c3828b4d2",
+                  "seed": 4,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": "c18b9f12-83bb-48bc-b214-0c662830aaa9",
+                  "seed": 13,
+                  "score": null
+                },
+                "winnerPlayerId": "be4e8e16-a645-4139-8410-588c3828b4d2",
                 "bye": false
               },
               {
-                "playerIds": [
-                  "f0f3523b-99b9-41ae-accf-214c26f2f1bc",
-                  "740947a6-bbea-4ec7-9db7-e9a18211cd17",
-                  "558a4251-1bee-49f7-a00a-f016cca86302"
-                ],
-                "eliminatedPlayerIds": [],
+                "player1": {
+                  "playerId": "a346bd45-0fe7-4195-83bd-dbfea9e74ec3",
+                  "seed": 5,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": "60a6eb52-9d1f-48ba-a0dd-07538c79c221",
+                  "seed": 12,
+                  "score": null
+                },
+                "winnerPlayerId": null,
                 "bye": false
               },
               {
-                "playerIds": [
-                  "5130dc36-1db3-4244-9931-18656a433521",
-                  "1f3315dd-ddd2-474d-9618-392fc3929e1d",
-                  "e8b2152b-7dd4-4b2c-8f03-66794f9b0cda"
-                ],
-                "eliminatedPlayerIds": [],
+                "player1": {
+                  "playerId": "519a95ef-1dfe-48ae-9280-cd1a76a58bcf",
+                  "seed": 2,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": null,
+                  "seed": 15,
+                  "score": null
+                },
+                "winnerPlayerId": "519a95ef-1dfe-48ae-9280-cd1a76a58bcf",
+                "bye": true
+              },
+              {
+                "player1": {
+                  "playerId": "0e544317-08c6-4a70-bdf9-aa05665769f4",
+                  "seed": 7,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": "75ea30e0-4f56-4329-9f9c-e3f79820d116",
+                  "seed": 10,
+                  "score": null
+                },
+                "winnerPlayerId": null,
+                "bye": false
+              },
+              {
+                "player1": {
+                  "playerId": "1179f412-72f4-4b77-a4e9-6e9ce0f2757f",
+                  "seed": 3,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": null,
+                  "seed": 14,
+                  "score": null
+                },
+                "winnerPlayerId": "1179f412-72f4-4b77-a4e9-6e9ce0f2757f",
+                "bye": true
+              },
+              {
+                "player1": {
+                  "playerId": "dc32d91a-bc87-4cff-afd7-468571674c90",
+                  "seed": 6,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": "73e781e3-69e9-461e-bd9a-de40fe64a2a0",
+                  "seed": 11,
+                  "score": null
+                },
+                "winnerPlayerId": null,
                 "bye": false
               }
             ],
-            "complete": false
-          }
-        ],
-        "championPlayerId": null,
-        "history": []
-      }
-    },
-    {
-      "snapshot": {
-        "mode": "murderball",
-        "settings": {
-          "laneCount": 3
-        },
-        "entrantPlayerIds": [
-          "f166c06a-47fb-47a4-b937-944d2173a7c7",
-          "7eb933c0-e255-4a37-a996-ba6206308715",
-          "cf3b629b-a31b-493c-93ab-21121f06d9f0",
-          "2ace2ddb-4c14-4c09-956f-890ff6cc9e6b",
-          "a3214156-556f-4eac-8061-f6d72465a3e9",
-          "d18de6a4-5669-4625-8768-0ac54a141e0c",
-          "f0f3523b-99b9-41ae-accf-214c26f2f1bc",
-          "740947a6-bbea-4ec7-9db7-e9a18211cd17",
-          "558a4251-1bee-49f7-a00a-f016cca86302",
-          "5130dc36-1db3-4244-9931-18656a433521",
-          "1f3315dd-ddd2-474d-9618-392fc3929e1d",
-          "e8b2152b-7dd4-4b2c-8f03-66794f9b0cda"
-        ],
-        "generated": true,
-        "currentRound": 0,
-        "rounds": [
+            "isFinal": false
+          },
           {
-            "heats": [
+            "matchups": [
               {
-                "playerIds": [
-                  "f166c06a-47fb-47a4-b937-944d2173a7c7",
-                  "7eb933c0-e255-4a37-a996-ba6206308715",
-                  "cf3b629b-a31b-493c-93ab-21121f06d9f0"
-                ],
-                "eliminatedPlayerIds": [
-                  "f166c06a-47fb-47a4-b937-944d2173a7c7",
-                  "7eb933c0-e255-4a37-a996-ba6206308715"
-                ],
+                "player1": {
+                  "playerId": "2fc8d31d-1bdc-4baa-9e33-4cfa0c41a516",
+                  "seed": null,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": null,
+                  "seed": null,
+                  "score": null
+                },
+                "winnerPlayerId": null,
                 "bye": false
               },
               {
-                "playerIds": [
-                  "2ace2ddb-4c14-4c09-956f-890ff6cc9e6b",
-                  "a3214156-556f-4eac-8061-f6d72465a3e9",
-                  "d18de6a4-5669-4625-8768-0ac54a141e0c"
-                ],
-                "eliminatedPlayerIds": [
-                  "2ace2ddb-4c14-4c09-956f-890ff6cc9e6b"
-                ],
+                "player1": {
+                  "playerId": "be4e8e16-a645-4139-8410-588c3828b4d2",
+                  "seed": null,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": null,
+                  "seed": null,
+                  "score": null
+                },
+                "winnerPlayerId": null,
                 "bye": false
               },
               {
-                "playerIds": [
-                  "f0f3523b-99b9-41ae-accf-214c26f2f1bc",
-                  "740947a6-bbea-4ec7-9db7-e9a18211cd17",
-                  "558a4251-1bee-49f7-a00a-f016cca86302"
-                ],
-                "eliminatedPlayerIds": [],
+                "player1": {
+                  "playerId": "519a95ef-1dfe-48ae-9280-cd1a76a58bcf",
+                  "seed": null,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": null,
+                  "seed": null,
+                  "score": null
+                },
+                "winnerPlayerId": null,
                 "bye": false
               },
               {
-                "playerIds": [
-                  "5130dc36-1db3-4244-9931-18656a433521",
-                  "1f3315dd-ddd2-474d-9618-392fc3929e1d",
-                  "e8b2152b-7dd4-4b2c-8f03-66794f9b0cda"
-                ],
-                "eliminatedPlayerIds": [],
+                "player1": {
+                  "playerId": "1179f412-72f4-4b77-a4e9-6e9ce0f2757f",
+                  "seed": null,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": null,
+                  "seed": null,
+                  "score": null
+                },
+                "winnerPlayerId": null,
                 "bye": false
               }
             ],
-            "complete": false
-          }
-        ],
-        "championPlayerId": null,
-        "history": []
-      }
-    },
-    {
-      "snapshot": {
-        "mode": "murderball",
-        "settings": {
-          "laneCount": 3
-        },
-        "entrantPlayerIds": [
-          "f166c06a-47fb-47a4-b937-944d2173a7c7",
-          "7eb933c0-e255-4a37-a996-ba6206308715",
-          "cf3b629b-a31b-493c-93ab-21121f06d9f0",
-          "2ace2ddb-4c14-4c09-956f-890ff6cc9e6b",
-          "a3214156-556f-4eac-8061-f6d72465a3e9",
-          "d18de6a4-5669-4625-8768-0ac54a141e0c",
-          "f0f3523b-99b9-41ae-accf-214c26f2f1bc",
-          "740947a6-bbea-4ec7-9db7-e9a18211cd17",
-          "558a4251-1bee-49f7-a00a-f016cca86302",
-          "5130dc36-1db3-4244-9931-18656a433521",
-          "1f3315dd-ddd2-474d-9618-392fc3929e1d",
-          "e8b2152b-7dd4-4b2c-8f03-66794f9b0cda"
-        ],
-        "generated": true,
-        "currentRound": 0,
-        "rounds": [
+            "isFinal": false
+          },
           {
-            "heats": [
+            "matchups": [
               {
-                "playerIds": [
-                  "f166c06a-47fb-47a4-b937-944d2173a7c7",
-                  "7eb933c0-e255-4a37-a996-ba6206308715",
-                  "cf3b629b-a31b-493c-93ab-21121f06d9f0"
-                ],
-                "eliminatedPlayerIds": [
-                  "f166c06a-47fb-47a4-b937-944d2173a7c7",
-                  "7eb933c0-e255-4a37-a996-ba6206308715"
-                ],
+                "player1": {
+                  "playerId": null,
+                  "seed": null,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": null,
+                  "seed": null,
+                  "score": null
+                },
+                "winnerPlayerId": null,
                 "bye": false
               },
               {
-                "playerIds": [
-                  "2ace2ddb-4c14-4c09-956f-890ff6cc9e6b",
-                  "a3214156-556f-4eac-8061-f6d72465a3e9",
-                  "d18de6a4-5669-4625-8768-0ac54a141e0c"
-                ],
-                "eliminatedPlayerIds": [],
-                "bye": false
-              },
-              {
-                "playerIds": [
-                  "f0f3523b-99b9-41ae-accf-214c26f2f1bc",
-                  "740947a6-bbea-4ec7-9db7-e9a18211cd17",
-                  "558a4251-1bee-49f7-a00a-f016cca86302"
-                ],
-                "eliminatedPlayerIds": [],
-                "bye": false
-              },
-              {
-                "playerIds": [
-                  "5130dc36-1db3-4244-9931-18656a433521",
-                  "1f3315dd-ddd2-474d-9618-392fc3929e1d",
-                  "e8b2152b-7dd4-4b2c-8f03-66794f9b0cda"
-                ],
-                "eliminatedPlayerIds": [],
+                "player1": {
+                  "playerId": null,
+                  "seed": null,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": null,
+                  "seed": null,
+                  "score": null
+                },
+                "winnerPlayerId": null,
                 "bye": false
               }
             ],
-            "complete": false
+            "isFinal": false
+          },
+          {
+            "matchups": [
+              {
+                "player1": {
+                  "playerId": null,
+                  "seed": null,
+                  "score": null
+                },
+                "player2": {
+                  "playerId": null,
+                  "seed": null,
+                  "score": null
+                },
+                "winnerPlayerId": null,
+                "bye": false
+              }
+            ],
+            "isFinal": true
           }
         ],
         "championPlayerId": null,
