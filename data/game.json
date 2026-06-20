@@ -1,7 +1,7 @@
 {
-  "status": "live",
-  "visitorTeamId": "dbeb2ee5-29c3-4d7c-8c35-a80b9cb4638a",
-  "homeTeamId": "a58ed2f8-e271-4a19-8b7c-6596b319a0a1",
+  "status": "setup",
+  "visitorTeamId": null,
+  "homeTeamId": null,
   "visitorInnings": [
     null,
     null,
@@ -26,50 +26,28 @@
   ],
   "currentInning": 1,
   "currentHalf": "top",
-  "pitcherPlayerId": "dc32d91a-bc87-4cff-afd7-468571674c90",
-  "batterPlayerId": "be4e8e16-a645-4139-8410-588c3828b4d2",
+  "pitcherPlayerId": null,
+  "batterPlayerId": null,
   "pitcherFallback": "",
   "batterFallback": "",
   "bases": {
-    "first": true,
-    "second": true,
+    "first": false,
+    "second": false,
     "third": false
   },
-  "outs": 2,
-  "balls": 2,
+  "outs": 0,
+  "balls": 0,
   "inningsPlayed": 0,
   "visitorLineup": {
-    "battingOrder": [
-      "2fc8d31d-1bdc-4baa-9e33-4cfa0c41a516",
-      "1179f412-72f4-4b77-a4e9-6e9ce0f2757f",
-      "be4e8e16-a645-4139-8410-588c3828b4d2",
-      "73e781e3-69e9-461e-bd9a-de40fe64a2a0"
-    ],
-    "pitchingRotation": [
-      "2fc8d31d-1bdc-4baa-9e33-4cfa0c41a516",
-      "1179f412-72f4-4b77-a4e9-6e9ce0f2757f",
-      "be4e8e16-a645-4139-8410-588c3828b4d2",
-      "73e781e3-69e9-461e-bd9a-de40fe64a2a0"
-    ],
-    "battingIndex": 2,
+    "battingOrder": [],
+    "pitchingRotation": [],
+    "battingIndex": 0,
     "pitchingIndex": 0
   },
   "homeLineup": {
-    "battingOrder": [
-      "dc32d91a-bc87-4cff-afd7-468571674c90",
-      "60a6eb52-9d1f-48ba-a0dd-07538c79c221",
-      "519a95ef-1dfe-48ae-9280-cd1a76a58bcf",
-      "c18b9f12-83bb-48bc-b214-0c662830aaa9",
-      "794d66e7-cd72-4e11-9e66-518cd00cf4fb"
-    ],
-    "pitchingRotation": [
-      "519a95ef-1dfe-48ae-9280-cd1a76a58bcf",
-      "dc32d91a-bc87-4cff-afd7-468571674c90",
-      "60a6eb52-9d1f-48ba-a0dd-07538c79c221",
-      "c18b9f12-83bb-48bc-b214-0c662830aaa9",
-      "794d66e7-cd72-4e11-9e66-518cd00cf4fb"
-    ],
+    "battingOrder": [],
+    "pitchingRotation": [],
     "battingIndex": 0,
-    "pitchingIndex": 1
+    "pitchingIndex": 0
   }
 }

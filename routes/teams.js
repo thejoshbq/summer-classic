@@ -1,5 +1,5 @@
 const express = require('express');
-const { teams, players, standings, game } = require('../lib/stores');
+const { teams, players, standings, game, draft } = require('../lib/stores');
 const { uid } = require('../lib/ids');
 
 const router = express.Router();
@@ -57,6 +57,17 @@ router.delete('/:id', async (req, res) => {
     if (curr.visitorTeamId === id) curr.visitorTeamId = null;
     if (curr.homeTeamId === id) curr.homeTeamId = null;
     return curr;
+  });
+
+  // Cascade: strip from draft teamOrder and picks
+  await draft.update(d => {
+    d.teamOrder = (d.teamOrder || []).filter(tid => tid !== id);
+    d.picks = (d.picks || []).filter(pick => pick.teamId !== id);
+    // If active and fewer than 2 teams remain, auto-end the draft
+    if (d.status === 'active' && (d.teamOrder || []).length < 2) {
+      d.status = 'ended';
+    }
+    return d;
   });
 
   res.json(teams.get());

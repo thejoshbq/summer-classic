@@ -7,7 +7,8 @@ function renderTv() {
   const modes = [
     { id: 'standings', label: 'Standings', desc: 'Season leaderboard' },
     { id: 'bracket', label: 'Bracket', desc: 'Murderball / Derby (whichever is active in admin)' },
-    { id: 'scoreboard', label: 'Scoreboard', desc: 'Championship Game live + final' }
+    { id: 'scoreboard', label: 'Scoreboard', desc: 'Championship Game live + final' },
+    { id: 'draft', label: 'Draft', desc: 'Captain draft grid (Day 2 / Opening Day)' }
   ];
 
   root.innerHTML = `

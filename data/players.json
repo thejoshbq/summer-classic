@@ -2,17 +2,113 @@
   {
     "id": "2fc8d31d-1bdc-4baa-9e33-4cfa0c41a516",
     "name": "Josh Boquiren",
-    "scoutScore": null
+    "scoutScore": 0,
+    "variations": [
+      {
+        "name": "Fastball",
+        "throws": [
+          5,
+          4,
+          4,
+          4,
+          5
+        ]
+      },
+      {
+        "name": "Switch-Up",
+        "throws": [
+          4,
+          4,
+          3,
+          1,
+          4
+        ]
+      },
+      {
+        "name": "Curveball",
+        "throws": [
+          5,
+          4,
+          4,
+          5,
+          4
+        ]
+      }
+    ]
   },
   {
     "id": "519a95ef-1dfe-48ae-9280-cd1a76a58bcf",
     "name": "Macy Boquiren",
-    "scoutScore": null
+    "scoutScore": 0,
+    "variations": [
+      {
+        "name": "Fastball",
+        "throws": [
+          3,
+          2,
+          5,
+          1,
+          2
+        ]
+      },
+      {
+        "name": "Switch-Up",
+        "throws": [
+          2,
+          0,
+          1,
+          0,
+          3
+        ]
+      },
+      {
+        "name": "Curveball",
+        "throws": [
+          0,
+          3,
+          1,
+          0,
+          0
+        ]
+      }
+    ]
   },
   {
     "id": "1179f412-72f4-4b77-a4e9-6e9ce0f2757f",
     "name": "Eric Gage",
-    "scoutScore": null
+    "scoutScore": 0,
+    "variations": [
+      {
+        "name": "Fastball",
+        "throws": [
+          4,
+          5,
+          5,
+          5,
+          4
+        ]
+      },
+      {
+        "name": "Switch-Up",
+        "throws": [
+          4,
+          4,
+          0,
+          4,
+          4
+        ]
+      },
+      {
+        "name": "Curveball",
+        "throws": [
+          0,
+          5,
+          4,
+          3,
+          4
+        ]
+      }
+    ]
   },
   {
     "id": "be4e8e16-a645-4139-8410-588c3828b4d2",

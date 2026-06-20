@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Summer Classic — Captain Draft</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/shared/brand.css">
+<link rel="stylesheet" href="/shared/shell.css">
+<style>
+  .board-body {
+    overflow-y: auto;
+    align-content: start;
+  }
+
+  .draft-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1.4%;
+    padding: 1.6% 2.6%;
+    align-content: start;
+  }
+
+  /* Player card */
+  .player-card {
+    background: var(--dark-navy);
+    border: 1px solid var(--divider);
+    border-radius: 8px;
+    padding: 10px 12px 12px;
+    cursor: pointer;
+    transition: border-color 0.15s, background 0.15s;
+    user-select: none;
+  }
+
+  .player-card:not(.is-drafted):hover {
+    border-color: var(--teal);
+    background: rgba(25, 106, 115, 0.18);
+  }
+
+  .player-card.is-drafted {
+    opacity: 0.4;
+    cursor: default;
+  }
+
+  .card-head {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    margin-bottom: 8px;
+  }
+
+  .avatar-circle {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 2px dashed var(--teal);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    font-size: clamp(11px, 1.1vw, 16px);
+    color: var(--teal);
+    letter-spacing: 0.04em;
+  }
+
+  .name-block {
+    min-width: 0;
+    flex: 1;
+  }
+
+  .player-name {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    font-size: clamp(11px, 1.1vw, 16px);
+    color: #fff;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+
+  .is-drafted .player-name {
+    color: var(--white-faint);
+    text-decoration: line-through;
+  }
+
+  .cumulative {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 500;
+    font-size: clamp(9px, 0.85vw, 12px);
+    color: rgba(255, 255, 255, 0.4);
+    margin-top: 1px;
+  }
+
+  .draft-badge {
+    display: inline-block;
+    background: var(--teal);
+    color: #fff;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    font-size: clamp(9px, 0.85vw, 11px);
+    padding: 2px 6px;
+    border-radius: 3px;
+    letter-spacing: 0.04em;
+    margin-top: 3px;
+    max-width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* Variation bars */
+  .variations {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .var-row {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .var-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 500;
+    font-size: clamp(8px, 0.75vw, 10px);
+    color: rgba(255, 255, 255, 0.45);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    width: 58px;
+    flex-shrink: 0;
+  }
+
+  .bar-track {
+    flex: 1;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+
+  .bar-fill {
+    height: 100%;
+    border-radius: 3px;
+    transition: width 0.3s ease;
+  }
+
+  .bar-fill.var-0 { background: var(--orange); }
+  .bar-fill.var-1 { background: var(--teal); }
+  .bar-fill.var-2 { background: var(--red-orange); }
+
+  .var-pct {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 500;
+    font-size: clamp(8px, 0.75vw, 10px);
+    color: rgba(255, 255, 255, 0.4);
+    width: 26px;
+    text-align: right;
+    flex-shrink: 0;
+  }
+
+  /* Header badge repurposed for round/pick */
+  .draft-badge-header {
+    background: var(--teal);
+    border-radius: 6px;
+    padding: 0.5em 1em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.1em;
+    min-width: 5.5vw;
+    text-align: center;
+  }
+
+  .draft-badge-header .badge-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: clamp(9px, 0.9vw, 13px);
+    color: rgba(255, 255, 255, 0.8);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .draft-badge-header .badge-value {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: clamp(13px, 1.8vw, 28px);
+    color: #fff;
+    line-height: 1;
+    white-space: nowrap;
+  }
+
+  /* Subtitle clock text */
+  .clock-subtitle {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: clamp(11px, 1.1vw, 16px);
+    color: var(--orange);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  /* Toast for race errors */
+  #pick-toast {
+    position: fixed;
+    bottom: 3%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(13, 54, 80, 0.95);
+    border: 1px solid var(--orange);
+    color: var(--orange);
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    font-size: clamp(11px, 1.1vw, 15px);
+    padding: 8px 20px;
+    border-radius: 6px;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s;
+    letter-spacing: 0.06em;
+    z-index: 100;
+  }
+
+  #pick-toast.show { opacity: 1; }
+
+  /* Committed banner */
+  .committed-banner {
+    background: rgba(242, 143, 22, 0.12);
+    border-bottom: 1px solid var(--orange);
+    padding: 0.6% 2.6%;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    font-size: clamp(11px, 1.1vw, 16px);
+    color: var(--orange);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-align: center;
+    flex-shrink: 0;
+  }
+</style>
+</head>
+<body>
+<div class="board">
+  <header class="board-header">
+    <div class="header-brand">
+      <img src="/shared/logo.png" class="header-logo" alt="Lumber Jill's">
+      <div class="header-left">
+        <span class="venue-name">Lumber Jill's</span>
+        <span class="board-title">Captain Draft</span>
+        <span class="board-subtitle" id="draft-subtitle">DRAFT NOT STARTED</span>
+      </div>
+    </div>
+    <div class="draft-badge-header" id="draft-badge">
+      <span class="badge-label">Round / Pick</span>
+      <span class="badge-value" id="badge-value">—</span>
+    </div>
+  </header>
+
+  <div id="committed-banner" class="committed-banner" style="display:none">
+    DRAFT COMPLETE — switch TV display to Standings, Bracket, or Scoreboard.
+  </div>
+
+  <div class="board-body">
+    <div class="draft-grid" id="draft-grid"></div>
+  </div>
+
+  <footer class="board-footer">
+    <span class="tagline">Have fun. Build community. Give back.</span>
+  </footer>
+</div>
+
+<div id="pick-toast"></div>
+
+<script src="/shared/poll.js"></script>
+<script>
+// ── Rating math ──────────────────────────────────────────────────────
+const MAX_SCORE = 5;
+const MAX_SPREAD = 2.5;
+
+function clamp01(v) { return Math.max(0, Math.min(1, v)); }
+
+function variationRating(throws) {
+  if (!throws || throws.length === 0) return 0;
+  const n = throws.length;
+  const mean = throws.reduce((s, v) => s + v, 0) / n;
+  const variance = throws.reduce((s, v) => s + (v - mean) ** 2, 0) / n;
+  const sd = Math.sqrt(variance);
+  return clamp01(0.65 * (mean / MAX_SCORE) + 0.35 * (1 - sd / MAX_SPREAD));
+}
+
+// ── Avatar initials (Unicode-safe) ───────────────────────────────────
+function initials(name) {
+  const words = String(name || '').split(/\s+/).filter(Boolean);
+  const chars = words.map(w => Array.from(w)[0] || '').join('');
+  return Array.from(chars).slice(0, 2).join('').toUpperCase();
+}
+
+// ── State ─────────────────────────────────────────────────────────────
+let currentDraftState = null;
+let currentPlayers = [];
+let currentTeams = [];
+let pickInFlight = false;     // module-scope debounce guard
+
+// ── Render ────────────────────────────────────────────────────────────
+function getTeamName(teamId) {
+  const t = currentTeams.find(x => x.id === teamId);
+  return t ? t.name : teamId;
+}
+
+function renderPlayerCard(player, draftState) {
+  const pickedEntry = (draftState.picks || []).find(p => p.playerId === player.id);
+  const isDrafted = !!pickedEntry;
+  const variations = player.variations || [];
+
+  const cumSum = variations.reduce((s, v) => s + (v.throws || []).reduce((a, b) => a + b, 0), 0);
+  const maxCum = (variations.length || 0) * 5 * (variations[0]?.throws?.length || 5);
+
+  const bars = variations.map((v, i) => {
+    const rating = variationRating(v.throws);
+    const pct = Math.round(rating * 100);
+    return `
+      <div class="var-row">
+        <span class="var-name">${esc(v.name)}</span>
+        <div class="bar-track"><div class="bar-fill var-${i}" style="width:${pct}%"></div></div>
+        <span class="var-pct">${pct}%</span>
+      </div>`;
+  }).join('');
+
+  const badge = isDrafted
+    ? `<div class="draft-badge">&rarr; ${esc(getTeamName(pickedEntry.teamId))}</div>`
+    : '';
+
+  return `
+    <div class="player-card${isDrafted ? ' is-drafted' : ''}" data-player-id="${esc(player.id)}">
+      <div class="card-head">
+        <div class="avatar-circle">${esc(initials(player.name))}</div>
+        <div class="name-block">
+          <div class="player-name">${esc(player.name)}</div>
+          <div class="cumulative">Cumulative ${cumSum} / ${maxCum}</div>
+          ${badge}
+        </div>
+      </div>
+      <div class="variations">${bars}</div>
+    </div>`;
+}
+
+function render(data) {
+  const { players, teams, draft } = data;
+  currentDraftState = draft;
+  currentPlayers = players;
+  currentTeams = teams;
+
+  const grid = document.getElementById('draft-grid');
+  const subtitleEl = document.getElementById('draft-subtitle');
+  const badgeEl = document.getElementById('badge-value');
+  const banner = document.getElementById('committed-banner');
+
+  // Committed banner
+  banner.style.display = draft.status === 'committed' ? 'block' : 'none';
+
+  // Subtitle and badge
+  if (draft.status === 'setup') {
+    subtitleEl.textContent = 'DRAFT NOT STARTED';
+    subtitleEl.className = 'board-subtitle';
+    badgeEl.textContent = '—';
+  } else if (draft.status === 'active') {
+    const tLen = (draft.teamOrder || []).length;
+    const overall = (draft.picks || []).length + 1;
+    const idx = draft.currentPickIndex % (tLen || 1);
+    const roundIsEven = draft.currentRound % 2 === 0;
+    const onClockId = roundIsEven
+      ? draft.teamOrder[tLen - 1 - idx]
+      : draft.teamOrder[idx];
+    subtitleEl.textContent = `ON THE CLOCK: ${getTeamName(onClockId)}`;
+    subtitleEl.className = 'clock-subtitle';
+    badgeEl.textContent = `R${draft.currentRound} · P${idx + 1}`;
+  } else if (draft.status === 'ended' || draft.status === 'committed') {
+    subtitleEl.textContent = 'DRAFT COMPLETE';
+    subtitleEl.className = 'board-subtitle';
+    badgeEl.textContent = `${(draft.picks || []).length} picks`;
+  }
+
+  // Targeted patch: only toggle .is-drafted on existing cards when possible;
+  // full re-render only when player/team list changes shape.
+  const existingCards = grid.querySelectorAll('[data-player-id]');
+  if (existingCards.length === players.length && !pickInFlight) {
+    // Check if just drafted status changed — patch in place
+    let needFullRender = false;
+    for (const card of existingCards) {
+      const pid = card.dataset.playerId;
+      const isPicked = (draft.picks || []).some(p => p.playerId === pid);
+      const wasDrafted = card.classList.contains('is-drafted');
+      if (isPicked !== wasDrafted) {
+        needFullRender = true;
+        break;
+      }
+    }
+    if (!needFullRender) return; // Nothing changed for cards; header already updated
+  }
+
+  // Full re-render with scroll preservation
+  const scrollTop = grid.parentElement.scrollTop;
+  grid.innerHTML = players.map(p => renderPlayerCard(p, draft)).join('');
+  grid.parentElement.scrollTop = scrollTop;
+}
+
+// ── Pick handler ──────────────────────────────────────────────────────
+document.getElementById('draft-grid').addEventListener('click', e => {
+  if (pickInFlight) return;
+  const card = e.target.closest('.player-card');
+  if (!card) return;
+  if (card.classList.contains('is-drafted')) return;
+  if (!currentDraftState || currentDraftState.status !== 'active') return;
+
+  const playerId = card.dataset.playerId;
+  const expectedOverall = (currentDraftState.picks || []).length + 1;
+
+  // Optimistic UI: mark as drafted immediately
+  card.classList.add('is-drafted');
+  pickInFlight = true;
+
+  fetch('/api/draft/pick', {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ playerId, expectedOverall })
+  })
+  .then(res => res.json().then(data => ({ ok: res.ok, data })))
+  .then(({ ok, data }) => {
+    if (!ok) {
+      card.classList.remove('is-drafted');
+      showToast(data.error || 'Pick failed');
+      forcePoll();
+    }
+  })
+  .catch(() => {
+    card.classList.remove('is-drafted');
+    showToast('Network error — retrying');
+    forcePoll();
+  })
+  .finally(() => { pickInFlight = false; });
+});
+
+// ── Toast ─────────────────────────────────────────────────────────────
+let toastTimer = null;
+function showToast(msg) {
+  const el = document.getElementById('pick-toast');
+  el.textContent = msg;
+  el.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => el.classList.remove('show'), 3000);
+}
+
+// ── Polling (single combined endpoint) ───────────────────────────────
+let forcePollFn = null;
+function forcePoll() { forcePollFn?.(); }
+
+(function startPolling() {
+  let lastJson = '';
+
+  async function tick() {
+    if (pickInFlight) return; // Don't stomp optimistic UI mid-flight
+    try {
+      const res = await fetch('/api/draft/view', { cache: 'no-store' });
+      const data = await res.json();
+      const json = JSON.stringify(data);
+      if (json !== lastJson) {
+        lastJson = json;
+        render(data);
+      }
+    } catch (e) {
+      console.error('draft/view poll error', e);
+    }
+  }
+
+  forcePollFn = tick;
+  tick();
+  setInterval(tick, 2000);
+})();
+</script>
+</body>
+</html>

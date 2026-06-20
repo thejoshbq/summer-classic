@@ -1,4 +1,4 @@
-// Admin entry point: wire tab switching and initial load.
+// Admin entry point: wire tab switching, tab cleanup hooks, and initial load.
 
 const tabRenderers = {
   roster: renderRoster,
@@ -6,10 +6,23 @@ const tabRenderers = {
   standings: renderStandings,
   bracket: renderBracket,
   scoreboard: renderScoreboard,
-  tv: renderTv
+  tv: renderTv,
+  draft: renderDraft
 };
 
+// Each tab module can register a cleanup function (e.g. clear a self-refresh
+// timer) by placing it in tabCleanups. activateTab calls it on tab leave.
+const tabCleanups = {
+  draft: draftCleanup
+};
+
+let currentTabCleanup = null;
+
 function activateTab(name) {
+  // Run the departing tab's cleanup
+  if (typeof currentTabCleanup === 'function') currentTabCleanup();
+  currentTabCleanup = tabCleanups[name] ?? null;
+
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b.dataset.tab === name));
   document.querySelectorAll('.tab-panel').forEach(p => p.classList.toggle('active', p.id === `tab-${name}`));
   tabRenderers[name]?.();
