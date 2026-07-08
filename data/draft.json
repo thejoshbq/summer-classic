@@ -1,9 +1,6 @@
 {
   "status": "setup",
-  "teamOrder": [
-    "dbeb2ee5-29c3-4d7c-8c35-a80b9cb4638a",
-    "07a094b7-22d9-4b9f-9f7d-c4bc434151ba"
-  ],
+  "teamOrder": [],
   "eligiblePlayerIds": [
     "2fc8d31d-1bdc-4baa-9e33-4cfa0c41a516",
     "519a95ef-1dfe-48ae-9280-cd1a76a58bcf",
@@ -12,12 +9,7 @@
     "a346bd45-0fe7-4195-83bd-dbfea9e74ec3",
     "c18b9f12-83bb-48bc-b214-0c662830aaa9",
     "60a6eb52-9d1f-48ba-a0dd-07538c79c221",
-    "73e781e3-69e9-461e-bd9a-de40fe64a2a0",
-    "75ea30e0-4f56-4329-9f9c-e3f79820d116",
-    "d41e76bd-0743-428c-a606-663eebf468b5",
-    "dc32d91a-bc87-4cff-afd7-468571674c90",
-    "794d66e7-cd72-4e11-9e66-518cd00cf4fb",
-    "0e544317-08c6-4a70-bdf9-aa05665769f4"
+    "75ea30e0-4f56-4329-9f9c-e3f79820d116"
   ],
   "picks": [],
   "currentRound": 1,
