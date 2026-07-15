@@ -22,6 +22,7 @@ app.use('/admin', require('./routes/admin'));
 app.use('/standings', require('./routes/standingsView'));
 app.use('/bracket', require('./routes/bracketView'));
 app.use('/scoreboard', require('./routes/scoreboardView'));
+app.use('/rotation', require('./routes/rotationView'));
 app.use('/draft', require('./routes/draftView'));
 app.use('/tv', require('./routes/tv'));
 
@@ -31,6 +32,7 @@ app.listen(PORT, () => {
   console.log(`  Standings TV:    http://localhost:${PORT}/standings/display`);
   console.log(`  Bracket TV:      http://localhost:${PORT}/bracket/display`);
   console.log(`  Scoreboard TV:   http://localhost:${PORT}/scoreboard/display`);
+  console.log(`  Rotation TV:     http://localhost:${PORT}/rotation/display`);
   console.log(`  Draft TV:        http://localhost:${PORT}/draft/display`);
   console.log(`  Flex TV:         http://localhost:${PORT}/tv/main`);
 });

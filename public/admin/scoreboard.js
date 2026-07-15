@@ -171,6 +171,8 @@ function renderLive(g) {
         <div class="shrink"><button class="danger" id="reset-btn">Reset Game</button></div>
         <div style="flex:1;text-align:right;font-size:12px;color:#888">
           <a href="/scoreboard/display" target="_blank" style="color:#196A73;font-weight:600">Open scoreboard display →</a>
+          &nbsp;·&nbsp;
+          <a href="/rotation/display" target="_blank" style="color:#196A73;font-weight:600">Open rotation display →</a>
         </div>
       </div>
     </div>
