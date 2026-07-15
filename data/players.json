@@ -44,29 +44,29 @@
       {
         "name": "Fastball",
         "throws": [
-          3,
-          2,
-          5,
-          1,
-          2
+          0,
+          4,
+          0,
+          0,
+          0
         ]
       },
       {
         "name": "Switch-Up",
         "throws": [
-          2,
+          3,
           0,
-          1,
           0,
-          3
+          0,
+          0
         ]
       },
       {
         "name": "Curveball",
         "throws": [
           0,
-          3,
-          1,
+          0,
+          0,
           0,
           0
         ]
@@ -111,28 +111,484 @@
     ]
   },
   {
-    "id": "be4e8e16-a645-4139-8410-588c3828b4d2",
-    "name": "Corey DeVore",
-    "scoutScore": null
+    "id": "ca95062d-ca4b-480b-bebd-b3d7caf96b86",
+    "name": "Elias Tupper",
+    "scoutScore": 0,
+    "variations": [
+      {
+        "name": "Fastball",
+        "throws": [
+          0,
+          0,
+          0,
+          3,
+          5
+        ]
+      },
+      {
+        "name": "Switch-Up",
+        "throws": [
+          3,
+          2,
+          0,
+          1,
+          2
+        ]
+      },
+      {
+        "name": "Curveball",
+        "throws": [
+          3,
+          5,
+          3,
+          4,
+          3
+        ]
+      }
+    ]
   },
   {
-    "id": "a346bd45-0fe7-4195-83bd-dbfea9e74ec3",
-    "name": "Gabe Foust",
-    "scoutScore": null
+    "id": "0fc94749-e39c-4256-a963-40e431cc86af",
+    "name": "Hanna Limehouse",
+    "scoutScore": null,
+    "variations": [
+      {
+        "name": "Fastball",
+        "throws": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "Switch-Up",
+        "throws": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "Curveball",
+        "throws": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      }
+    ]
   },
   {
-    "id": "c18b9f12-83bb-48bc-b214-0c662830aaa9",
-    "name": "Jess Foust",
-    "scoutScore": null
+    "id": "3b5acd49-1033-4d5e-8318-5b3be27215f6",
+    "name": "Kenny Limehouse",
+    "scoutScore": 0,
+    "variations": [
+      {
+        "name": "Fastball",
+        "throws": [
+          2,
+          5,
+          5,
+          0,
+          2
+        ]
+      },
+      {
+        "name": "Switch-Up",
+        "throws": [
+          5,
+          5,
+          0,
+          0,
+          5
+        ]
+      },
+      {
+        "name": "Curveball",
+        "throws": [
+          0,
+          4,
+          2,
+          0,
+          1
+        ]
+      }
+    ]
   },
   {
-    "id": "60a6eb52-9d1f-48ba-a0dd-07538c79c221",
-    "name": "Emma Foust",
-    "scoutScore": null
+    "id": "d59fe7cd-cf85-479c-a43c-96b226ed33b4",
+    "name": "Adrianne Dukes",
+    "scoutScore": 0,
+    "variations": [
+      {
+        "name": "Fastball",
+        "throws": [
+          4,
+          4,
+          2,
+          5,
+          4
+        ]
+      },
+      {
+        "name": "Switch-Up",
+        "throws": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "Curveball",
+        "throws": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      }
+    ]
   },
   {
-    "id": "75ea30e0-4f56-4329-9f9c-e3f79820d116",
+    "id": "1596070c-fa36-4599-9018-907dbb67a142",
+    "name": "Dylan Dukes",
+    "scoutScore": 0,
+    "variations": [
+      {
+        "name": "Fastball",
+        "throws": [
+          1,
+          3,
+          3,
+          4,
+          0
+        ]
+      },
+      {
+        "name": "Switch-Up",
+        "throws": [
+          0,
+          3,
+          3,
+          4,
+          4
+        ]
+      },
+      {
+        "name": "Curveball",
+        "throws": [
+          3,
+          3,
+          0,
+          0,
+          3
+        ]
+      }
+    ]
+  },
+  {
+    "id": "576590a1-2cfb-4aa1-ba14-9af7ea3880a4",
+    "name": "Mya Dowdy",
+    "scoutScore": 0,
+    "variations": [
+      {
+        "name": "Fastball",
+        "throws": [
+          3,
+          2,
+          4,
+          0,
+          4
+        ]
+      },
+      {
+        "name": "Switch-Up",
+        "throws": [
+          0,
+          0,
+          0,
+          4,
+          1
+        ]
+      },
+      {
+        "name": "Curveball",
+        "throws": [
+          0,
+          0,
+          0,
+          3,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "id": "0fca418c-e7fd-4bbd-893f-005f6ff99439",
+    "name": "Ross Reynoldson",
+    "scoutScore": 0,
+    "variations": [
+      {
+        "name": "Fastball",
+        "throws": [
+          5,
+          5,
+          5,
+          5,
+          4
+        ]
+      },
+      {
+        "name": "Switch-Up",
+        "throws": [
+          4,
+          4,
+          0,
+          2,
+          4
+        ]
+      },
+      {
+        "name": "Curveball",
+        "throws": [
+          3,
+          0,
+          0,
+          5,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "id": "c658b92c-b67e-4763-ba13-f41b796739ac",
     "name": "Aly Baynard",
-    "scoutScore": null
+    "scoutScore": 0,
+    "variations": [
+      {
+        "name": "Fastball",
+        "throws": [
+          2,
+          3,
+          4,
+          5,
+          4
+        ]
+      },
+      {
+        "name": "Switch-Up",
+        "throws": [
+          4,
+          0,
+          4,
+          5,
+          0
+        ]
+      },
+      {
+        "name": "Curveball",
+        "throws": [
+          3,
+          0,
+          0,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "id": "428e4456-7811-4ddd-9cf6-b52f6012dd20",
+    "name": "Corey DeVore",
+    "scoutScore": null,
+    "variations": [
+      {
+        "name": "Fastball",
+        "throws": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "Switch-Up",
+        "throws": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "Curveball",
+        "throws": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "id": "72eddca1-a03c-49f7-bf02-27bffd992ed0",
+    "name": "Will Forbes",
+    "scoutScore": null,
+    "variations": [
+      {
+        "name": "Fastball",
+        "throws": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "Switch-Up",
+        "throws": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "Curveball",
+        "throws": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "id": "05d38d15-6ce8-4813-98f7-ba9df43c870a",
+    "name": "Gabe Foust",
+    "scoutScore": null,
+    "variations": [
+      {
+        "name": "Fastball",
+        "throws": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "Switch-Up",
+        "throws": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "Curveball",
+        "throws": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "id": "937da882-dff9-4e42-ad27-7d4253a4b53e",
+    "name": "Emma Foust",
+    "scoutScore": null,
+    "variations": [
+      {
+        "name": "Fastball",
+        "throws": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "Switch-Up",
+        "throws": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "Curveball",
+        "throws": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "id": "688419ef-cbe0-454b-b392-106cebe091ac",
+    "name": "Kyleigh Lee",
+    "scoutScore": null,
+    "variations": [
+      {
+        "name": "Fastball",
+        "throws": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "Switch-Up",
+        "throws": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "Curveball",
+        "throws": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      }
+    ]
   }
 ]

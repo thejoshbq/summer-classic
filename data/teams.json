@@ -1,1 +1,28 @@
-[]
+[
+  {
+    "id": "c8a2f1e4-30b3-4c64-b88c-869425649a56",
+    "name": "We Throw Stuff",
+    "playerIds": [
+      "1596070c-fa36-4599-9018-907dbb67a142",
+      "2fc8d31d-1bdc-4baa-9e33-4cfa0c41a516",
+      "0fca418c-e7fd-4bbd-893f-005f6ff99439",
+      "576590a1-2cfb-4aa1-ba14-9af7ea3880a4",
+      "519a95ef-1dfe-48ae-9280-cd1a76a58bcf",
+      "72eddca1-a03c-49f7-bf02-27bffd992ed0"
+    ]
+  },
+  {
+    "id": "fec830b6-5be1-4679-94b1-8076ad0f96ac",
+    "name": "Big Axe Energy",
+    "playerIds": [
+      "ca95062d-ca4b-480b-bebd-b3d7caf96b86",
+      "1179f412-72f4-4b77-a4e9-6e9ce0f2757f",
+      "c658b92c-b67e-4763-ba13-f41b796739ac",
+      "0fc94749-e39c-4256-a963-40e431cc86af",
+      "428e4456-7811-4ddd-9cf6-b52f6012dd20",
+      "05d38d15-6ce8-4813-98f7-ba9df43c870a",
+      "937da882-dff9-4e42-ad27-7d4253a4b53e",
+      "688419ef-cbe0-454b-b392-106cebe091ac"
+    ]
+  }
+]

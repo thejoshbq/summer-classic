@@ -1,20 +1,726 @@
 {
-  "status": "setup",
-  "teamOrder": [],
+  "status": "committed",
+  "teamOrder": [
+    "c8a2f1e4-30b3-4c64-b88c-869425649a56",
+    "fec830b6-5be1-4679-94b1-8076ad0f96ac"
+  ],
   "eligiblePlayerIds": [
     "2fc8d31d-1bdc-4baa-9e33-4cfa0c41a516",
-    "519a95ef-1dfe-48ae-9280-cd1a76a58bcf",
     "1179f412-72f4-4b77-a4e9-6e9ce0f2757f",
-    "be4e8e16-a645-4139-8410-588c3828b4d2",
-    "a346bd45-0fe7-4195-83bd-dbfea9e74ec3",
-    "c18b9f12-83bb-48bc-b214-0c662830aaa9",
-    "60a6eb52-9d1f-48ba-a0dd-07538c79c221",
-    "75ea30e0-4f56-4329-9f9c-e3f79820d116"
+    "519a95ef-1dfe-48ae-9280-cd1a76a58bcf",
+    "ca95062d-ca4b-480b-bebd-b3d7caf96b86",
+    "0fc94749-e39c-4256-a963-40e431cc86af",
+    "3b5acd49-1033-4d5e-8318-5b3be27215f6",
+    "d59fe7cd-cf85-479c-a43c-96b226ed33b4",
+    "1596070c-fa36-4599-9018-907dbb67a142",
+    "576590a1-2cfb-4aa1-ba14-9af7ea3880a4",
+    "0fca418c-e7fd-4bbd-893f-005f6ff99439",
+    "c658b92c-b67e-4763-ba13-f41b796739ac"
   ],
-  "picks": [],
-  "currentRound": 1,
-  "currentPickIndex": 0,
-  "history": [],
-  "preCommitTeamsSnapshot": null,
-  "committedAt": null
+  "picks": [
+    {
+      "teamId": "c8a2f1e4-30b3-4c64-b88c-869425649a56",
+      "playerId": "1596070c-fa36-4599-9018-907dbb67a142",
+      "round": 1,
+      "pickInRound": 1,
+      "overall": 1
+    },
+    {
+      "teamId": "fec830b6-5be1-4679-94b1-8076ad0f96ac",
+      "playerId": "ca95062d-ca4b-480b-bebd-b3d7caf96b86",
+      "round": 1,
+      "pickInRound": 2,
+      "overall": 2
+    },
+    {
+      "teamId": "fec830b6-5be1-4679-94b1-8076ad0f96ac",
+      "playerId": "1179f412-72f4-4b77-a4e9-6e9ce0f2757f",
+      "round": 2,
+      "pickInRound": 1,
+      "overall": 3
+    },
+    {
+      "teamId": "c8a2f1e4-30b3-4c64-b88c-869425649a56",
+      "playerId": "2fc8d31d-1bdc-4baa-9e33-4cfa0c41a516",
+      "round": 2,
+      "pickInRound": 2,
+      "overall": 4
+    },
+    {
+      "teamId": "c8a2f1e4-30b3-4c64-b88c-869425649a56",
+      "playerId": "0fca418c-e7fd-4bbd-893f-005f6ff99439",
+      "round": 3,
+      "pickInRound": 1,
+      "overall": 5
+    },
+    {
+      "teamId": "fec830b6-5be1-4679-94b1-8076ad0f96ac",
+      "playerId": "c658b92c-b67e-4763-ba13-f41b796739ac",
+      "round": 3,
+      "pickInRound": 2,
+      "overall": 6
+    },
+    {
+      "teamId": "fec830b6-5be1-4679-94b1-8076ad0f96ac",
+      "playerId": "0fc94749-e39c-4256-a963-40e431cc86af",
+      "round": 4,
+      "pickInRound": 1,
+      "overall": 7
+    },
+    {
+      "teamId": "c8a2f1e4-30b3-4c64-b88c-869425649a56",
+      "playerId": "576590a1-2cfb-4aa1-ba14-9af7ea3880a4",
+      "round": 4,
+      "pickInRound": 2,
+      "overall": 8
+    },
+    {
+      "teamId": "c8a2f1e4-30b3-4c64-b88c-869425649a56",
+      "playerId": "519a95ef-1dfe-48ae-9280-cd1a76a58bcf",
+      "round": 5,
+      "pickInRound": 1,
+      "overall": 9
+    }
+  ],
+  "currentRound": 5,
+  "currentPickIndex": 1,
+  "history": [
+    {
+      "snapshot": {
+        "status": "active",
+        "teamOrder": [
+          "c8a2f1e4-30b3-4c64-b88c-869425649a56",
+          "fec830b6-5be1-4679-94b1-8076ad0f96ac"
+        ],
+        "eligiblePlayerIds": [
+          "2fc8d31d-1bdc-4baa-9e33-4cfa0c41a516",
+          "1179f412-72f4-4b77-a4e9-6e9ce0f2757f",
+          "519a95ef-1dfe-48ae-9280-cd1a76a58bcf",
+          "ca95062d-ca4b-480b-bebd-b3d7caf96b86",
+          "0fc94749-e39c-4256-a963-40e431cc86af",
+          "3b5acd49-1033-4d5e-8318-5b3be27215f6",
+          "d59fe7cd-cf85-479c-a43c-96b226ed33b4",
+          "1596070c-fa36-4599-9018-907dbb67a142",
+          "576590a1-2cfb-4aa1-ba14-9af7ea3880a4",
+          "0fca418c-e7fd-4bbd-893f-005f6ff99439",
+          "c658b92c-b67e-4763-ba13-f41b796739ac"
+        ],
+        "picks": [
+          {
+            "teamId": "c8a2f1e4-30b3-4c64-b88c-869425649a56",
+            "playerId": "1596070c-fa36-4599-9018-907dbb67a142",
+            "round": 1,
+            "pickInRound": 1,
+            "overall": 1
+          },
+          {
+            "teamId": "fec830b6-5be1-4679-94b1-8076ad0f96ac",
+            "playerId": "ca95062d-ca4b-480b-bebd-b3d7caf96b86",
+            "round": 1,
+            "pickInRound": 2,
+            "overall": 2
+          },
+          {
+            "teamId": "fec830b6-5be1-4679-94b1-8076ad0f96ac",
+            "playerId": "1179f412-72f4-4b77-a4e9-6e9ce0f2757f",
+            "round": 2,
+            "pickInRound": 1,
+            "overall": 3
+          },
+          {
+            "teamId": "c8a2f1e4-30b3-4c64-b88c-869425649a56",
+            "playerId": "2fc8d31d-1bdc-4baa-9e33-4cfa0c41a516",
+            "round": 2,
+            "pickInRound": 2,
+            "overall": 4
+          },
+          {
+            "teamId": "c8a2f1e4-30b3-4c64-b88c-869425649a56",
+            "playerId": "0fca418c-e7fd-4bbd-893f-005f6ff99439",
+            "round": 3,
+            "pickInRound": 1,
+            "overall": 5
+          },
+          {
+            "teamId": "fec830b6-5be1-4679-94b1-8076ad0f96ac",
+            "playerId": "c658b92c-b67e-4763-ba13-f41b796739ac",
+            "round": 3,
+            "pickInRound": 2,
+            "overall": 6
+          },
+          {
+            "teamId": "fec830b6-5be1-4679-94b1-8076ad0f96ac",
+            "playerId": "0fc94749-e39c-4256-a963-40e431cc86af",
+            "round": 4,
+            "pickInRound": 1,
+            "overall": 7
+          },
+          {
+            "teamId": "c8a2f1e4-30b3-4c64-b88c-869425649a56",
+            "playerId": "576590a1-2cfb-4aa1-ba14-9af7ea3880a4",
+            "round": 4,
+            "pickInRound": 2,
+            "overall": 8
+          },
+          {
+            "teamId": "c8a2f1e4-30b3-4c64-b88c-869425649a56",
+            "playerId": "519a95ef-1dfe-48ae-9280-cd1a76a58bcf",
+            "round": 5,
+            "pickInRound": 1,
+            "overall": 9
+          }
+        ],
+        "currentRound": 5,
+        "currentPickIndex": 1,
+        "history": [],
+        "preCommitTeamsSnapshot": null,
+        "committedAt": null
+      }
+    },
+    {
+      "snapshot": {
+        "status": "active",
+        "teamOrder": [
+          "c8a2f1e4-30b3-4c64-b88c-869425649a56",
+          "fec830b6-5be1-4679-94b1-8076ad0f96ac"
+        ],
+        "eligiblePlayerIds": [
+          "2fc8d31d-1bdc-4baa-9e33-4cfa0c41a516",
+          "1179f412-72f4-4b77-a4e9-6e9ce0f2757f",
+          "519a95ef-1dfe-48ae-9280-cd1a76a58bcf",
+          "ca95062d-ca4b-480b-bebd-b3d7caf96b86",
+          "0fc94749-e39c-4256-a963-40e431cc86af",
+          "3b5acd49-1033-4d5e-8318-5b3be27215f6",
+          "d59fe7cd-cf85-479c-a43c-96b226ed33b4",
+          "1596070c-fa36-4599-9018-907dbb67a142",
+          "576590a1-2cfb-4aa1-ba14-9af7ea3880a4",
+          "0fca418c-e7fd-4bbd-893f-005f6ff99439",
+          "c658b92c-b67e-4763-ba13-f41b796739ac"
+        ],
+        "picks": [
+          {
+            "teamId": "c8a2f1e4-30b3-4c64-b88c-869425649a56",
+            "playerId": "1596070c-fa36-4599-9018-907dbb67a142",
+            "round": 1,
+            "pickInRound": 1,
+            "overall": 1
+          },
+          {
+            "teamId": "fec830b6-5be1-4679-94b1-8076ad0f96ac",
+            "playerId": "ca95062d-ca4b-480b-bebd-b3d7caf96b86",
+            "round": 1,
+            "pickInRound": 2,
+            "overall": 2
+          },
+          {
+            "teamId": "fec830b6-5be1-4679-94b1-8076ad0f96ac",
+            "playerId": "1179f412-72f4-4b77-a4e9-6e9ce0f2757f",
+            "round": 2,
+            "pickInRound": 1,
+            "overall": 3
+          },
+          {
+            "teamId": "c8a2f1e4-30b3-4c64-b88c-869425649a56",
+            "playerId": "2fc8d31d-1bdc-4baa-9e33-4cfa0c41a516",
+            "round": 2,
+            "pickInRound": 2,
+            "overall": 4
+          },
+          {
+            "teamId": "c8a2f1e4-30b3-4c64-b88c-869425649a56",
+            "playerId": "0fca418c-e7fd-4bbd-893f-005f6ff99439",
+            "round": 3,
+            "pickInRound": 1,
+            "overall": 5
+          },
+          {
+            "teamId": "fec830b6-5be1-4679-94b1-8076ad0f96ac",
+            "playerId": "c658b92c-b67e-4763-ba13-f41b796739ac",
+            "round": 3,
+            "pickInRound": 2,
+            "overall": 6
+          },
+          {
+            "teamId": "fec830b6-5be1-4679-94b1-8076ad0f96ac",
+            "playerId": "0fc94749-e39c-4256-a963-40e431cc86af",
+            "round": 4,
+            "pickInRound": 1,
+            "overall": 7
+          },
+          {
+            "teamId": "c8a2f1e4-30b3-4c64-b88c-869425649a56",
+            "playerId": "576590a1-2cfb-4aa1-ba14-9af7ea3880a4",
+            "round": 4,
+            "pickInRound": 2,
+            "overall": 8
+          }
+        ],
+        "currentRound": 5,
+        "currentPickIndex": 0,
+        "history": [],
+        "preCommitTeamsSnapshot": null,
+        "committedAt": null
+      }
+    },
+    {
+      "snapshot": {
+        "status": "active",
+        "teamOrder": [
+          "c8a2f1e4-30b3-4c64-b88c-869425649a56",
+          "fec830b6-5be1-4679-94b1-8076ad0f96ac"
+        ],
+        "eligiblePlayerIds": [
+          "2fc8d31d-1bdc-4baa-9e33-4cfa0c41a516",
+          "1179f412-72f4-4b77-a4e9-6e9ce0f2757f",
+          "519a95ef-1dfe-48ae-9280-cd1a76a58bcf",
+          "ca95062d-ca4b-480b-bebd-b3d7caf96b86",
+          "0fc94749-e39c-4256-a963-40e431cc86af",
+          "3b5acd49-1033-4d5e-8318-5b3be27215f6",
+          "d59fe7cd-cf85-479c-a43c-96b226ed33b4",
+          "1596070c-fa36-4599-9018-907dbb67a142",
+          "576590a1-2cfb-4aa1-ba14-9af7ea3880a4",
+          "0fca418c-e7fd-4bbd-893f-005f6ff99439",
+          "c658b92c-b67e-4763-ba13-f41b796739ac"
+        ],
+        "picks": [
+          {
+            "teamId": "c8a2f1e4-30b3-4c64-b88c-869425649a56",
+            "playerId": "1596070c-fa36-4599-9018-907dbb67a142",
+            "round": 1,
+            "pickInRound": 1,
+            "overall": 1
+          },
+          {
+            "teamId": "fec830b6-5be1-4679-94b1-8076ad0f96ac",
+            "playerId": "ca95062d-ca4b-480b-bebd-b3d7caf96b86",
+            "round": 1,
+            "pickInRound": 2,
+            "overall": 2
+          },
+          {
+            "teamId": "fec830b6-5be1-4679-94b1-8076ad0f96ac",
+            "playerId": "1179f412-72f4-4b77-a4e9-6e9ce0f2757f",
+            "round": 2,
+            "pickInRound": 1,
+            "overall": 3
+          },
+          {
+            "teamId": "c8a2f1e4-30b3-4c64-b88c-869425649a56",
+            "playerId": "2fc8d31d-1bdc-4baa-9e33-4cfa0c41a516",
+            "round": 2,
+            "pickInRound": 2,
+            "overall": 4
+          },
+          {
+            "teamId": "c8a2f1e4-30b3-4c64-b88c-869425649a56",
+            "playerId": "0fca418c-e7fd-4bbd-893f-005f6ff99439",
+            "round": 3,
+            "pickInRound": 1,
+            "overall": 5
+          },
+          {
+            "teamId": "fec830b6-5be1-4679-94b1-8076ad0f96ac",
+            "playerId": "c658b92c-b67e-4763-ba13-f41b796739ac",
+            "round": 3,
+            "pickInRound": 2,
+            "overall": 6
+          },
+          {
+            "teamId": "fec830b6-5be1-4679-94b1-8076ad0f96ac",
+            "playerId": "0fc94749-e39c-4256-a963-40e431cc86af",
+            "round": 4,
+            "pickInRound": 1,
+            "overall": 7
+          }
+        ],
+        "currentRound": 4,
+        "currentPickIndex": 1,
+        "history": [],
+        "preCommitTeamsSnapshot": null,
+        "committedAt": null
+      }
+    },
+    {
+      "snapshot": {
+        "status": "active",
+        "teamOrder": [
+          "c8a2f1e4-30b3-4c64-b88c-869425649a56",
+          "fec830b6-5be1-4679-94b1-8076ad0f96ac"
+        ],
+        "eligiblePlayerIds": [
+          "2fc8d31d-1bdc-4baa-9e33-4cfa0c41a516",
+          "1179f412-72f4-4b77-a4e9-6e9ce0f2757f",
+          "519a95ef-1dfe-48ae-9280-cd1a76a58bcf",
+          "ca95062d-ca4b-480b-bebd-b3d7caf96b86",
+          "0fc94749-e39c-4256-a963-40e431cc86af",
+          "3b5acd49-1033-4d5e-8318-5b3be27215f6",
+          "d59fe7cd-cf85-479c-a43c-96b226ed33b4",
+          "1596070c-fa36-4599-9018-907dbb67a142",
+          "576590a1-2cfb-4aa1-ba14-9af7ea3880a4",
+          "0fca418c-e7fd-4bbd-893f-005f6ff99439",
+          "c658b92c-b67e-4763-ba13-f41b796739ac"
+        ],
+        "picks": [
+          {
+            "teamId": "c8a2f1e4-30b3-4c64-b88c-869425649a56",
+            "playerId": "1596070c-fa36-4599-9018-907dbb67a142",
+            "round": 1,
+            "pickInRound": 1,
+            "overall": 1
+          },
+          {
+            "teamId": "fec830b6-5be1-4679-94b1-8076ad0f96ac",
+            "playerId": "ca95062d-ca4b-480b-bebd-b3d7caf96b86",
+            "round": 1,
+            "pickInRound": 2,
+            "overall": 2
+          },
+          {
+            "teamId": "fec830b6-5be1-4679-94b1-8076ad0f96ac",
+            "playerId": "1179f412-72f4-4b77-a4e9-6e9ce0f2757f",
+            "round": 2,
+            "pickInRound": 1,
+            "overall": 3
+          },
+          {
+            "teamId": "c8a2f1e4-30b3-4c64-b88c-869425649a56",
+            "playerId": "2fc8d31d-1bdc-4baa-9e33-4cfa0c41a516",
+            "round": 2,
+            "pickInRound": 2,
+            "overall": 4
+          },
+          {
+            "teamId": "c8a2f1e4-30b3-4c64-b88c-869425649a56",
+            "playerId": "0fca418c-e7fd-4bbd-893f-005f6ff99439",
+            "round": 3,
+            "pickInRound": 1,
+            "overall": 5
+          },
+          {
+            "teamId": "fec830b6-5be1-4679-94b1-8076ad0f96ac",
+            "playerId": "c658b92c-b67e-4763-ba13-f41b796739ac",
+            "round": 3,
+            "pickInRound": 2,
+            "overall": 6
+          }
+        ],
+        "currentRound": 4,
+        "currentPickIndex": 0,
+        "history": [],
+        "preCommitTeamsSnapshot": null,
+        "committedAt": null
+      }
+    },
+    {
+      "snapshot": {
+        "status": "active",
+        "teamOrder": [
+          "c8a2f1e4-30b3-4c64-b88c-869425649a56",
+          "fec830b6-5be1-4679-94b1-8076ad0f96ac"
+        ],
+        "eligiblePlayerIds": [
+          "2fc8d31d-1bdc-4baa-9e33-4cfa0c41a516",
+          "1179f412-72f4-4b77-a4e9-6e9ce0f2757f",
+          "519a95ef-1dfe-48ae-9280-cd1a76a58bcf",
+          "ca95062d-ca4b-480b-bebd-b3d7caf96b86",
+          "0fc94749-e39c-4256-a963-40e431cc86af",
+          "3b5acd49-1033-4d5e-8318-5b3be27215f6",
+          "d59fe7cd-cf85-479c-a43c-96b226ed33b4",
+          "1596070c-fa36-4599-9018-907dbb67a142",
+          "576590a1-2cfb-4aa1-ba14-9af7ea3880a4",
+          "0fca418c-e7fd-4bbd-893f-005f6ff99439",
+          "c658b92c-b67e-4763-ba13-f41b796739ac"
+        ],
+        "picks": [
+          {
+            "teamId": "c8a2f1e4-30b3-4c64-b88c-869425649a56",
+            "playerId": "1596070c-fa36-4599-9018-907dbb67a142",
+            "round": 1,
+            "pickInRound": 1,
+            "overall": 1
+          },
+          {
+            "teamId": "fec830b6-5be1-4679-94b1-8076ad0f96ac",
+            "playerId": "ca95062d-ca4b-480b-bebd-b3d7caf96b86",
+            "round": 1,
+            "pickInRound": 2,
+            "overall": 2
+          },
+          {
+            "teamId": "fec830b6-5be1-4679-94b1-8076ad0f96ac",
+            "playerId": "1179f412-72f4-4b77-a4e9-6e9ce0f2757f",
+            "round": 2,
+            "pickInRound": 1,
+            "overall": 3
+          },
+          {
+            "teamId": "c8a2f1e4-30b3-4c64-b88c-869425649a56",
+            "playerId": "2fc8d31d-1bdc-4baa-9e33-4cfa0c41a516",
+            "round": 2,
+            "pickInRound": 2,
+            "overall": 4
+          },
+          {
+            "teamId": "c8a2f1e4-30b3-4c64-b88c-869425649a56",
+            "playerId": "0fca418c-e7fd-4bbd-893f-005f6ff99439",
+            "round": 3,
+            "pickInRound": 1,
+            "overall": 5
+          }
+        ],
+        "currentRound": 3,
+        "currentPickIndex": 1,
+        "history": [],
+        "preCommitTeamsSnapshot": null,
+        "committedAt": null
+      }
+    },
+    {
+      "snapshot": {
+        "status": "active",
+        "teamOrder": [
+          "c8a2f1e4-30b3-4c64-b88c-869425649a56",
+          "fec830b6-5be1-4679-94b1-8076ad0f96ac"
+        ],
+        "eligiblePlayerIds": [
+          "2fc8d31d-1bdc-4baa-9e33-4cfa0c41a516",
+          "1179f412-72f4-4b77-a4e9-6e9ce0f2757f",
+          "519a95ef-1dfe-48ae-9280-cd1a76a58bcf",
+          "ca95062d-ca4b-480b-bebd-b3d7caf96b86",
+          "0fc94749-e39c-4256-a963-40e431cc86af",
+          "3b5acd49-1033-4d5e-8318-5b3be27215f6",
+          "d59fe7cd-cf85-479c-a43c-96b226ed33b4",
+          "1596070c-fa36-4599-9018-907dbb67a142",
+          "576590a1-2cfb-4aa1-ba14-9af7ea3880a4",
+          "0fca418c-e7fd-4bbd-893f-005f6ff99439",
+          "c658b92c-b67e-4763-ba13-f41b796739ac"
+        ],
+        "picks": [
+          {
+            "teamId": "c8a2f1e4-30b3-4c64-b88c-869425649a56",
+            "playerId": "1596070c-fa36-4599-9018-907dbb67a142",
+            "round": 1,
+            "pickInRound": 1,
+            "overall": 1
+          },
+          {
+            "teamId": "fec830b6-5be1-4679-94b1-8076ad0f96ac",
+            "playerId": "ca95062d-ca4b-480b-bebd-b3d7caf96b86",
+            "round": 1,
+            "pickInRound": 2,
+            "overall": 2
+          },
+          {
+            "teamId": "fec830b6-5be1-4679-94b1-8076ad0f96ac",
+            "playerId": "1179f412-72f4-4b77-a4e9-6e9ce0f2757f",
+            "round": 2,
+            "pickInRound": 1,
+            "overall": 3
+          },
+          {
+            "teamId": "c8a2f1e4-30b3-4c64-b88c-869425649a56",
+            "playerId": "2fc8d31d-1bdc-4baa-9e33-4cfa0c41a516",
+            "round": 2,
+            "pickInRound": 2,
+            "overall": 4
+          }
+        ],
+        "currentRound": 3,
+        "currentPickIndex": 0,
+        "history": [],
+        "preCommitTeamsSnapshot": null,
+        "committedAt": null
+      }
+    },
+    {
+      "snapshot": {
+        "status": "active",
+        "teamOrder": [
+          "c8a2f1e4-30b3-4c64-b88c-869425649a56",
+          "fec830b6-5be1-4679-94b1-8076ad0f96ac"
+        ],
+        "eligiblePlayerIds": [
+          "2fc8d31d-1bdc-4baa-9e33-4cfa0c41a516",
+          "1179f412-72f4-4b77-a4e9-6e9ce0f2757f",
+          "519a95ef-1dfe-48ae-9280-cd1a76a58bcf",
+          "ca95062d-ca4b-480b-bebd-b3d7caf96b86",
+          "0fc94749-e39c-4256-a963-40e431cc86af",
+          "3b5acd49-1033-4d5e-8318-5b3be27215f6",
+          "d59fe7cd-cf85-479c-a43c-96b226ed33b4",
+          "1596070c-fa36-4599-9018-907dbb67a142",
+          "576590a1-2cfb-4aa1-ba14-9af7ea3880a4",
+          "0fca418c-e7fd-4bbd-893f-005f6ff99439",
+          "c658b92c-b67e-4763-ba13-f41b796739ac"
+        ],
+        "picks": [
+          {
+            "teamId": "c8a2f1e4-30b3-4c64-b88c-869425649a56",
+            "playerId": "1596070c-fa36-4599-9018-907dbb67a142",
+            "round": 1,
+            "pickInRound": 1,
+            "overall": 1
+          },
+          {
+            "teamId": "fec830b6-5be1-4679-94b1-8076ad0f96ac",
+            "playerId": "ca95062d-ca4b-480b-bebd-b3d7caf96b86",
+            "round": 1,
+            "pickInRound": 2,
+            "overall": 2
+          },
+          {
+            "teamId": "fec830b6-5be1-4679-94b1-8076ad0f96ac",
+            "playerId": "1179f412-72f4-4b77-a4e9-6e9ce0f2757f",
+            "round": 2,
+            "pickInRound": 1,
+            "overall": 3
+          }
+        ],
+        "currentRound": 2,
+        "currentPickIndex": 1,
+        "history": [],
+        "preCommitTeamsSnapshot": null,
+        "committedAt": null
+      }
+    },
+    {
+      "snapshot": {
+        "status": "active",
+        "teamOrder": [
+          "c8a2f1e4-30b3-4c64-b88c-869425649a56",
+          "fec830b6-5be1-4679-94b1-8076ad0f96ac"
+        ],
+        "eligiblePlayerIds": [
+          "2fc8d31d-1bdc-4baa-9e33-4cfa0c41a516",
+          "1179f412-72f4-4b77-a4e9-6e9ce0f2757f",
+          "519a95ef-1dfe-48ae-9280-cd1a76a58bcf",
+          "ca95062d-ca4b-480b-bebd-b3d7caf96b86",
+          "0fc94749-e39c-4256-a963-40e431cc86af",
+          "3b5acd49-1033-4d5e-8318-5b3be27215f6",
+          "d59fe7cd-cf85-479c-a43c-96b226ed33b4",
+          "1596070c-fa36-4599-9018-907dbb67a142",
+          "576590a1-2cfb-4aa1-ba14-9af7ea3880a4",
+          "0fca418c-e7fd-4bbd-893f-005f6ff99439",
+          "c658b92c-b67e-4763-ba13-f41b796739ac"
+        ],
+        "picks": [
+          {
+            "teamId": "c8a2f1e4-30b3-4c64-b88c-869425649a56",
+            "playerId": "1596070c-fa36-4599-9018-907dbb67a142",
+            "round": 1,
+            "pickInRound": 1,
+            "overall": 1
+          },
+          {
+            "teamId": "fec830b6-5be1-4679-94b1-8076ad0f96ac",
+            "playerId": "ca95062d-ca4b-480b-bebd-b3d7caf96b86",
+            "round": 1,
+            "pickInRound": 2,
+            "overall": 2
+          }
+        ],
+        "currentRound": 2,
+        "currentPickIndex": 0,
+        "history": [],
+        "preCommitTeamsSnapshot": null,
+        "committedAt": null
+      }
+    },
+    {
+      "snapshot": {
+        "status": "active",
+        "teamOrder": [
+          "c8a2f1e4-30b3-4c64-b88c-869425649a56",
+          "fec830b6-5be1-4679-94b1-8076ad0f96ac"
+        ],
+        "eligiblePlayerIds": [
+          "2fc8d31d-1bdc-4baa-9e33-4cfa0c41a516",
+          "1179f412-72f4-4b77-a4e9-6e9ce0f2757f",
+          "519a95ef-1dfe-48ae-9280-cd1a76a58bcf",
+          "ca95062d-ca4b-480b-bebd-b3d7caf96b86",
+          "0fc94749-e39c-4256-a963-40e431cc86af",
+          "3b5acd49-1033-4d5e-8318-5b3be27215f6",
+          "d59fe7cd-cf85-479c-a43c-96b226ed33b4",
+          "1596070c-fa36-4599-9018-907dbb67a142",
+          "576590a1-2cfb-4aa1-ba14-9af7ea3880a4",
+          "0fca418c-e7fd-4bbd-893f-005f6ff99439",
+          "c658b92c-b67e-4763-ba13-f41b796739ac"
+        ],
+        "picks": [
+          {
+            "teamId": "c8a2f1e4-30b3-4c64-b88c-869425649a56",
+            "playerId": "1596070c-fa36-4599-9018-907dbb67a142",
+            "round": 1,
+            "pickInRound": 1,
+            "overall": 1
+          }
+        ],
+        "currentRound": 1,
+        "currentPickIndex": 1,
+        "history": [],
+        "preCommitTeamsSnapshot": null,
+        "committedAt": null
+      }
+    },
+    {
+      "snapshot": {
+        "status": "active",
+        "teamOrder": [
+          "c8a2f1e4-30b3-4c64-b88c-869425649a56",
+          "fec830b6-5be1-4679-94b1-8076ad0f96ac"
+        ],
+        "eligiblePlayerIds": [
+          "2fc8d31d-1bdc-4baa-9e33-4cfa0c41a516",
+          "1179f412-72f4-4b77-a4e9-6e9ce0f2757f",
+          "519a95ef-1dfe-48ae-9280-cd1a76a58bcf",
+          "ca95062d-ca4b-480b-bebd-b3d7caf96b86",
+          "0fc94749-e39c-4256-a963-40e431cc86af",
+          "3b5acd49-1033-4d5e-8318-5b3be27215f6",
+          "d59fe7cd-cf85-479c-a43c-96b226ed33b4",
+          "1596070c-fa36-4599-9018-907dbb67a142",
+          "576590a1-2cfb-4aa1-ba14-9af7ea3880a4",
+          "0fca418c-e7fd-4bbd-893f-005f6ff99439",
+          "c658b92c-b67e-4763-ba13-f41b796739ac"
+        ],
+        "picks": [],
+        "currentRound": 1,
+        "currentPickIndex": 0,
+        "history": [],
+        "preCommitTeamsSnapshot": null,
+        "committedAt": null
+      }
+    },
+    {
+      "snapshot": {
+        "status": "setup",
+        "teamOrder": [
+          "c8a2f1e4-30b3-4c64-b88c-869425649a56",
+          "fec830b6-5be1-4679-94b1-8076ad0f96ac"
+        ],
+        "eligiblePlayerIds": [
+          "2fc8d31d-1bdc-4baa-9e33-4cfa0c41a516",
+          "1179f412-72f4-4b77-a4e9-6e9ce0f2757f",
+          "519a95ef-1dfe-48ae-9280-cd1a76a58bcf",
+          "ca95062d-ca4b-480b-bebd-b3d7caf96b86",
+          "0fc94749-e39c-4256-a963-40e431cc86af",
+          "3b5acd49-1033-4d5e-8318-5b3be27215f6",
+          "d59fe7cd-cf85-479c-a43c-96b226ed33b4",
+          "1596070c-fa36-4599-9018-907dbb67a142",
+          "576590a1-2cfb-4aa1-ba14-9af7ea3880a4",
+          "0fca418c-e7fd-4bbd-893f-005f6ff99439",
+          "c658b92c-b67e-4763-ba13-f41b796739ac"
+        ],
+        "picks": [],
+        "currentRound": 1,
+        "currentPickIndex": 0,
+        "history": [],
+        "preCommitTeamsSnapshot": null,
+        "committedAt": null
+      }
+    }
+  ],
+  "preCommitTeamsSnapshot": {
+    "c8a2f1e4-30b3-4c64-b88c-869425649a56": [],
+    "fec830b6-5be1-4679-94b1-8076ad0f96ac": []
+  },
+  "committedAt": "2026-07-09T00:44:44.567Z"
 }
