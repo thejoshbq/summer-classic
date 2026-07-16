@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Summer Classic — Pitching Rotation</title>
+<title>Summer Classic — Game Display</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -53,94 +53,283 @@
     text-transform: uppercase;
   }
 
-  .score-strip {
-    display: flex;
-    align-items: baseline;
-    justify-content: center;
-    gap: 1.2%;
-    padding: 2.4% 2.6% 1%;
+  /* Championship games get an orange-accented subtitle + a thicker header
+     border; standard games keep the plain shell treatment. No new colors —
+     reuses the documented palette only. */
+  .board-subtitle.championship {
+    color: var(--orange);
+    font-weight: 600;
   }
-  .score-strip-team {
+  .board.championship .board-header { border-bottom-width: 5px; }
+
+  /* ── Condensed line score strip (secondary — the diamond is the star) ── */
+  .linescore-wrap { padding: 1% 2.6% 0; flex-shrink: 0; }
+  table.linescore {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+  }
+  table.linescore thead tr { border-bottom: 1px solid rgba(25,106,115,0.4); }
+  table.linescore thead th {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(9px, 0.85vw, 13px);
+    font-weight: 500;
+    color: var(--teal);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    padding: 0.3em 0.3em 0.4em;
+    text-align: center;
+  }
+  table.linescore thead th.col-name { text-align: left; }
+  table.linescore thead th.col-total { color: var(--orange); }
+
+  table.linescore tbody tr { border-bottom: 1px solid var(--divider-faint); }
+  table.linescore tbody tr:last-child { border-bottom: none; }
+  table.linescore tbody td { padding: 0.35em 0.3em; text-align: center; }
+  table.linescore tbody td.col-name {
+    text-align: left;
     font-family: 'Oswald', sans-serif;
+    font-size: clamp(13px, 1.4vw, 20px);
     font-weight: 700;
-    font-size: clamp(18px, 2.2vw, 32px);
     text-transform: uppercase;
     letter-spacing: 0.03em;
+    color: #fff;
+    width: 14%;
+  }
+  table.linescore tbody td.col-name.active-team { color: var(--orange); }
+  table.linescore tbody td.col-name.winner { color: var(--orange); }
+
+  .cell-score {
+    font-family: 'Oswald', sans-serif;
+    font-size: clamp(11px, 1.2vw, 17px);
+    font-weight: 500;
     color: rgba(255,255,255,0.7);
   }
-  .score-strip-team.active { color: var(--orange); }
-  .score-strip-total {
+  .cell-score.active { color: var(--red-orange); font-weight: 700; }
+  .cell-score.empty { color: rgba(255,255,255,0.2); }
+  .cell-total {
+    font-family: 'Oswald', sans-serif;
+    font-size: clamp(15px, 1.7vw, 24px);
+    font-weight: 700;
+    color: rgba(255,255,255,0.55);
+  }
+  .cell-total.winner { color: var(--orange); }
+
+  /* ── Live game body — diamond (left) + hero matchup (center) + counts (right) ──
+     Nothing here is sized from vh: each side panel's width comes from a clamp()
+     with a hard px ceiling, and the mini diamond derives its size as 100%
+     of its already-bounded panel (aspect-ratio gives a matching height) —
+     it can't overflow the row the way the old full-size vh diamond did. */
+  .live-body {
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    gap: clamp(16px, 2.6vw, 36px);
+    padding: 0.4% 2.6% 1%;
+    overflow: hidden;
+  }
+  .hero-matchup {
+    flex: 1 1 auto;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(18px, 3.6vw, 56px);
+  }
+  .hero-side { flex: 0 1 auto; min-width: 0; max-width: 44%; text-align: center; }
+  .hero-divider {
+    flex: 0 0 auto;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(13px, 1.4vw, 20px);
+    color: var(--teal);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+  .side-panel {
+    flex: 0 0 clamp(160px, 17%, 240px);
+    min-width: 0;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .mini-diamond-stage {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    flex-shrink: 0;
+    margin: 0 auto;
+  }
+  .base-marker {
+    position: absolute;
+    width: 15%;
+    aspect-ratio: 1;
+    border: 2px solid rgba(255,255,255,0.25);
+    border-radius: 3px;
+    transform: rotate(45deg);
+    background: rgba(255,255,255,0.03);
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .base-marker.occupied { background: var(--orange); border-color: var(--orange); }
+  .base-2nd { top: 0; left: 42.5%; }
+  .base-1st { top: 42.5%; right: 0; }
+  .base-3rd { top: 42.5%; left: 0; }
+  .base-home {
+    position: absolute;
+    width: 12%;
+    aspect-ratio: 1;
+    border: 2px solid rgba(255,255,255,0.2);
+    border-radius: 3px;
+    transform: rotate(45deg);
+    background: rgba(255,255,255,0.05);
+    bottom: 2%;
+    left: 44%;
+  }
+  .diamond-lines {
+    position: absolute;
+    inset: 7%;
+    border: 1.5px solid rgba(25,106,115,0.35);
+    transform: rotate(45deg);
+  }
+
+  .field-role {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(10px, 1.05vw, 15px);
+    color: var(--teal);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+  .field-name {
     font-family: 'Oswald', sans-serif;
     font-weight: 700;
-    font-size: clamp(30px, 4vw, 56px);
-    color: rgba(255,255,255,0.55);
+    font-size: clamp(17px, 2.3vw, 34px);
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    line-height: 1.05;
+  }
+  .field-ondeck {
+    font-family: 'Oswald', sans-serif;
+    font-size: clamp(10px, 1vw, 14px);
+    color: rgba(255,255,255,0.4);
+    margin-top: 0.2em;
+  }
+  .field-ondeck .od-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(9px, 0.85vw, 12px);
+    color: var(--teal);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    margin-right: 0.4em;
+  }
+
+  .count-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(10px, 1vw, 14px);
+    color: var(--teal);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+  .pitch-counts { display: flex; flex-direction: column; gap: clamp(6px, 1vw, 12px); }
+  .count-group { display: flex; align-items: center; justify-content: space-between; gap: 0.6em; }
+  .pitch-icons { display: flex; gap: 0.3em; }
+  .pitch-icon {
+    font-size: clamp(14px, 1.5vw, 20px);
+    line-height: 1;
+    filter: grayscale(1) opacity(0.32);
+    transition: filter 0.2s;
+  }
+  .pitch-icon.lit-out    { filter: grayscale(0) opacity(1) drop-shadow(0 0 5px var(--red-orange)) drop-shadow(0 0 5px var(--red-orange)); }
+  .pitch-icon.lit-strike { filter: grayscale(0) opacity(1) drop-shadow(0 0 5px var(--orange))     drop-shadow(0 0 5px var(--orange)); }
+  .pitch-icon.lit-ball   { filter: grayscale(0) opacity(1) drop-shadow(0 0 5px var(--teal))        drop-shadow(0 0 5px var(--teal)); }
+
+  /* ── Final state — winner callout replaces the diamond ── */
+  .lower-panel {
+    flex: 1;
+    padding: 1.4% 2.6%;
+    display: flex;
+    gap: 1.5%;
+    align-items: stretch;
+  }
+  .winner-block, .final-score-block {
+    background: var(--dark-navy);
+    border-radius: 8px;
+    padding: 1em 1.4em;
+  }
+  .v-divider { width: 1px; background: rgba(25,106,115,0.3); }
+  .winner-block {
+    flex: 1;
+    border-left: 3px solid var(--orange);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.3em;
+  }
+  .winner-block .champ-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(11px, 1vw, 14px);
+    color: var(--teal);
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+  }
+  .winner-block .team-name {
+    font-family: 'Oswald', sans-serif;
+    font-size: clamp(24px, 3vw, 42px);
+    font-weight: 700;
+    color: var(--orange);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .winner-block .subline {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(11px, 1vw, 14px);
+    color: rgba(255,255,255,0.3);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+  .final-score-block {
+    display: flex;
+    align-items: center;
+    gap: 0.8em;
+  }
+  .final-score-team {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.1em;
+  }
+  .final-score-abbr {
+    font-family: 'Oswald', sans-serif;
+    font-size: clamp(10px, 1vw, 14px);
+    color: rgba(255,255,255,0.4);
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+  }
+  .final-score-runs {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: clamp(34px, 4.5vw, 60px);
     line-height: 1;
   }
-  .score-strip-total.active { color: var(--orange); }
-  .score-strip-sep {
+  .final-score-runs.winner-runs { color: var(--orange); }
+  .final-score-runs.loser-runs { color: var(--white-faint); }
+  .final-score-sep {
     font-family: 'Oswald', sans-serif;
     font-size: clamp(22px, 2.5vw, 32px);
     color: rgba(255,255,255,0.2);
   }
 
-  .matchup-panel {
-    display: flex;
-    align-items: stretch;
-    gap: 1.5%;
-    padding: 2% 2.6%;
-    flex: 1;
-  }
-  .matchup-col {
-    flex: 1;
-    background: var(--dark-navy);
-    border-radius: 8px;
-    padding: 2em 1.4em;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 0.6em;
-    text-align: center;
-  }
-  .matchup-role {
+  .footer-innings {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: clamp(12px, 1.2vw, 16px);
+    font-style: italic;
+    font-size: clamp(11px, 1vw, 14px);
     color: var(--teal);
-    letter-spacing: 0.2em;
+    letter-spacing: 0.15em;
     text-transform: uppercase;
+    margin-right: auto;
   }
-  .matchup-name {
-    font-family: 'Oswald', sans-serif;
-    font-weight: 700;
-    font-size: clamp(28px, 4vw, 64px);
-    color: #fff;
-    text-transform: uppercase;
-    letter-spacing: 0.02em;
-    line-height: 1.1;
-  }
-  .matchup-ondeck {
-    font-family: 'Oswald', sans-serif;
-    font-weight: 500;
-    font-size: clamp(14px, 1.6vw, 22px);
-    color: rgba(255,255,255,0.4);
-  }
-  .matchup-ondeck .od-label {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: clamp(10px, 0.95vw, 13px);
-    color: var(--teal);
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    margin-right: 0.5em;
-  }
-  .matchup-vs {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 600;
-    font-size: clamp(12px, 1.2vw, 16px);
-    color: var(--teal);
-    letter-spacing: 0.2em;
-    align-self: center;
-  }
-  .v-divider { width: 1px; background: rgba(25,106,115,0.3); }
 </style>
 </head>
 <body>
@@ -148,7 +337,15 @@
 
 <script src="/shared/poll.js"></script>
 <script>
+function abbr(name) {
+  if (!name) return '???';
+  const words = name.trim().split(/\s+/);
+  if (words.length === 1) return name.slice(0, 3).toUpperCase();
+  return words.map(w => w[0]).join('').toUpperCase().slice(0, 4);
+}
+
 function header(g) {
+  const isChampionship = g.gameType === 'championship';
   let badge = '';
   if (g.status === 'live') {
     badge = `
@@ -159,13 +356,10 @@ function header(g) {
       </div>`;
   } else if (g.status === 'final') {
     badge = `<div class="badge-final"><span class="text">Final</span></div>`;
-  } else {
-    badge = `
-      <div class="day-badge">
-        <span class="day-label">Day</span>
-        <span class="day-number">6</span>
-      </div>`;
   }
+  const subtitle = (g.status === 'live' || g.status === 'final')
+    ? (isChampionship ? '🏆 Championship Game' : 'Live Game')
+    : '';
   return `
     <header class="board-header">
       <div class="header-brand">
@@ -173,63 +367,154 @@ function header(g) {
         <div class="header-left">
           <span class="venue-name">Lumber Jill's</span>
           <span class="board-title">Pitching Rotation</span>
-          <span class="board-subtitle">Day 6 — Championship Game</span>
+          ${subtitle ? `<span class="board-subtitle${isChampionship ? ' championship' : ''}">${subtitle}</span>` : ''}
         </div>
       </div>
       ${badge}
     </header>`;
 }
 
-function scoreStrip(g) {
-  const vActive = g.battingSide === 'visitor';
-  const hActive = g.battingSide === 'home';
+function lineScore(g) {
+  const cols = Math.max(9, g.currentInning);
+  let headCells = '<th class="col-name"></th>';
+  for (let i = 1; i <= cols; i++) headCells += `<th>${i}</th>`;
+  headCells += '<th class="col-total">R</th>';
+
+  function row(team) {
+    const innings = team === 'visitor' ? g.visitorInnings : g.homeInnings;
+    const total = team === 'visitor' ? g.visitorTotal : g.homeTotal;
+    const isWinner = g.status === 'final' && g.winner === team;
+    const isBatting = g.status === 'live' && g.battingSide === team;
+    const name = team === 'visitor' ? g.visitorName : g.homeName;
+
+    let nameCls = 'col-name';
+    if (isWinner) nameCls += ' winner';
+    else if (isBatting) nameCls += ' active-team';
+    let cells = `<td class="${nameCls}">${esc(name) || '—'}</td>`;
+    for (let col = 0; col < cols; col++) {
+      const isActive = g.status === 'live' && (
+        (team === 'visitor' && g.currentHalf === 'top' && col === g.currentInning - 1) ||
+        (team === 'home' && g.currentHalf === 'bottom' && col === g.currentInning - 1)
+      );
+      let cls = 'cell-score', val = '';
+      if (isActive) { cls += ' active'; val = '●'; }
+      else if (innings[col] == null) { cls += ' empty'; val = '—'; }
+      else val = innings[col];
+      cells += `<td><span class="${cls}">${val}</span></td>`;
+    }
+    let totalCls = 'cell-total';
+    if (isWinner) totalCls += ' winner';
+    cells += `<td><span class="${totalCls}">${total}</span></td>`;
+    return `<tr>${cells}</tr>`;
+  }
+
   return `
-    <div class="score-strip">
-      <span class="score-strip-team${vActive ? ' active' : ''}">${esc(g.visitorName) || 'Visitor'}</span>
-      <span class="score-strip-total${vActive ? ' active' : ''}">${g.visitorTotal}</span>
-      <span class="score-strip-sep">–</span>
-      <span class="score-strip-total${hActive ? ' active' : ''}">${g.homeTotal}</span>
-      <span class="score-strip-team${hActive ? ' active' : ''}">${esc(g.homeName) || 'Home'}</span>
+    <div class="linescore-wrap">
+      <table class="linescore">
+        <thead><tr>${headCells}</tr></thead>
+        <tbody>${row('visitor')}${row('home')}</tbody>
+      </table>
     </div>`;
 }
 
-function matchupPanel(g) {
+function liveHero(g) {
+  const b = g.bases;
+  const outs    = [0,1,2].map(i => `<span class="pitch-icon${i < g.outs    ? ' lit-out'    : ''}">⚾</span>`).join('');
+  const strikes = [0,1,2].map(i => `<span class="pitch-icon${i < g.strikes ? ' lit-strike' : ''}">⚾</span>`).join('');
+  const balls   = [0,1,2,3].map(i => `<span class="pitch-icon${i < g.balls  ? ' lit-ball'   : ''}">⚾</span>`).join('');
   const pitcherTeam = g.pitchingSide === 'visitor' ? g.visitorName : g.homeName;
   const batterTeam = g.battingSide === 'visitor' ? g.visitorName : g.homeName;
   const onDeckP = g.onDeckPitchers && g.onDeckPitchers[0] ? g.onDeckPitchers[0].name : '';
   const onDeckB = g.onDeckBatters && g.onDeckBatters[0] ? g.onDeckBatters[0].name : '';
+
   return `
-    <div class="matchup-panel">
-      <div class="matchup-col">
-        <span class="matchup-role">Pitching — ${esc(pitcherTeam) || '—'}</span>
-        <span class="matchup-name">${esc(g.pitcherName) || '—'}</span>
-        <span class="matchup-ondeck"><span class="od-label">On deck</span>${esc(onDeckP) || '—'}</span>
+    <div class="live-body">
+      <div class="side-panel diamond-panel">
+        <div class="mini-diamond-stage">
+          <div class="diamond-lines"></div>
+          <div class="base-marker base-2nd${b.second ? ' occupied' : ''}"></div>
+          <div class="base-marker base-1st${b.first ? ' occupied' : ''}"></div>
+          <div class="base-marker base-3rd${b.third ? ' occupied' : ''}"></div>
+          <div class="base-marker base-home"></div>
+        </div>
       </div>
-      <div class="v-divider"></div>
-      <div class="matchup-vs">VS</div>
-      <div class="v-divider"></div>
-      <div class="matchup-col">
-        <span class="matchup-role">Batting — ${esc(batterTeam) || '—'}</span>
-        <span class="matchup-name">${esc(g.batterName) || '—'}</span>
-        <span class="matchup-ondeck"><span class="od-label">On deck</span>${esc(onDeckB) || '—'}</span>
+      <div class="hero-matchup">
+        <div class="hero-side">
+          <div class="field-role">Pitching — ${esc(pitcherTeam) || '—'}</div>
+          <div class="field-name">${esc(g.pitcherName) || '—'}</div>
+          <div class="field-ondeck"><span class="od-label">On deck</span>${esc(onDeckP) || '—'}</div>
+        </div>
+        <div class="hero-divider">vs</div>
+        <div class="hero-side">
+          <div class="field-role">Batting — ${esc(batterTeam) || '—'}</div>
+          <div class="field-name">${esc(g.batterName) || '—'}</div>
+          <div class="field-ondeck"><span class="od-label">On deck</span>${esc(onDeckB) || '—'}</div>
+        </div>
+      </div>
+      <div class="side-panel counts-panel">
+        <div class="pitch-counts">
+          <div class="count-group"><span class="count-label">Outs</span><div class="pitch-icons">${outs}</div></div>
+          <div class="count-group"><span class="count-label">Strikes</span><div class="pitch-icons">${strikes}</div></div>
+          <div class="count-group"><span class="count-label">Balls</span><div class="pitch-icons">${balls}</div></div>
+        </div>
       </div>
     </div>`;
 }
 
-function footer() {
-  return `<footer class="board-footer"><span class="tagline">Have fun. Build community. Give back.</span></footer>`;
+function finalLower(g) {
+  const winnerName = g.winner ? (g.winner === 'visitor' ? g.visitorName : g.homeName) : '';
+  const vClass = g.winner === 'visitor' ? 'winner-runs' : 'loser-runs';
+  const hClass = g.winner === 'home' ? 'winner-runs' : 'loser-runs';
+  const champLabel = g.gameType === 'championship' ? 'Summer Classic Champions' : 'Game Winner';
+  return `
+    <div class="lower-panel">
+      <div class="winner-block">
+        <span class="champ-label">${champLabel}</span>
+        <span class="team-name">${esc(winnerName) || '—'}</span>
+        <span class="subline">The Summer Classic — Lumber Jill's</span>
+      </div>
+      <div class="v-divider"></div>
+      <div class="final-score-block">
+        <div class="final-score-team">
+          <span class="final-score-abbr">${abbr(g.visitorName)}</span>
+          <span class="final-score-runs ${vClass}">${g.visitorTotal}</span>
+        </div>
+        <span class="final-score-sep">–</span>
+        <div class="final-score-team">
+          <span class="final-score-abbr">${abbr(g.homeName)}</span>
+          <span class="final-score-runs ${hClass}">${g.homeTotal}</span>
+        </div>
+      </div>
+    </div>`;
+}
+
+function footer(g) {
+  const tagline = '<span class="tagline">Have fun. Build community. Give back.</span>';
+  if (g.status === 'final') {
+    return `<footer class="board-footer" style="justify-content:space-between">
+      <span class="footer-innings">${g.inningsPlayed} innings played</span>${tagline}
+    </footer>`;
+  }
+  return `<footer class="board-footer">${tagline}</footer>`;
 }
 
 function render(g) {
   const board = document.getElementById('board');
+  board.className = 'board' + (g.gameType === 'championship' ? ' championship' : '');
   if (g.status === 'setup') {
-    board.innerHTML = `${header(g)}<div class="board-body"><div class="empty-state">Awaiting game start</div></div>${footer()}`;
+    board.innerHTML = `
+      ${header(g)}
+      <div class="board-body"><div class="empty-state">Awaiting game start</div></div>
+      ${footer(g)}`;
     return;
   }
   board.innerHTML =
     header(g) +
-    `<div class="board-body">${scoreStrip(g)}${matchupPanel(g)}</div>` +
-    footer();
+    `<div class="board-body">` +
+    lineScore(g) +
+    (g.status === 'live' ? liveHero(g) : finalLower(g)) +
+    `</div>` +
+    footer(g);
 }
 
 pollEvery(5000, '/api/game', render);
