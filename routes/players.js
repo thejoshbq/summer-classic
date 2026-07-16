@@ -1,7 +1,7 @@
 const express = require('express');
 const { players, teams, bracket, game, draft } = require('../lib/stores');
 const { uid } = require('../lib/ids');
-const { VARIATION_NAMES, THROWS_PER_VARIATION } = require('../lib/constants');
+const { VARIATION_NAMES, THROWS_PER_VARIATION, computeScoutScore } = require('../lib/constants');
 
 const router = express.Router();
 
@@ -34,12 +34,14 @@ function normalizeVariations(input) {
 // ── Routes ─────────────────────────────────────────────────────────────
 
 router.get('/', (req, res) => {
-  // Lazy-inject variations on read without mutating the store cache.
+  // Lazy-inject variations on read without mutating the store cache, and
+  // recompute scoutScore live so players saved before auto-calc existed
+  // (or never re-saved since) still display the correct derived value.
   const defaults = defaultVariations();
-  const list = players.get().map(p => ({
-    ...p,
-    variations: p.variations ?? JSON.parse(JSON.stringify(defaults))
-  }));
+  const list = players.get().map(p => {
+    const variations = p.variations ?? JSON.parse(JSON.stringify(defaults));
+    return { ...p, variations, scoutScore: computeScoutScore(variations) };
+  });
   res.json(list);
 });
 
@@ -47,7 +49,8 @@ router.post('/', async (req, res) => {
   const name = String(req.body?.name || '').trim();
   if (!name) return res.status(400).json({ error: 'name required' });
   const list = await players.update(curr => {
-    curr.push({ id: uid(), name, scoutScore: null, variations: normalizeVariations(null) });
+    const variations = normalizeVariations(null);
+    curr.push({ id: uid(), name, scoutScore: computeScoutScore(variations), variations });
     return curr;
   });
   res.status(201).json(list);
@@ -59,13 +62,10 @@ router.put('/:id', async (req, res) => {
     const p = curr.find(x => x.id === req.params.id);
     if (!p) return curr;
     if (req.body?.name !== undefined) p.name = String(req.body.name).trim();
-    if (req.body?.scoutScore !== undefined) {
-      const n = Number(req.body.scoutScore);
-      p.scoutScore = Number.isFinite(n) ? n : null;
-    }
     if (req.body?.variations !== undefined) {
       p.variations = normalizeVariations(req.body.variations);
     }
+    p.scoutScore = computeScoutScore(p.variations ?? normalizeVariations(null));
     updated = p;
     return curr;
   });

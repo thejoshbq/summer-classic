@@ -37,7 +37,7 @@ function renderRoster() {
       </div>
 
       <p style="margin-top:14px;font-size:12px;color:#888">
-        Scout score is optional. Used to assign Murderball byes — lowest-scored player gets the bye when a round can't be split evenly.
+        Scout score is calculated automatically from a player's Variations throws below — it's not entered by hand. Used to assign Murderball byes — lowest-scored player gets the bye when a round can't be split evenly.
       </p>
     </div>
   `;
@@ -76,7 +76,7 @@ function renderRoster() {
 function renderPlayerRow(p, openDetails) {
   const team = Admin.teamFor(p.id);
   const teamChip = team ? `<span class="chip">${esc(team.name)}</span>` : '';
-  const score = p.scoutScore == null ? '' : p.scoutScore;
+  const score = p.scoutScore == null ? '—' : p.scoutScore;
   const variations = p.variations || [];
 
   // Variation inputs (details expandable)
@@ -103,8 +103,9 @@ function renderPlayerRow(p, openDetails) {
         <div style="flex:1.5">
           <input type="text" id="name-${p.id}" value="${esc(p.name)}">
         </div>
-        <div style="flex:0 0 110px">
-          <input type="number" id="score-${p.id}" placeholder="Scout" value="${score}" step="0.5">
+        <div style="flex:0 0 110px;text-align:center" title="Auto-calculated from Variations throws">
+          <div style="font-size:11px;color:#888;letter-spacing:0.5px;text-transform:uppercase">Scout</div>
+          <div style="font-size:16px;font-weight:700;color:#114566">${esc(String(score))}</div>
         </div>
         ${teamChip}
         <button class="sm" id="save-${p.id}">Save</button>
@@ -139,10 +140,7 @@ async function addPlayer() {
 
 async function savePlayer(id) {
   const name = document.getElementById(`name-${id}`).value.trim();
-  const scoreVal = document.getElementById(`score-${id}`).value;
   const body = { name };
-  if (scoreVal === '') body.scoutScore = null;
-  else body.scoutScore = parseFloat(scoreVal);
 
   // Serialize ALL variation inputs for this player (even inside closed details)
   const varMap = {};

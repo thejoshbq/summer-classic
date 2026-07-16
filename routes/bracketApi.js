@@ -1,5 +1,6 @@
 const express = require('express');
 const { bracket, players } = require('../lib/stores');
+const { computeScoutScore } = require('../lib/constants');
 
 const router = express.Router();
 
@@ -72,7 +73,7 @@ function orderMurderballEntrants(entrantIds) {
   const ps = players.get();
   const score = id => {
     const p = ps.find(x => x.id === id);
-    const s = p?.scoutScore;
+    const s = p?.variations ? computeScoutScore(p.variations) : null;
     return s == null ? Number.POSITIVE_INFINITY : s;
   };
   return [...entrantIds].sort((a, b) => score(b) - score(a));
