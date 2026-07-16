@@ -1,10 +1,8 @@
 const express = require('express');
-const path = require('path');
 
 const router = express.Router();
-router.use(express.static(path.join(__dirname, '..', 'public', 'scoreboard')));
-router.get(['/', '/display'], (req, res) => {
-  res.sendFile(path.join(__dirname, '..', 'public', 'scoreboard', 'display.html'));
-});
+// The scoreboard and rotation displays were consolidated into one page —
+// this route just preserves any existing bookmark/OBS browser source.
+router.get(['/', '/display'], (req, res) => res.redirect('/rotation/display'));
 
 module.exports = router;

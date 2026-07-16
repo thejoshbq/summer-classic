@@ -2,12 +2,11 @@
 
 const tabRenderers = {
   roster: renderRoster,
+  draft: renderDraft,
   teams: renderTeams,
   standings: renderStandings,
   bracket: renderBracket,
-  scoreboard: renderScoreboard,
-  tv: renderTv,
-  draft: renderDraft
+  scoreboard: renderScoreboard
 };
 
 // Each tab module can register a cleanup function (e.g. clear a self-refresh

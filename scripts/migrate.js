@@ -7,7 +7,7 @@
 //     standings-board never had real teams persisted).
 //   * Initializes fresh data/bracket.json (does not try to recreate the
 //     mid-tournament state — operator can regenerate from the roster).
-//   * Initializes fresh data/game.json and data/displayMode.json.
+//   * Initializes fresh data/game.json.
 // Idempotent: skips any file that already exists in data/.
 
 const fs = require('fs');
@@ -83,8 +83,5 @@ writeJson('game', {
   balls: 0,
   inningsPlayed: 0
 }, { skipIfExists: true });
-
-// 6. Display mode — default to standings.
-writeJson('displayMode', { mode: 'standings' }, { skipIfExists: true });
 
 console.log(`Done. ${players.length} players seeded.`);

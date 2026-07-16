@@ -7,7 +7,6 @@ const Admin = (() => {
     standings: { day: 1, records: {} },
     bracket: null,
     game: null,
-    displayMode: { mode: 'standings' },
     draft: null
   };
 
@@ -30,13 +29,12 @@ const Admin = (() => {
   }
 
   async function loadAll() {
-    const [players, teams, standings, bracket, game, displayMode, draft] = await Promise.all([
+    const [players, teams, standings, bracket, game, draft] = await Promise.all([
       api('GET', '/api/players'),
       api('GET', '/api/teams'),
       api('GET', '/api/standings'),
       api('GET', '/api/bracket'),
       api('GET', '/api/game'),
-      api('GET', '/api/display-mode'),
       api('GET', '/api/draft')
     ]);
     state.players = players;
@@ -44,7 +42,6 @@ const Admin = (() => {
     state.standings = standings;
     state.bracket = bracket;
     state.game = game;
-    state.displayMode = displayMode;
     state.draft = draft;
     emit();
   }
