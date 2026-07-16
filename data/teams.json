@@ -8,8 +8,11 @@
       "0fca418c-e7fd-4bbd-893f-005f6ff99439",
       "576590a1-2cfb-4aa1-ba14-9af7ea3880a4",
       "519a95ef-1dfe-48ae-9280-cd1a76a58bcf",
-      "72eddca1-a03c-49f7-bf02-27bffd992ed0"
-    ]
+      "72eddca1-a03c-49f7-bf02-27bffd992ed0",
+      "ad1861cd-ff23-4965-9b88-02d862323900",
+      "d59fe7cd-cf85-479c-a43c-96b226ed33b4"
+    ],
+    "captainId": "d59fe7cd-cf85-479c-a43c-96b226ed33b4"
   },
   {
     "id": "fec830b6-5be1-4679-94b1-8076ad0f96ac",
@@ -22,7 +25,9 @@
       "428e4456-7811-4ddd-9cf6-b52f6012dd20",
       "05d38d15-6ce8-4813-98f7-ba9df43c870a",
       "937da882-dff9-4e42-ad27-7d4253a4b53e",
-      "688419ef-cbe0-454b-b392-106cebe091ac"
-    ]
+      "688419ef-cbe0-454b-b392-106cebe091ac",
+      "3b5acd49-1033-4d5e-8318-5b3be27215f6"
+    ],
+    "captainId": "3b5acd49-1033-4d5e-8318-5b3be27215f6"
   }
 ]

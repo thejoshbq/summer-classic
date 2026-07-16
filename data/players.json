@@ -371,7 +371,7 @@
   },
   {
     "id": "c658b92c-b67e-4763-ba13-f41b796739ac",
-    "name": "Aly Baynard",
+    "name": "Ally Baynard",
     "scoutScore": 0,
     "variations": [
       {
@@ -557,6 +557,43 @@
   {
     "id": "688419ef-cbe0-454b-b392-106cebe091ac",
     "name": "Kyleigh Lee",
+    "scoutScore": null,
+    "variations": [
+      {
+        "name": "Fastball",
+        "throws": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "Switch-Up",
+        "throws": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "Curveball",
+        "throws": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ad1861cd-ff23-4965-9b88-02d862323900",
+    "name": "Reagan Dwyer",
     "scoutScore": null,
     "variations": [
       {
