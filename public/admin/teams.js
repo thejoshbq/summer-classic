@@ -39,6 +39,9 @@ function renderTeams() {
     root.querySelectorAll(`[data-team="${t.id}"][data-remove]`).forEach(el => {
       el.onclick = () => removePlayer(t.id, el.dataset.remove);
     });
+    root.querySelectorAll(`[data-team="${t.id}"][data-set-captain]`).forEach(el => {
+      el.onclick = () => setCaptain(t.id, el.dataset.setCaptain);
+    });
   }
 }
 
@@ -62,12 +65,18 @@ function renderTeamCard(t) {
           <div class="pool-title">Roster (${members.length})</div>
           ${members.length === 0
             ? '<div class="empty" style="padding:8px 0">No players yet.</div>'
-            : members.map(p => `
+            : members.map(p => {
+              const isCaptain = t.captainId === p.id;
+              return `
               <div class="player-pill">
-                <span>${esc(p.name)}</span>
+                <button class="sm ${isCaptain ? '' : 'subtle'}" data-team="${t.id}" data-set-captain="${p.id}"
+                  title="${isCaptain ? 'Captain — click to unset' : 'Set as team captain'}"
+                  style="${isCaptain ? 'color:#F28F16;font-weight:700' : 'color:#ccc'}">★</button>
+                <span>${esc(p.name)}${isCaptain ? ' <span class="chip" style="color:#F28F16;border-color:#F28F16">Captain</span>' : ''}</span>
                 <button data-team="${t.id}" data-remove="${p.id}" title="Remove">×</button>
               </div>
-            `).join('')}
+            `;
+            }).join('')}
         </div>
         <div class="player-pool">
           <div class="pool-title">Unassigned</div>
@@ -143,4 +152,15 @@ async function removePlayer(teamId, playerId) {
   });
   renderTeams();
   renderRoster?.();
+}
+
+async function setCaptain(teamId, playerId) {
+  const team = Admin.state.teams.find(t => t.id === teamId);
+  if (!team) return;
+  const captainId = team.captainId === playerId ? null : playerId;
+  try {
+    Admin.state.teams = await Admin.api('PUT', `/api/teams/${teamId}`, { captainId });
+    renderTeams();
+    renderDraft?.();
+  } catch (e) { alert(e.message); }
 }

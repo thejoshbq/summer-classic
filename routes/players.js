@@ -85,10 +85,11 @@ router.delete('/:id', async (req, res) => {
   });
   if (!removed) return res.status(404).json({ error: 'not found' });
 
-  // Cascade: drop from team rosters
+  // Cascade: drop from team rosters (and clear captaincy if it was them)
   await teams.update(curr => {
     for (const t of curr) {
       t.playerIds = (t.playerIds || []).filter(pid => pid !== id);
+      if (t.captainId === id) t.captainId = null;
     }
     return curr;
   });

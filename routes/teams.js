@@ -10,7 +10,7 @@ router.post('/', async (req, res) => {
   const name = String(req.body?.name || '').trim();
   if (!name) return res.status(400).json({ error: 'name required' });
   const list = await teams.update(curr => {
-    curr.push({ id: uid(), name, playerIds: [] });
+    curr.push({ id: uid(), name, playerIds: [], captainId: null });
     return curr;
   });
   res.status(201).json(list);
@@ -19,6 +19,7 @@ router.post('/', async (req, res) => {
 router.put('/:id', async (req, res) => {
   const id = req.params.id;
   let updated;
+  let err = null;
   const list = await teams.update(curr => {
     const t = curr.find(x => x.id === id);
     if (!t) return curr;
@@ -27,9 +28,22 @@ router.put('/:id', async (req, res) => {
       const validIds = new Set(players.get().map(p => p.id));
       t.playerIds = req.body.playerIds.filter(pid => validIds.has(pid));
     }
+    if (req.body?.captainId !== undefined) {
+      const captainId = req.body.captainId;
+      if (captainId !== null && !(t.playerIds || []).includes(captainId)) {
+        err = 'captainId must be null or a member of this team\'s roster';
+        return curr;
+      }
+      t.captainId = captainId;
+    } else if (t.captainId && !(t.playerIds || []).includes(t.captainId)) {
+      // The roster edit above dropped the current captain — clear it rather
+      // than leave a captainId pointing at someone no longer on the team.
+      t.captainId = null;
+    }
     updated = t;
     return curr;
   });
+  if (err) return res.status(400).json({ error: err });
   if (!updated) return res.status(404).json({ error: 'not found' });
   res.json(list);
 });

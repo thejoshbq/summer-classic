@@ -101,7 +101,9 @@ router.put('/settings', async (req, res) => {
     }
     if (Array.isArray(eligiblePlayerIds)) {
       const validPlayerIds = new Set(players.get().map(p => p.id));
-      curr.eligiblePlayerIds = eligiblePlayerIds.filter(id => validPlayerIds.has(id));
+      // Captains are already on a team roster — they never enter the draft pool.
+      const captainIds = new Set(teams.get().map(t => t.captainId).filter(Boolean));
+      curr.eligiblePlayerIds = eligiblePlayerIds.filter(id => validPlayerIds.has(id) && !captainIds.has(id));
     }
     return curr;
   });
@@ -116,6 +118,11 @@ router.post('/start', async (req, res) => {
   await draft.update(curr => {
     const validTeamIds = new Set(teams.get().map(t => t.id));
     const validPlayerIds = new Set(players.get().map(p => p.id));
+    // A player could have been marked eligible before being made a captain
+    // (or vice versa) — re-strip captains here so that ordering can't leave
+    // a captain draftable.
+    const captainIds = new Set(teams.get().map(t => t.captainId).filter(Boolean));
+    curr.eligiblePlayerIds = (curr.eligiblePlayerIds || []).filter(pid => !captainIds.has(pid));
 
     // Validate all teamOrder IDs exist
     for (const tid of (curr.teamOrder || [])) {
@@ -222,7 +229,7 @@ router.post('/end', async (req, res) => {
 // POST /commit — write picks to team rosters
 router.post('/commit', async (req, res) => {
   let err = null;
-  await draft.update(d => {
+  await draft.update(async d => {
     if (d.status !== 'ended') {
       err = 'Draft must be ended before committing.';
       return d;
@@ -251,18 +258,25 @@ router.post('/commit', async (req, res) => {
         .map(t => [t.id, [...(t.playerIds || [])]])
     );
 
-    // Build new rosters filtered to still-existing players
+    // Build new rosters filtered to still-existing players. Captains never
+    // enter the draft pool, so merge each team's captainId back in — a
+    // straight replace from picks alone would otherwise drop them off their
+    // own team's roster.
     const newRosters = Object.fromEntries(
-      teamOrder.map(tid => [
-        tid,
-        (d.picks || [])
+      teamOrder.map(tid => {
+        const picked = (d.picks || [])
           .filter(p => p.teamId === tid && allPlayers.has(p.playerId))
-          .map(p => p.playerId)
-      ])
+          .map(p => p.playerId);
+        const captainId = allTeams.find(t => t.id === tid)?.captainId;
+        const roster = captainId && allPlayers.has(captainId) && !picked.includes(captainId)
+          ? [captainId, ...picked]
+          : picked;
+        return [tid, roster];
+      })
     );
 
     // Single atomic teams update
-    teams.update(curr => {
+    await teams.update(curr => {
       for (const t of curr) {
         if (newRosters.hasOwnProperty(t.id)) {
           t.playerIds = newRosters[t.id];
@@ -284,7 +298,7 @@ router.post('/commit', async (req, res) => {
 // POST /uncommit — one-shot restore of pre-commit team rosters
 router.post('/uncommit', async (req, res) => {
   let err = null;
-  await draft.update(d => {
+  await draft.update(async d => {
     if (d.status !== 'committed') {
       err = 'Draft is not committed.';
       return d;
@@ -295,7 +309,7 @@ router.post('/uncommit', async (req, res) => {
     }
 
     const snap = d.preCommitTeamsSnapshot;
-    teams.update(curr => {
+    await teams.update(curr => {
       for (const t of curr) {
         if (snap.hasOwnProperty(t.id)) {
           t.playerIds = snap[t.id];

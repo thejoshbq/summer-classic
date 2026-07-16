@@ -93,7 +93,16 @@ function _renderSetup(d) {
           <span style="color:#196A73;font-weight:700;font-size:16px">+</span>
         </div>`).join('');
 
+  const captainIds = new Set(allTeams.map(t => t.captainId).filter(Boolean));
+
   const playerChecks = allPlayers.map(p => {
+    if (captainIds.has(p.id)) {
+      return `
+        <div style="display:flex;align-items:center;gap:8px;padding:4px 0;font-size:13px;color:#888">
+          <span style="width:14px;text-align:center;color:#F28F16">★</span>
+          ${esc(p.name)} <span style="font-size:11px">— captain, already rostered</span>
+        </div>`;
+    }
     const checked = eligible.includes(p.id) ? 'checked' : '';
     return `
       <label style="display:flex;align-items:center;gap:8px;padding:4px 0;cursor:pointer;font-size:13px">
