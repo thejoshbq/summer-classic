@@ -1,4 +1,7 @@
-// Scoreboard tab — runs the championship game admin.
+// Scoreboard tab — runs both standard league games and the Day 6 Championship
+// Game (same engine; gameType only changes labeling/display treatment).
+
+let _setupGameType = 'standard';
 
 function renderScoreboard() {
   const root = document.getElementById('tab-scoreboard');
@@ -39,14 +42,24 @@ function renderSetup() {
   const teamCount = Admin.state.teams.length;
   if (teamCount < 2) {
     return `<div class="card">
-      <h2>Championship Game</h2>
-      <div class="empty">Add at least two teams (on the Teams tab) before starting a championship game.</div>
+      <h2>Game Setup</h2>
+      <div class="empty">Add at least two teams (on the Teams tab) before starting a game.</div>
     </div>`;
   }
+  const isChampionship = _setupGameType === 'championship';
   return `
     <div class="card">
       <h2>Game Setup</h2>
       <div class="row">
+        <div>
+          <label>Game type</label>
+          <div class="choice-grid">
+            <button class="choice-btn ${!isChampionship ? 'active' : ''}" data-game-type="standard">Standard Game</button>
+            <button class="choice-btn ${isChampionship ? 'active' : ''}" data-game-type="championship" style="${isChampionship ? 'border-color:#F28F16;color:#F28F16' : ''}">🏆 Championship Game</button>
+          </div>
+        </div>
+      </div>
+      <div class="row" style="margin-top:10px">
         <div>
           <label>Visitor team</label>
           <select id="visitor-sel">${teamOptions(null, null)}</select>
@@ -56,7 +69,7 @@ function renderSetup() {
           <select id="home-sel">${teamOptions(null, null)}</select>
         </div>
       </div>
-      <div style="margin-top:14px"><button class="primary-action" id="start-btn">Start Championship Game</button></div>
+      <div style="margin-top:14px"><button class="primary-action" id="start-btn">Start Game</button></div>
       <p style="margin-top:10px;font-size:12px;color:#888">After starting, you'll set the batting order and pitching rotation per team. Then advance through the lineup with one click during the game.</p>
     </div>`;
 }
@@ -96,13 +109,20 @@ function renderLive(g) {
     `<button class="choice-btn ${g.outs === v ? 'active' : ''}" data-outs="${v}">${v}</button>`).join('');
   const ballsHTML = [0,1,2,3].map(v =>
     `<button class="choice-btn ${g.balls === v ? 'active' : ''}" data-balls="${v}">${v}</button>`).join('');
+  const strikesHTML = [0,1,2].map(v =>
+    `<button class="choice-btn ${g.strikes === v ? 'active' : ''}" data-strikes="${v}">${v}</button>`).join('');
 
   const b = g.bases;
+
+  const gameTypeBadge = g.gameType === 'championship'
+    ? `<span style="border:2px solid #F28F16;color:#F28F16;font-weight:700;font-size:11px;letter-spacing:1px;text-transform:uppercase;padding:3px 8px;border-radius:4px">🏆 Championship</span>`
+    : `<span style="color:#888;font-size:11px;letter-spacing:1px;text-transform:uppercase">Standard Game</span>`;
 
   return `
     <div class="card">
       <h2>Inning</h2>
       <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap">
+        ${gameTypeBadge}
         <div style="font-size:22px;font-weight:700;color:#F28F16">${halfLabel} ${g.currentInning}</div>
         <button class="primary-action" id="next-half-btn">Next half →</button>
         <div class="row" style="flex:1;min-width:300px">
@@ -155,6 +175,10 @@ function renderLive(g) {
           <label>Balls</label>
           <div class="choice-grid">${ballsHTML}</div>
         </div>
+        <div>
+          <label>Strikes</label>
+          <div class="choice-grid">${strikesHTML}</div>
+        </div>
       </div>
 
       <div style="margin-top:12px">
@@ -170,9 +194,7 @@ function renderLive(g) {
         <div class="shrink"><button class="primary-action" id="final-btn">Declare Final</button></div>
         <div class="shrink"><button class="danger" id="reset-btn">Reset Game</button></div>
         <div style="flex:1;text-align:right;font-size:12px;color:#888">
-          <a href="/scoreboard/display" target="_blank" style="color:#196A73;font-weight:600">Open scoreboard display →</a>
-          &nbsp;·&nbsp;
-          <a href="/rotation/display" target="_blank" style="color:#196A73;font-weight:600">Open rotation display →</a>
+          <a href="/rotation/display" target="_blank" style="color:#196A73;font-weight:600">Open display →</a>
         </div>
       </div>
     </div>
@@ -219,9 +241,17 @@ function renderAtBatCard(g) {
           </div>
         </div>
       </div>
-      <button class="primary-action big" id="next-atbat-btn" ${noLineup ? 'disabled' : ''}>
-        ${noLineup ? 'Set lineups below ↓' : '▶ Next At-Bat'}
-      </button>
+      <div class="row" style="align-items:stretch">
+        <div class="shrink">
+          <button class="subtle" id="back-atbat-btn" ${(g.historyDepth || 0) === 0 ? 'disabled' : ''}
+            title="Undo the last Next At-Bat">◀ Back</button>
+        </div>
+        <div style="flex:1">
+          <button class="primary-action big" id="next-atbat-btn" ${noLineup ? 'disabled' : ''}>
+            ${noLineup ? 'Set lineups below ↓' : '▶ Next At-Bat'}
+          </button>
+        </div>
+      </div>
     </div>
   `;
 }
@@ -285,14 +315,20 @@ function lineupBlock(side, teamLabel, teamId, lineup, g) {
       <h3>${esc(teamLabel)}</h3>
 
       <div class="lineup-section">
-        <div class="lineup-section-title">Batting Order (${lineup.battingOrder.length})</div>
+        <div class="lineup-section-title" style="display:flex;align-items:center;justify-content:space-between">
+          <span>Batting Order (${lineup.battingOrder.length})${lineup.battingAuto ? ' <span class="chip">auto</span>' : ''}</span>
+          <button class="sm subtle" data-randomize="${side}:battingOrder" title="Fill with the full roster, shuffled">🎲 Randomize</button>
+        </div>
         <div class="lineup-list">${orderList('battingOrder', lineup.battingOrder, lineup.battingIndex)}</div>
         <div class="lineup-section-title" style="margin-top:8px">Available</div>
         <div class="lineup-list">${rosterPicker('battingOrder', lineup.battingOrder)}</div>
       </div>
 
       <div class="lineup-section">
-        <div class="lineup-section-title">Pitching Rotation (${lineup.pitchingRotation.length})</div>
+        <div class="lineup-section-title" style="display:flex;align-items:center;justify-content:space-between">
+          <span>Pitching Rotation (${lineup.pitchingRotation.length})${lineup.pitchingAuto ? ' <span class="chip">auto</span>' : ''}</span>
+          <button class="sm subtle" data-randomize="${side}:pitchingRotation" title="Fill with the full roster, shuffled">🎲 Randomize</button>
+        </div>
         <div class="lineup-list">${orderList('pitchingRotation', lineup.pitchingRotation, lineup.pitchingIndex)}</div>
         <div class="lineup-section-title" style="margin-top:8px">Available</div>
         <div class="lineup-list">${rosterPicker('pitchingRotation', lineup.pitchingRotation)}</div>
@@ -318,6 +354,9 @@ function attachScoreboardHandlers(g) {
   const root = document.getElementById('tab-scoreboard');
 
   document.getElementById('start-btn')?.addEventListener('click', startGame);
+  root.querySelectorAll('[data-game-type]').forEach(el => {
+    el.onclick = () => { _setupGameType = el.dataset.gameType; renderScoreboard(); };
+  });
 
   document.getElementById('next-half-btn')?.addEventListener('click', nextHalf);
   document.getElementById('inning-sel')?.addEventListener('change', e => setInning(parseInt(e.target.value), g.currentHalf));
@@ -334,6 +373,7 @@ function attachScoreboardHandlers(g) {
   document.getElementById('pitcher-sel')?.addEventListener('change', e => setAtBat({ pitcherPlayerId: e.target.value }));
   document.getElementById('batter-sel')?.addEventListener('change', e => setAtBat({ batterPlayerId: e.target.value }));
   document.getElementById('next-atbat-btn')?.addEventListener('click', nextAtBat);
+  document.getElementById('back-atbat-btn')?.addEventListener('click', undoAtBat);
 
   root.querySelectorAll('[data-base]').forEach(el => {
     el.onclick = () => {
@@ -343,8 +383,9 @@ function attachScoreboardHandlers(g) {
   });
   root.querySelectorAll('[data-outs]').forEach(el => el.onclick = () => setAtBat({ outs: parseInt(el.dataset.outs) }));
   root.querySelectorAll('[data-balls]').forEach(el => el.onclick = () => setAtBat({ balls: parseInt(el.dataset.balls) }));
+  root.querySelectorAll('[data-strikes]').forEach(el => el.onclick = () => setAtBat({ strikes: parseInt(el.dataset.strikes) }));
   document.getElementById('clear-btn')?.addEventListener('click', () => setAtBat({
-    bases: { first: false, second: false, third: false }, outs: 0, balls: 0
+    bases: { first: false, second: false, third: false }, outs: 0, strikes: 0, balls: 0
   }));
   document.getElementById('final-btn')?.addEventListener('click', declareFinal);
   document.getElementById('reset-btn')?.addEventListener('click', resetGame);
@@ -377,6 +418,12 @@ function attachScoreboardHandlers(g) {
       });
     };
   });
+  root.querySelectorAll('[data-randomize]').forEach(el => {
+    el.onclick = () => {
+      const [side, kind] = el.dataset.randomize.split(':');
+      randomizeLineup(side, kind);
+    };
+  });
 }
 
 async function lineupMutate(side, kind, fn) {
@@ -395,7 +442,7 @@ async function startGame() {
   if (!visitorTeamId || !homeTeamId) return alert('Pick both teams.');
   if (visitorTeamId === homeTeamId) return alert('Visitor and home must be different teams.');
   try {
-    Admin.state.game = await Admin.api('POST', '/api/game/setup', { visitorTeamId, homeTeamId });
+    Admin.state.game = await Admin.api('POST', '/api/game/setup', { visitorTeamId, homeTeamId, gameType: _setupGameType });
     renderScoreboard();
   } catch (e) { alert(e.message); }
 }
@@ -426,6 +473,23 @@ async function setAtBat(body) {
 async function nextAtBat() {
   try {
     Admin.state.game = await Admin.api('POST', '/api/game/next-atbat');
+    renderScoreboard();
+  } catch (e) { alert(e.message); }
+}
+
+async function undoAtBat() {
+  try {
+    Admin.state.game = await Admin.api('POST', '/api/game/undo');
+    renderScoreboard();
+  } catch (e) { alert(e.message); }
+}
+
+async function randomizeLineup(side, kind) {
+  const lineup = side === 'visitor' ? Admin.state.game.visitorLineup : Admin.state.game.homeLineup;
+  const current = lineup?.[kind] || [];
+  if (current.length && !confirm(`Replace the current ${kind === 'battingOrder' ? 'batting order' : 'pitching rotation'} with a shuffled full roster? This can't be undone.`)) return;
+  try {
+    Admin.state.game = await Admin.api('POST', '/api/game/lineup/randomize', { side, kind });
     renderScoreboard();
   } catch (e) { alert(e.message); }
 }

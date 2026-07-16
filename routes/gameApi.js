@@ -1,11 +1,7 @@
 const express = require('express');
-const { game, teams, players } = require('../lib/stores');
+const { game, teams, players, emptyLineup } = require('../lib/stores');
 
 const router = express.Router();
-
-function emptyLineup() {
-  return { battingOrder: [], pitchingRotation: [], battingIndex: 0, pitchingIndex: 0 };
-}
 
 function normalizeLineup(l) {
   if (!l || typeof l !== 'object') return emptyLineup();
@@ -13,13 +9,71 @@ function normalizeLineup(l) {
     battingOrder: Array.isArray(l.battingOrder) ? l.battingOrder.filter(x => typeof x === 'string') : [],
     pitchingRotation: Array.isArray(l.pitchingRotation) ? l.pitchingRotation.filter(x => typeof x === 'string') : [],
     battingIndex: Number.isFinite(l.battingIndex) ? Math.max(0, Math.floor(l.battingIndex)) : 0,
-    pitchingIndex: Number.isFinite(l.pitchingIndex) ? Math.max(0, Math.floor(l.pitchingIndex)) : 0
+    pitchingIndex: Number.isFinite(l.pitchingIndex) ? Math.max(0, Math.floor(l.pitchingIndex)) : 0,
+    battingAuto: typeof l.battingAuto === 'boolean' ? l.battingAuto : false,
+    pitchingAuto: typeof l.pitchingAuto === 'boolean' ? l.pitchingAuto : false
   };
 }
 
 function ensureLineups(g) {
   g.visitorLineup = normalizeLineup(g.visitorLineup);
   g.homeLineup = normalizeLineup(g.homeLineup);
+}
+
+// Finds where the player currently at `oldOrder[oldIndex]` landed in `newOrder`
+// after a manual add/remove/reorder edit, so cycling position survives the edit
+// instead of resetting to the front of the list. If that player was removed,
+// walks forward through the original order to the next survivor.
+function reindexAfterEdit(oldOrder, oldIndex, newOrder) {
+  if (!newOrder.length) return 0;
+  const currentId = oldOrder[oldIndex];
+  if (currentId) {
+    let idx = newOrder.indexOf(currentId);
+    if (idx >= 0) return idx;
+    for (let step = 1; step <= oldOrder.length; step++) {
+      idx = newOrder.indexOf(oldOrder[(oldIndex + step) % oldOrder.length]);
+      if (idx >= 0) return idx;
+    }
+  }
+  return 0;
+}
+
+// Fisher-Yates shuffle in place. Swaps the just-completed lap's last player
+// out of the lead-off slot if they'd otherwise land there again immediately.
+function shuffleAvoidingRepeat(arr, lastId) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  if (arr.length > 1 && arr[0] === lastId) {
+    const j = 1 + Math.floor(Math.random() * (arr.length - 1));
+    [arr[0], arr[j]] = [arr[j], arr[0]];
+  }
+}
+
+// Keeps g.batterPlayerId/pitcherPlayerId pointed at whichever player the
+// active side's lineup cursor currently sits on.
+function syncCurrentAtBat(g) {
+  const bLineup = lineupOf(g, battingSide(g));
+  const pLineup = lineupOf(g, pitchingSide(g));
+  if (bLineup.battingOrder.length) {
+    if (bLineup.battingIndex >= bLineup.battingOrder.length) bLineup.battingIndex = 0;
+    g.batterPlayerId = bLineup.battingOrder[bLineup.battingIndex];
+  } else {
+    g.batterPlayerId = null;
+  }
+  if (pLineup.pitchingRotation.length) {
+    if (pLineup.pitchingIndex >= pLineup.pitchingRotation.length) pLineup.pitchingIndex = 0;
+    g.pitcherPlayerId = pLineup.pitchingRotation[pLineup.pitchingIndex];
+  } else {
+    g.pitcherPlayerId = null;
+  }
+}
+
+// Undo history — mirrors routes/draftApi.js's snapshot/history/undo pattern.
+function snapshot(g) {
+  const copy = JSON.parse(JSON.stringify({ ...g, history: [] }));
+  g.history = [{ snapshot: copy }, ...(g.history || [])].slice(0, 12);
 }
 
 function battingSide(g) { return g.currentHalf === 'top' ? 'visitor' : 'home'; }
@@ -72,6 +126,9 @@ function compose() {
   const pSide = pitchingSide(g);
   return {
     ...g,
+    gameType: g.gameType === 'championship' ? 'championship' : 'standard',
+    history: undefined, // never ship undo snapshots to display pollers
+    historyDepth: (g.history || []).length,
     visitorName: visitorTeam?.name || '',
     homeName: homeTeam?.name || '',
     pitcherName: pitcher?.name || g.pitcherFallback || '',
@@ -95,7 +152,7 @@ function ensureLength(arr, len) {
 router.get('/', (req, res) => res.json(compose()));
 
 router.post('/setup', async (req, res) => {
-  const { visitorTeamId, homeTeamId } = req.body || {};
+  const { visitorTeamId, homeTeamId, gameType } = req.body || {};
   const ts = teams.get();
   if (!ts.find(t => t.id === visitorTeamId) || !ts.find(t => t.id === homeTeamId)) {
     return res.status(400).json({ error: 'Pick visitor and home teams' });
@@ -105,6 +162,7 @@ router.post('/setup', async (req, res) => {
   }
   await game.update(g => ({
     status: 'live',
+    gameType: gameType === 'championship' ? 'championship' : 'standard',
     visitorTeamId,
     homeTeamId,
     visitorInnings: Array(9).fill(null),
@@ -117,10 +175,12 @@ router.post('/setup', async (req, res) => {
     batterFallback: '',
     bases: { first: false, second: false, third: false },
     outs: 0,
+    strikes: 0,
     balls: 0,
     inningsPlayed: 0,
     visitorLineup: emptyLineup(),
-    homeLineup: emptyLineup()
+    homeLineup: emptyLineup(),
+    history: []
   }));
   res.json(compose());
 });
@@ -153,7 +213,7 @@ router.put('/score', async (req, res) => {
 });
 
 router.put('/atbat', async (req, res) => {
-  const { pitcherPlayerId, batterPlayerId, pitcherFallback, batterFallback, bases, outs, balls } = req.body || {};
+  const { pitcherPlayerId, batterPlayerId, pitcherFallback, batterFallback, bases, outs, strikes, balls } = req.body || {};
   await game.update(g => {
     ensureLineups(g);
     if (pitcherPlayerId !== undefined) {
@@ -179,6 +239,7 @@ router.put('/atbat', async (req, res) => {
       first: !!bases.first, second: !!bases.second, third: !!bases.third
     };
     if (outs !== undefined) g.outs = Math.max(0, Math.min(2, Math.floor(Number(outs))));
+    if (strikes !== undefined) g.strikes = Math.max(0, Math.min(2, Math.floor(Number(strikes))));
     if (balls !== undefined) g.balls = Math.max(0, Math.min(3, Math.floor(Number(balls))));
     return g;
   });
@@ -200,29 +261,53 @@ router.put('/lineup', async (req, res) => {
     ensureLineups(g);
     const lineup = lineupOf(g, side);
     if (cleanBatting) {
+      lineup.battingIndex = reindexAfterEdit(lineup.battingOrder, lineup.battingIndex, cleanBatting);
       lineup.battingOrder = cleanBatting;
-      lineup.battingIndex = 0;
+      lineup.battingAuto = false; // this endpoint is the manual-edit surface
     }
     if (cleanPitching) {
+      lineup.pitchingIndex = reindexAfterEdit(lineup.pitchingRotation, lineup.pitchingIndex, cleanPitching);
       lineup.pitchingRotation = cleanPitching;
+      lineup.pitchingAuto = false;
+    }
+    syncCurrentAtBat(g);
+    return g;
+  });
+  res.json(compose());
+});
+
+// Auto-populate a side's batting order or pitching rotation with the full
+// team roster in random order. Marks that side `*Auto: true` so next-atbat
+// reshuffles it once every player has had a turn instead of just wrapping.
+router.post('/lineup/randomize', async (req, res) => {
+  const { side, kind } = req.body || {};
+  if (side !== 'visitor' && side !== 'home') {
+    return res.status(400).json({ error: 'side must be visitor|home' });
+  }
+  if (kind !== 'battingOrder' && kind !== 'pitchingRotation') {
+    return res.status(400).json({ error: 'kind must be battingOrder|pitchingRotation' });
+  }
+  const teamId = side === 'visitor' ? game.get().visitorTeamId : game.get().homeTeamId;
+  const team = teams.get().find(t => t.id === teamId);
+  const roster = [...(team?.playerIds || [])];
+  if (!roster.length) {
+    return res.status(400).json({ error: 'That team has no roster to randomize.' });
+  }
+  shuffleAvoidingRepeat(roster, null);
+
+  await game.update(g => {
+    ensureLineups(g);
+    const lineup = lineupOf(g, side);
+    if (kind === 'battingOrder') {
+      lineup.battingOrder = roster;
+      lineup.battingIndex = 0;
+      lineup.battingAuto = true;
+    } else {
+      lineup.pitchingRotation = roster;
       lineup.pitchingIndex = 0;
+      lineup.pitchingAuto = true;
     }
-    // Keep the displayed batter/pitcher in sync with the active side's
-    // current lineup pointer so the first player shows up immediately.
-    const bLineup = lineupOf(g, battingSide(g));
-    const pLineup = lineupOf(g, pitchingSide(g));
-    if (bLineup.battingOrder.length) {
-      if (bLineup.battingIndex >= bLineup.battingOrder.length) bLineup.battingIndex = 0;
-      g.batterPlayerId = bLineup.battingOrder[bLineup.battingIndex];
-    } else {
-      g.batterPlayerId = null;
-    }
-    if (pLineup.pitchingRotation.length) {
-      if (pLineup.pitchingIndex >= pLineup.pitchingRotation.length) pLineup.pitchingIndex = 0;
-      g.pitcherPlayerId = pLineup.pitchingRotation[pLineup.pitchingIndex];
-    } else {
-      g.pitcherPlayerId = null;
-    }
+    syncCurrentAtBat(g);
     return g;
   });
   res.json(compose());
@@ -232,21 +317,51 @@ router.post('/next-atbat', async (req, res) => {
   let err = null;
   await game.update(g => {
     ensureLineups(g);
+    snapshot(g);
     const bLineup = lineupOf(g, battingSide(g));
     const pLineup = lineupOf(g, pitchingSide(g));
     if (!bLineup.battingOrder.length && !pLineup.pitchingRotation.length) {
       err = 'Set a batting order and pitching rotation first.';
+      g.history.shift(); // undo the snapshot we took above — nothing happened
       return g;
     }
     if (bLineup.battingOrder.length) {
-      bLineup.battingIndex = (bLineup.battingIndex + 1) % bLineup.battingOrder.length;
+      const lastId = bLineup.battingOrder[bLineup.battingIndex];
+      const next = bLineup.battingIndex + 1;
+      if (next >= bLineup.battingOrder.length) {
+        if (bLineup.battingAuto) shuffleAvoidingRepeat(bLineup.battingOrder, lastId);
+        bLineup.battingIndex = 0;
+      } else {
+        bLineup.battingIndex = next;
+      }
       g.batterPlayerId = bLineup.battingOrder[bLineup.battingIndex];
     }
     if (pLineup.pitchingRotation.length) {
-      pLineup.pitchingIndex = (pLineup.pitchingIndex + 1) % pLineup.pitchingRotation.length;
+      const lastId = pLineup.pitchingRotation[pLineup.pitchingIndex];
+      const next = pLineup.pitchingIndex + 1;
+      if (next >= pLineup.pitchingRotation.length) {
+        if (pLineup.pitchingAuto) shuffleAvoidingRepeat(pLineup.pitchingRotation, lastId);
+        pLineup.pitchingIndex = 0;
+      } else {
+        pLineup.pitchingIndex = next;
+      }
       g.pitcherPlayerId = pLineup.pitchingRotation[pLineup.pitchingIndex];
     }
     return g;
+  });
+  if (err) return res.status(400).json({ error: err });
+  res.json(compose());
+});
+
+router.post('/undo', async (req, res) => {
+  let err = null;
+  await game.update(g => {
+    if (!g.history || !g.history.length) {
+      err = 'Nothing to undo.';
+      return g;
+    }
+    const [{ snapshot: prev }, ...rest] = g.history;
+    return { ...prev, history: rest };
   });
   if (err) return res.status(400).json({ error: err });
   res.json(compose());
@@ -264,6 +379,7 @@ router.post('/final', async (req, res) => {
 router.post('/reset', async (req, res) => {
   await game.set({
     status: 'setup',
+    gameType: 'standard',
     visitorTeamId: null,
     homeTeamId: null,
     visitorInnings: Array(9).fill(null),
@@ -276,10 +392,12 @@ router.post('/reset', async (req, res) => {
     batterFallback: '',
     bases: { first: false, second: false, third: false },
     outs: 0,
+    strikes: 0,
     balls: 0,
     inningsPlayed: 0,
     visitorLineup: emptyLineup(),
-    homeLineup: emptyLineup()
+    homeLineup: emptyLineup(),
+    history: []
   });
   res.json(compose());
 });
