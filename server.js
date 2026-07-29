@@ -1,5 +1,13 @@
 require('./lib/crashLog').install();
 
+// The packaged Windows exe is built as a GUI-subsystem binary so operators
+// never see a console window. That leaves fds 1 and 2 pointing at nothing, and
+// an unhandled 'error' on either stream would kill the process on the first
+// console.log — the exact crash this app was shipped with. crashLog writes to a
+// file when packaged, so losing console output costs no diagnostics.
+process.stdout.on('error', () => {});
+process.stderr.on('error', () => {});
+
 const express = require('express');
 const path = require('path');
 
@@ -18,6 +26,14 @@ app.use('/api/standings', require('./routes/standingsApi'));
 app.use('/api/bracket', require('./routes/bracketApi'));
 app.use('/api/game', require('./routes/gameApi'));
 app.use('/api/draft', require('./routes/draftApi'));
+
+// The packaged app has no console window to close, so the hub page needs a way
+// to stop the server. process.exit fires the 'exit' handler below, which clears
+// the single-instance marker.
+app.post('/api/shutdown', (req, res) => {
+  res.json({ ok: true });
+  res.on('finish', () => process.exit(0));
+});
 
 app.use('/admin', require('./routes/admin'));
 app.use('/standings', require('./routes/standingsView'));
@@ -41,7 +57,7 @@ async function start() {
 
     if (singleInstance) singleInstance.writePidFile();
 
-    if (process.pkg) {
+    if (process.pkg && !process.env.SUMMER_CLASSIC_NO_BROWSER) {
       require('open')(`http://localhost:${PORT}/`)
         .then(child => child && child.on('error', () => {}))
         .catch(() => {});

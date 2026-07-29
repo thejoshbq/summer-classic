@@ -95,7 +95,38 @@
   .hub-footer {
     border-top: 1px solid var(--divider);
     padding: 14px 32px;
-    text-align: right;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .shutdown {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 500;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 7px 14px;
+    border-radius: 6px;
+    background: transparent;
+    border: 1px solid var(--divider);
+    color: var(--white-faint);
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s, color 0.15s;
+  }
+
+  .shutdown:hover, .shutdown:focus {
+    background: rgba(191, 6, 6, 0.12);
+    border-color: var(--red);
+    color: #fff;
+  }
+
+  .shutdown[disabled] {
+    cursor: default;
+    background: transparent;
+    border-color: var(--divider);
+    color: var(--white-faint);
   }
 
   .tagline {
@@ -127,8 +158,23 @@
   </nav>
 
   <div class="hub-footer">
+    <button class="shutdown" id="shutdown" type="button">Shut Down</button>
     <span class="tagline">Have fun. Build community. Give back.</span>
   </div>
 </div>
+<script>
+  // The packaged app runs without a console window, so this is the only way to
+  // stop the server short of Task Manager.
+  const button = document.getElementById('shutdown');
+  button.addEventListener('click', async () => {
+    if (!confirm('Shut down Summer Classic? All displays will stop updating.')) return;
+    button.disabled = true;
+    button.textContent = 'Shutting Down...';
+    // The server exits as soon as the response is flushed, so a transport
+    // error here means it shut down, not that the request failed.
+    try { await fetch('/api/shutdown', { method: 'POST' }); } catch {}
+    button.textContent = 'Shut Down — Safe To Close';
+  });
+</script>
 </body>
 </html>

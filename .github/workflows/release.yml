@@ -14,18 +14,29 @@ jobs:
         with:
           node-version: 22
       - run: npm ci
-      - run: npx pkg . --targets node22-win-x64 --output dist/summer-classic-win-x64.exe
-      - name: Embed app icon
-        run: node scripts/set-win-icon.mjs dist/summer-classic-win-x64.exe installer/icons/summer-classic.ico
       - name: Extract version from tag
         id: version
         shell: bash
         run: echo "version=${GITHUB_REF_NAME#v}" >> "$GITHUB_OUTPUT"
+      - name: Package
+        run: node scripts/build-win.mjs --version ${{ steps.version.outputs.version }} --require-icon
+      - name: Smoke test binary
+        run: node scripts/smoke-test.mjs dist/summer-classic-win-x64.exe
       - name: Build installer
         uses: Minionguyjpro/Inno-Setup-Action@v1.2.2
         with:
           path: installer/windows/summer-classic.iss
           options: /DAppVersion=${{ steps.version.outputs.version }}
+      # Covers the whole chain that actually ships: the installer has its own
+      # ways to mangle or misplace the exe, and nothing else exercises it.
+      - name: Smoke test installed app
+        shell: pwsh
+        run: |
+          $target = Join-Path $env:RUNNER_TEMP 'SummerClassicInstalled'
+          Start-Process -FilePath dist\SummerClassicSetup.exe `
+            -ArgumentList '/VERYSILENT','/SUPPRESSMSGBOXES','/NORESTART',"/DIR=$target" `
+            -Wait
+          node scripts/smoke-test.mjs "$target\SummerClassic.exe"
       - uses: actions/upload-artifact@v4
         with:
           name: windows-installer
@@ -40,6 +51,8 @@ jobs:
           node-version: 22
       - run: npm ci
       - run: npx pkg . --targets node22-macos-x64 --output dist/summer-classic-macos-x64
+      - name: Smoke test binary
+        run: node scripts/smoke-test.mjs dist/summer-classic-macos-x64
       - name: Extract version from tag
         id: version
         run: echo "version=${GITHUB_REF_NAME#v}" >> "$GITHUB_OUTPUT"
@@ -59,6 +72,8 @@ jobs:
           node-version: 22
       - run: npm ci
       - run: npx pkg . --targets node22-linux-x64 --output dist/summer-classic-linux-x64
+      - name: Smoke test binary
+        run: node scripts/smoke-test.mjs dist/summer-classic-linux-x64
       - name: Extract version from tag
         id: version
         run: echo "version=${GITHUB_REF_NAME#v}" >> "$GITHUB_OUTPUT"
