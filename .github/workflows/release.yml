@@ -16,7 +16,7 @@ jobs:
       - run: npm ci
       - run: npx pkg . --targets node22-win-x64 --output dist/summer-classic-win-x64.exe
       - name: Embed app icon
-        run: npx rcedit dist/summer-classic-win-x64.exe --set-icon installer/icons/summer-classic.ico
+        run: node scripts/set-win-icon.mjs dist/summer-classic-win-x64.exe installer/icons/summer-classic.ico
       - name: Extract version from tag
         id: version
         shell: bash
