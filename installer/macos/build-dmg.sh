@@ -17,6 +17,9 @@ mkdir -p "$APP_DIR/Contents/MacOS"
 cp "$BINARY" "$APP_DIR/Contents/MacOS/SummerClassic"
 chmod +x "$APP_DIR/Contents/MacOS/SummerClassic"
 
+mkdir -p "$APP_DIR/Contents/Resources"
+cp "$SCRIPT_DIR/../icons/summer-classic.icns" "$APP_DIR/Contents/Resources/AppIcon.icns"
+
 sed "s/__VERSION__/$VERSION/g" "$SCRIPT_DIR/Info.plist.template" > "$APP_DIR/Contents/Info.plist"
 
 mkdir -p "$(dirname "$OUT_DMG")"

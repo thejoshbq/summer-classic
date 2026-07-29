@@ -14,6 +14,7 @@ AppPublisher=Lumber Jill's
 DefaultDirName={autopf}\SummerClassic
 DefaultGroupName=Summer Classic
 DisableProgramGroupPage=yes
+SetupIconFile=..\icons\summer-classic.ico
 OutputDir=..\..\dist
 OutputBaseFilename=SummerClassicSetup
 Compression=lzma2
