@@ -30,11 +30,12 @@ Name: "desktopicon"; Description: "Create a desktop shortcut"; GroupDescription:
 
 [Files]
 Source: "..\..\dist\summer-classic-win-x64.exe"; DestDir: "{app}"; DestName: "SummerClassic.exe"; Flags: ignoreversion
+Source: "..\icons\summer-classic.ico"; DestDir: "{app}"; DestName: "summer-classic.ico"; Flags: ignoreversion
 
 [Icons]
-Name: "{group}\Summer Classic"; Filename: "{app}\SummerClassic.exe"
-Name: "{group}\Uninstall Summer Classic"; Filename: "{uninstallexe}"
-Name: "{autodesktop}\Summer Classic"; Filename: "{app}\SummerClassic.exe"; Tasks: desktopicon
+Name: "{group}\Summer Classic"; Filename: "{app}\SummerClassic.exe"; IconFilename: "{app}\summer-classic.ico"
+Name: "{group}\Uninstall Summer Classic"; Filename: "{uninstallexe}"; IconFilename: "{app}\summer-classic.ico"
+Name: "{autodesktop}\Summer Classic"; Filename: "{app}\SummerClassic.exe"; Tasks: desktopicon; IconFilename: "{app}\summer-classic.ico"
 
 [Run]
 Filename: "{app}\SummerClassic.exe"; Description: "Launch Summer Classic"; Flags: nowait postinstall skipifsilent
