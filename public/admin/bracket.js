@@ -36,7 +36,7 @@ function renderBracket() {
         </div>
       </div>
 
-      <label>Entrants ${b.mode === 'derby' ? '(top → bottom = seed 1 → N)' : '(scout score determines bye)'}</label>
+      <label>Entrants ${b.mode === 'derby' ? '(shuffled randomly on generate)' : '(scout score determines bye)'}</label>
       ${renderEntrants(b)}
 
       <div class="row" style="margin-top:14px">

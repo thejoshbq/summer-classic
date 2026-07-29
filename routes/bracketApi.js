@@ -14,6 +14,7 @@ function snapshot(b) {
 // Back-compat: older heats stored a single eliminatedPlayerId. Normalize
 // every read/write so the rest of this file only deals with the array form.
 function normalizeHeats(b) {
+  if (!Array.isArray(b.byeHistory)) b.byeHistory = [];
   if (b?.mode !== 'murderball' || !Array.isArray(b.rounds)) return;
   for (const round of b.rounds) {
     if (!Array.isArray(round.heats)) continue;
@@ -27,26 +28,72 @@ function normalizeHeats(b) {
   }
 }
 
-function buildMurderballRound(entrantIds, laneCount) {
-  const heats = [];
+// Fisher-Yates shuffle in place.
+function shuffle(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
+function scoutScoreOf(id) {
+  const ps = players.get();
+  const p = ps.find(x => x.id === id);
+  return p?.variations ? computeScoutScore(p.variations) : null;
+}
+
+// Ranks a pool for bye priority: players who haven't had a bye yet first
+// (lowest scout score first, matching the documented "lowest seed" rule),
+// then players who've already had one, least-recent first.
+function rankForBye(pool, byeHistory) {
+  const neverByed = pool.filter(id => !byeHistory.includes(id));
+  const alreadyByed = pool.filter(id => byeHistory.includes(id));
+  neverByed.sort((a, b) => scoutScoreOf(a) - scoutScoreOf(b));
+  alreadyByed.sort((a, b) => byeHistory.lastIndexOf(a) - byeHistory.lastIndexOf(b));
+  return [...neverByed, ...alreadyByed];
+}
+
+// Picks who sits out this round. Unscored players stay exempt from ever
+// being picked as long as enough scored players exist to fill every bye
+// slot; only the shortfall (if any) spills over to unscored players.
+function pickByeRecipients(entrantIds, count, byeHistory) {
+  const eligible = entrantIds.filter(id => scoutScoreOf(id) != null);
+  const ineligible = entrantIds.filter(id => scoutScoreOf(id) == null);
+
+  const picks = rankForBye(eligible, byeHistory).slice(0, count);
+  if (picks.length < count) {
+    picks.push(...rankForBye(ineligible, byeHistory).slice(0, count - picks.length));
+  }
+  return picks;
+}
+
+function buildMurderballRound(entrantIds, laneCount, byeHistory) {
   const fullHeats = Math.floor(entrantIds.length / laneCount);
   // When survivors don't fill one full heat, put them all in one real heat
   // rather than issuing individual BYEs to every player.
   if (fullHeats === 0 && entrantIds.length > 0) {
     return {
-      heats: [{ playerIds: [...entrantIds], eliminatedPlayerIds: [], bye: false }],
+      heats: [{ playerIds: shuffle([...entrantIds]), eliminatedPlayerIds: [], bye: false }],
       complete: false
     };
   }
+
+  const remainderCount = entrantIds.length - fullHeats * laneCount;
+  const byePlayerIds = remainderCount > 0 ? pickByeRecipients(entrantIds, remainderCount, byeHistory) : [];
+  byeHistory.push(...byePlayerIds);
+
+  const pool = shuffle(entrantIds.filter(id => !byePlayerIds.includes(id)));
+
+  const heats = [];
   for (let i = 0; i < fullHeats; i++) {
     heats.push({
-      playerIds: entrantIds.slice(i * laneCount, i * laneCount + laneCount),
+      playerIds: pool.slice(i * laneCount, i * laneCount + laneCount),
       eliminatedPlayerIds: [],
       bye: false
     });
   }
-  const remainder = entrantIds.slice(fullHeats * laneCount);
-  for (const pid of remainder) {
+  for (const pid of byePlayerIds) {
     heats.push({ playerIds: [pid], eliminatedPlayerIds: [], bye: true });
   }
   return { heats, complete: false };
@@ -65,18 +112,6 @@ function heatHasElimination(h) {
 function heatHasSurvivor(h) {
   if (h.bye) return true;
   return h.playerIds.some(p => !h.eliminatedPlayerIds.includes(p));
-}
-
-function orderMurderballEntrants(entrantIds) {
-  // Sort lowest scout score first so they end up as the bye (lowest-seed slot
-  // in the original logic — same effect here: byes are tail-of-array slots).
-  const ps = players.get();
-  const score = id => {
-    const p = ps.find(x => x.id === id);
-    const s = p?.variations ? computeScoutScore(p.variations) : null;
-    return s == null ? Number.POSITIVE_INFINITY : s;
-  };
-  return [...entrantIds].sort((a, b) => score(b) - score(a));
 }
 
 function seedSlots(size) {
@@ -171,6 +206,7 @@ router.put('/settings', async (req, res) => {
       b.rounds = [];
       b.currentRound = 0;
       b.championPlayerId = null;
+      b.byeHistory = [];
       b.history = [];
     }
     return b;
@@ -181,6 +217,7 @@ router.put('/settings', async (req, res) => {
 router.post('/generate', async (req, res) => {
   let error = null;
   await bracket.update(b => {
+    normalizeHeats(b);
     if ((b.entrantPlayerIds || []).length < 2) {
       error = 'Need at least 2 entrants.';
       return b;
@@ -189,11 +226,11 @@ router.post('/generate', async (req, res) => {
     b.generated = true;
     b.currentRound = 0;
     b.championPlayerId = null;
+    b.byeHistory = [];
     if (b.mode === 'murderball') {
-      const ordered = orderMurderballEntrants(b.entrantPlayerIds);
-      b.rounds = [buildMurderballRound(ordered, b.settings.laneCount)];
+      b.rounds = [buildMurderballRound(b.entrantPlayerIds, b.settings.laneCount, b.byeHistory)];
     } else {
-      b.rounds = generateDerby(b.entrantPlayerIds);
+      b.rounds = generateDerby(shuffle([...b.entrantPlayerIds]));
     }
     return b;
   });
@@ -207,6 +244,7 @@ router.post('/reset', async (req, res) => {
     b.rounds = [];
     b.currentRound = 0;
     b.championPlayerId = null;
+    b.byeHistory = [];
     b.history = [];
     return b;
   });
@@ -255,7 +293,7 @@ router.post('/advance-round', async (req, res) => {
     if (survivors.length < 2) { err = 'Not enough survivors to advance.'; return b; }
     snapshot(b);
     round.complete = true;
-    b.rounds.push(buildMurderballRound(survivors, b.settings.laneCount));
+    b.rounds.push(buildMurderballRound(survivors, b.settings.laneCount, b.byeHistory));
     b.currentRound++;
     return b;
   });
