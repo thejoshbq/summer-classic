@@ -1,62 +1,43 @@
 # Summer Classic — Operator Toolkit
 
-Digital display and management apps for **The Summer Classic**, a six-week recreational axe-throwing league run by **Lumber Jill's** in the Charleston/Summerville, SC area.
+Digital display and management tools for **The Summer Classic**, a six-week recreational axe-throwing league run by **Lumber Jill's** in the Charleston/Summerville, SC area.
 
-Everything runs locally on venue hardware. No cloud, no auth, no external services.
-
----
-
-## The three apps
-
-| App | Directory | What it does | When it's used |
-|---|---|---|---|
-| **Standings Board** | [`standings-board/`](./standings-board) | Season W–L and points board, top seed highlighted | Days 2–6 |
-| **Brackets** | [`elimination-bracket/`](./elimination-bracket) | Murderball heat elimination + Home Run Derby single-elim | Days 4 & 6 |
-| **Championship Scoreboard** | [`championship-scoreboard/`](./championship-scoreboard) | Live 9-inning scoreboard with `live` and `final` states | Day 6 |
-
-Each app is self-contained — independent Node.js + Express server, flat-file JSON persistence, vanilla-JS frontend, no shared code between them.
-
-Every app exposes three routes:
-
-- `/display` — TV-facing, 1920×1080, no interaction required, polls every 5s
-- `/admin` — operator-facing, laptop trackpad operable, large tap targets
-- `/` — redirects to `/display`
+Everything runs locally on venue hardware. No cloud, no accounts, no internet connection required once installed.
 
 ---
 
-## Quick start
+## Download
 
-Each app is run independently. From inside an app directory:
+Download, install, and launch. The app opens in your browser automatically — nothing to configure.
 
-```bash
-npm install
-npm start          # or: node server.js
-```
-
-| App | Default port | Open in browser |
-|---|---|---|
-| `standings-board` | `3000` | http://localhost:3000 |
-| `elimination-bracket` | `3000` (override with `PORT=...`) | http://localhost:3000 |
-| `championship-scoreboard` | `3001` | http://localhost:3001 |
-
-`standings-board` and `elimination-bracket` both default to port `3000`. Run one at a time, or override with `PORT=3002 node server.js` for the bracket app.
+| Platform | Download |
+|---|---|
+| Windows | [**SummerClassicSetup.exe**](https://github.com/thejoshbq/summer-classic/releases/latest/download/SummerClassicSetup.exe) |
+| macOS | [**SummerClassic.dmg**](https://github.com/thejoshbq/summer-classic/releases/latest/download/SummerClassic.dmg) |
+| Linux (AppImage) | [**SummerClassic-x86_64.AppImage**](https://github.com/thejoshbq/summer-classic/releases/latest/download/SummerClassic-x86_64.AppImage) |
+| Linux (.deb) | [Browse latest release →](https://github.com/thejoshbq/summer-classic/releases/latest) |
 
 ---
 
-## Tech stack
+## What's inside
 
-- **Backend:** Node.js + Express. The only runtime dependency is `express`.
-- **Persistence:** A single human-readable JSON file in each app's root. Hand-editable as a fallback if the admin UI is unreachable.
-- **Frontend:** Vanilla JS. No framework, no bundler, no build step.
-- **Fonts:** Oswald + Barlow Condensed from Google Fonts CDN.
+Once running, the app opens to a hub page with links to everything an operator or a TV display needs:
 
-Polling-based updates only — display pages poll `/api/*` every 5 seconds and re-render without a full page reload.
+| Page | What it's for |
+|---|---|
+| **Admin** | Operator controls — manage teams, players, scores, and brackets |
+| **Standings TV** | Season standings board for display |
+| **Bracket TV** | Murderball and Home Run Derby elimination brackets |
+| **Game TV (Rotation)** | Live championship scoreboard |
+| **Draft TV** | Team draft display |
+
+Admin pages are built for a laptop trackpad. TV pages are built for a 1080p display and update automatically — no refreshing needed.
 
 ---
 
 ## Design system
 
-All three displays share the same look exactly. Brief palette reference:
+All displays share the same look exactly. Brief palette reference:
 
 | | Hex | Used for |
 |---|---|---|
@@ -95,9 +76,25 @@ Six nights, one champion. Roughly:
 These apps deliberately do *not* handle:
 
 - Stat tracking (Changeup Award, Most Clutch, MVP) — paper score sheets, tallied by coaches on Day 5
-- Day 5 Playoffs bracket — not yet built; would reuse the bracket display component
 - Score sheet management — physical handouts only
 - Jersey or prize procurement — external
+
+---
+
+## For developers
+
+Everything below is only relevant if you're working on the codebase itself — not needed to run the app.
+
+```bash
+git clone git@github.com:thejoshbq/summer-classic.git
+cd summer-classic
+npm install
+npm start
+```
+
+The app opens your browser to the hub automatically, same as the packaged build.
+
+**Stack:** Node.js + Express (only runtime dependency is `express`), flat-file JSON persistence, vanilla JS frontend — no framework, no bundler, no build step. Installers are built and published via `.github/workflows/release.yml` on tag push.
 
 ---
 
