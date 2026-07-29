@@ -110,7 +110,7 @@ router.delete('/:id', async (req, res) => {
   });
 
   // Cascade: drop from draft eligiblePlayerIds and picks
-  await draft.update(d => {
+  await draft.update(async d => {
     d.eligiblePlayerIds = (d.eligiblePlayerIds || []).filter(pid => pid !== id);
     // Strip from picks[] (not just eligible) — leave already-picked records
     // pointing at dead player stripped here for commit-time safety
@@ -131,7 +131,7 @@ router.delete('/:id', async (req, res) => {
 
     // If already committed, also strip from team rosters that were written
     if (d.status === 'committed') {
-      teams.update(curr => {
+      await teams.update(curr => {
         for (const t of curr) {
           t.playerIds = (t.playerIds || []).filter(pid => pid !== id);
         }

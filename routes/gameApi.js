@@ -186,7 +186,9 @@ router.post('/setup', async (req, res) => {
 });
 
 router.put('/inning', async (req, res) => {
-  const inning = Math.max(1, Math.min(20, Math.floor(Number(req.body?.inning))));
+  const raw = Number(req.body?.inning);
+  if (!Number.isFinite(raw)) return res.status(400).json({ error: 'inning must be a number' });
+  const inning = Math.max(1, Math.min(20, Math.floor(raw)));
   const half = req.body?.half === 'bottom' ? 'bottom' : 'top';
   await game.update(g => {
     g.currentInning = inning;

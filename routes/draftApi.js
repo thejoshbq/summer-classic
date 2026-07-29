@@ -92,7 +92,6 @@ router.put('/settings', async (req, res) => {
   }
 
   const { teamOrder, eligiblePlayerIds } = req.body || {};
-  let err = null;
 
   await draft.update(curr => {
     if (Array.isArray(teamOrder)) {
@@ -108,7 +107,6 @@ router.put('/settings', async (req, res) => {
     return curr;
   });
 
-  if (err) return res.status(400).json({ error: err });
   res.json(draft.get());
 });
 

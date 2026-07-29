@@ -18,7 +18,9 @@ function compose() {
 router.get('/', (req, res) => res.json(compose()));
 
 router.put('/day', async (req, res) => {
-  const day = Math.min(6, Math.max(1, Math.floor(Number(req.body?.day))));
+  const raw = Number(req.body?.day);
+  if (!Number.isFinite(raw)) return res.status(400).json({ error: 'day must be a number' });
+  const day = Math.min(6, Math.max(1, Math.floor(raw)));
   await standings.update(s => { s.day = day; return s; });
   res.json(compose());
 });

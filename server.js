@@ -32,5 +32,9 @@ app.listen(PORT, () => {
   console.log(`  Game TV:         http://localhost:${PORT}/rotation/display`);
   console.log(`  Draft TV:        http://localhost:${PORT}/draft/display`);
 
-  if (process.pkg) require('open')(`http://localhost:${PORT}/`);
+  if (process.pkg) {
+    require('open')(`http://localhost:${PORT}/`)
+      .then(child => child && child.on('error', () => {}))
+      .catch(() => {});
+  }
 });
