@@ -3,10 +3,33 @@
   "version": "1.0.0",
   "private": true,
   "main": "server.js",
+  "engines": {
+    "node": ">=22"
+  },
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "package:linux": "pkg . --targets node22-linux-x64 --output dist/summer-classic-linux-x64",
+    "package:win": "pkg . --targets node22-win-x64 --output dist/summer-classic-win-x64.exe",
+    "package:mac": "pkg . --targets node22-macos-x64 --output dist/summer-classic-macos-x64",
+    "package": "npm run package:linux && npm run package:win && npm run package:mac"
   },
   "dependencies": {
-    "express": "^4.22.2"
+    "express": "^4.22.2",
+    "open": "^8.4.2"
+  },
+  "devDependencies": {
+    "@yao-pkg/pkg": "^6.21.0"
+  },
+  "pkg": {
+    "assets": [
+      "public/**/*",
+      "data/**/*.json"
+    ],
+    "targets": [
+      "node22-linux-x64",
+      "node22-win-x64",
+      "node22-macos-x64"
+    ],
+    "outputPath": "dist"
   }
 }

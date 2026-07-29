@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Summer Classic
+Comment=Lumber Jill's Summer Classic operator toolkit
+Exec=/usr/bin/summer-classic
+Icon=summer-classic
+Terminal=false
+Categories=Utility;

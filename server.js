@@ -7,7 +7,7 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json());
 app.use('/shared', express.static(path.join(__dirname, 'public', 'shared')));
 
-app.get('/', (req, res) => res.redirect('/rotation/display'));
+app.use('/', require('./routes/hubView'));
 app.get('/admin.html', (req, res) => res.redirect('/admin'));
 
 app.use('/api/players', require('./routes/players'));
@@ -31,4 +31,6 @@ app.listen(PORT, () => {
   console.log(`  Bracket TV:      http://localhost:${PORT}/bracket/display`);
   console.log(`  Game TV:         http://localhost:${PORT}/rotation/display`);
   console.log(`  Draft TV:        http://localhost:${PORT}/draft/display`);
+
+  if (process.pkg) require('open')(`http://localhost:${PORT}/`);
 });

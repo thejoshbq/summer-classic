@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Summer Classic</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/shared/brand.css">
+<style>
+  html, body {
+    width: 100%;
+    height: 100%;
+    background: var(--navy);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Oswald', sans-serif;
+    color: #fff;
+  }
+
+  .hub {
+    width: min(600px, 90vw);
+    background: var(--dark-navy);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .hub-header {
+    border-bottom: 3px solid var(--orange);
+    padding: 28px 32px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .hub-header img {
+    height: 56px;
+    width: 56px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+
+  .hub-header .header-left {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2em;
+  }
+
+  .venue-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--teal);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  .hub-title {
+    font-weight: 700;
+    font-size: 28px;
+    color: var(--orange);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .hub-links {
+    display: flex;
+    flex-direction: column;
+    padding: 12px;
+    gap: 8px;
+  }
+
+  .hub-link {
+    display: block;
+    padding: 18px 20px;
+    border-radius: 8px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--divider);
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 20px;
+    letter-spacing: 0.02em;
+    transition: background 0.15s, border-color 0.15s;
+  }
+
+  .hub-link:hover, .hub-link:focus {
+    background: rgba(242, 143, 22, 0.08);
+    border-color: var(--orange);
+  }
+
+  .hub-footer {
+    border-top: 1px solid var(--divider);
+    padding: 14px 32px;
+    text-align: right;
+  }
+
+  .tagline {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 400;
+    font-style: italic;
+    font-size: 13px;
+    color: var(--white-trace);
+    letter-spacing: 0.04em;
+  }
+</style>
+</head>
+<body>
+<div class="hub">
+  <div class="hub-header">
+    <img src="/shared/logo.png" alt="Lumber Jill's">
+    <div class="header-left">
+      <span class="venue-name">Lumber Jill's</span>
+      <span class="hub-title">The Summer Classic</span>
+    </div>
+  </div>
+
+  <nav class="hub-links">
+    <a class="hub-link" href="/admin">Admin</a>
+    <a class="hub-link" href="/standings/display">Standings TV</a>
+    <a class="hub-link" href="/bracket/display">Bracket TV</a>
+    <a class="hub-link" href="/rotation/display">Game TV (Rotation)</a>
+    <a class="hub-link" href="/draft/display">Draft TV</a>
+  </nav>
+
+  <div class="hub-footer">
+    <span class="tagline">Have fun. Build community. Give back.</span>
+  </div>
+</div>
+</body>
+</html>

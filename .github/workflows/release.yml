@@ -1,0 +1,94 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm ci
+      - run: npx pkg . --targets node22-win-x64 --output dist/summer-classic-win-x64.exe
+      - name: Extract version from tag
+        id: version
+        shell: bash
+        run: echo "version=${GITHUB_REF_NAME#v}" >> "$GITHUB_OUTPUT"
+      - name: Build installer
+        uses: Minionguyjpro/Inno-Setup-Action@v1.2.2
+        with:
+          path: installer/windows/summer-classic.iss
+          options: /DAppVersion=${{ steps.version.outputs.version }}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: windows-installer
+          path: dist/SummerClassicSetup.exe
+
+  build-macos:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm ci
+      - run: npx pkg . --targets node22-macos-x64 --output dist/summer-classic-macos-x64
+      - name: Extract version from tag
+        id: version
+        run: echo "version=${GITHUB_REF_NAME#v}" >> "$GITHUB_OUTPUT"
+      - name: Build .dmg
+        run: installer/macos/build-dmg.sh "${{ steps.version.outputs.version }}" dist/summer-classic-macos-x64 dist/SummerClassic.dmg
+      - uses: actions/upload-artifact@v4
+        with:
+          name: macos-installer
+          path: dist/SummerClassic.dmg
+
+  build-linux:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm ci
+      - run: npx pkg . --targets node22-linux-x64 --output dist/summer-classic-linux-x64
+      - name: Extract version from tag
+        id: version
+        run: echo "version=${GITHUB_REF_NAME#v}" >> "$GITHUB_OUTPUT"
+      - name: Install fpm
+        run: sudo gem install --no-document fpm
+      - name: Build .deb
+        run: installer/linux/build-deb.sh "${{ steps.version.outputs.version }}" dist/summer-classic-linux-x64 "dist/summer-classic_${{ steps.version.outputs.version }}_amd64.deb"
+      - name: Install appimagetool
+        run: |
+          curl -L -o /usr/local/bin/appimagetool https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage
+          chmod +x /usr/local/bin/appimagetool
+      - name: Build AppImage
+        env:
+          APPIMAGE_EXTRACT_AND_RUN: '1'
+        run: installer/linux/build-appimage.sh dist/summer-classic-linux-x64 dist/SummerClassic-x86_64.AppImage
+      - uses: actions/upload-artifact@v4
+        with:
+          name: linux-installers
+          path: |
+            dist/*.deb
+            dist/*.AppImage
+
+  release:
+    needs: [build-windows, build-macos, build-linux]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+      - uses: softprops/action-gh-release@v2
+        with:
+          files: artifacts/**/*
+          generate_release_notes: true
