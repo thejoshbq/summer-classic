@@ -277,11 +277,11 @@ function lineupBlock(side, teamLabel, teamId, lineup, g) {
     .map(id => Admin.state.players.find(p => p.id === id))
     .filter(Boolean);
 
-  function orderList(kind, ids, activeIndex) {
+  function orderList(kind, ids, currentId) {
     if (!ids.length) return `<div class="empty" style="padding:6px 0">No players yet — add from the roster on the right.</div>`;
     return ids.map((pid, i) => {
       const p = Admin.state.players.find(x => x.id === pid);
-      const isCurrent = i === activeIndex;
+      const isCurrent = pid === currentId;
       return `
         <div class="lineup-row ${isCurrent ? 'current' : ''}">
           <span class="lineup-num">${i + 1}</span>
@@ -316,20 +316,20 @@ function lineupBlock(side, teamLabel, teamId, lineup, g) {
 
       <div class="lineup-section">
         <div class="lineup-section-title" style="display:flex;align-items:center;justify-content:space-between">
-          <span>Batting Order (${lineup.battingOrder.length})${lineup.battingAuto ? ' <span class="chip">auto</span>' : ''}</span>
+          <span>Batting Order (${lineup.battingOrder.length})</span>
           <button class="sm subtle" data-randomize="${side}:battingOrder" title="Fill with the full roster, shuffled">🎲 Randomize</button>
         </div>
-        <div class="lineup-list">${orderList('battingOrder', lineup.battingOrder, lineup.battingIndex)}</div>
+        <div class="lineup-list">${orderList('battingOrder', lineup.battingOrder, lineup.battingCurrent)}</div>
         <div class="lineup-section-title" style="margin-top:8px">Available</div>
         <div class="lineup-list">${rosterPicker('battingOrder', lineup.battingOrder)}</div>
       </div>
 
       <div class="lineup-section">
         <div class="lineup-section-title" style="display:flex;align-items:center;justify-content:space-between">
-          <span>Pitching Rotation (${lineup.pitchingRotation.length})${lineup.pitchingAuto ? ' <span class="chip">auto</span>' : ''}</span>
+          <span>Pitching Rotation (${lineup.pitchingRotation.length})</span>
           <button class="sm subtle" data-randomize="${side}:pitchingRotation" title="Fill with the full roster, shuffled">🎲 Randomize</button>
         </div>
-        <div class="lineup-list">${orderList('pitchingRotation', lineup.pitchingRotation, lineup.pitchingIndex)}</div>
+        <div class="lineup-list">${orderList('pitchingRotation', lineup.pitchingRotation, lineup.pitchingCurrent)}</div>
         <div class="lineup-section-title" style="margin-top:8px">Available</div>
         <div class="lineup-list">${rosterPicker('pitchingRotation', lineup.pitchingRotation)}</div>
       </div>

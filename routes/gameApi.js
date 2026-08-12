@@ -5,37 +5,35 @@ const router = express.Router();
 
 function normalizeLineup(l) {
   if (!l || typeof l !== 'object') return emptyLineup();
+  const battingOrder = Array.isArray(l.battingOrder) ? l.battingOrder.filter(x => typeof x === 'string') : [];
+  const pitchingRotation = Array.isArray(l.pitchingRotation) ? l.pitchingRotation.filter(x => typeof x === 'string') : [];
+  const battingPool = new Set(battingOrder);
+  const pitchingPool = new Set(pitchingRotation);
+  const battingCurrent = typeof l.battingCurrent === 'string' && battingPool.has(l.battingCurrent) ? l.battingCurrent : null;
+  const pitchingCurrent = typeof l.pitchingCurrent === 'string' && pitchingPool.has(l.pitchingCurrent) ? l.pitchingCurrent : null;
+  const cleanQueue = (q, pool, current) => {
+    const seen = new Set();
+    return (Array.isArray(q) ? q : []).filter(id => {
+      if (typeof id !== 'string' || id === current || !pool.has(id) || seen.has(id)) return false;
+      seen.add(id);
+      return true;
+    });
+  };
   return {
-    battingOrder: Array.isArray(l.battingOrder) ? l.battingOrder.filter(x => typeof x === 'string') : [],
-    pitchingRotation: Array.isArray(l.pitchingRotation) ? l.pitchingRotation.filter(x => typeof x === 'string') : [],
-    battingIndex: Number.isFinite(l.battingIndex) ? Math.max(0, Math.floor(l.battingIndex)) : 0,
-    pitchingIndex: Number.isFinite(l.pitchingIndex) ? Math.max(0, Math.floor(l.pitchingIndex)) : 0,
-    battingAuto: typeof l.battingAuto === 'boolean' ? l.battingAuto : false,
-    pitchingAuto: typeof l.pitchingAuto === 'boolean' ? l.pitchingAuto : false
+    battingOrder,
+    pitchingRotation,
+    battingCurrent,
+    battingQueue: cleanQueue(l.battingQueue, battingPool, battingCurrent),
+    battingStarted: typeof l.battingStarted === 'boolean' ? l.battingStarted : false,
+    pitchingCurrent,
+    pitchingQueue: cleanQueue(l.pitchingQueue, pitchingPool, pitchingCurrent),
+    pitchingStarted: typeof l.pitchingStarted === 'boolean' ? l.pitchingStarted : false
   };
 }
 
 function ensureLineups(g) {
   g.visitorLineup = normalizeLineup(g.visitorLineup);
   g.homeLineup = normalizeLineup(g.homeLineup);
-}
-
-// Finds where the player currently at `oldOrder[oldIndex]` landed in `newOrder`
-// after a manual add/remove/reorder edit, so cycling position survives the edit
-// instead of resetting to the front of the list. If that player was removed,
-// walks forward through the original order to the next survivor.
-function reindexAfterEdit(oldOrder, oldIndex, newOrder) {
-  if (!newOrder.length) return 0;
-  const currentId = oldOrder[oldIndex];
-  if (currentId) {
-    let idx = newOrder.indexOf(currentId);
-    if (idx >= 0) return idx;
-    for (let step = 1; step <= oldOrder.length; step++) {
-      idx = newOrder.indexOf(oldOrder[(oldIndex + step) % oldOrder.length]);
-      if (idx >= 0) return idx;
-    }
-  }
-  return 0;
 }
 
 // Fisher-Yates shuffle in place. Swaps the just-completed lap's last player
@@ -51,23 +49,61 @@ function shuffleAvoidingRepeat(arr, lastId) {
   }
 }
 
+// Advances a lineup's cycle: pop the next player off the queue into
+// `<prefix>Current`, reshuffling the whole pool back into the queue first if
+// the previous cycle just ran out — so every pool member plays exactly once
+// per cycle before anyone repeats, and the next cycle's order is fresh.
+function advance(lineup, prefix, roster) {
+  const currentKey = `${prefix}Current`;
+  const queueKey = `${prefix}Queue`;
+  const lastId = lineup[currentKey];
+  if (!roster.length) {
+    lineup[currentKey] = null;
+    lineup[queueKey] = [];
+    return null;
+  }
+  if (lineup[queueKey].length === 0) {
+    lineup[queueKey] = [...roster];
+    shuffleAvoidingRepeat(lineup[queueKey], lastId);
+  }
+  lineup[currentKey] = lineup[queueKey].shift();
+  return lineup[currentKey];
+}
+
+// Reconciles a lineup's cycle state against a newly-edited pool (add/remove/
+// reorder from the admin UI). Before the cycle has actually started, the
+// cycle is freely re-derived from the pool as-is — this is what makes a
+// pre-game reorder of the captain's submitted order take effect. Once the
+// cycle is underway, edits are applied as a real set diff against the OLD
+// pool (not against who's already played) so an unrelated reorder can't
+// mistake an already-played member for a new addition and replay them.
+function reconcilePool(lineup, prefix, oldPool, newPool) {
+  const currentKey = `${prefix}Current`;
+  const queueKey = `${prefix}Queue`;
+  const startedKey = `${prefix}Started`;
+  if (!lineup[startedKey]) {
+    lineup[currentKey] = newPool[0] || null;
+    lineup[queueKey] = newPool.slice(1);
+    return;
+  }
+  const oldSet = new Set(oldPool);
+  const newSet = new Set(newPool);
+  lineup[queueKey] = lineup[queueKey].filter(id => newSet.has(id));
+  for (const id of newPool) {
+    if (!oldSet.has(id)) lineup[queueKey].push(id); // genuinely new to the pool
+  }
+  if (lineup[currentKey] && !newSet.has(lineup[currentKey])) {
+    advance(lineup, prefix, newPool);
+  }
+}
+
 // Keeps g.batterPlayerId/pitcherPlayerId pointed at whichever player the
 // active side's lineup cursor currently sits on.
 function syncCurrentAtBat(g) {
   const bLineup = lineupOf(g, battingSide(g));
   const pLineup = lineupOf(g, pitchingSide(g));
-  if (bLineup.battingOrder.length) {
-    if (bLineup.battingIndex >= bLineup.battingOrder.length) bLineup.battingIndex = 0;
-    g.batterPlayerId = bLineup.battingOrder[bLineup.battingIndex];
-  } else {
-    g.batterPlayerId = null;
-  }
-  if (pLineup.pitchingRotation.length) {
-    if (pLineup.pitchingIndex >= pLineup.pitchingRotation.length) pLineup.pitchingIndex = 0;
-    g.pitcherPlayerId = pLineup.pitchingRotation[pLineup.pitchingIndex];
-  } else {
-    g.pitcherPlayerId = null;
-  }
+  g.batterPlayerId = bLineup.battingOrder.length ? bLineup.battingCurrent : null;
+  g.pitcherPlayerId = pLineup.pitchingRotation.length ? pLineup.pitchingCurrent : null;
 }
 
 // Undo history — mirrors routes/draftApi.js's snapshot/history/undo pattern.
@@ -87,25 +123,11 @@ function nameOf(playerId) {
 }
 
 function onDeck(lineup, count = 2) {
-  const order = lineup.battingOrder;
-  if (!order.length) return [];
-  const out = [];
-  for (let i = 1; i <= count; i++) {
-    const idx = (lineup.battingIndex + i) % order.length;
-    out.push({ playerId: order[idx], name: nameOf(order[idx]) });
-  }
-  return out;
+  return lineup.battingQueue.slice(0, count).map(id => ({ playerId: id, name: nameOf(id) }));
 }
 
 function onDeckPitchers(lineup, count = 2) {
-  const order = lineup.pitchingRotation;
-  if (!order.length) return [];
-  const out = [];
-  for (let i = 1; i <= count; i++) {
-    const idx = (lineup.pitchingIndex + i) % order.length;
-    out.push({ playerId: order[idx], name: nameOf(order[idx]) });
-  }
-  return out;
+  return lineup.pitchingQueue.slice(0, count).map(id => ({ playerId: id, name: nameOf(id) }));
 }
 
 function compose() {
@@ -191,10 +213,12 @@ router.put('/inning', async (req, res) => {
   const inning = Math.max(1, Math.min(20, Math.floor(raw)));
   const half = req.body?.half === 'bottom' ? 'bottom' : 'top';
   await game.update(g => {
+    ensureLineups(g);
     g.currentInning = inning;
     g.currentHalf = half;
     ensureLength(g.visitorInnings, inning);
     ensureLength(g.homeInnings, inning);
+    syncCurrentAtBat(g);
     return g;
   });
   res.json(compose());
@@ -220,19 +244,24 @@ router.put('/atbat', async (req, res) => {
     ensureLineups(g);
     if (pitcherPlayerId !== undefined) {
       g.pitcherPlayerId = pitcherPlayerId || null;
-      // Jump the pitching cursor so subsequent "Next" continues from this player.
-      if (pitcherPlayerId) {
-        const lineup = lineupOf(g, pitchingSide(g));
-        const idx = lineup.pitchingRotation.indexOf(pitcherPlayerId);
-        if (idx >= 0) lineup.pitchingIndex = idx;
+      // If the pick is in the pitching pool, fold it into the cycle so the
+      // bumped player is deferred (not skipped) and "Next" continues correctly.
+      // Off-pool picks (emergency substitutes) are a one-off display override
+      // that leaves the cycle untouched.
+      const lineup = lineupOf(g, pitchingSide(g));
+      if (pitcherPlayerId && lineup.pitchingRotation.includes(pitcherPlayerId) && pitcherPlayerId !== lineup.pitchingCurrent) {
+        lineup.pitchingQueue = [lineup.pitchingCurrent, ...lineup.pitchingQueue.filter(id => id !== pitcherPlayerId)].filter(Boolean);
+        lineup.pitchingCurrent = pitcherPlayerId;
+        lineup.pitchingStarted = true;
       }
     }
     if (batterPlayerId !== undefined) {
       g.batterPlayerId = batterPlayerId || null;
-      if (batterPlayerId) {
-        const lineup = lineupOf(g, battingSide(g));
-        const idx = lineup.battingOrder.indexOf(batterPlayerId);
-        if (idx >= 0) lineup.battingIndex = idx;
+      const lineup = lineupOf(g, battingSide(g));
+      if (batterPlayerId && lineup.battingOrder.includes(batterPlayerId) && batterPlayerId !== lineup.battingCurrent) {
+        lineup.battingQueue = [lineup.battingCurrent, ...lineup.battingQueue.filter(id => id !== batterPlayerId)].filter(Boolean);
+        lineup.battingCurrent = batterPlayerId;
+        lineup.battingStarted = true;
       }
     }
     if (pitcherFallback !== undefined) g.pitcherFallback = String(pitcherFallback || '');
@@ -263,14 +292,12 @@ router.put('/lineup', async (req, res) => {
     ensureLineups(g);
     const lineup = lineupOf(g, side);
     if (cleanBatting) {
-      lineup.battingIndex = reindexAfterEdit(lineup.battingOrder, lineup.battingIndex, cleanBatting);
+      reconcilePool(lineup, 'batting', lineup.battingOrder, cleanBatting);
       lineup.battingOrder = cleanBatting;
-      lineup.battingAuto = false; // this endpoint is the manual-edit surface
     }
     if (cleanPitching) {
-      lineup.pitchingIndex = reindexAfterEdit(lineup.pitchingRotation, lineup.pitchingIndex, cleanPitching);
+      reconcilePool(lineup, 'pitching', lineup.pitchingRotation, cleanPitching);
       lineup.pitchingRotation = cleanPitching;
-      lineup.pitchingAuto = false;
     }
     syncCurrentAtBat(g);
     return g;
@@ -279,8 +306,7 @@ router.put('/lineup', async (req, res) => {
 });
 
 // Auto-populate a side's batting order or pitching rotation with the full
-// team roster in random order. Marks that side `*Auto: true` so next-atbat
-// reshuffles it once every player has had a turn instead of just wrapping.
+// team roster in random order, and seed a fresh cycle from that order.
 router.post('/lineup/randomize', async (req, res) => {
   const { side, kind } = req.body || {};
   if (side !== 'visitor' && side !== 'home') {
@@ -302,12 +328,14 @@ router.post('/lineup/randomize', async (req, res) => {
     const lineup = lineupOf(g, side);
     if (kind === 'battingOrder') {
       lineup.battingOrder = roster;
-      lineup.battingIndex = 0;
-      lineup.battingAuto = true;
+      lineup.battingStarted = false;
+      lineup.battingCurrent = roster[0] || null;
+      lineup.battingQueue = roster.slice(1);
     } else {
       lineup.pitchingRotation = roster;
-      lineup.pitchingIndex = 0;
-      lineup.pitchingAuto = true;
+      lineup.pitchingStarted = false;
+      lineup.pitchingCurrent = roster[0] || null;
+      lineup.pitchingQueue = roster.slice(1);
     }
     syncCurrentAtBat(g);
     return g;
@@ -328,26 +356,14 @@ router.post('/next-atbat', async (req, res) => {
       return g;
     }
     if (bLineup.battingOrder.length) {
-      const lastId = bLineup.battingOrder[bLineup.battingIndex];
-      const next = bLineup.battingIndex + 1;
-      if (next >= bLineup.battingOrder.length) {
-        if (bLineup.battingAuto) shuffleAvoidingRepeat(bLineup.battingOrder, lastId);
-        bLineup.battingIndex = 0;
-      } else {
-        bLineup.battingIndex = next;
-      }
-      g.batterPlayerId = bLineup.battingOrder[bLineup.battingIndex];
+      advance(bLineup, 'batting', bLineup.battingOrder);
+      bLineup.battingStarted = true;
+      g.batterPlayerId = bLineup.battingCurrent;
     }
     if (pLineup.pitchingRotation.length) {
-      const lastId = pLineup.pitchingRotation[pLineup.pitchingIndex];
-      const next = pLineup.pitchingIndex + 1;
-      if (next >= pLineup.pitchingRotation.length) {
-        if (pLineup.pitchingAuto) shuffleAvoidingRepeat(pLineup.pitchingRotation, lastId);
-        pLineup.pitchingIndex = 0;
-      } else {
-        pLineup.pitchingIndex = next;
-      }
-      g.pitcherPlayerId = pLineup.pitchingRotation[pLineup.pitchingIndex];
+      advance(pLineup, 'pitching', pLineup.pitchingRotation);
+      pLineup.pitchingStarted = true;
+      g.pitcherPlayerId = pLineup.pitchingCurrent;
     }
     return g;
   });
@@ -405,3 +421,7 @@ router.post('/reset', async (req, res) => {
 });
 
 module.exports = router;
+// Exposed only for scripts/verify-lineup-queue.js, so it fuzzes the real
+// cycle logic instead of a hand-duplicated copy that can drift out of sync.
+// Inert for Express — routers are called as middleware, extra properties are ignored.
+module.exports.internals = { advance, reconcilePool, shuffleAvoidingRepeat, normalizeLineup };
