@@ -1,0 +1,86 @@
+{
+  "contract": "league-roster.v1",
+  "exportedAt": "2026-09-10T12:00:00.000Z",
+  "league": {
+    "id": "clxleague0000000000000001",
+    "name": "Fall Axe League",
+    "slug": "fall-axe-league",
+    "season": "Fall 2026",
+    "status": "ACTIVE",
+    "startDate": "2026-09-08T00:00:00.000Z",
+    "endDate": null,
+    "startTime": "2026-09-08T18:00:00.000Z",
+    "endTime": null,
+    "recurrenceRule": "WEEKLY"
+  },
+  "teams": [
+    { "externalId": "clxreg000000000000000001", "name": "Ax Kickers" },
+    { "externalId": "clxreg000000000000000002", "name": "Team (Josh Boquiren)" }
+  ],
+  "players": [
+    {
+      "externalId": "clxreg000000000000000001:contact",
+      "fullName": "Dale Cooper",
+      "shirtFit": "MENS",
+      "shirtSize": "L",
+      "position": 0,
+      "teamExternalId": "clxreg000000000000000001",
+      "isContact": true,
+      "email": "dale@example.com",
+      "phone": "8435550100"
+    },
+    {
+      "externalId": "clxmem00000000000000001",
+      "fullName": "María José Núñez",
+      "shirtFit": "WOMENS",
+      "shirtSize": "M",
+      "position": 1,
+      "teamExternalId": "clxreg000000000000000001",
+      "isContact": false
+    },
+    {
+      "externalId": "clxmem00000000000000002",
+      "fullName": "Sam Lee",
+      "shirtFit": "MENS",
+      "shirtSize": "XL",
+      "position": 2,
+      "teamExternalId": "clxreg000000000000000001",
+      "isContact": false
+    },
+    {
+      "externalId": "clxreg000000000000000002:contact",
+      "fullName": "Josh Boquiren",
+      "shirtFit": null,
+      "shirtSize": null,
+      "position": 0,
+      "teamExternalId": "clxreg000000000000000002",
+      "isContact": true,
+      "email": "josh@example.com",
+      "phone": null
+    },
+    {
+      "externalId": "clxreg000000000000000003:contact",
+      "fullName": "🪓 Erin Kōno",
+      "shirtFit": "MENS",
+      "shirtSize": "S",
+      "position": 0,
+      "teamExternalId": null,
+      "isContact": true,
+      "email": "erin@example.com",
+      "phone": "8435550199"
+    },
+    {
+      "externalId": "clxreg000000000000000004:contact",
+      "fullName": "Pat Rivera",
+      "shirtFit": null,
+      "shirtSize": null,
+      "position": 0,
+      "teamExternalId": null,
+      "isContact": true,
+      "email": "pat@example.com",
+      "phone": null
+    }
+  ],
+  "truncated": false,
+  "totalCount": 6
+}

@@ -2,3 +2,9 @@ node_modules/
 *.log
 .DS_Store
 dist/
+
+# Bridge connection state can hold a live hub credential. It has no seed
+# value (only ever created by connecting through the admin UI), and pkg's
+# `data/**/*.json` asset glob would bundle it into the packaged binary if it
+# were ever present here — see scripts/guard-bridge-secret.js.
+data/bridge.json

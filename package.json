@@ -9,9 +9,10 @@
   },
   "scripts": {
     "start": "node server.js",
-    "package:linux": "pkg . --targets node22-linux-x64 --output dist/summer-classic-linux-x64",
-    "package:win": "node scripts/build-win.mjs",
-    "package:mac": "pkg . --targets node22-macos-x64 --output dist/summer-classic-macos-x64",
+    "test": "node --test test/*.test.js",
+    "package:linux": "node scripts/guard-bridge-secret.js && pkg . --targets node22-linux-x64 --output dist/summer-classic-linux-x64",
+    "package:win": "node scripts/guard-bridge-secret.js && node scripts/build-win.mjs",
+    "package:mac": "node scripts/guard-bridge-secret.js && pkg . --targets node22-macos-x64 --output dist/summer-classic-macos-x64",
     "package": "npm run package:linux && npm run package:win && npm run package:mac"
   },
   "dependencies": {

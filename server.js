@@ -26,6 +26,7 @@ app.use('/api/standings', require('./routes/standingsApi'));
 app.use('/api/bracket', require('./routes/bracketApi'));
 app.use('/api/game', require('./routes/gameApi'));
 app.use('/api/draft', require('./routes/draftApi'));
+app.use('/api/bridge', require('./routes/bridge'));
 
 // The packaged app has no console window to close, so the hub page needs a way
 // to stop the server. process.exit fires the 'exit' handler below, which clears

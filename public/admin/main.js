@@ -6,7 +6,8 @@ const tabRenderers = {
   teams: renderTeams,
   standings: renderStandings,
   bracket: renderBracket,
-  scoreboard: renderScoreboard
+  scoreboard: renderScoreboard,
+  bridge: renderBridge
 };
 
 // Each tab module can register a cleanup function (e.g. clear a self-refresh
